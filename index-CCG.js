@@ -20,29 +20,33 @@ array_listas.forEach((x) =>{
 
 //Funciones
 function funcion_1(province, numeric_field){
-    var n = 0;
+    var media = 0;
+    var suma = 0;
     var i = valores.indexOf(numeric_field);
     for(var j=0; j<array_listas.length; j++){
         var lista = array_listas[j];
         if(lista[0]===province){
+            media++;
             var numero = lista[i];
-            n = n+numero;
+            suma = suma+numero;
         }
     }
-    console.log("-Función 1:\nCampo numérico: ",numeric_field,"\nProvincia: ", province,"\nLa suma es: ",n);
+    console.log("-Función 1:\nCampo numérico: ",numeric_field,"\nProvincia: ", province,"\nLa media es: ",suma/media);
 }
 
 function funcion_2(province, numeric_field){
-    var n = 0;
+    var suma = 0;
+    var media = 0;
     var i = valores.indexOf(numeric_field);
     var c = array_listas.filter((x) => {
         return x[0]===province;
     }).forEach((x) =>{
+        media++;
         var numero = x[i];
-        n = n+numero;
+        suma = suma+numero;
     });
 
-    console.log("-Función 2:\nCampo numérico: ",numeric_field,"\nProvincia: ", province,"\nLa suma es: ",n);
+    console.log("-Función 2:\nCampo numérico: ",numeric_field,"\nProvincia: ", province,"\nLa media es: ",suma/media);
 }
 
 //Llamada funciones
