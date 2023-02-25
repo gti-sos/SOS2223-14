@@ -19,51 +19,36 @@ datos.push(["Jaén",2022,984601,78.7,2.6]);
 datos.push(["Málaga",2022,8325665,71.3,7.4]);
 datos.push(["Sevilla",2022,4416490,72.6,3.5]);
 
-//console.log(datos);
-/*
-
-//  Media indicando campo del que se quiere obtener.
-
-function media(data,n) {
-    var acum;
-    acum=0;
-    if (n>1) {
-        for (var i=0;i<data.length;i++) {
-            acum = data[i][n] + acum;
-        }
-        console.log("La media del campo indicado es: "+acum/data.length);
-    } else {
-        console.log("No se puede realizar una media aritmética con estos datos.")
-    }
-}
-*/
-
-//  Obtención de todas las posibles medias de los datos.
-
-function media(data) {
-    var acum_t;
-    var acum_g;
-    var acum_e;
-    acum_t=0; 
-    acum_g=0; 
-    acum_e=0;
+function media(data,province,i) {
+    var acum = 0;
+    var filas = 0;
     
-    for (var i=0;i<data.length;i++) {
-        acum_t = data[i][2] + acum_t;
-        acum_g = data[i][3] + acum_g;
-        acum_e = data[i][4] + acum_e;
+    data.filter((n) => {
+        return n[0]==province;
+    }).forEach((n) => {
+        acum = n[i] + acum;
+        filas++;
+    });
+
+    if (i==2) {
+        console.log("La media de turistas en ",province," es de ", acum/filas);
+    } else if (i==3) {
+        console.log("La media del gasto medio diario en ",province," es de ", acum/filas);
+    } else if (i==4) {
+        console.log("La media de la estancia media en ",province," es de ", acum/filas);
+    } else if (i==0) {
+        console.log("No es posible realizar una media de este campo.");
+    } else if (i==1) {
+        console.log("No es posible realizar una media de este campo.");
     }
     
-    console.log("La media de turistas en Andalucía es de : "+acum_t/data.length);
-    console.log("El gasto medio diario producido por turistas en Andalucía es de : "+acum_g/data.length);
-    console.log("La estancia media de turistas en Andalucía es de : "+acum_e/data.length);
 }
-/*
-media(datos,0);
-media(datos,1);
-media(datos,2);
-media(datos,3);
-media(datos,4);
-*/
 
-media(datos);
+media(datos,"Sevilla",0);
+media(datos,"Sevilla",1);
+media(datos,"Sevilla",2);
+media(datos,"Sevilla",3);
+media(datos,"Sevilla",4);
+media(datos,"Granada",2);
+media(datos,"Cádiz",3);
+media(datos,"Córdoba",4);
