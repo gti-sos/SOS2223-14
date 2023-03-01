@@ -116,7 +116,7 @@ log(i);
 */
 
 //                  CLASE 24/02
-
+/*
 var cool = require("cool-ascii-faces");
 var express = require("express");
 //var port = 12345;   gcloud app deploy  -> 11
@@ -130,4 +130,21 @@ app.get("/faces", (request,response) => {
 
 app.listen(port,() =>{
     console.log(`Server ready in port ${port}`);
+});
+*/
+var express = require("express");
+var cool = require("cool-ascii-faces");
+
+var app = express();
+var port = process.env.PORT || 12345;
+
+app.get("/cool",(request,response) => {
+    response.send(cool());
+    console.log("New request");
+});
+
+// Que se quede escuchando en un puerto (Asignarle un puerto)
+
+app.listen(port,() => {
+    console.log(`Server ready in port ${port}.`);
 });
