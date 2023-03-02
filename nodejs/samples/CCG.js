@@ -32,26 +32,9 @@ array_listas.push(["Málaga",2022,1087377,5479489,5]);
 array_listas.push(["Sevilla",2022,420921,1218569,2.9]);
 
 var valores = new Array();
+var province;
+var numeric_field;
 valores = ["province","year","traveler","overnight_stay","average_stay"];
-
-//Funciones
-
-/*
-    function funcion_iterativa(province, numeric_field){
-        var media = 0;
-        var suma = 0;
-        var i = valores.indexOf(numeric_field);
-        for(var j=0; j<array_listas.length; j++){
-            var lista = array_listas[j];
-            if(lista[0]===province){
-                media++;
-                var numero = lista[i];
-                suma = suma+numero;
-            }
-        }
-        console.log("\n-Función 1:\nCampo numérico: ",numeric_field,"\nProvincia: ", province,"\nLa media es: ",suma/media);
-    }
-*/
 
 function funcion_funcional(province, numeric_field){
     var suma = 0;
@@ -64,36 +47,37 @@ function funcion_funcional(province, numeric_field){
         var numero = x[i];
         suma = suma+numero;
     });
-
-    console.log("\n-Funcional:\nCampo numérico: ",numeric_field,"\nProvincia: ", province,"\nLa media es: ",suma/media);
+    console.log("\n---------EJERCICIO:---------")
+    console.log("\n-Funcional:\nCampo numérico: ",numeric_field,"\nProvincia: ", province,"\nLa media es:",suma/media,"\n");
 }
 
-//Lectura datos
-var province;
-var numeric_field;
+funcion_funcional("Sevilla", "traveler");
 
-var answers = [];
-var questions = ["Which is the province?:\n","Which is the numeric field?:\n"];
+/*
+    ESCRIBIR LOS DATOS EN CONSOLA
+        var answers = [];
+        var questions = ["Which is the province?:\n","Which is the numeric field?:\n"];
 
-function question(i){
-    process.stdout.write(questions[i]);
-}
+        function question(i){
+            process.stdout.write(questions[i]);
+        }
 
-process.stdin.on('data', function(data){
-    answers.push(data.toString());
+        process.stdin.on('data', function(data){
+            answers.push(data.toString());
 
-    if(answers.length < questions.length){
-        question(answers.length);
-    }
-    else{
-        province = answers[0];
-        numeric_field = answers[1];
-        province = province.trim();
-        numeric_field = numeric_field.trim();
-       //funcion_iterativa(province, numeric_field);
-        funcion_funcional(province, numeric_field);
-        process.exit();
-    }
-});
+            if(answers.length < questions.length){
+                question(answers.length);
+            }
+            else{
+                province = answers[0];
+                numeric_field = answers[1];
+                province = province.trim();
+                numeric_field = numeric_field.trim();
+            //funcion_iterativa(province, numeric_field);
+                funcion_funcional(province, numeric_field);
+                process.exit();
+            }
+        });
 
-question(0);
+        question(0);
+*/
