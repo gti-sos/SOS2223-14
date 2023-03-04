@@ -2,6 +2,7 @@ var express = require("express");
 var cool = require("cool-ascii-faces");
 var app = express();
 var port = process.env.PORT || 12345;
+// const media = require("./samples/RSB.js");
 
 app.get("/cool",(request,response) => {
     response.send(cool());
@@ -10,7 +11,7 @@ app.get("/cool",(request,response) => {
 
 /*
 app.get("/samples/RSB",(request,response) => {
-    response.
+    response.send(media.showMedia());
     console.log("New request");
 });
 */
