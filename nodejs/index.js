@@ -23,7 +23,6 @@ app.get("/cool", (request,response) => {
 app.get(BASE_API_URL+"/samples/CCG", (request,response) => {
     response.json(resultado_cristina);
     console.log("New GET to /samples/CCG");
-<<<<<<< HEAD
 });
 
 
@@ -60,41 +59,3 @@ app.post(BASE_API_URL+"/samples/CCG/array", (request,response) => {
 app.listen(port,()=>{
     console.log(`Server ready in port ${port}`);
 });
-=======
-});
-
-
-app.post(BASE_API_URL+"/samples/CCG", (request,response) => {
-    var newFile = request.body;
-
-
-    console.log(`newFile = <${newFile}>`);
-   
-    console.log("New POST to /samples/CCG");
-
-
-    response.sendStatus(201);
-});
-
-app.get(BASE_API_URL+"/samples/CCG/array", (request,response) => {
-    response.json(array_listas_cristina);
-    console.log("New GET to /samples/CCG/array");
-});
-
-
-app.post(BASE_API_URL+"/samples/CCG/array", (request,response) => {
-    var newLine = request.body;
-
-
-    console.log(`newLine = <${newLine}>`);
-   
-    console.log("New POST to /samples/CCG/array");
-
-
-    response.sendStatus(201);
-});
-
-app.listen(port,()=>{
-    console.log(`Server ready in port ${port}`);
-});
->>>>>>> 5d9d66f722e2d86c3f1e5ca7f70481c4c4045797
