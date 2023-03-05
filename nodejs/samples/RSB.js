@@ -19,46 +19,47 @@ datos.push(["Jaén",2022,984601,78.7,2.6]);
 datos.push(["Málaga",2022,8325665,71.3,7.4]);
 datos.push(["Sevilla",2022,4416490,72.6,3.5]);
 
-function media(data,province,i) {
+function media(/*data,*/province,i) {
     var acum = 0;
     var filas = 0;
-    
+    /*
     data.filter((n) => {
         return n[0]==province;
     }).forEach((n) => {
         acum = n[i] + acum;
         filas++;
     });
+    */
+    datos.filter((n) => {
+        return n[0]==province;
+    }).forEach((n) =>{
+        acum = n[i] + acum;
+        filas++;
+    });
 
     if (i==2) {
-        console.log("La media de turistas en ",province," es de ", acum/filas);
+        var res = `La media de turistas en ${province} es de ${acum/filas}`;
     } else if (i==3) {
-        console.log("La media del gasto medio diario en ",province," es de ", acum/filas);
+        var res = `La media del gasto medio diario en ${province} es de ${acum/filas}`;
     } else if (i==4) {
-        console.log("La media de la estancia media en ",province," es de ", acum/filas);
+        var res = `La media de la estancia media en ${province} es de ${acum/filas}`;
     } else if (i==0) {
-        console.log("No es posible realizar una media de este campo.");
+        var res = `No es posible realizar una media de este campo.`;
     } else if (i==1) {
-        console.log("No es posible realizar una media de este campo.");
+        var res = `No es posible realizar una media de este campo.`;
     }
     
+    return res;
 }
 
-module.exports = {
-    "media": media,
-    "showMedia": showMedia
-}
+media("Sevilla",0);
+media("Sevilla",1);
+media("Sevilla",2);
+media("Sevilla",3);
+media("Sevilla",4);
+media("Cádiz",3);
+media("Granada",2);
+media("Córdoba",4);
 
-function showMedia() {
-    media(datos,"Sevilla",0);
-    media(datos,"Sevilla",1);
-    media(datos,"Sevilla",2);
-    media(datos,"Sevilla",3);
-    media(datos,"Sevilla",4);
-    media(datos,"Granada",2);
-    media(datos,"Cádiz",3);
-    media(datos,"Córdoba",4);
-}
-
-showMedia();
+exports.funcional = media("Sevilla",2);
 
