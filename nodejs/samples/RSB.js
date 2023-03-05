@@ -44,11 +44,21 @@ function media(data,province,i) {
     
 }
 
-media(datos,"Sevilla",0);
-media(datos,"Sevilla",1);
-media(datos,"Sevilla",2);
-media(datos,"Sevilla",3);
-media(datos,"Sevilla",4);
-media(datos,"Granada",2);
-media(datos,"Cádiz",3);
-media(datos,"Córdoba",4);
+module.exports = {
+    "media": media,
+    "showMedia": showMedia
+}
+
+function showMedia() {
+    media(datos,"Sevilla",0);
+    media(datos,"Sevilla",1);
+    media(datos,"Sevilla",2);
+    media(datos,"Sevilla",3);
+    media(datos,"Sevilla",4);
+    media(datos,"Granada",2);
+    media(datos,"Cádiz",3);
+    media(datos,"Córdoba",4);
+}
+
+showMedia();
+
