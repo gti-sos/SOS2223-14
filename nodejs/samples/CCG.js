@@ -36,7 +36,7 @@ var province;
 var numeric_field;
 valores = ["province","year","traveler","overnight_stay","average_stay"];
 
-function funcion_funcional(province, numeric_field){
+function funcion_funcional (province, numeric_field){
     var suma = 0;
     var media = 0;
     var i = valores.indexOf(numeric_field);
@@ -48,11 +48,16 @@ function funcion_funcional(province, numeric_field){
         suma = suma+numero;
     });
     console.log("\n---------EJERCICIO:---------")
-    console.log("\n-Funcional:\nCampo numérico: ",numeric_field,"\nProvincia: ", province,"\nLa media es:",suma/media,"\n");
-}
+    var s = `Campo numérico:${numeric_field}  Provincia:${province}  La media es:${suma/media}`;
+    return s;
+};
 
-funcion_funcional("Sevilla", "traveler");
+function getAll(){
+    return array_listas;
+};
 
+exports.getAll = getAll();
+exports.funcional = funcion_funcional("Sevilla","traveler");
 /*
     ESCRIBIR LOS DATOS EN CONSOLA
         var answers = [];
