@@ -47,3 +47,5 @@ function average(provincia, dato){
 
 console.log("La media de empleo en hoteles de Cádiz es de: " + average("Cádiz", "average_employment"));
 console.log("La media de habitaciones estimadas en Sevilla es de: " + average("Sevilla", "estimated_average_open_establishment"));
+
+exports.funcional = average("Cádiz", "average_employment");
