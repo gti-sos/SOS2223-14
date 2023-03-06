@@ -5,6 +5,9 @@ var resultado_cristina = main.funcional;
 var main = require("./samples/RSB");
 var resultado_rebeca = main.funcional;
 
+var main = require("./samples/ACV");
+var resultado_ana = main.funcional;
+
 var express = require("express");
 var cool = require("cool-ascii-faces");
 var bodyParser = require("body-parser");
@@ -67,6 +70,19 @@ app.post("/samples/RSB", (request,response) => {
     var newFile = request.body;
     console.log(`newFile = <${newFile}>`);
     console.log("New POST to /samples/RSB");
+    response.sendStatus(201);
+});
+
+//Ana
+app.get("/samples/ACV", (request,response) => {
+    response.json(resultado_ana);
+    console.log("New GET to /samples/ACV");
+});
+
+app.post("/samples/ACV", (request,response) => {
+    var newFile = request.body;
+    console.log(`newFile = <${newFile}>`);
+    console.log("New POST to /samples/ACV");
     response.sendStatus(201);
 });
 
