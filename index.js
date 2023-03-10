@@ -1,11 +1,11 @@
-var main = require("./samples/CCG");
+var main = require("./index-CCG");
 var array_listas_cristina = main.getAll;
 var resultado_cristina = main.funcional;
 
-var main = require("./samples/RSB");
+var main = require("./index-RSB");
 var resultado_rebeca = main.funcional;
 
-var main = require("./samples/ACV");
+var main = require("./index-ACV");
 var resultado_ana = main.funcional;
 
 var express = require("express");
