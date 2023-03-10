@@ -11,7 +11,7 @@ var bodyParser = require("body-parser");
 
 var app = express();
 var port = process.env.PORT || 12345;
-
+const BASE_API_URL = "api/v1";
 //app.use("/",express.static("./public"));
 
 app.use(bodyParser.json());
@@ -51,25 +51,25 @@ var main = require("./index-RSB");
 var datos_rebeca = main.datos;
 var media_rebeca = main.media;
 
-app.get("/samples/RSB", (request,response) => {
+app.get(BASE_API_URL+"/samples/RSB", (request,response) => {
     response.json(media_rebeca);
     console.log("New GET to /samples/RSB");
 });
 
 
-app.post("/samples/RSB", (request,response) => {
+app.post(BASE_API_URL+"/samples/RSB", (request,response) => {
     var newFile = request.body;
     console.log(`newFile = <${newFile}>`);
     console.log("New POST to /samples/RSB");
     response.sendStatus(201);
 });
 
-app.get("/andalusia-tourism-situation-surveys", (request,response) => {
+app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
     response.json(datos_rebeca);
     console.log("New GET to /andalusia-tourism-situation-surveys");
 });
 
-app.post("/andalusia-tourism-situation-surveys", (request,response) => {
+app.post(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
     var newFile = request.body;
     console.log(`newFile = <${newFile}>`);
     console.log("New POST to /andalusia-tourism-situation-surveys");
