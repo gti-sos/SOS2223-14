@@ -148,7 +148,6 @@ function getAll(){
 };
 
 module.exports = {datos,funcion_funcional};
-//module.exports = {funcion_funcional};
 
 /*
     ESCRIBIR LOS DATOS EN CONSOLA

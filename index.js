@@ -1,6 +1,6 @@
 var main_c = require("./index-CCG");
 
-var main = require("./samples/ACV");
+var main = require("./index-ACV");
 var resultado_ana = main.funcional;
 
 var express = require("express");
@@ -25,12 +25,12 @@ app.get("/cool", (request,response) => {
 
 //Ejercicio
 app.get("/CCG", (request,response) => {
-    response.json(main_cris.funcion_funcional("Sevilla","traveler"));
+    response.json(main_c.funcion_funcional("Sevilla","traveler"));
     console.log("New GET to /CCG");
 });
 
 app.get("/CCG/datos", (request,response) => {
-    response.json(main_cris.datos);
+    response.json(main_c.datos);
     console.log("New GET to /CCG/datos");
 });
 
@@ -38,7 +38,7 @@ app.get("/CCG/datos", (request,response) => {
 app.post("/CCG/datos", (request,response) => {
     var newFile = request.body;
     console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-    main_cris.datos.push(newFile);   
+    main_c.datos.push(newFile);   
     console.log("New POST to /CCG/datos");
 
 
@@ -64,12 +64,12 @@ app.post("/samples/RSB", (request,response) => {
     response.sendStatus(201);
 });
 
-app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
+app.get("/andalusia-tourism-situation-surveys", (request,response) => {
     response.json(datos_rebeca);
     console.log("New GET to /andalusia-tourism-situation-surveys");
 });
 
-app.post(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
+app.post("/andalusia-tourism-situation-surveys", (request,response) => {
     var newFile = request.body;
     console.log(`newFile = <${newFile}>`);
     console.log("New POST to /andalusia-tourism-situation-surveys");
