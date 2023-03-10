@@ -1,6 +1,4 @@
-var main = require("./index-CCG");
-var array_listas_cristina = main.getAll;
-var resultado_cristina = main.funcional;
+var main_c = require("./index-CCG");
 
 var main = require("./index-RSB");
 var resultado_rebeca = main.funcional;
@@ -32,17 +30,6 @@ app.get("/cool", (request,response) => {
 app.get("/CCG", (request,response) => {
     response.json(main_cris.funcion_funcional("Sevilla","traveler"));
     console.log("New GET to /CCG");
-});
-
-
-app.post("/CCG", (request,response) => {
-    var newFile = request.body;
-    console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-    main_cris.datos.push(newFile);
-    console.log("New POST to /CCG");
-
-
-    response.sendStatus(201);
 });
 
 app.get("/CCG/datos", (request,response) => {
