@@ -13,42 +13,133 @@
 */
 
 //Carga de datos
-var array_listas = new Array();
-array_listas.push(["Almería",2021,175430,852651,4.9]);
-array_listas.push(["Cádiz",2021,141934,547194,3.9]);
-array_listas.push(["Córdoba",2021,40273,92011,2.3]);
-array_listas.push(["Granada",2021,208463,527799,2.5]);
-array_listas.push(["Huelva",2021,70746,324824,4.6]);
-array_listas.push(["Jaén",2021,54969,138818,2.5]);
-array_listas.push(["Málaga",2021,722109,3411916,4.7]);
-array_listas.push(["Sevilla",2021,220579,669075,3]);
-array_listas.push(["Almería",2022,221240,980040,4,4]);
-array_listas.push(["Cádiz",2022,249383,805508,3.2]);
-array_listas.push(["Córdoba",2022,67647,141530,2.1]);
-array_listas.push(["Granada",2022,280920,759208,2.7]);
-array_listas.push(["Huelva",2022,86304,332581,3.9]);
-array_listas.push(["Jaén",2022,60408,142543,2.4]);
-array_listas.push(["Málaga",2022,1087377,5479489,5]);
-array_listas.push(["Sevilla",2022,420921,1218569,2.9]);
-
-var valores = new Array();
-var province;
-var numeric_field;
-valores = ["province","year","traveler","overnight_stay","average_stay"];
+var datos = [
+    {
+        "province": "Almeria",
+        "year": 2021,
+        "traveler": 175430,
+        "overnight_stay": 852651,
+        "average_stay": 4.9
+    },
+    {
+        "province": "Cádiz",
+        "year": 2021,
+        "traveler": 141934,
+        "overnight_stay": 547194,
+        "average_stay": 3.9
+    },
+    {
+        "province": "Córdoba",
+        "year": 2021,
+        "traveler": 40273,
+        "overnight_stay": 92011,
+        "average_stay": 2.3
+    },
+    {
+        "province": "Granada",
+        "year": 2021,
+        "traveler": 208463,
+        "overnight_stay": 527799,
+        "average_stay": 2.5
+    },
+    {
+        "province": "Huelva",
+        "year": 2021,
+        "traveler": 70746,
+        "overnight_stay": 324824,
+        "average_stay": 4.6
+    },
+    {
+        "province": "Jaén",
+        "year": 2021,
+        "traveler": 54969,
+        "overnight_stay": 138818,
+        "average_stay": 2.5
+    },
+    {
+        "province": "Málaga",
+        "year": 2021,
+        "traveler": 722109,
+        "overnight_stay": 3411916,
+        "average_stay": 4.7
+    },
+    {
+        "province": "Sevilla",
+        "year": 2021,
+        "traveler": 220579,
+        "overnight_stay": 669075,
+        "average_stay": 3
+    },
+    {
+        "province": "Almeria",
+        "year": 2022,
+        "traveler": 221240,
+        "overnight_stay": 980040,
+        "average_stay": 4.4
+    },
+    {
+        "province": "Cádiz",
+        "year": 2022,
+        "traveler": 249383,
+        "overnight_stay": 805508,
+        "average_stay": 3.2
+    },
+    {
+        "province": "Córdoba",
+        "year": 2022,
+        "traveler": 67647,
+        "overnight_stay": 141530,
+        "average_stay": 2.1
+    },
+    {
+        "province": "Granada",
+        "year": 2022,
+        "traveler": 280920,
+        "overnight_stay": 759208,
+        "average_stay": 2.7
+    },
+    {
+        "province": "Huelva",
+        "year": 2022,
+        "traveler": 86304,
+        "overnight_stay": 332581,
+        "average_stay": 3.9
+    },
+    {
+        "province": "Jaén",
+        "year": 2022,
+        "traveler": 60408,
+        "overnight_stay": 142543,
+        "average_stay": 2.4
+    },
+    {
+        "province": "Málaga",
+        "year": 2022,
+        "traveler": 1087377,
+        "overnight_stay": 5479489,
+        "average_stay": 5
+    },
+    {
+        "province": "Sevilla",
+        "year": 2022,
+        "traveler": 420921,
+        "overnight_stay": 1218569,
+        "average_stay": 2.9
+    }
+];
 
 function funcion_funcional (province, numeric_field){
     var suma = 0;
     var media = 0;
-    var i = valores.indexOf(numeric_field);
-    var c = array_listas.filter((x) => {
-        return x[0]===province;
+    
+   var c = datos.filter((x) => {
+        return x.province===province;
     }).forEach((x) =>{
         media++;
-        var numero = x[i];
-        suma = suma+numero;
+        suma = suma+x[numeric_field];
     });
     console.log("\n---------EJERCICIO:---------")
-    var s = `Campo numérico:${numeric_field}  Provincia:${province}  La media es:${suma/media}`;
+    var s = `Campo numérico: ${numeric_field} Provincia: ${province} La media es: ${suma/media}`;
     return s;
 };
 
@@ -56,8 +147,9 @@ function getAll(){
     return array_listas;
 };
 
-exports.getAll = getAll();
-exports.funcional = funcion_funcional("Sevilla","traveler");
+module.exports = {datos,funcion_funcional};
+//module.exports = {funcion_funcional};
+
 /*
     ESCRIBIR LOS DATOS EN CONSOLA
         var answers = [];
