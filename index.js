@@ -1,8 +1,5 @@
 var main_c = require("./index-CCG");
 
-var main = require("./index-RSB");
-var resultado_rebeca = main.funcional;
-
 var main = require("./samples/ACV");
 var resultado_ana = main.funcional;
 
@@ -48,8 +45,14 @@ app.post("/CCG/datos", (request,response) => {
     response.sendStatus(201);
 });
 
+/*----------------------------------- REBECA ------------------------------------------*/
+
+var main = require("./index-RSB");
+var datos_rebeca = main.datos;
+var media_rebeca = main.media;
+
 app.get("/samples/RSB", (request,response) => {
-    response.json(resultado_rebeca);
+    response.json(media_rebeca);
     console.log("New GET to /samples/RSB");
 });
 
@@ -58,6 +61,18 @@ app.post("/samples/RSB", (request,response) => {
     var newFile = request.body;
     console.log(`newFile = <${newFile}>`);
     console.log("New POST to /samples/RSB");
+    response.sendStatus(201);
+});
+
+app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
+    response.json(datos_rebeca);
+    console.log("New GET to /andalusia-tourism-situation-surveys");
+});
+
+app.post(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
+    var newFile = request.body;
+    console.log(`newFile = <${newFile}>`);
+    console.log("New POST to /andalusia-tourism-situation-surveys");
     response.sendStatus(201);
 });
 

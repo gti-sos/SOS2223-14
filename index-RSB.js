@@ -19,21 +19,10 @@ datos.push(["Jaén",2022,984601,78.7,2.6]);
 datos.push(["Málaga",2022,8325665,71.3,7.4]);
 datos.push(["Sevilla",2022,4416490,72.6,3.5]);
 
-function media(/*data,*/province,i) {
+function media(province,i) {
     var acum = 0;
     var filas = 0;
-<<<<<<< HEAD:RSB.js
-    /*
-    data.filter((n) => {
-        return n[0]==province;
-    }).forEach((n) => {
-        acum = n[i] + acum;
-        filas++;
-    });
-    */
-=======
-    
->>>>>>> 3154a47b8c336054dcd0855f44425af53f832d48:index-RSB.js
+
     datos.filter((n) => {
         return n[0]==province;
     }).forEach((n) =>{
@@ -65,5 +54,7 @@ media("Cádiz",3);
 media("Granada",2);
 media("Córdoba",4);
 
-exports.funcional = media("Sevilla",2);
-
+module.exports = {
+    datos,
+    media : media("Sevilla",2)
+};
