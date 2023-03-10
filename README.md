@@ -1,1 +1,2 @@
-# SOS2223-14 Test Project
+# Codigo l06
+-API sencilla con GET / POST

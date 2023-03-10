@@ -6,11 +6,11 @@
     "xlsx": "^0.18.5"
   },
   "name": "sos2223-14",
-  "description": "",
+  "description": "hello",
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node nodejs/index",
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/gti-sos/SOS2223-14/issues"
   },
-  "homepage": "https://github.com/gti-sos/SOS2223-14#readme"
+  "homepage": "https://github.com/gti-sos/SOS2223-14#readme",
+  "devDependencies": {}
 }
