@@ -147,7 +147,17 @@ function getAll(){
     return array_listas;
 };
 
-module.exports = {datos,funcion_funcional};
+function loadInitialData() {
+    let i = 0;
+    var datos_aux = new Array();
+    while(i<10){
+        datos_aux.push(datos[i]);
+        i++;
+    }
+    return datos_aux;
+};
+
+module.exports = {datos,funcion_funcional,loadInitialData};
 
 /*
     ESCRIBIR LOS DATOS EN CONSOLA

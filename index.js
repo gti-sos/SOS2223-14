@@ -1,49 +1,36 @@
+var express = require("express");
+var cool = require("cool-ascii-faces");
+var app = express();
+var port = process.env.PORT || 12345;
+var bodyParser = require("body-parser");
 var main_c = require("./index-CCG");
+const BASE_API_URL = "/api/v1";
+
+app.use(bodyParser.json());
+var backend_cris = require("./backend/index_cristina");
 
 var main = require("./index-ACV");
 var resultado_ana = main.funcional;
 
-var express = require("express");
-var cool = require("cool-ascii-faces");
 
-var bodyParser = require("body-parser");
-//var backend = require("./backend");
-
-var app = express();
-var port = process.env.PORT || 12345;
-const BASE_API_URL = "api/v1";
 //app.use("/",express.static("./public"));
 
-app.use(bodyParser.json());
 
-//backend(app);
+
+backend_cris(app);
 
 app.get("/cool", (request,response) => {
     response.send(cool());
     console.log("New request");
 });
 
-//Ejercicio
+//CRISTINA
 app.get("/CCG", (request,response) => {
     response.json(main_c.funcion_funcional("Sevilla","traveler"));
     console.log("New GET to /CCG");
 });
 
-app.get("/CCG/datos", (request,response) => {
-    response.json(main_c.datos);
-    console.log("New GET to /CCG/datos");
-});
 
-
-app.post("/CCG/datos", (request,response) => {
-    var newFile = request.body;
-    console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-    main_c.datos.push(newFile);   
-    console.log("New POST to /CCG/datos");
-
-
-    response.sendStatus(201);
-});
 
 /*----------------------------------- REBECA ------------------------------------------*/
 
