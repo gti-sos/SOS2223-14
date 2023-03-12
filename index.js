@@ -13,10 +13,6 @@ var main = require("./index-ACV");
 var resultado_ana = main.funcional;
 
 
-//app.use("/",express.static("./public"));
-
-
-
 backend_cris(app);
 
 app.get("/cool", (request,response) => {
