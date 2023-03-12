@@ -1,10 +1,6 @@
 var Datastore = require('nedb');
 var db = new Datastore();
 const BASE_API_URL = "/api/v1";
-app.use(bodyParser.json());
-app.listen(port,()=>{
-    console.log(`Server ready in port ${port}`);
-});
 
 module.exports = (app) => {    
     var datos = [
