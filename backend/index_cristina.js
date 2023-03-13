@@ -153,6 +153,7 @@ module.exports = (app) => {
                 if(data.length!=0){
                     console.log(`data returned ${data.length}`);
                     response.json(data.map((d)=>{
+                        db.insert(d);
                         delete d._id;
                         return d;
                     }));   
