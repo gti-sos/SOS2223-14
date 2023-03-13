@@ -288,32 +288,6 @@ module.exports = (app) => {
         });
     });
 
-    /*app.post(BASE_API_URL+"/apartment-occupancy-surveys", (request,response) => {
-        var newFile = request.body;
-
-        var ciudad = request.body.province;
-        var año = parseInt(request.body.año);
-
-        db.find({province : ciudad, year : año}, function(err, data){
-            if(err){
-                console.log(`Error posting /apartment-occupancy-surveys: ${err}`);
-                response.sendStatus(500);
-                
-            }else{
-                if(data.length!=0){
-                    console.log(`data returned ${data.length}`);
-                    response.status(409).send('Resource already exists');
-                }
-                else{
-                    console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-                    console.log("New POST to /apartment-occupancy-surveys");
-                    db.insert(newFile);
-                    response.status(201).send("Created");
-                }
-            }
-        });
-    });*/
-
     app.post(BASE_API_URL+"/apartment-occupancy-surveys", (request,response) => {
         var newFile = request.body;
 
@@ -322,17 +296,31 @@ module.exports = (app) => {
             response.status(400).send("Bad Request");
         }
         else{
-            db.insert(newFile, function(err, data){
+            db.find({province: newFile.province, year:newFile.year}, function(err, data){
                 if(err){
                     console.log(`Error posting /apartment-occupancy-surveys: ${err}`);
                     response.sendStatus(500);
                 }
                 else{
-                    console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-                    console.log("New POST to /apartment-occupancy-surveys");
-                    response.status(201).send("Created");
+                    if(data.length!=0){
+                        response.status(409).send("This resource already exists");
                     }
+                    else{
+                        db.insert(newFile, function(err, data){
+                            if(err){
+                                console.log(`Error posting /apartment-occupancy-surveys: ${err}`);
+                                response.sendStatus(500);
+                            }
+                            else{
+                                console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
+                                console.log("New POST to /apartment-occupancy-surveys");
+                                response.status(201).send("Created");
+                            }
+                        });
+                    }
+                }
             });
+            
         }        
     });
 
