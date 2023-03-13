@@ -326,11 +326,11 @@ module.exports = (app) => {
         response.sendStatus(405, "Method not allowed");
     });
 
-    app.post(BASE_API_URL+"/:province/:year",(request,response)=>{
+    app.post(BASE_API_URL+"/apartment-occupancy-surveys/:province/:year",(request,response)=>{
         response.sendStatus(405, "Method not allowed");
     });
 
-    app.post(BASE_API_URL+"/:province",(request,response)=>{
+    app.post(BASE_API_URL+"/apartment-occupancy-surveys/:province",(request,response)=>{
         response.sendStatus(405, "Method not allowed");
     });
 
