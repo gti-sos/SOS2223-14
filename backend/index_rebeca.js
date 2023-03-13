@@ -1,8 +1,10 @@
 var Datastore = require('nedb');
 var db = new Datastore();
 const BASE_API_URL = "/api/v1";
+console.log("Init Module index_rebeca.js load.");
 
 module.exports = (app) => {
+
     var datos = [
         {
             "province": "Andalucía",
@@ -132,8 +134,6 @@ module.exports = (app) => {
         }
     ];
 
-    db.insert(datos);
-
     // GET /andalusia-tourism-situation-surveys
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
@@ -168,17 +168,9 @@ module.exports = (app) => {
                 console.log(`Error geting /andalusia-tourism-situation-surveys/loadInitialData: ${err}`);
                 response.sendStatus(500);
             }else{          
-                if(data.length!=0){
-                    console.log(`data returned ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    }));   
-                }
-                 else{
-                    console.log(`Data not found /andalusia-tourism-situation-surveys/loadInitialData: ${err}`);
-                    response.status(404).send("Data not found");
-                 }
+                console.log(`Data has been inserted in /andalusia-tourism-situation-surveys.`);
+                db.insert(datos);
+                response.status(200).send("OK");
             } 
         });        
     });
@@ -269,6 +261,7 @@ module.exports = (app) => {
         var añoIni = parseInt(request.params.yearIni);
         var añoFin = parseInt(request.params.yearFin);
         var ciudad = request.params.province;
+        console.log("New GET to /andalusia-tourism-situation-surveys/:province/:yearIni/:yearFin");
 
         
         db.find({province : ciudad,year : {$gte: añoIni, $lte: añoFin}}, function(err, data){
@@ -316,33 +309,30 @@ module.exports = (app) => {
         });
     });
 
-    /*
     // POST /andalusia-tourism-situation-surveys
     
     app.post(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
         var newFile = request.body;
-
-        if(!newFile.province || !newFile.year || !newFile.tourist || !newFile.average_daily_expenditure || !newFile.average_stay){
+        console.log("new request new POST request /andalusia-tourism-situation-surveys");
+        if (!newFile.province || !newFile.year || !newFile.tourist || !newFile.average_daily_expenditure || !newFile.average_stay){
             console.log(`No se han recibido los campos esperados:`);
             response.status(400).send("Bad Request");
-        }
-        else{
+        } else {
             db.find({province: newFile.province, year:newFile.year}, function(err, data){
-                if(err){
+                if (err){
                     console.log(`Error posting /andalusia-tourism-situation-surveys: ${err}`);
                     response.sendStatus(500);
                 }
-                else{
-                    if(data.length!=0){
+                else {
+                    if (data.length!=0){
                         response.status(409).send("This resource already exists");
                     }
-                    else{
+                    else {
                         db.insert(newFile, function(err, data){
-                            if(err){
+                            if (err){
                                 console.log(`Error posting /andalusia-tourism-situation-surveys: ${err}`);
                                 response.sendStatus(500);
-                            }
-                            else{
+                            } else {
                                 console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
                                 console.log("New POST to /andalusia-tourism-situation-surveys");
                                 response.status(201).send("Created");
@@ -354,30 +344,31 @@ module.exports = (app) => {
             
         }        
     });
-    */
 
-    // POST /:province
+    // POST ERROR /andalusia-tourism-situation-surveys/:province
 
-    app.post(BASE_API_URL+"/:province",(request,response)=>{
+    app.post(BASE_API_URL+"/andalusia-tourism-situation-surveys/:province",(request,response)=>{
+        console.log("New POST to /:province/:year");
         response.sendStatus(405, "Method not allowed");
     });
+
+    // POST ERROR /andalusia-tourism-situation-surveys/:province/:year
+
+    app.post(BASE_API_URL+"/andalusia-tourism-situation-surveys/:province/:year",(request,response)=>{
+        console.log("New POST to /:province/:year");
+        response.sendStatus(405, "Method not allowed");
+    }); 
     
-    // PUT /andalusia-tourism-situation-surveys
+    // PUT ERROR /andalusia-tourism-situation-surveys
 
     app.put(BASE_API_URL + "/andalusia-tourism-situation-surveys",(request,response)=>{
-        response.sendStatus(405, "Method not allowed");
+        response.sendStatus(400, "La ID del recurso no es correcta.");
     });
 
-    // PUT /andalusia-tourism-situation-surveys/:province
+    // PUT ERROR /andalusia-tourism-situation-surveys/:province
 
     app.put(BASE_API_URL + "/andalusia-tourism-situation-surveys/:province",(request,response)=>{
-        response.sendStatus(405, "Method not allowed");
-    });
-
-    // PUT /:province/:year
-
-    app.post(BASE_API_URL+"/:province/:year",(request,response)=>{
-        response.sendStatus(405, "Method not allowed");
+        response.sendStatus(400, "La ID del recurso no es correcta.");
     });
 
     // PUT /andalusia-tourism-situation-surveys/:province/:year
@@ -386,17 +377,49 @@ module.exports = (app) => {
         var newFile = request.body;
         var ciudad = request.params.province;
         var año = parseInt(request.params.year);
+        db.update({province:ciudad, year:año}, {$set: newFile}, {}, function(err, datos){
+                 console.log(`Numero de documentos actualizados: ${datos}`);
+                 response.sendStatus(201);  
 
-        db.update({province:ciudad, year:año}, {$set: newFile}, {}, function(err, data){
-            if(err){
-                console.log(`Error put /andalusia-tourism-situation-surveys/${ciudad}/${año}: ${err}`);
-                response.sendStatus(500);
-            }
-            else{
-                 console.log(`Numero de documentos actualizados: ${data}`);
-                 response.sendStatus(201);            
-            }
+                 if(!newFile.province || !newFile.year || !newFile.traveler || !newFile.overnight_stay || !newFile.average_stay){
+                    console.log(`No se han recibido los campos esperados:`);
+                    response.status(400).send("Bad Request");
+                }else{
+
+                    db.update({$and: [{province:ciudad}, {year:año}]}, {$set: newFile},function(err, data){
+                        if(err){
+                            console.log(`Error put /andalusia-tourism-situation-surveys/${ciudad}/${año}: ${err}`);
+                            response.sendStatus(500);
+                        }
+                        else{
+                            console.log(`Numero de documentos actualizados: ${data}`);
+                            response.sendStatus(200);  
+                            }
+                    }); 
+                }
         });
+    });
+
+    app.put(BASE_API_URL+"/andalusia-tourism-situation-surveys/:province/:year", (request,response) => {
+        var newFile = request.body;
+        var ciudad = request.params.province;
+        var año = parseInt(request.params.year);
+
+        if(!newFile.province || !newFile.year || !newFile.traveler || !newFile.overnight_stay || !newFile.average_stay){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }else{
+            db.update({$and: [{province:ciudad}, {year:año}]}, {$set: newFile},function(err, data){
+                if(err){
+                    console.log(`Error put /andalusia-tourism-situation-surveys/${ciudad}/${año}: ${err}`);
+                    response.sendStatus(500);
+                }
+                else{
+                    console.log(`Numero de documentos actualizados: ${data}`);
+                    response.sendStatus(200);  
+                    }
+            });
+        }
     });
 
     // DELETE /andalusia-tourism-situation-surveys
@@ -407,8 +430,13 @@ module.exports = (app) => {
                 console.log(`Error deleting /andalusia-tourism-situation-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }               
             }
         });
     });
@@ -426,8 +454,13 @@ module.exports = (app) => {
                 console.log(`Error deleting /andalusia-tourism-situation-surveys/${ciudad}/${año}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }               
             }
         });
     });
@@ -444,14 +477,19 @@ module.exports = (app) => {
                 console.log(`Error deleting /andalusia-tourism-situation-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }              
             }
         });
     });
 
     // DELETE /andalusia-tourism-situation-surveys//:year
-
+    
     app.delete(BASE_API_URL +"/andalusia-tourism-situation-surveys//:year",(request, response)=>{
         var año = parseInt(request.params.year);
 
@@ -462,9 +500,15 @@ module.exports = (app) => {
                 console.log(`Error deleting /andalusia-tourism-situation-surveys//${año}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }                               
             }
         });
     });
+
 };

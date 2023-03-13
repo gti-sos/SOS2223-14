@@ -54,18 +54,7 @@ media("Cádiz",3);
 media("Granada",2);
 media("Córdoba",4);
 
-function loadInitialData() {
-    let i = 0;
-    var datos_aux = new Array();
-    while(i<10){
-        datos_aux.push(datos[i]);
-        i++;
-    }
-    return datos_aux;
-};
-
 module.exports = {
     datos,
-    media,
-    loadInitialData
+    media: media("Sevilla",2)
 };

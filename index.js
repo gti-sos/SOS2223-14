@@ -8,16 +8,14 @@ var main_r = require("./index-RSB");
 const BASE_API_URL = "/api/v1";
 
 app.use(bodyParser.json());
+
 var backend_cris = require("./backend/index_cristina");
 var backend_rebeca = require("./backend/index_rebeca");
-//var backend = require("./backend");
 var main = require("./index-ACV");
 var resultado_ana = main.funcional;
 
-
 backend_cris(app);
 backend_rebeca(app);
-//backend(app);
 
 app.get("/cool", (request,response) => {
     response.send(cool());
@@ -30,12 +28,10 @@ app.get("/CCG", (request,response) => {
     console.log("New GET to /CCG");
 });
 
-
-
 /*----------------------------------- REBECA ------------------------------------------*/
 
 app.get(BASE_API_URL+"/samples/RSB", (request,response) => {
-    response.json(main_r.media("Sevilla",2));
+    response.json(main_r.media);
     console.log("New GET to /samples/RSB");
 });
 
