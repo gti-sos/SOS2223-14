@@ -77,6 +77,13 @@ app.listen(port,()=>{
 });
 
 app.use(bodyParser.json());
-var backend_ana = require("./backend/index_ana");
+/*var backend_ana = require("./backend/index_ana");
 
 backend_ana(app);
+
+app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
+    var newFile = request.body;        
+    console.log(`newFile = <${newFile}>`);
+    console.log("New POST to /hotel-occupancy-surveys")
+    response.sendStatus(201);
+});*/

@@ -1,10 +1,10 @@
 const BASE_API_URL = "/api/v1";
+const express = require('express');
+const app = express();
+//var Datastore = require('nedb');
+//var db = new Datastore();
 
-app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-    response.json(lista)
-    console.log("New request to /hotel-occupancy-surveys");
-});
-
+//module.exports = (app) => {  
 var lista = [
     {
         province: "Almería",
@@ -15,7 +15,7 @@ var lista = [
         estimated_room: 7.487,
         occupancy_rate_by_place: 43,
         occupancy_rate_by_weekend_place: 49,
-        occupancy_rate_by_weekend_place: 52
+        room_occupancy_rate: 52
     },
     {
         province: "Sevilla",
@@ -26,7 +26,7 @@ var lista = [
         estimated_room: 13.874,
         occupancy_rate_by_place: 48,
         occupancy_rate_by_weekend_place: 56, 
-        ccupancy_rate_by_weekend_place: 55
+        room_occupancy_rate: 55
     },
     {
         province: "Córdoba",
@@ -37,7 +37,7 @@ var lista = [
         estimated_room: 4.438,
         occupancy_rate_by_place: 33,
         occupancy_rate_by_weekend_place: 42,
-        occupancy_rate_by_weekend_place: 40
+        room_occupancy_rate: 40
     },
     {
         province: "Granada",
@@ -48,7 +48,7 @@ var lista = [
         estimated_room: 10.340,
         occupancy_rate_by_place: 37,
         occupancy_rate_by_weekend_place: 47,
-        occupancy_rate_by_weekend_place: 43
+        room_occupancy_rate: 43
     },
     {
         province: "Huelva",
@@ -59,7 +59,7 @@ var lista = [
         estimated_room: 5.689,
         occupancy_rate_by_place: 53,
         occupancy_rate_by_weekend_place: 61,
-        occupancy_rate_by_weekend_place: 57
+        room_occupancy_rate: 57
     },
     {
         province: "Jaén",
@@ -70,7 +70,7 @@ var lista = [
         estimated_room: 3.627,
         occupancy_rate_by_place: 27,
         occupancy_rate_by_weekend_place: 35,
-        occupancy_rate_by_weekend_place: 31
+        room_occupancy_rate: 31
     },
     {
         province: "Málaga",
@@ -81,7 +81,7 @@ var lista = [
         estimated_room: 27.065,
         occupancy_rate_by_place: 48,
         occupancy_rate_by_weekend_place: 54,
-        occupancy_rate_by_weekend_place: 54
+        room_occupancy_rate: 54
     },
     {
         province: "Sevilla",
@@ -92,7 +92,7 @@ var lista = [
         estimated_room: 11.694,
         occupancy_rate_by_place: 40,
         occupancy_rate_by_weekend_place: 50,
-        occupancy_rate_by_weekend_place: 46
+        room_occupancy_rate: 46
     },
     {
         province: "Almería",
@@ -103,7 +103,7 @@ var lista = [
         estimated_room: 10.190,
         occupancy_rate_by_place: 47,
         occupancy_rate_by_weekend_place: 54,
-        occupancy_rate_by_weekend_place: 59
+        room_occupancy_rate: 59
     },
     {
         province: "Sevilla",
@@ -114,7 +114,7 @@ var lista = [
         estimated_room: 17.735,
         occupancy_rate_by_place: 53,
         occupancy_rate_by_weekend_place: 61,
-        occupancy_rate_by_weekend_place: 61
+        room_occupancy_rate: 61
     },
     {
         province: "Córdoba",
@@ -125,7 +125,7 @@ var lista = [
         estimated_room: 5.509,
         occupancy_rate_by_place: 44,
         occupancy_rate_by_weekend_place: 55,
-        occupancy_rate_by_weekend_place: 51
+        room_occupancy_rate: 51
     },
     {
         province: "Granada",
@@ -136,7 +136,7 @@ var lista = [
         estimated_room: 14.080,
         occupancy_rate_by_place: 47,
         occupancy_rate_by_weekend_place: 58,
-        occupancy_rate_by_weekend_place: 53
+        room_occupancy_rate: 53
     },
     {
         province: "Huelva",
@@ -147,7 +147,7 @@ var lista = [
         estimated_room: 8.055,
         occupancy_rate_by_place: 53,
         occupancy_rate_by_weekend_place: 62,
-        occupancy_rate_by_weekend_place: 58
+        room_occupancy_rate: 58
     },
     {
         province: "Jaén",
@@ -158,7 +158,7 @@ var lista = [
         estimated_room: 4.040,
         occupancy_rate_by_place: 33,
         occupancy_rate_by_weekend_place: 45,
-        occupancy_rate_by_weekend_place: 39
+        room_occupancy_rate: 39
     },
     {
         province: "Málaga",
@@ -169,7 +169,7 @@ var lista = [
         estimated_room: 38.044,
         occupancy_rate_by_place: 61,
         occupancy_rate_by_weekend_place: 66,
-        occupancy_rate_by_weekend_place: 71
+        room_occupancy_rate: 71
     },
     {
         province: "Sevilla",
@@ -180,6 +180,56 @@ var lista = [
         estimated_room: 16.057,
         occupancy_rate_by_place: 56,
         occupancy_rate_by_weekend_place: 65,
-        occupancy_rate_by_weekend_place: 63
+        room_occupancy_rate: 63
     }
 ]
+  
+app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
+    response.json(lista)
+    console.log("New request to /hotel-occupancy-surveys");
+});
+
+//db.insert(lista);
+
+app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
+    var newFile = request.body;        
+    console.log(`newFile = ${JSON.stringify(newFile, null, 2)}`);
+    console.log("New POST to /hotel-occupancy-surveys");
+    lista.push(newFile);
+    response.sendStatus(201);
+});
+
+app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {
+    if (lista.length === 0) {
+        for (let i = 0; i < 10; i++) {
+            lista.push({
+                province: "Nueva provincia",
+                year: 2023,
+                average_employment: Math.random() * 10000,
+                estimated_average_open_establishment: Math.random() * 500,
+                estimated_average_place: Math.random() * 100000,
+                estimated_room: Math.random() * 50000,
+                occupancy_rate_by_place: Math.random() * 100,
+                occupancy_rate_by_weekend_place: Math.random() * 100,
+                room_occupancy_rate: Math.random() * 100
+            });
+        }
+        
+    console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
+        response.status(200).json({ message: "Datos iniciales creados correctamente" });
+    } else {
+        response.status(409).json({ message: "Ya existen datos en la lista" });
+    }
+});     
+
+
+
+
+
+
+
+
+
+
+
+//}
