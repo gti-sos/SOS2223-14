@@ -5,7 +5,7 @@ const app = express();
 //var db = new Datastore();
 
 //module.exports = (app) => {  
-var lista = [
+/*var lista = [
     {
         province: "Almería",
         year: 2021,
@@ -220,7 +220,7 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,respon
     } else {
         response.status(409).json({ message: "Ya existen datos en la lista" });
     }
-});     
+});     */
 
 
 
