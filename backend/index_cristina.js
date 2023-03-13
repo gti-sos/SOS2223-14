@@ -118,26 +118,18 @@ module.exports = (app) => {
         }
     ];
 
-    db.insert(datos);
-
     app.get(BASE_API_URL+"/apartment-occupancy-surveys", (request,response) => {
         console.log("New GET to /apartment-occupancy-surveys");
-        db.find({}, (err, data)=>{
+        db.insert(datos, (err, data)=>{
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys: ${err}`);
                 response.sendStatus(500);
             }else{
-                if(data.length!=0){
-                    console.log(`data returned ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    })); 
-                }
-                else{
-                    console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                    response.status(404).send("Data not found");
-                }                
+                console.log(`data inserted: ${datos.length}`);
+                response.json(datos.map((d)=>{
+                    delete d._id;
+                    return d;
+                }));                           
             }
         });
         
@@ -145,25 +137,29 @@ module.exports = (app) => {
 
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/loadInitialData", (request,response) => {
         console.log("New GET to /apartment-occupancy-surveys/loadInitialData");
-        db.find({}).sort({year:1}).skip(0).limit(10).exec(function(err,data){
+        db.find({}, function(err,data){
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys/loadInitialData: ${err}`);
                 response.sendStatus(500);
-            }else{          
+            }
+            else{
                 if(data.length!=0){
-                    console.log(`data returned ${data.length}`);
+                    console.log(`Everything is already inserted: ${data.length}`);
                     response.json(data.map((d)=>{
-                        db.insert(d);
                         delete d._id;
                         return d;
-                    }));   
+                    }));
                 }
-                 else{
-                    console.log(`Data not found /apartment-occupancy-surveys/loadInitialData: ${err}`);
-                    response.status(404).send("Data not found");
-                 }
-            } 
-        });        
+                else{
+                    console.log(`data inserted: ${datos.length}`);  
+                    db.insert(datos); 
+                    response.json(datos.map((d)=>{
+                        delete d._id;
+                        return d;
+                    }));           
+                }
+            }
+        });
     });
 
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/:province", (request,response) => {
