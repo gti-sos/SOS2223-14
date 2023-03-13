@@ -316,10 +316,24 @@ module.exports = (app) => {
 
     app.post(BASE_API_URL+"/apartment-occupancy-surveys", (request,response) => {
         var newFile = request.body;
-        console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-        console.log("New POST to /apartment-occupancy-surveys");
-        db.insert(newFile);
-        response.status(201).send("Created");
+
+        if(!newFile.province || !newFile.year || !newFile.traveler || !newFile.overnight_stay || !newFile.average_stay){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }
+        else{
+            db.insert(newFile, function(err, data){
+                if(err){
+                    console.log(`Error posting /apartment-occupancy-surveys: ${err}`);
+                    response.sendStatus(500);
+                }
+                else{
+                    console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
+                    console.log("New POST to /apartment-occupancy-surveys");
+                    response.status(201).send("Created");
+                    }
+            });
+        }        
     });
 
     app.put(BASE_API_URL + "/apartment-occupancy-surveys",(request,response)=>{
@@ -343,16 +357,21 @@ module.exports = (app) => {
         var ciudad = request.params.province;
         var año = parseInt(request.params.year);
 
-        db.update({province:ciudad, year:año}, {$set: newFile}, {}, function(err, data){
-            if(err){
-                console.log(`Error put /apartment-occupancy-surveys/${ciudad}/${año}: ${err}`);
-                response.sendStatus(500);
-            }
-            else{
-                 console.log(`Numero de documentos actualizados: ${data}`);
-                 response.sendStatus(201);            
-            }
-        });
+        if(!newFile.province || !newFile.year || !newFile.traveler || !newFile.overnight_stay || !newFile.average_stay){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }else{
+            db.update({$and: [{province:ciudad}, {year:año}]}, {$set: newFile},function(err, data){
+                if(err){
+                    console.log(`Error put /apartment-occupancy-surveys/${ciudad}/${año}: ${err}`);
+                    response.sendStatus(500);
+                }
+                else{
+                    console.log(`Numero de documentos actualizados: ${data}`);
+                    response.sendStatus(200);  
+                    }
+            });
+        }
     });
 
     app.delete(BASE_API_URL +"/apartment-occupancy-surveys",(request, response)=>{
