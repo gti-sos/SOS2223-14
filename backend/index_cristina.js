@@ -152,7 +152,7 @@ module.exports = (app) => {
             }else{          
                 if(data.length!=0){
                     console.log(`data returned ${data.length}`);
-                    response.json(datos.map((d)=>{
+                    response.json(data.map((d)=>{
                         delete d._id;
                         return d;
                     }));   
