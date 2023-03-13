@@ -75,3 +75,8 @@ app.post("/samples/ACV", (request,response) => {
 app.listen(port,()=>{
     console.log(`Server ready in port ${port}`);
 });
+
+app.use(bodyParser.json());
+var backend_ana = require("./backend/index_ana");
+
+backend_ana(app);
