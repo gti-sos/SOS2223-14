@@ -143,20 +143,17 @@ module.exports = (app) => {
                 response.sendStatus(500);
             }
             else{
-                if(data.length!=0){
-                    console.log(`Everything is already inserted: ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    }));
-                }
-                else{
+                if(data.length==0){
                     console.log(`data inserted: ${datos.length}`);  
                     db.insert(datos); 
                     response.json(datos.map((d)=>{
                         delete d._id;
                         return d;
-                    }));           
+                    }));    
+                }
+                else{
+                     console.log(`Data is already inserted: ${data.length}`);
+                     response.status(200).send("Data is already inserted");          
                 }
             }
         });
