@@ -368,8 +368,13 @@ module.exports = (app) => {
                 console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }               
             }
         });
     });
@@ -385,8 +390,13 @@ module.exports = (app) => {
                 console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}/${año}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }               
             }
         });
     });
@@ -401,8 +411,13 @@ module.exports = (app) => {
                 console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }              
             }
         });
     });
@@ -417,8 +432,13 @@ module.exports = (app) => {
                 console.log(`Error deleting /apartment-occupancy-surveys//${año}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }                               
             }
         });
     });   
