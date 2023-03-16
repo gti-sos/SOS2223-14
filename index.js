@@ -1,38 +1,29 @@
 var express = require("express");
-var cool = require("cool-ascii-faces");
-var app = express();
-var port = process.env.PORT || 12345;
 var bodyParser = require("body-parser");
-var main_c = require("./index-CCG");
-var main_r = require("./index-RSB");
-const BASE_API_URL = "/api/v1";
-
-app.use(bodyParser.json());
-
 var backend_cris = require("./backend/index_cristina");
 var backend_rebeca = require("./backend/index_rebeca");
-var main = require("./index-ACV");
-var resultado_ana = main.funcional;
+
+var main_c = require("./index-CCG");
+
+var app = express();
+var port = process.env.PORT || 12345;
+
+app.use("/",express.static("./public"));
+
+app.use(bodyParser.json());
 
 backend_cris(app);
 backend_rebeca(app);
 
-app.get("/cool", (request,response) => {
-    response.send(cool());
-    console.log("New request");
-});
+var main = require("./index-ACV");
+var resultado_ana = main.funcional;
+
+
 
 //CRISTINA
 app.get("/CCG", (request,response) => {
     response.json(main_c.funcion_funcional("Sevilla","traveler"));
     console.log("New GET to /CCG");
-});
-
-/*----------------------------------- REBECA ------------------------------------------*/
-
-app.get(BASE_API_URL+"/samples/RSB", (request,response) => {
-    response.json(main_r.media);
-    console.log("New GET to /samples/RSB");
 });
 
 //Ana
