@@ -163,12 +163,13 @@ module.exports = (app) => {
         });
     });
 
+    //Usa paginacion
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/:province", (request,response) => {
         var ciudad = request.params.province;
 
         console.log(`New GET to /apartment-occupancy-surveys/${ciudad}`);
 
-        db.find({province : ciudad}, function(err, data){
+        db.find({province : ciudad}).skip(0).limit(datos.length).exec((err, data) =>{
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);

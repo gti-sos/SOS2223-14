@@ -3,8 +3,6 @@ var bodyParser = require("body-parser");
 var backend_cris = require("./backend/index_cristina");
 var backend_rebeca = require("./backend/index_rebeca");
 
-var main_c = require("./index-CCG");
-
 var app = express();
 var port = process.env.PORT || 12345;
 
@@ -17,14 +15,6 @@ backend_rebeca(app);
 
 var main = require("./index-ACV");
 var resultado_ana = main.funcional;
-
-
-
-//CRISTINA
-app.get("/CCG", (request,response) => {
-    response.json(main_c.funcion_funcional("Sevilla","traveler"));
-    console.log("New GET to /CCG");
-});
 
 //Ana
 app.get("/samples/ACV", (request,response) => {
