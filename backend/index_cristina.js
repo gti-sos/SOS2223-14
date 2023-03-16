@@ -357,9 +357,9 @@ module.exports = (app) => {
     });
 
     app.delete(BASE_API_URL +"/apartment-occupancy-surveys",(request, response)=>{
-        db.remove({},function (err, dbRemoved){
+        db.remove({}, {multi:true},function (err, dbRemoved){
             if(err){
-                console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}: ${err}`);
+                console.log(`Error deleting /apartment-occupancy-surveys: ${err}`);
                 response.sendStatus(500);
             }else{
                 if(dbRemoved==0){
@@ -379,7 +379,7 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /apartment-occupancy-surveys/${ciudad}/${año}`);
 
-        db.remove({province:ciudad, year:año},{},function (err, dbRemoved){
+        db.remove({province:ciudad, year:año},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}/${año}: ${err}`);
                 response.sendStatus(500);
@@ -400,7 +400,7 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /apartment-occupancy-surveys/${ciudad}`);
 
-        db.remove({province:ciudad},{},function (err, dbRemoved){
+        db.remove({province:ciudad},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
@@ -421,7 +421,7 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /apartment-occupancy-surveys//${año}`);
 
-        db.remove({year:año},{},function (err, dbRemoved){
+        db.remove({year:año},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /apartment-occupancy-surveys//${año}: ${err}`);
                 response.sendStatus(500);
