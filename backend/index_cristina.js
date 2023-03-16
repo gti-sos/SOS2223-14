@@ -135,22 +135,9 @@ module.exports = (app) => {
         
     });
 
-    /*app.get(BASE_API_URL+"/apartment-occupancy-surveys/docs", (request,response) => {
-        console.log("New GET to /apartment-occupancy-surveys");
-        db.insert(datos, (err, data)=>{
-            if(err){
-                console.log(`Error geting /apartment-occupancy-surveys: ${err}`);
-                response.sendStatus(500);
-            }else{
-                console.log(`data inserted: ${datos.length}`);
-                response.json(datos.map((d)=>{
-                    delete d._id;
-                    return d;
-                }));                           
-            }
-        });
-        
-    });*/
+    app.get(BASE_API_URL+"/apartment-occupancy-surveys/docs", (request,response) => {
+        response.redirect("https://documenter.getpostman.com/view/25998017/2s93Jxqfu4");
+    });
 
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/loadInitialData", (request,response) => {
         console.log("New GET to /apartment-occupancy-surveys/loadInitialData");
