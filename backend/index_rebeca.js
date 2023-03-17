@@ -167,9 +167,15 @@ module.exports = (app) => {
                 console.log(`Error geting /andalusia-tourism-situation-surveys/loadInitialData: ${err}`);
                 response.sendStatus(500);
             }else{          
-                console.log(`Data has been inserted in /andalusia-tourism-situation-surveys.`);
-                db.insert(datos);
-                response.status(200).send("OK");
+                if(data.length==0){
+                    console.log(`data inserted: ${datos.length}`);  
+                    db.insert(datos);   
+                    response.status(200).send("OK");
+                }
+                else{
+                     console.log(`Data is already inserted: ${data.length}`);
+                     response.status(200).send("Data is already inserted");          
+                }
             } 
         });        
     });
@@ -397,7 +403,7 @@ module.exports = (app) => {
     // DELETE /andalusia-tourism-situation-surveys
 
     app.delete(BASE_API_URL +"/andalusia-tourism-situation-surveys",(request, response)=>{
-        db.remove({},function (err, dbRemoved){
+        db.remove({},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /andalusia-tourism-situation-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
@@ -421,7 +427,7 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /andalusia-tourism-situation-surveys/${ciudad}/${año}`);
 
-        db.remove({province:ciudad, year:año},{},function (err, dbRemoved){
+        db.remove({province:ciudad, year:año},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /andalusia-tourism-situation-surveys/${ciudad}/${año}: ${err}`);
                 response.sendStatus(500);
@@ -444,7 +450,7 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /andalusia-tourism-situation-surveys/${ciudad}`);
 
-        db.remove({province:ciudad},{},function (err, numRemoved){
+        db.remove({province:ciudad},{multi:true},function (err, numRemoved){
             if (err){
                 console.log(`Error deleting /andalusia-tourism-situation-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
@@ -466,7 +472,7 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /andalusia-tourism-situation-surveys//${año}`);
 
-        db.remove({year:año},{},function (err, dbRemoved){
+        db.remove({year:año},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /andalusia-tourism-situation-surveys//${año}: ${err}`);
                 response.sendStatus(500);
