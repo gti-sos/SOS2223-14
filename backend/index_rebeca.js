@@ -138,7 +138,7 @@ module.exports = (app) => {
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
         console.log("New GET to /andalusia-tourism-situation-surveys");
-        db.find({}, (err, data)=>{
+        db.find({}).skip(0).limit(5).exec((err, data) =>{
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys: ${err}`);
                 response.sendStatus(500);
@@ -158,11 +158,21 @@ module.exports = (app) => {
         
     });
 
+    // GET /andalusia-tourism-situation-surveys/docs
+
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/docs", (request,response) => {
+
+        console.log(`REDIRECT TO /andalusia-tourism-situation-surveys/docs`);
+
+        response.status(301).redirect("https://documenter.getpostman.com/view/25998638/2s93JzLgAC")
+    
+    });
+
     // GET /andalusia-tourism-situation-surveys/loadInitialData
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/loadInitialData", (request,response) => {
         console.log("New GET to /andalusia-tourism-situation-surveys/loadInitialData");
-        db.find({}).sort({year:1}).skip(0).limit(10).exec(function(err,data){
+        db.find({}).sort({year:1}).exec(function(err,data){
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys/loadInitialData: ${err}`);
                 response.sendStatus(500);
@@ -187,7 +197,7 @@ module.exports = (app) => {
 
         console.log(`New GET to /andalusia-tourism-situation-surveys/${ciudad}`);
 
-        db.find({province : ciudad}, function(err, data){
+        db.find({province : ciudad}).skip(0).limit(1).exec((err, data) =>{
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
@@ -207,12 +217,13 @@ module.exports = (app) => {
         });
     });
 
+
     // GET /andalusia-tourism-situation-surveys//:year
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys//:year", (request,response) => {
         var año = parseInt(request.params.year);
         console.log(`New GET to /andalusia-tourism-situation-surveys//${año}`);
-        db.find({$and: [{year:año}]}).exec(function(err,data){
+        db.find({$and: [{year:año}]}).skip(0).limit(3).exec((err, data) =>{
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys//${año}: ${err}`);
                 response.sendStatus(500);
@@ -240,7 +251,8 @@ module.exports = (app) => {
         var ciudad = request.params.province;
     
         console.log(`New GET to /andalusia-tourism-situation-surveys/${ciudad}/${año}`);
-        db.find({province : ciudad,year : año}, function(err, data){
+        
+        db.find({province : ciudad,year : año}).exec((err, data) =>{
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys/${ciudad}/${año}: ${err}`);
                 response.sendStatus(500);
@@ -268,8 +280,7 @@ module.exports = (app) => {
         var ciudad = request.params.province;
         console.log("New GET to /andalusia-tourism-situation-surveys/:province/:yearIni/:yearFin");
 
-        
-        db.find({province : ciudad,year : {$gte: añoIni, $lte: añoFin}}, function(err, data){
+        db.find({province : ciudad,year : {$gte: añoIni, $lte: añoFin}}).skip(0).limit(1).exec((err, data) =>{
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys/${ciudad}/${añoIni}/${añoFin}: ${err}`);
                 response.sendStatus(500);
@@ -294,8 +305,7 @@ module.exports = (app) => {
         var añoIni = parseInt(request.params.yearIni);
         var añoFin = parseInt(request.params.yearFin);
 
-        
-        db.find({$and: [{year: {$gte: añoIni, $lte: añoFin}}]}, function(err, data){
+        db.find({year: {$gte: añoIni, $lte: añoFin}}).skip(0).limit(3).exec((err, data) =>{
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys//${añoIni}/${añoFin}: ${err}`);
                 response.sendStatus(500);
