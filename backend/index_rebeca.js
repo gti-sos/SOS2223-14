@@ -360,8 +360,6 @@ module.exports = (app) => {
                         response.status(400).send("Bad Request");
                     }
                 }
-                //Escogemos los fields correspondientes
-                filteredList = comprobar_fields(request,filteredList);
             }
 
             response.send(JSON.stringify(filteredList,null,2));
