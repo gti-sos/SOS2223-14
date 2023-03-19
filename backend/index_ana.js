@@ -1,11 +1,12 @@
+var Datastore = require('nedb');
+var db = new Datastore();
 const BASE_API_URL = "/api/v1";
 const express = require('express');
 const app = express();
-//var Datastore = require('nedb');
-//var db = new Datastore();
 
-//module.exports = (app) => {  
-var lista = [
+module.exports = (app) => {    
+
+const lista = [
     {
         province: "Almería",
         year: 2021,
@@ -183,13 +184,36 @@ var lista = [
         room_occupancy_rate: 63
     }
 ]
-  
+  /*
 app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     response.json(lista)
     console.log("New request to /hotel-occupancy-surveys");
-});
+});*/
 
-//db.insert(lista);
+let hotel_occupancy_surveys = [];
+
+app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
+    console.log("New GET to /hotel-occupancy-surveys");
+    db.find({}, (err, data)=>{
+        if(err){
+            console.log(`Error geting /hotel-occupancy-surveys: ${err}`);
+            response.sendStatus(400);
+        }else{
+            if(data.length!=0){
+                console.log(`data returned ${data.length}`);
+                response.json(data.map((d)=>{
+                    delete d._id;
+                    return d;
+                })); 
+            }
+            else{
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }                
+        }
+    });
+    
+});
 
 app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     var newFile = request.body;        
@@ -200,7 +224,7 @@ app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
 });
 
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {
-    if (lista.length === 0) {
+    if (hotel_occupancy_surveys.length === 0) {
         for (let i = 0; i < 10; i++) {
             lista.push({
                 province: "Nueva provincia",
@@ -218,18 +242,30 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,respon
     console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
         response.status(200).json({ message: "Datos iniciales creados correctamente" });
     } else {
+        console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
         response.status(409).json({ message: "Ya existen datos en la lista" });
     }
 });     
 
+app.put(BASE_API_URL + "/hotel-occupancy-surveys/province/Sevilla",(request,response)=>{
+    response.sendStatus(405, "Method not allowed");
+    console.log("New request to /hotel-occupancy-surveys/Sevilla");
+});
 
+app.get(BASE_API_URL+"/hotel-occupancy-surveys/", (request,response) => {
+    response.send(hotel_occupancy_surveys);
+    console.log("New request to /hotel-occupancy-surveys");
+});
 
-
-
-
-
-
-
-
-
-//}
+app.delete(BASE_API_URL +"/hotel-occupancy-surveys/",(request, response)=>{
+    lista.remove({},function (error, deleted){
+        if(error){
+            console.log(`Error deleting /hotel-occupancy-surveys/${province}: ${error}`);
+            response.sendStatus(500);
+        }else{
+            console.log(`Files removed ${deleted}`);
+            response.sendStatus(200);               
+        }
+    });
+});
+}
