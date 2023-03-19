@@ -118,59 +118,58 @@ module.exports = (app) => {
         }
     ];
 
-    db.insert(datos);
-
     app.get(BASE_API_URL+"/apartment-occupancy-surveys", (request,response) => {
         console.log("New GET to /apartment-occupancy-surveys");
-        db.find({}, (err, data)=>{
+        db.insert(datos, (err, data)=>{
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys: ${err}`);
                 response.sendStatus(500);
             }else{
-                if(data.length!=0){
-                    console.log(`data returned ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    })); 
-                }
-                else{
-                    console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                    response.status(404).send("Data not found");
-                }                
+                console.log(`data inserted: ${datos.length}`);
+                response.json(datos.map((d)=>{
+                    delete d._id;
+                    return d;
+                }));                           
             }
         });
         
     });
 
+    app.get(BASE_API_URL+"/apartment-occupancy-surveys/docs", (request,response) => {
+        response.redirect("https://documenter.getpostman.com/view/25998017/2s93Jxqfu4");
+    });
+
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/loadInitialData", (request,response) => {
         console.log("New GET to /apartment-occupancy-surveys/loadInitialData");
-        db.find({}).sort({year:1}).skip(0).limit(10).exec(function(err,data){
+        db.find({}, function(err,data){
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys/loadInitialData: ${err}`);
                 response.sendStatus(500);
-            }else{          
-                if(data.length!=0){
-                    console.log(`data returned ${data.length}`);
+            }
+            else{
+                if(data.length==0){
+                    console.log(`data inserted: ${datos.length}`);  
+                    db.insert(datos); 
                     response.json(datos.map((d)=>{
                         delete d._id;
                         return d;
-                    }));   
+                    }));    
                 }
-                 else{
-                    console.log(`Data not found /apartment-occupancy-surveys/loadInitialData: ${err}`);
-                    response.status(404).send("Data not found");
-                 }
-            } 
-        });        
+                else{
+                     console.log(`Data is already inserted: ${data.length}`);
+                     response.status(200).send("Data is already inserted");          
+                }
+            }
+        });
     });
 
+    //Usa paginacion
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/:province", (request,response) => {
         var ciudad = request.params.province;
 
         console.log(`New GET to /apartment-occupancy-surveys/${ciudad}`);
 
-        db.find({province : ciudad}, function(err, data){
+        db.find({province : ciudad}).skip(0).limit(datos.length).exec((err, data) =>{
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
@@ -288,38 +287,40 @@ module.exports = (app) => {
         });
     });
 
-    /*app.post(BASE_API_URL+"/apartment-occupancy-surveys", (request,response) => {
-        var newFile = request.body;
-
-        var ciudad = request.body.province;
-        var año = parseInt(request.body.año);
-
-        db.find({province : ciudad, year : año}, function(err, data){
-            if(err){
-                console.log(`Error posting /apartment-occupancy-surveys: ${err}`);
-                response.sendStatus(500);
-                
-            }else{
-                if(data.length!=0){
-                    console.log(`data returned ${data.length}`);
-                    response.status(409).send('Resource already exists');
-                }
-                else{
-                    console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-                    console.log("New POST to /apartment-occupancy-surveys");
-                    db.insert(newFile);
-                    response.status(201).send("Created");
-                }
-            }
-        });
-    });*/
-
     app.post(BASE_API_URL+"/apartment-occupancy-surveys", (request,response) => {
         var newFile = request.body;
-        console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-        console.log("New POST to /apartment-occupancy-surveys");
-        db.insert(newFile);
-        response.status(201).send("Created");
+
+        if(!newFile.province || !newFile.year || !newFile.traveler || !newFile.overnight_stay || !newFile.average_stay){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }
+        else{
+            db.find({province: newFile.province, year:newFile.year}, function(err, data){
+                if(err){
+                    console.log(`Error posting /apartment-occupancy-surveys: ${err}`);
+                    response.sendStatus(500);
+                }
+                else{
+                    if(data.length!=0){
+                        response.status(409).send("This resource already exists");
+                    }
+                    else{
+                        db.insert(newFile, function(err, data){
+                            if(err){
+                                console.log(`Error posting /apartment-occupancy-surveys: ${err}`);
+                                response.sendStatus(500);
+                            }
+                            else{
+                                console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
+                                console.log("New POST to /apartment-occupancy-surveys");
+                                response.status(201).send("Created");
+                            }
+                        });
+                    }
+                }
+            });
+            
+        }        
     });
 
     app.put(BASE_API_URL + "/apartment-occupancy-surveys",(request,response)=>{
@@ -330,11 +331,11 @@ module.exports = (app) => {
         response.sendStatus(405, "Method not allowed");
     });
 
-    app.post(BASE_API_URL+"/:province/:year",(request,response)=>{
+    app.post(BASE_API_URL+"/apartment-occupancy-surveys/:province/:year",(request,response)=>{
         response.sendStatus(405, "Method not allowed");
     });
 
-    app.post(BASE_API_URL+"/:province",(request,response)=>{
+    app.post(BASE_API_URL+"/apartment-occupancy-surveys/:province",(request,response)=>{
         response.sendStatus(405, "Method not allowed");
     });
 
@@ -343,26 +344,36 @@ module.exports = (app) => {
         var ciudad = request.params.province;
         var año = parseInt(request.params.year);
 
-        db.update({province:ciudad, year:año}, {$set: newFile}, {}, function(err, data){
-            if(err){
-                console.log(`Error put /apartment-occupancy-surveys/${ciudad}/${año}: ${err}`);
-                response.sendStatus(500);
-            }
-            else{
-                 console.log(`Numero de documentos actualizados: ${data}`);
-                 response.sendStatus(201);            
-            }
-        });
+        if(!newFile.province || !newFile.year || !newFile.traveler || !newFile.overnight_stay || !newFile.average_stay){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }else{
+            db.update({$and: [{province:ciudad}, {year:año}]}, {$set: newFile},function(err, data){
+                if(err){
+                    console.log(`Error put /apartment-occupancy-surveys/${ciudad}/${año}: ${err}`);
+                    response.sendStatus(500);
+                }
+                else{
+                    console.log(`Numero de documentos actualizados: ${data}`);
+                    response.sendStatus(200);  
+                    }
+            });
+        }
     });
 
     app.delete(BASE_API_URL +"/apartment-occupancy-surveys",(request, response)=>{
-        db.remove({},function (err, dbRemoved){
+        db.remove({}, {multi:true},function (err, dbRemoved){
             if(err){
-                console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}: ${err}`);
+                console.log(`Error deleting /apartment-occupancy-surveys: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }               
             }
         });
     });
@@ -373,13 +384,18 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /apartment-occupancy-surveys/${ciudad}/${año}`);
 
-        db.remove({province:ciudad, year:año},{},function (err, dbRemoved){
+        db.remove({province:ciudad, year:año},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}/${año}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }               
             }
         });
     });
@@ -389,13 +405,18 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /apartment-occupancy-surveys/${ciudad}`);
 
-        db.remove({province:ciudad},{},function (err, dbRemoved){
+        db.remove({province:ciudad},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /apartment-occupancy-surveys/${ciudad}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }              
             }
         });
     });
@@ -405,13 +426,18 @@ module.exports = (app) => {
 
         console.log(`New DELETE to /apartment-occupancy-surveys//${año}`);
 
-        db.remove({year:año},{},function (err, dbRemoved){
+        db.remove({year:año},{multi:true},function (err, dbRemoved){
             if(err){
                 console.log(`Error deleting /apartment-occupancy-surveys//${año}: ${err}`);
                 response.sendStatus(500);
             }else{
-                console.log(`Files removed ${dbRemoved}`);
-                response.sendStatus(200);               
+                if(dbRemoved==0){
+                    response.status(404).send("Not Found");
+                }
+                else{
+                    console.log(`Files removed ${dbRemoved}`);
+                    response.sendStatus(200);
+                }                               
             }
         });
     });   

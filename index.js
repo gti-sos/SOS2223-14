@@ -12,7 +12,10 @@ app.use(bodyParser.json());
 
 backend_cris(app);
 backend_rebeca(app);
+<<<<<<< HEAD
 backend_ana(app);
+=======
+>>>>>>> 7d6743fc22e33bd106273b56736a13b6e4a2202c
 
 var main = require("./index-ACV");
 var resultado_ana = main.funcional;

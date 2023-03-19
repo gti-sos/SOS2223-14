@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "9737d158-9a97-43de-b6fb-1f6d7d1f3092",
+		"name": "Trabajo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25998017"
+	},
+	"item": [
+		{
+			"name": "/apartment-occupancy-surveys",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/loadInitialData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/loadInitialData",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Sevilla",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Sevilla",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"Sevilla"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Sevilla/2022",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Sevilla/2022",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"Sevilla",
+						"2022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/2022",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys//2022",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"",
+						"2022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/2021/2022",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys//2021/2022",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"",
+						"2021",
+						"2022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/apartment-occupancy-surveys",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Alicante/2023",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 2,\r\n        \"overnight_stay\": 2,\r\n        \"average_stay\": 2\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante/2023",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"Alicante",
+						"2023"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Without a field (Bad request)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 2,\r\n        \"average_stay\": 2\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante/2023",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"Alicante",
+						"2023"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Alicante/2023",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante/2023",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"Alicante",
+						"2023"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Sevilla",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Sevilla",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"Sevilla"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/apartment-occupancy-surveys",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
