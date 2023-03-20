@@ -190,15 +190,6 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     console.log("New request to /hotel-occupancy-surveys");
 });
 
-//GET DOCS
-app.get(BASE_API_URL+"/hotel-occupancy-surveys/docs", (request,response) => {
-
-    console.log(`REDIRECT TO /hotel-occupancy-surveys/docs`);
-
-    response.status(301).redirect("https://documenter.getpostman.com/view/25974748/2s93K1nyei")
-
-});
-
 //loadInitialData
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {
     console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
@@ -222,6 +213,13 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,respon
             }
         }
     });
+});
+
+//GET DOCS
+app.get("https://sos2223-14-acv1.appspot.com/api/v1/hotel-occupancy-surveys/docs", (request,response) => {
+    console.log(`REDIRECT TO /hotel-occupancy-surveys/docs`);
+    response.status(301).redirect("https://documenter.getpostman.com/view/25974748/2s93K1nyei")
+
 });
 
 //POST
@@ -297,5 +295,24 @@ app.delete(BASE_API_URL +"/hotel-occupancy-surveys/:province",(request, response
         }
     });
 });
+
+//DELETE ALL
+app.delete(BASE_API_URL +"/hotel-occupancy-surveys",(request, response)=>{
+    db.remove({}, {multi:true},function (err, dbRemoved){
+        if(err){
+            console.log(`Error deleting /hotel-occupancy-surveys: ${err}`);
+            response.sendStatus(500);
+        }else{
+            if(dbRemoved==0){
+                response.status(404).send("Not Found");
+            }
+            else{
+                console.log(`Files removed ${dbRemoved}`);
+                response.sendStatus(200);;
+            }               
+        }
+    });
+});
+
 
 };
