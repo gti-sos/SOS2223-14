@@ -190,6 +190,15 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     console.log("New request to /hotel-occupancy-surveys");
 });
 
+//GET DOCS
+app.get(BASE_API_URL+"/hotel-occupancy-surveys/docs", (request,response) => {
+
+    console.log(`REDIRECT TO /hotel-occupancy-surveys/docs`);
+
+    response.status(301).redirect("https://documenter.getpostman.com/view/25974748/2s93K1nyei")
+
+});
+
 //loadInitialData
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {
     console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
@@ -251,6 +260,29 @@ app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     }        
 });
 
+//PUT
+app.put(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,response) => {
+    var newFile = request.body;
+    var ciudad = request.params.province;
+    var anyo = parseInt(request.params.year);
+
+    if(!newFile.province || !newFile.year || !newFile.average_employment || !newFile.estimated_average_open_establishment || !newFile.estimated_average_place || !newFile.estimated_room || !newFile.occupancy_rate_by_place || !newFile.occupancy_rate_by_weekend_place || !newFile.room_occupancy_rate){
+        console.log(`No se han recibido los campos esperados:`);
+        response.status(400).send("Bad Request");
+    }else{
+        db.update({$and: [{province:ciudad}, {year:anyo}]}, {$set: newFile},function(err, data){
+            if(err){
+                console.log(`Error put /hotel-occupancy-surveys/${ciudad}/${anyo}: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+                console.log(`Numero de documentos actualizados: ${data}`);
+                response.sendStatus(200);  
+                }
+        });
+    }
+});
+
 //DELETE
 app.delete(BASE_API_URL +"/hotel-occupancy-surveys/:province",(request, response)=>{
     var prov = request.params.province;
@@ -265,4 +297,5 @@ app.delete(BASE_API_URL +"/hotel-occupancy-surveys/:province",(request, response
         }
     });
 });
+
 };
