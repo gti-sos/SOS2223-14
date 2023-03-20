@@ -379,10 +379,8 @@ module.exports = (app) => {
             }else{
                 if(data.length!=0){
                     console.log(`data returned ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    })); 
+                    delete data[0]._id;
+                    response.json(data[0]);
                 }
                 else{
                     console.log(`Data not found /apartment-occupancy-surveys/${province}/${year}: ${err}`);
