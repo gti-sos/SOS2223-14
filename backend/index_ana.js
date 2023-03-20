@@ -1,495 +1,268 @@
 var Datastore = require('nedb');
 var db = new Datastore();
 const BASE_API_URL = "/api/v1";
-<<<<<<< HEAD
-const express = require('express');
-const app = express();
 
 module.exports = (app) => {    
 
-const lista = [
+var datos = [
     {
-        province: "Almería",
-        year: 2021,
-        average_employment: 1.848,
-        estimated_average_open_establishment: 138,
-        estimated_average_place: 18.924,
-        estimated_room: 7.487,
-        occupancy_rate_by_place: 43,
-        occupancy_rate_by_weekend_place: 49,
-        room_occupancy_rate: 52
+        "province": "Almería",
+        "year": 2021,
+        "average_employment": 1.848,
+        "estimated_average_open_establishment": 138,
+        "estimated_average_place": 18.924,
+        "estimated_room": 7.487,
+        "occupancy_rate_by_place": 43,
+        "occupancy_rate_by_weekend_place": 49,
+        "room_occupancy_rate": 52
     },
     {
-        province: "Sevilla",
-        year: 2021,
-        average_employment: 4.112,
-        estimated_average_open_establishment: 351,
-        estimated_average_place: 30.156,
-        estimated_room: 13.874,
-        occupancy_rate_by_place: 48,
-        occupancy_rate_by_weekend_place: 56, 
-        room_occupancy_rate: 55
+        "province": "Sevilla",
+        "year": 2021,
+        "average_employment": 4.112,
+        "estimated_average_open_establishment": 351,
+        "estimated_average_place": 30.156,
+        "estimated_room": 13.874,
+        "occupancy_rate_by_place": 48,
+        "occupancy_rate_by_weekend_place": 56, 
+        "room_occupancy_rate": 55
     },
     {
-        province: "Córdoba",
-        year: 2021,
-        average_employment: 828,
-        estimated_average_open_establishment: 148,
-        estimated_average_place: 8.784,
-        estimated_room: 4.438,
-        occupancy_rate_by_place: 33,
-        occupancy_rate_by_weekend_place: 42,
-        room_occupancy_rate: 40
+        "province": "Córdoba",
+        "year": 2021,
+        "average_employment": 828,
+        "estimated_average_open_establishment": 148,
+        "estimated_average_place": 8.784,
+        "estimated_room": 4.438,
+        "occupancy_rate_by_place": 33,
+        "occupancy_rate_by_weekend_place": 42,
+        "room_occupancy_rate": 40
     },
     {
-        province: "Granada",
-        year: 2021,
-        average_employment: 1.948,
-        estimated_average_open_establishment: 278,
-        estimated_average_place: 21.678,
-        estimated_room: 10.340,
-        occupancy_rate_by_place: 37,
-        occupancy_rate_by_weekend_place: 47,
-        room_occupancy_rate: 43
+        "province": "Granada",
+        "year": 2021,
+        "average_employment": 1.948,
+        "estimated_average_open_establishment": 278,
+        "estimated_average_place": 21.678,
+        "estimated_room": 10.340,
+        "occupancy_rate_by_place": 37,
+        "occupancy_rate_by_weekend_place": 47,
+        "room_occupancy_rate": 43
     },
     {
-        province: "Huelva",
-        year: 2021,
-        average_employment: 1.846,
-        estimated_average_open_establishment: 110,
-        estimated_average_place: 12.693,
-        estimated_room: 5.689,
-        occupancy_rate_by_place: 53,
-        occupancy_rate_by_weekend_place: 61,
-        room_occupancy_rate: 57
+        "province": "Huelva",
+        "year": 2021,
+        "average_employment": 1.846,
+        "estimated_average_open_establishment": 110,
+        "estimated_average_place": 12.693,
+        "estimated_room": 5.689,
+        "occupancy_rate_by_place": 53,
+        "occupancy_rate_by_weekend_place": 61,
+        "room_occupancy_rate": 57
     },
     {
-        province: "Jaén",
-        year: 2021,
-        average_employment: 755,
-        estimated_average_open_establishment: 142,
-        estimated_average_place: 7.039,
-        estimated_room: 3.627,
-        occupancy_rate_by_place: 27,
-        occupancy_rate_by_weekend_place: 35,
-        room_occupancy_rate: 31
+        "province": "Jaén",
+        "year": 2021,
+        "average_employment": 755,
+        "estimated_average_open_establishment": 142,
+        "estimated_average_place": 7.039,
+        "estimated_room": 3.627,
+        "occupancy_rate_by_place": 27,
+        "occupancy_rate_by_weekend_place": 35,
+        "room_occupancy_rate": 31
     },
     {
-        province: "Málaga",
-        year: 2021,
-        average_employment: 8548,
-        estimated_average_open_establishment: 401,
-        estimated_average_place: 59.870,
-        estimated_room: 27.065,
-        occupancy_rate_by_place: 48,
-        occupancy_rate_by_weekend_place: 54,
-        room_occupancy_rate: 54
+        "province": "Málaga",
+        "year": 2021,
+        "average_employment": 8548,
+        "estimated_average_open_establishment": 401,
+        "estimated_average_place": 59.870,
+        "estimated_room": 27.065,
+        "occupancy_rate_by_place": 48,
+        "occupancy_rate_by_weekend_place": 54,
+        "room_occupancy_rate": 54
     },
     {
-        province: "Sevilla",
-        year: 2021,
-        average_employment: 2.441,
-        estimated_average_open_establishment: 250,
-        estimated_average_place: 23.494,
-        estimated_room: 11.694,
-        occupancy_rate_by_place: 40,
-        occupancy_rate_by_weekend_place: 50,
-        room_occupancy_rate: 46
+        "province": "Sevilla",
+        "year": 2021,
+        "average_employment": 2.441,
+        "estimated_average_open_establishment": 250,
+        "estimated_average_place": 23.494,
+        "estimated_room": 11.694,
+        "occupancy_rate_by_place": 40,
+        "occupancy_rate_by_weekend_place": 50,
+        "room_occupancy_rate": 46
     },
     {
-        province: "Almería",
-        year: 2022,
-        average_employment: 2.968,
-        estimated_average_open_establishment: 179,
-        estimated_average_place: 25.974,
-        estimated_room: 10.190,
-        occupancy_rate_by_place: 47,
-        occupancy_rate_by_weekend_place: 54,
-        room_occupancy_rate: 59
+        "province": "Almería",
+        "year": 2022,
+        "average_employment": 2.968,
+        "estimated_average_open_establishment": 179,
+        "estimated_average_place": 25.974,
+        "estimated_room": 10.190,
+        "occupancy_rate_by_place": 47,
+        "occupancy_rate_by_weekend_place": 54,
+        "room_occupancy_rate": 59
     },
     {
-        province: "Sevilla",
-        year: 2022,
-        average_employment: 5.896,
-        estimated_average_open_establishment: 408,
-        estimated_average_place: 38.916,
-        estimated_room: 17.735,
-        occupancy_rate_by_place: 53,
-        occupancy_rate_by_weekend_place: 61,
-        room_occupancy_rate: 61
+        "province": "Sevilla",
+        "year": 2022,
+        "average_employment": 5.896,
+        "estimated_average_open_establishment": 408,
+        "estimated_average_place": 38.916,
+        "estimated_room": 17.735,
+        "occupancy_rate_by_place": 53,
+        "occupancy_rate_by_weekend_place": 61,
+        "room_occupancy_rate": 61
     },
     {
-        province: "Córdoba",
-        year: 2022,
-        average_employment: 1.209,
-        estimated_average_open_establishment: 183,
-        estimated_average_place: 10.936,
-        estimated_room: 5.509,
-        occupancy_rate_by_place: 44,
-        occupancy_rate_by_weekend_place: 55,
-        room_occupancy_rate: 51
+        "province": "Córdoba",
+        "year": 2022,
+        "average_employment": 1.209,
+        "estimated_average_open_establishment": 183,
+        "estimated_average_place": 10.936,
+        "estimated_room": 5.509,
+        "occupancy_rate_by_place": 44,
+        "occupancy_rate_by_weekend_place": 55,
+        "room_occupancy_rate": 51
     },
     {
-        province: "Granada",
-        year: 2022,
-        average_employment: 3.178,
-        estimated_average_open_establishment: 361,
-        estimated_average_place: 29.478,
-        estimated_room: 14.080,
-        occupancy_rate_by_place: 47,
-        occupancy_rate_by_weekend_place: 58,
-        room_occupancy_rate: 53
+        "province": "Granada",
+        "year": 2022,
+        "average_employment": 3.178,
+        "estimated_average_open_establishment": 361,
+        "estimated_average_place": 29.478,
+        "estimated_room": 14.080,
+        "occupancy_rate_by_place": 47,
+        "occupancy_rate_by_weekend_place": 58,
+        "room_occupancy_rate": 53
     },
     {
-        province: "Huelva",
-        year: 2022,
-        average_employment: 2.720,
-        estimated_average_open_establishment: 136,
-        estimated_average_place: 18.341,
-        estimated_room: 8.055,
-        occupancy_rate_by_place: 53,
-        occupancy_rate_by_weekend_place: 62,
-        room_occupancy_rate: 58
+        "province": "Huelva",
+        "year": 2022,
+        "average_employment": 2.720,
+        "estimated_average_open_establishment": 136,
+        "estimated_average_place": 18.341,
+        "estimated_room": 8.055,
+        "occupancy_rate_by_place": 53,
+        "occupancy_rate_by_weekend_place": 62,
+        "room_occupancy_rate": 58
     },
     {
-        province: "Jaén",
-        year: 2022,
-        average_employment: 926,
-        estimated_average_open_establishment: 161,
-        estimated_average_place: 8.016,
-        estimated_room: 4.040,
-        occupancy_rate_by_place: 33,
-        occupancy_rate_by_weekend_place: 45,
-        room_occupancy_rate: 39
+        "province": "Jaén",
+        "year": 2022,
+        "average_employment": 926,
+        "estimated_average_open_establishment": 161,
+        "estimated_average_place": 8.016,
+        "estimated_room": 4.040,
+        "occupancy_rate_by_place": 33,
+        "occupancy_rate_by_weekend_place": 45,
+        "room_occupancy_rate": 39
     },
     {
-        province: "Málaga",
-        year: 2022,
-        average_employment: 13.875,
-        estimated_average_open_establishment: 548,
-        estimated_average_place: 84.299,
-        estimated_room: 38.044,
-        occupancy_rate_by_place: 61,
-        occupancy_rate_by_weekend_place: 66,
-        room_occupancy_rate: 71
+        "province": "Málaga",
+        "year": 2022,
+        "average_employment": 13.875,
+        "estimated_average_open_establishment": 548,
+        "estimated_average_place": 84.299,
+        "estimated_room": 38.044,
+        "occupancy_rate_by_place": 61,
+        "occupancy_rate_by_weekend_place": 66,
+        "room_occupancy_rate": 71
     },
     {
-        province: "Sevilla",
-        year: 2022,
-        average_employment: 4.203,
-        estimated_average_open_establishment: 365,
-        estimated_average_place: 32.045,
-        estimated_room: 16.057,
-        occupancy_rate_by_place: 56,
-        occupancy_rate_by_weekend_place: 65,
-        room_occupancy_rate: 63
+        "province": "Sevilla",
+        "year": 2022,
+        "average_employment": 4.203,
+        "estimated_average_open_establishment": 365,
+        "estimated_average_place": 32.045,
+        "estimated_room": 16.057,
+        "occupancy_rate_by_place": 56,
+        "occupancy_rate_by_weekend_place": 65,
+        "room_occupancy_rate": 63
     }
-]
-  /*
+];
+
+db.insert(datos);
+
 app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-    response.json(lista)
+    response.json(datos)
     console.log("New request to /hotel-occupancy-surveys");
-});*/
+});
 
-let hotel_occupancy_surveys = [];
-
-app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-    console.log("New GET to /hotel-occupancy-surveys");
-    db.find({}, (err, data)=>{
+//loadInitialData
+app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {
+    console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
+    db.find({}, function(err,data){
         if(err){
-            console.log(`Error geting /hotel-occupancy-surveys: ${err}`);
-            response.sendStatus(400);
-        }else{
-            if(data.length!=0){
-                console.log(`data returned ${data.length}`);
-                response.json(data.map((d)=>{
+            console.log(`Error geting /hotel-occupancy-surveys/loadInitialData: ${err}`);
+            response.sendStatus(500);
+        }
+        else{
+            if(data.length==0){
+                console.log(`data inserted: ${datos.length}`);  
+                db.insert(datos); 
+                response.json(datos.map((d)=>{
                     delete d._id;
                     return d;
-                })); 
+                }));    
             }
             else{
-                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
-                response.status(404).send("Data not found");
-            }                
+                 console.log(`Data is already inserted: ${data.length}`);
+                 response.status(200).send("Data is already inserted");          
+            }
         }
     });
-    
 });
 
+//POST
 app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-    var newFile = request.body;        
-    console.log(`newFile = ${JSON.stringify(newFile, null, 2)}`);
-    console.log("New POST to /hotel-occupancy-surveys");
-    lista.push(newFile);
-    response.sendStatus(201);
-});
-
-app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {
-    if (hotel_occupancy_surveys.length === 0) {
-        for (let i = 0; i < 10; i++) {
-            lista.push({
-                province: "Nueva provincia",
-                year: 2023,
-                average_employment: Math.random() * 10000,
-                estimated_average_open_establishment: Math.random() * 500,
-                estimated_average_place: Math.random() * 100000,
-                estimated_room: Math.random() * 50000,
-                occupancy_rate_by_place: Math.random() * 100,
-                occupancy_rate_by_weekend_place: Math.random() * 100,
-                room_occupancy_rate: Math.random() * 100
-            });
-        }
+    var newFile = request.body;
+    console.log("new request new POST request /hotel-occupancy-surveys");
+    if(!newFile.province || !newFile.year || !newFile.average_employment || !newFile.estimated_average_open_establishment || !newFile.estimated_average_place || !newFile.estimated_room || !newFile.occupancy_rate_by_place || !newFile.occupancy_rate_by_weekend_place || !newFile.room_occupancy_rate){
+        console.log(`No se han recibido los campos esperados:`);
+        response.status(400).send("Bad Request");
+    }else{
+        db.find({province: newFile.province, year:newFile.year}, function(err, data){
+            if(err){
+                console.log(`Error posting /hotel-occupancy-surveys: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+                if(data.length!=0){
+                    response.status(409).send("This resource already exists");
+                }
+                else{
+                    db.insert(newFile, function(err, data){
+                        if(err){
+                            console.log(`Error posting /hotel-occupancy-surveys: ${err}`);
+                            response.sendStatus(500);
+                        }
+                        else{
+                            console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
+                            console.log("New POST to /hotel-occupancy-surveys");
+                            response.status(201).send("Created");
+                        }
+                    });
+                }
+            }
+        });
         
-    console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
-        response.status(200).json({ message: "Datos iniciales creados correctamente" });
-    } else {
-        console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
-        response.status(409).json({ message: "Ya existen datos en la lista" });
-    }
-});     
-
-app.put(BASE_API_URL + "/hotel-occupancy-surveys/province/Sevilla",(request,response)=>{
-    response.sendStatus(405, "Method not allowed");
-    console.log("New request to /hotel-occupancy-surveys/Sevilla");
+    }        
 });
 
-app.get(BASE_API_URL+"/hotel-occupancy-surveys/", (request,response) => {
-    response.send(hotel_occupancy_surveys);
-    console.log("New request to /hotel-occupancy-surveys");
-});
-
-app.delete(BASE_API_URL +"/hotel-occupancy-surveys/",(request, response)=>{
-    lista.remove({},function (error, deleted){
-        if(error){
-            console.log(`Error deleting /hotel-occupancy-surveys/${province}: ${error}`);
+//DELETE
+app.delete(BASE_API_URL +"/hotel-occupancy-surveys/:province",(request, response)=>{
+    var prov = request.params.province;
+    console.log(`Error deleting /hotel-occupancy-surveys/${province}`);
+    db.remove({"province": prov}, {}, function (err, numRemoved){
+        if(err){
+            console.log(`Error deleting /hotel-occupancy-surveys/${province}: ${err}`);
             response.sendStatus(500);
         }else{
-            console.log(`Files removed ${deleted}`);
+            console.log(`Province removed ${numRemoved}`);
             response.sendStatus(200);               
         }
     });
 });
-}
-=======
-var Datastore = require('nedb');
-var db = new Datastore();
-
-module.exports = (app) => {  
-    var lista = [
-        {
-            province: "Almería",
-            year: 2021,
-            average_employment: 1.848,
-            estimated_average_open_establishment: 138,
-            estimated_average_place: 18.924,
-            estimated_room: 7.487,
-            occupancy_rate_by_place: 43,
-            occupancy_rate_by_weekend_place: 49,
-            room_occupancy_rate: 52
-        },
-        {
-            province: "Sevilla",
-            year: 2021,
-            average_employment: 4.112,
-            estimated_average_open_establishment: 351,
-            estimated_average_place: 30.156,
-            estimated_room: 13.874,
-            occupancy_rate_by_place: 48,
-            occupancy_rate_by_weekend_place: 56, 
-            room_occupancy_rate: 55
-        },
-        {
-            province: "Córdoba",
-            year: 2021,
-            average_employment: 828,
-            estimated_average_open_establishment: 148,
-            estimated_average_place: 8.784,
-            estimated_room: 4.438,
-            occupancy_rate_by_place: 33,
-            occupancy_rate_by_weekend_place: 42,
-            room_occupancy_rate: 40
-        },
-        {
-            province: "Granada",
-            year: 2021,
-            average_employment: 1.948,
-            estimated_average_open_establishment: 278,
-            estimated_average_place: 21.678,
-            estimated_room: 10.340,
-            occupancy_rate_by_place: 37,
-            occupancy_rate_by_weekend_place: 47,
-            room_occupancy_rate: 43
-        },
-        {
-            province: "Huelva",
-            year: 2021,
-            average_employment: 1.846,
-            estimated_average_open_establishment: 110,
-            estimated_average_place: 12.693,
-            estimated_room: 5.689,
-            occupancy_rate_by_place: 53,
-            occupancy_rate_by_weekend_place: 61,
-            room_occupancy_rate: 57
-        },
-        {
-            province: "Jaén",
-            year: 2021,
-            average_employment: 755,
-            estimated_average_open_establishment: 142,
-            estimated_average_place: 7.039,
-            estimated_room: 3.627,
-            occupancy_rate_by_place: 27,
-            occupancy_rate_by_weekend_place: 35,
-            room_occupancy_rate: 31
-        },
-        {
-            province: "Málaga",
-            year: 2021,
-            average_employment: 8548,
-            estimated_average_open_establishment: 401,
-            estimated_average_place: 59.870,
-            estimated_room: 27.065,
-            occupancy_rate_by_place: 48,
-            occupancy_rate_by_weekend_place: 54,
-            room_occupancy_rate: 54
-        },
-        {
-            province: "Sevilla",
-            year: 2021,
-            average_employment: 2.441,
-            estimated_average_open_establishment: 250,
-            estimated_average_place: 23.494,
-            estimated_room: 11.694,
-            occupancy_rate_by_place: 40,
-            occupancy_rate_by_weekend_place: 50,
-            room_occupancy_rate: 46
-        },
-        {
-            province: "Almería",
-            year: 2022,
-            average_employment: 2.968,
-            estimated_average_open_establishment: 179,
-            estimated_average_place: 25.974,
-            estimated_room: 10.190,
-            occupancy_rate_by_place: 47,
-            occupancy_rate_by_weekend_place: 54,
-            room_occupancy_rate: 59
-        },
-        {
-            province: "Sevilla",
-            year: 2022,
-            average_employment: 5.896,
-            estimated_average_open_establishment: 408,
-            estimated_average_place: 38.916,
-            estimated_room: 17.735,
-            occupancy_rate_by_place: 53,
-            occupancy_rate_by_weekend_place: 61,
-            room_occupancy_rate: 61
-        },
-        {
-            province: "Córdoba",
-            year: 2022,
-            average_employment: 1.209,
-            estimated_average_open_establishment: 183,
-            estimated_average_place: 10.936,
-            estimated_room: 5.509,
-            occupancy_rate_by_place: 44,
-            occupancy_rate_by_weekend_place: 55,
-            room_occupancy_rate: 51
-        },
-        {
-            province: "Granada",
-            year: 2022,
-            average_employment: 3.178,
-            estimated_average_open_establishment: 361,
-            estimated_average_place: 29.478,
-            estimated_room: 14.080,
-            occupancy_rate_by_place: 47,
-            occupancy_rate_by_weekend_place: 58,
-            room_occupancy_rate: 53
-        },
-        {
-            province: "Huelva",
-            year: 2022,
-            average_employment: 2.720,
-            estimated_average_open_establishment: 136,
-            estimated_average_place: 18.341,
-            estimated_room: 8.055,
-            occupancy_rate_by_place: 53,
-            occupancy_rate_by_weekend_place: 62,
-            room_occupancy_rate: 58
-        },
-        {
-            province: "Jaén",
-            year: 2022,
-            average_employment: 926,
-            estimated_average_open_establishment: 161,
-            estimated_average_place: 8.016,
-            estimated_room: 4.040,
-            occupancy_rate_by_place: 33,
-            occupancy_rate_by_weekend_place: 45,
-            room_occupancy_rate: 39
-        },
-        {
-            province: "Málaga",
-            year: 2022,
-            average_employment: 13.875,
-            estimated_average_open_establishment: 548,
-            estimated_average_place: 84.299,
-            estimated_room: 38.044,
-            occupancy_rate_by_place: 61,
-            occupancy_rate_by_weekend_place: 66,
-            room_occupancy_rate: 71
-        },
-        {
-            province: "Sevilla",
-            year: 2022,
-            average_employment: 4.203,
-            estimated_average_open_establishment: 365,
-            estimated_average_place: 32.045,
-            estimated_room: 16.057,
-            occupancy_rate_by_place: 56,
-            occupancy_rate_by_weekend_place: 65,
-            room_occupancy_rate: 63
-        }
-    ]
-
-    app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-        response.json(lista)
-        console.log("New request to /hotel-occupancy-surveys");
-    });
-
-    //db.insert(lista);
-
-    app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-        var newFile = request.body;        
-        console.log(`newFile = ${JSON.stringify(newFile, null, 2)}`);
-        console.log("New POST to /hotel-occupancy-surveys");
-        lista.push(newFile);
-        response.sendStatus(201);
-    });
-
-    app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {
-        if (lista.length === 0) {
-            for (let i = 0; i < 10; i++) {
-                lista.push({
-                    province: "Nueva provincia",
-                    year: 2023,
-                    average_employment: Math.random() * 10000,
-                    estimated_average_open_establishment: Math.random() * 500,
-                    estimated_average_place: Math.random() * 100000,
-                    estimated_room: Math.random() * 50000,
-                    occupancy_rate_by_place: Math.random() * 100,
-                    occupancy_rate_by_weekend_place: Math.random() * 100,
-                    room_occupancy_rate: Math.random() * 100
-                });
-            }
-
-        console.log("New GET to /hotel-occupancy-surveys/loadInitialData");
-            response.status(200).json({ message: "Datos iniciales creados correctamente" });
-        } else {
-            response.status(409).json({ message: "Ya existen datos en la lista" });
-        }
-    });
-  };
->>>>>>> 7d6743fc22e33bd106273b56736a13b6e4a2202c
+};

@@ -15,7 +15,7 @@
     "test": "npx newman run ./tests/backend_cris.json -e ./tests/end/localhost.json"
   },
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "git+https://github.com/gti-sos/SOS2223-14.git"
   },
   "author": "rebsuabas",
@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/gti-sos/SOS2223-14/issues"
   },
-  "homepage": "https://github.com/gti-sos/SOS2223-14#readme"
+  "homepage": "https://github.com/gti-sos/SOS2223-14#readme",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {}
 }
