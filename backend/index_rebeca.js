@@ -195,11 +195,11 @@ module.exports = (app) => {
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/:province", (request,response) => {
         var ciudad = request.params.province;
 
-        console.log(`New GET to /andalusia-tourism-situation-surveys/${ciudad}`);
+        console.log(`New GET to /andalusia-tourism-situation-surveys`);
 
-        db.find({province : ciudad}).skip(0).limit(1).exec((err, data) =>{
+        db.find({province : ciudad}).exec((err, data) =>{
             if(err){
-                console.log(`Error geting /andalusia-tourism-situation-surveys/${ciudad}: ${err}`);
+                console.log(`Error geting /andalusia-tourism-situation-surveys: ${err}`);
                 response.sendStatus(500);
             }else{
                 if(data.length!= 0){
@@ -210,7 +210,7 @@ module.exports = (app) => {
                     }));
                 }
                  else{
-                    console.log(`Data not found /andalusia-tourism-situation-surveys/${ciudad}: ${err}`);
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
                     response.status(404).send("Data not found");
                  }        
             }
