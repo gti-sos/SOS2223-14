@@ -134,30 +134,6 @@ module.exports = (app) => {
         }
     ];
 
-    // GET /andalusia-tourism-situation-surveys
-
-    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
-        console.log("New GET to /andalusia-tourism-situation-surveys");
-        db.find({}).skip(0).limit(5).exec((err, data) =>{
-            if(err){
-                console.log(`Error geting /andalusia-tourism-situation-surveys: ${err}`);
-                response.sendStatus(500);
-            }else{
-                if(data.length!=0){
-                    console.log(`data returned ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    })); 
-                } else {
-                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
-                    response.status(404).send("Data not found");
-                }                
-            }
-        });
-        
-    });
-
     // GET /andalusia-tourism-situation-surveys/docs
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/docs", (request,response) => {
@@ -190,58 +166,205 @@ module.exports = (app) => {
         });        
     });
 
-    // GET /andalusia-tourism-situation-surveys/:province
+    // GET /andalusia-tourism-situation-surveys
 
-    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/:province", (request,response) => {
-        var ciudad = request.params.province;
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
+        console.log("New GET to /andalusia-tourism-situation-surveys");
 
-        console.log(`New GET to /andalusia-tourism-situation-surveys`);
+        var province = request.query.province;
+        var year = request.query.year;
+        var from = request.query.from;
+        var to = request.query.to;
 
-        db.find({province : ciudad}).exec((err, data) =>{
+        // Comprobamos query
+
+        for(var i = 0; i<Object.keys(request.query).length;i++){
+            var element = Object.keys(request.query)[i];
+            if(element != "year" && element != "from" && element != "to" && element != "province" && element != "limit" && element != "offset"){
+                console.log(`No se han recibido los campos esperados:`);
+                response.status(400).send("Bad Request");
+            }
+        }
+
+        // Comprobamos si from es menor o igual a to
+        
+        if(from>to){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }
+
+        // db.find({}).skip(0).limit(5).exec((err, data) =>{ 
+        db.find({},function(err, filteredList){
+            
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys: ${err}`);
                 response.sendStatus(500);
-            }else{
-                if(data.length!= 0){
-                    console.log(`data returned ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    }));
-                }
-                 else{
+            }
+
+            // Apartado para búsqueda por provincia
+
+            if (province != null){
+                var filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.province == province);
+                });
+
+                if (filteredList==0){
                     console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
                     response.status(404).send("Data not found");
-                 }        
+                    // return;
+                }
             }
+
+            // Apartado para búsqueda por año
+
+            if (year != null){
+                var filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.year == year);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                    // return;
+                }
+            }
+
+            // Apartado para from y to
+            
+            if(from != null && to != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.year >= from && reg.year <=to);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Resultado
+
+            if(request.query.limit != undefined || request.query.offset != undefined){
+                filteredList = paginacion(request,filteredList);
+            }
+            
+            filteredList.forEach((element)=>{
+                delete element._id;
+            });
+
+            if(request.query.fields!=null){
+                //Comprobamos si los campos son correctos
+                var listaFields = request.query.fields.split(",");
+                for(var i = 0; i<listaFields.length;i++){
+                    var element = listaFields[i];
+                    if(element != "province" && element != "year" && element != "tourist" && element != "average_daily_expenditure" && element != "average_stay"){
+                        console.log(`No se han recibido los campos esperados:`);
+                        response.status(400).send("Bad Request");
+                    }
+                }
+            }
+            response.send(JSON.stringify(filteredList,null,2));
+
         });
+        
     });
 
+    
 
-    // GET /andalusia-tourism-situation-surveys//:year
+    // GET /andalusia-tourism-situation-surveys/:province
 
-    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys//:year", (request,response) => {
-        var año = parseInt(request.params.year);
-        console.log(`New GET to /andalusia-tourism-situation-surveys//${año}`);
-        db.find({$and: [{year:año}]}).skip(0).limit(3).exec((err, data) =>{
-            if(err){
-                console.log(`Error geting /andalusia-tourism-situation-surveys//${año}: ${err}`);
-                response.sendStatus(500);
-            }else{
-                if(data.length!= 0){
-                    console.log(`data returned ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    }));
-                }
-                 else{
-                    console.log(`Data not found /andalusia-tourism-situation-surveys//${year}: ${err}`);
-                    response.status(404).send("Data not found");
-                 }    
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/:province",(request, response)=>{
+    
+        var province =request.params.province;
+        var from = request.query.from;
+        var to = request.query.to;
+
+        console.log(`New GET to /andalusia-tourism-situation-surveys/${province}`);
+
+        //Comprobamos query
+
+        for(var i = 0; i<Object.keys(request.query).length;i++){
+            var element = Object.keys(request.query)[i];
+            if(element != "from" && element != "to"){
+                console.log(`No se han recibido los campos esperados:`);
+                response.status(400).send("Bad Request");
             }
-        })
+        }
+
+        //Comprobamos si from es mas pequeño o igual a to
+
+        if(from>to){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }
+
+        db.find({}, function(err,filteredList){
+            
+            if(err){
+                console.log(`Error geting /andalusia-tourism-situation-surveys: ${err}`);
+                response.sendStatus(500);
+            }
+
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.province == province);
+            });
         
+            // Apartado para from y to
+            var from = request.query.from;
+            var to = request.query.to;
+    
+            //Comprobamos si from es mas pequeño o igual a to
+            if(from>to){
+                console.log(`No se han recibido los campos esperados:`);
+                response.status(400).send("Bad Request");
+            }
+        
+            if(from != null && to != null && from<=to){
+                filteredList = filteredList.filter((reg)=>
+                {
+                   return (reg.year >= from && reg.year <=to);
+                }); 
+                
+            }
+            //Comprobamos si existe 
+
+            if (filteredList==0){
+                console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+            }
+
+            //Resultado
+
+            if(request.query.limit != undefined || request.query.offset != undefined){
+                filteredList = paginacion(request,filteredList);
+            }
+            filteredList.forEach((element)=>{
+                delete element._id;
+            });
+
+            //Comprobamos fields
+
+            if(request.query.fields!=null){
+
+                //Comprobamos si los campos son correctos
+
+                var listaFields = request.query.fields.split(",");
+                for(var i = 0; i<listaFields.length;i++){
+                    var element = listaFields[i];
+                    if(element != "province" && element != "year" && element != "tourist" && element != "average_daily_expenditure" && element != "average_stay"){
+                        console.log(`No se han recibido los campos esperados:`);
+                        response.status(400).send("Bad Request");
+                    }
+                }
+            }
+
+            response.send(JSON.stringify(filteredList,null,2));
+        })
+
     });
     
     // GET /andalusia-tourism-situation-surveys/:province/:year
@@ -266,58 +389,6 @@ module.exports = (app) => {
                 }
                 else{
                     console.log(`Data not found /andalusia-tourism-situation-surveys/${province}/${year}: ${err}`);
-                    response.status(404).send("Data not found");
-                }
-            }
-        });
-    });
-
-    // GET /andalusia-tourism-situation-surveys/:province/:yearIni/:yearFin
-
-    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/:province/:yearIni/:yearFin", (request,response) => {
-        var añoIni = parseInt(request.params.yearIni);
-        var añoFin = parseInt(request.params.yearFin);
-        var ciudad = request.params.province;
-        console.log("New GET to /andalusia-tourism-situation-surveys/:province/:yearIni/:yearFin");
-
-        db.find({province : ciudad,year : {$gte: añoIni, $lte: añoFin}}).skip(0).limit(1).exec((err, data) =>{
-            if(err){
-                console.log(`Error geting /andalusia-tourism-situation-surveys/${ciudad}/${añoIni}/${añoFin}: ${err}`);
-                response.sendStatus(500);
-            }else{
-                if(data.length!=0){
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    }));
-                }
-                else{
-                    console.log(`Data not found /andalusia-tourism-situation-surveys/${ciudad}/${añoIni}/${añoFin}: ${err}`);
-                    response.status(404).send("Data not found");
-                }                
-            }
-        });
-    });
-
-    // GET /andalusia-tourism-situation-surveys//:yearIni/:yearFin
-
-    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys//:yearIni/:yearFin", (request,response) => {
-        var añoIni = parseInt(request.params.yearIni);
-        var añoFin = parseInt(request.params.yearFin);
-
-        db.find({year: {$gte: añoIni, $lte: añoFin}}).skip(0).limit(3).exec((err, data) =>{
-            if(err){
-                console.log(`Error geting /andalusia-tourism-situation-surveys//${añoIni}/${añoFin}: ${err}`);
-                response.sendStatus(500);
-            }else{
-                if(data.length!=0){
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    })); 
-                }
-                else{
-                    console.log(`Data not found /andalusia-tourism-situation-surveys//${añoIni}/${añoFin}: ${err}`);
                     response.status(404).send("Data not found");
                 }
             }
@@ -497,5 +568,21 @@ module.exports = (app) => {
             }
         });
     });
+
+};
+
+function paginacion(req, lista){
+
+    var res = [];
+    const limit = req.query.limit;
+    const offset = req.query.offset;
+    
+    if(limit < 1 || offset < 0 || offset > lista.length){
+        res.push("ERROR EN PARAMETROS LIMIT Y/O OFFSET");
+        return res;
+    }
+
+    res = lista.slice(offset,parseInt(limit)+parseInt(offset));
+    return res;
 
 };
