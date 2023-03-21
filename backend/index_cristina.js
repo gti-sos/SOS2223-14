@@ -340,7 +340,7 @@ module.exports = (app) => {
             filteredList = filteredList.filter((reg)=>
             {
                 return (reg.province == province);
-            });
+            });          
         
             // Apartado para from y to
             var from = request.query.from;
