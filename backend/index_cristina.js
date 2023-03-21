@@ -118,6 +118,7 @@ module.exports = (app) => {
         }
     ];
 
+    //Apartado docs
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/docs", (request,response) => {
         response.redirect("https://documenter.getpostman.com/view/25998017/2s93Jxqfu4");
     });
@@ -148,9 +149,11 @@ module.exports = (app) => {
 
     app.get(BASE_API_URL+"/apartment-occupancy-surveys", (request,response) => {
         console.log("New GET to /apartment-occupancy-surveys");
-
         var province = request.query.province;
         var year = request.query.year;
+        var traveler = request.query.traveler;
+        var overnight_stay = request.query.overnight_stay;
+        var average_stay = request.query.average_stay;
         var from = request.query.from;
         var to = request.query.to;
 
@@ -158,92 +161,142 @@ module.exports = (app) => {
 
         for(var i = 0; i<Object.keys(request.query).length;i++){
             var element = Object.keys(request.query)[i];
-            if(element != "year" && element != "from" && element != "to" && element != "province" && element != "limit" && element != "offset"){
+            if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay" && element != "from" && element != "to" && element != "limit" && element != "offset"){
                 console.log(`No se han recibido los campos esperados:`);
                 response.status(400).send("Bad Request");
             }
         }
-
-        // Comprobamos si from es menor o igual a to
         
         if(from>to){
             console.log(`No se han recibido los campos esperados:`);
             response.status(400).send("Bad Request");
         }
 
-        // db.find({}).skip(0).limit(5).exec((err, data) =>{ 
         db.find({},function(err, filteredList){
             
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys: ${err}`);
                 response.sendStatus(500);
             }
-
-            // Apartado para búsqueda por provincia
-
-            if (province != null){
-                var filteredList = filteredList.filter((reg)=>
-                {
-                    return (reg.province == province);
-                });
-
-                if (filteredList==0){
-                    console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                    response.status(404).send("Data not found");
+            else{
+                if(filteredList.length==0){
+                    console.log(`data inserted: ${datos.length}`);  
+                    db.insert(datos); 
+                    response.json(datos.map((d)=>{
+                        delete d._id;
+                        return d;
+                    })); 
                 }
-            }
-
-            // Apartado para búsqueda por año
-
-            if (year != null){
-                var filteredList = filteredList.filter((reg)=>
-                {
-                    return (reg.year == year);
-                });
-
-                if (filteredList==0){
-                    console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                    response.status(404).send("Data not found");
-                }
-            }
-
-            // Apartado para from y to
-            
-            if(from != null && to != null){
-                filteredList = filteredList.filter((reg)=>
-                {
-                    return (reg.year >= from && reg.year <=to);
-                });
-
-                if (filteredList==0){
-                    console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                    response.status(404).send("Data not found");
-                }    
-            }
-
-            // Resultado
-
-            if(request.query.limit != undefined || request.query.offset != undefined){
-                filteredList = paginacion(request,filteredList);
-            }
-            
-            filteredList.forEach((element)=>{
-                delete element._id;
-            });
-
-            if(request.query.fields!=null){
-                //Comprobamos si los campos son correctos
-                var listaFields = request.query.fields.split(",");
-                for(var i = 0; i<listaFields.length;i++){
-                    var element = listaFields[i];
-                    if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay"){
-                        console.log(`No se han recibido los campos esperados:`);
-                        response.status(400).send("Bad Request");
+                else{
+                    if (province != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.province == province);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }
                     }
-                }
-            }
-            response.send(JSON.stringify(filteredList,null,2));
+        
+                    // Apartado para búsqueda por año
+        
+                    if (year != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.year == year);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }
+                    }
 
+                    // Apartado para búsqueda por viajeros
+        
+                    if (traveler != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.traveler == traveler);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }
+                    }
+
+                    // Apartado para búsqueda por pernotacion
+        
+                    if (overnight_stay != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.overnight_stay == overnight_stay);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }
+                    }
+
+                     // Apartado para búsqueda por estancia media
+        
+                     if (average_stay != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.average_stay == average_stay);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }
+                    }
+
+                     
+        
+                    // Apartado para from y to
+                    
+                    if(from != null && to != null){
+                        filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.year >= from && reg.year <=to);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }    
+                    }
+        
+                    // Resultado
+        
+                    if(request.query.limit != undefined || request.query.offset != undefined){
+                        filteredList = paginacion(request,filteredList);
+                    }
+                    
+                    filteredList.forEach((element)=>{
+                        delete element._id;
+                    });
+        
+                    if(request.query.fields!=null){
+                        //Comprobamos si los campos son correctos
+                        var listaFields = request.query.fields.split(",");
+                        for(var i = 0; i<listaFields.length;i++){
+                            var element = listaFields[i];
+                            if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay"){
+                                console.log(`No se han recibido los campos esperados:`);
+                                response.status(400).send("Bad Request");
+                            }
+                        }
+                    }
+                    response.send(JSON.stringify(filteredList,null,2));
+        
+                }
+            }            
         });
         
     });
