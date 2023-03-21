@@ -12,7 +12,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test-cris": "npx newman run ./tests/backend_cris.json -e ./tests/end/localhost.json",
+    "test-cris": "npx newman run ./tests/backend_cris.json -e ./tests/env/localhost.json",
     "test": "npm run test-cris"
   },
   "repository": {
