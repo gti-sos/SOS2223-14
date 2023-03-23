@@ -565,8 +565,14 @@ module.exports = (app) => {
                     response.sendStatus(500);
                 }
                 else{
-                    console.log(`Numero de documentos actualizados: ${data}`);
-                    response.sendStatus(200);  
+                    if(data==0){
+                        console.log(`Not Found`);
+                        response.sendStatus(404);  
+                    }
+                    else{
+                        console.log(`Numero de documentos actualizados: ${data}`);
+                        response.sendStatus(200);  
+                    }
                     }
             });
         }
