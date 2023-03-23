@@ -121,6 +121,10 @@
 							"\r",
 							"pm.test(\"La longitud de la respuesta es mayor a 0\", function(){\r",
 							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta contiene Sevilla\", function(){\r",
+							"    pm.expect(pm.response.text()).contains(\"Sevilla\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -177,44 +181,32 @@
 					"_postman_previewlanguage": "html",
 					"header": [
 						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
 							"key": "Content-Type",
 							"value": "text/html; charset=utf-8"
 						},
 						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
+							"key": "Content-Length",
+							"value": "265"
 						},
 						{
 							"key": "ETag",
 							"value": "W/\"109-pZh54Ab4QPfxMaoUytqrdY/qlLc\""
 						},
 						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "47fceabe874044bc65bb3dc037e322ac;o=1"
-						},
-						{
 							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:25:22 GMT"
+							"value": "Thu, 23 Mar 2023 11:20:48 GMT"
 						},
 						{
-							"key": "Server",
-							"value": "Google Frontend"
+							"key": "Connection",
+							"value": "keep-alive"
 						},
 						{
-							"key": "Cache-Control",
-							"value": "private"
-						},
-						{
-							"key": "Content-Length",
-							"value": "158"
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
@@ -231,10 +223,6 @@
 						"exec": [
 							" pm.test(\"Codigo de estado es 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"La longitud de la respuesta es mayor a 0\", function(){\r",
-							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -307,44 +295,32 @@
 					"_postman_previewlanguage": "html",
 					"header": [
 						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
 							"key": "Content-Type",
 							"value": "text/html; charset=utf-8"
 						},
 						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
+							"key": "Content-Length",
+							"value": "132"
 						},
 						{
 							"key": "ETag",
 							"value": "W/\"84-Y4Cb9nhrWHUXNJBwernL4byp094\""
 						},
 						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "584a268da737d8efda2b8c4f0dc49d00;o=1"
-						},
-						{
 							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:27:57 GMT"
+							"value": "Thu, 23 Mar 2023 11:23:19 GMT"
 						},
 						{
-							"key": "Server",
-							"value": "Google Frontend"
+							"key": "Connection",
+							"value": "keep-alive"
 						},
 						{
-							"key": "Cache-Control",
-							"value": "private"
-						},
-						{
-							"key": "Content-Length",
-							"value": "124"
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
@@ -365,6 +341,10 @@
 							"\r",
 							"pm.test(\"La longitud de la respuesta es mayor a 0\", function(){\r",
 							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La respuesta contiene Sevilla y 2022\", function(){\r",
+							"    pm.expect(pm.response.text()).contains(\"Sevilla\" && 2022);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -485,8 +465,8 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"La longitud de la respuesta es mayor a 0\", function(){\r",
-							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+							"pm.test(\"La respuesta contiene 2022\", function(){\r",
+							"    pm.expect(pm.response.text()).contains(2022);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -543,48 +523,36 @@
 					"_postman_previewlanguage": "html",
 					"header": [
 						{
-							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
 							"key": "X-Powered-By",
 							"value": "Express"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"41d-m9/xB7vTWmUqJOKp+Iz880i6v/Q\""
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "8c6f9c05518c658d0f5b7ee388184561;o=1"
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:26:52 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "private"
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
-							"value": "311"
+							"value": "1053"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41d-MAMxtmNh+3FTHJH2/5eS8TQOfKA\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Mar 2023 11:23:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "[\n  {\n    \"province\": \"Huelva\",\n    \"year\": 2022,\n    \"traveler\": 86304,\n    \"overnight_stay\": 332581,\n    \"average_stay\": 3.9\n  },\n  {\n    \"province\": \"Cádiz\",\n    \"year\": 2022,\n    \"traveler\": 249383,\n    \"overnight_stay\": 805508,\n    \"average_stay\": 3.2\n  },\n  {\n    \"province\": \"Córdoba\",\n    \"year\": 2022,\n    \"traveler\": 67647,\n    \"overnight_stay\": 141530,\n    \"average_stay\": 2.1\n  },\n  {\n    \"province\": \"Almeria\",\n    \"year\": 2022,\n    \"traveler\": 221240,\n    \"overnight_stay\": 980040,\n    \"average_stay\": 4.4\n  },\n  {\n    \"province\": \"Granada\",\n    \"year\": 2022,\n    \"traveler\": 280920,\n    \"overnight_stay\": 759208,\n    \"average_stay\": 2.7\n  },\n  {\n    \"province\": \"Málaga\",\n    \"year\": 2022,\n    \"traveler\": 1087377,\n    \"overnight_stay\": 5479489,\n    \"average_stay\": 5\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  },\n  {\n    \"province\": \"Jaén\",\n    \"year\": 2022,\n    \"traveler\": 60408,\n    \"overnight_stay\": 142543,\n    \"average_stay\": 2.4\n  }\n]"
+					"body": "[\n  {\n    \"province\": \"Granada\",\n    \"year\": 2022,\n    \"traveler\": 280920,\n    \"overnight_stay\": 759208,\n    \"average_stay\": 2.7\n  },\n  {\n    \"province\": \"Huelva\",\n    \"year\": 2022,\n    \"traveler\": 86304,\n    \"overnight_stay\": 332581,\n    \"average_stay\": 3.9\n  },\n  {\n    \"province\": \"Jaén\",\n    \"year\": 2022,\n    \"traveler\": 60408,\n    \"overnight_stay\": 142543,\n    \"average_stay\": 2.4\n  },\n  {\n    \"province\": \"Almeria\",\n    \"year\": 2022,\n    \"traveler\": 221240,\n    \"overnight_stay\": 980040,\n    \"average_stay\": 4.4\n  },\n  {\n    \"province\": \"Málaga\",\n    \"year\": 2022,\n    \"traveler\": 1087377,\n    \"overnight_stay\": 5479489,\n    \"average_stay\": 5\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  },\n  {\n    \"province\": \"Cádiz\",\n    \"year\": 2022,\n    \"traveler\": 249383,\n    \"overnight_stay\": 805508,\n    \"average_stay\": 3.2\n  },\n  {\n    \"province\": \"Córdoba\",\n    \"year\": 2022,\n    \"traveler\": 67647,\n    \"overnight_stay\": 141530,\n    \"average_stay\": 2.1\n  }\n]"
 				}
 			]
 		},
@@ -601,7 +569,11 @@
 							"\r",
 							"pm.test(\"La longitud de la respuesta es mayor a 0\", function(){\r",
 							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
-							"});"
+							"});\r",
+							"\r",
+							"pm.test(\"La pregunta contiene from y to\", function(){\r",
+							"    pm.request.url.query.has(\"from\"&&\"to\")\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -665,48 +637,36 @@
 					"_postman_previewlanguage": "html",
 					"header": [
 						{
-							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
 							"key": "X-Powered-By",
 							"value": "Express"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"835-I8umeFUc2LNpJi8ewLzM8Dcwo6Y\""
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "26ede05f784b50e18a58ef37a625ebd1;o=1"
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:28:33 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "private"
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
-							"value": "490"
+							"value": "2101"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"835-X6YF0aD8CAOHotQs2bl9PZ7WAzc\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Mar 2023 11:24:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "[\n  {\n    \"province\": \"Jaén\",\n    \"year\": 2021,\n    \"traveler\": 54969,\n    \"overnight_stay\": 138818,\n    \"average_stay\": 2.5\n  },\n  {\n    \"province\": \"Huelva\",\n    \"year\": 2022,\n    \"traveler\": 86304,\n    \"overnight_stay\": 332581,\n    \"average_stay\": 3.9\n  },\n  {\n    \"province\": \"Almeria\",\n    \"year\": 2021,\n    \"traveler\": 175430,\n    \"overnight_stay\": 852651,\n    \"average_stay\": 4.9\n  },\n  {\n    \"province\": \"Cádiz\",\n    \"year\": 2021,\n    \"traveler\": 141934,\n    \"overnight_stay\": 547194,\n    \"average_stay\": 3.9\n  },\n  {\n    \"province\": \"Cádiz\",\n    \"year\": 2022,\n    \"traveler\": 249383,\n    \"overnight_stay\": 805508,\n    \"average_stay\": 3.2\n  },\n  {\n    \"province\": \"Córdoba\",\n    \"year\": 2022,\n    \"traveler\": 67647,\n    \"overnight_stay\": 141530,\n    \"average_stay\": 2.1\n  },\n  {\n    \"province\": \"Almeria\",\n    \"year\": 2022,\n    \"traveler\": 221240,\n    \"overnight_stay\": 980040,\n    \"average_stay\": 4.4\n  },\n  {\n    \"province\": \"Granada\",\n    \"year\": 2022,\n    \"traveler\": 280920,\n    \"overnight_stay\": 759208,\n    \"average_stay\": 2.7\n  },\n  {\n    \"province\": \"Málaga\",\n    \"year\": 2022,\n    \"traveler\": 1087377,\n    \"overnight_stay\": 5479489,\n    \"average_stay\": 5\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  },\n  {\n    \"province\": \"Huelva\",\n    \"year\": 2021,\n    \"traveler\": 70746,\n    \"overnight_stay\": 324824,\n    \"average_stay\": 4.6\n  },\n  {\n    \"province\": \"Córdoba\",\n    \"year\": 2021,\n    \"traveler\": 40273,\n    \"overnight_stay\": 92011,\n    \"average_stay\": 2.3\n  },\n  {\n    \"province\": \"Granada\",\n    \"year\": 2021,\n    \"traveler\": 208463,\n    \"overnight_stay\": 527799,\n    \"average_stay\": 2.5\n  },\n  {\n    \"province\": \"Málaga\",\n    \"year\": 2021,\n    \"traveler\": 722109,\n    \"overnight_stay\": 3411916,\n    \"average_stay\": 4.7\n  },\n  {\n    \"province\": \"Jaén\",\n    \"year\": 2022,\n    \"traveler\": 60408,\n    \"overnight_stay\": 142543,\n    \"average_stay\": 2.4\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2021,\n    \"traveler\": 220579,\n    \"overnight_stay\": 669075,\n    \"average_stay\": 3\n  }\n]"
+					"body": "[\n  {\n    \"province\": \"Granada\",\n    \"year\": 2022,\n    \"traveler\": 280920,\n    \"overnight_stay\": 759208,\n    \"average_stay\": 2.7\n  },\n  {\n    \"province\": \"Huelva\",\n    \"year\": 2022,\n    \"traveler\": 86304,\n    \"overnight_stay\": 332581,\n    \"average_stay\": 3.9\n  },\n  {\n    \"province\": \"Jaén\",\n    \"year\": 2022,\n    \"traveler\": 60408,\n    \"overnight_stay\": 142543,\n    \"average_stay\": 2.4\n  },\n  {\n    \"province\": \"Almeria\",\n    \"year\": 2022,\n    \"traveler\": 221240,\n    \"overnight_stay\": 980040,\n    \"average_stay\": 4.4\n  },\n  {\n    \"province\": \"Almeria\",\n    \"year\": 2021,\n    \"traveler\": 175430,\n    \"overnight_stay\": 852651,\n    \"average_stay\": 4.9\n  },\n  {\n    \"province\": \"Málaga\",\n    \"year\": 2022,\n    \"traveler\": 1087377,\n    \"overnight_stay\": 5479489,\n    \"average_stay\": 5\n  },\n  {\n    \"province\": \"Córdoba\",\n    \"year\": 2021,\n    \"traveler\": 40273,\n    \"overnight_stay\": 92011,\n    \"average_stay\": 2.3\n  },\n  {\n    \"province\": \"Huelva\",\n    \"year\": 2021,\n    \"traveler\": 70746,\n    \"overnight_stay\": 324824,\n    \"average_stay\": 4.6\n  },\n  {\n    \"province\": \"Granada\",\n    \"year\": 2021,\n    \"traveler\": 208463,\n    \"overnight_stay\": 527799,\n    \"average_stay\": 2.5\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2021,\n    \"traveler\": 220579,\n    \"overnight_stay\": 669075,\n    \"average_stay\": 3\n  },\n  {\n    \"province\": \"Cádiz\",\n    \"year\": 2022,\n    \"traveler\": 249383,\n    \"overnight_stay\": 805508,\n    \"average_stay\": 3.2\n  },\n  {\n    \"province\": \"Jaén\",\n    \"year\": 2021,\n    \"traveler\": 54969,\n    \"overnight_stay\": 138818,\n    \"average_stay\": 2.5\n  },\n  {\n    \"province\": \"Córdoba\",\n    \"year\": 2022,\n    \"traveler\": 67647,\n    \"overnight_stay\": 141530,\n    \"average_stay\": 2.1\n  },\n  {\n    \"province\": \"Cádiz\",\n    \"year\": 2021,\n    \"traveler\": 141934,\n    \"overnight_stay\": 547194,\n    \"average_stay\": 3.9\n  },\n  {\n    \"province\": \"Málaga\",\n    \"year\": 2021,\n    \"traveler\": 722109,\n    \"overnight_stay\": 3411916,\n    \"average_stay\": 4.7\n  }\n]"
 				}
 			]
 		},

@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 var Datastore = require('nedb');
 var db = new Datastore();
 const BASE_API_URL = "/api/v1";
@@ -133,7 +134,7 @@ module.exports = (app) => {
             else{
                 if(data.length==0){
                     console.log(`data inserted: ${datos.length}`);  
-                    db.insert(datos); 
+                    db.insert(datos);
                     response.json(datos.map((d)=>{
                         delete d._id;
                         return d;
