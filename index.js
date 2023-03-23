@@ -11,6 +11,10 @@ app.use("/",express.static("./public"));
 
 app.use(bodyParser.json());
 
+app.listen(port,()=>{
+    console.log(`Server ready in port ${port}`);
+});
+
 backend_cris(app);
 backend_rebeca(app);
 backend_ana(app);
