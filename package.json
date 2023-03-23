@@ -12,9 +12,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test-ana": "npx newman run ./tests/backend_ana.json -e ./tests/end/localhost.json",
-    "test-cris": "npx newman run ./tests/backend_cris.json -e ./tests/end/localhost.json",
-    "test": "npm run test-ana && test-cris"
+    "test-apartment-occupancy-surveys": "npx newman run ./tests/backend_apartment-occupancy-surveys.json -e ./tests/env/localhost.json",
+    "test": "npm run test-apartment-occupancy-surveys"
   },
   "repository": {
     "type": "git",
