@@ -266,8 +266,10 @@ module.exports = (app) => {
                     }
                 }
             }
-            response.send(JSON.stringify(filteredList,null,2));
-
+            
+            if(filteredList.length!=0){
+                response.send(JSON.stringify(filteredList,null,2));
+            } 
         });
         
     });
@@ -366,7 +368,7 @@ module.exports = (app) => {
                     response.send(JSON.stringify(filteredList,null,2));
                 }
             }
-        })
+        });
 
     });
     
