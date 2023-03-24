@@ -223,7 +223,11 @@
 						"exec": [
 							" pm.test(\"Codigo de estado es 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"\r",
+							"pm.test(\"La pregunta contiene limit, offset y Sevilla\", function(){\r",
+							"    pm.request.url.query.has(\"limit\"&&\"offset\"&&\"Sevilla\")\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -312,7 +316,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Thu, 23 Mar 2023 11:23:19 GMT"
+							"value": "Fri, 24 Mar 2023 10:28:33 GMT"
 						},
 						{
 							"key": "Connection",
@@ -451,6 +455,104 @@
 					],
 					"cookie": [],
 					"body": "[\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  }\n]"
+				}
+			]
+		},
+		{
+			"name": "?province=Alicante Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" pm.test(\"Codigo de estado es 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?province=Alicante",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys"
+					],
+					"query": [
+						{
+							"key": "province",
+							"value": "Alicante"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "?province=Alicante Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?province=Alicante",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"apartment-occupancy-surveys"
+							],
+							"query": [
+								{
+									"key": "province",
+									"value": "Alicante"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "14"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e-53jttvY19mXAtRJ0i4/saiojqIs\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 11:14:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Data not found"
 				}
 			]
 		},
@@ -802,6 +904,94 @@
 					],
 					"cookie": [],
 					"body": "[\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2021,\n    \"traveler\": 220579,\n    \"overnight_stay\": 669075,\n    \"average_stay\": 3\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  }\n]"
+				}
+			]
+		},
+		{
+			"name": "/Alicante Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404 Not Found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"Alicante"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/Alicante Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"apartment-occupancy-surveys",
+								"Alicante"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "14"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e-53jttvY19mXAtRJ0i4/saiojqIs\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 10:18:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Data not found"
 				}
 			]
 		},
@@ -1226,6 +1416,110 @@
 					],
 					"cookie": [],
 					"body": "Created"
+				}
+			]
+		},
+		{
+			"name": "Resource already exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Dato ya existe\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Resource already exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"apartment-occupancy-surveys"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1c-8RrwDua3NYhX2hkd7xw5pOY4wpw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 10:14:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "This resource already exists"
 				}
 			]
 		},
@@ -2032,7 +2326,7 @@
 			]
 		},
 		{
-			"name": "/Sevilla",
+			"name": "/Alicante Not Found",
 			"event": [
 				{
 					"listen": "test",
@@ -2050,7 +2344,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Sevilla",
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -2058,18 +2352,18 @@
 						"api",
 						"v1",
 						"apartment-occupancy-surveys",
-						"Sevilla"
+						"Alicante"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "/Sevilla",
+					"name": "/Alicante Not Found",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Sevilla",
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante",
 							"host": [
 								"{{URLBASE}}"
 							],
@@ -2077,131 +2371,45 @@
 								"api",
 								"v1",
 								"apartment-occupancy-surveys",
-								"Sevilla"
+								"Alicante"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "html",
 					"header": [
-						{
-							"key": "Content-Type",
-							"value": "text/plain; charset=utf-8"
-						},
 						{
 							"key": "X-Powered-By",
 							"value": "Express"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "b03faf22619dd9a5a0474f94c8323b47;o=1"
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:24:29 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Content-Length",
-							"value": "2"
-						}
-					],
-					"cookie": [],
-					"body": "OK"
-				}
-			]
-		},
-		{
-			"name": "/apartment-occupancy-surveys",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Existosa peticion DELETE si lo encuentra sino NOT FOUND\", function () {\r",
-							"   pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"apartment-occupancy-surveys"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "/apartment-occupancy-surveys",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
-							"host": [
-								"{{URLBASE}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"apartment-occupancy-surveys"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "plain",
-					"header": [
-						{
 							"key": "Content-Type",
-							"value": "text/plain; charset=utf-8"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "f6be594885a176205c0399f5ae131e67"
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:24:35 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
+							"value": "text/html; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
-							"value": "2"
+							"value": "9"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Mar 2023 10:15:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "OK"
+					"body": "Not Found"
 				}
 			]
 		}

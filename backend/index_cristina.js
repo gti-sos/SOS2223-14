@@ -294,6 +294,7 @@ module.exports = (app) => {
                             }
                         }
                     }
+                    
                     if(filteredList.length!=0){
                         response.send(JSON.stringify(filteredList,null,2));
                     }       
