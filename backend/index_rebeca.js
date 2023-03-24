@@ -474,11 +474,16 @@ module.exports = (app) => {
                 if(err){
                     console.log(`Error put /andalusia-tourism-situation-surveys/${ciudad}/${año}: ${err}`);
                     response.sendStatus(500);
-                }
-                else{
-                    console.log(`Numero de documentos actualizados: ${data}`);
-                    response.sendStatus(200);  
+                } else {
+                    if(data==0){
+                        console.log(`Not Found`);
+                        response.sendStatus(404);  
                     }
+                    else{
+                        console.log(`Numero de documentos actualizados: ${data}`);
+                        response.sendStatus(200);  
+                    }
+                }
             });
         }
     });
