@@ -195,121 +195,108 @@ module.exports = (app) => {
                             return (reg.province == province);
                         });
         
+                        if (filteredList.length==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }
+                    }
+        
+                    // Apartado para búsqueda por año
+        
+                    if (year != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.year == year);
+                        });
+        
                         if (filteredList==0){
                             console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
                             response.status(404).send("Data not found");
                         }
-                        else{
-                            // Apartado para búsqueda por año        
-                            if (year != null){
-                                var filteredList = filteredList.filter((reg)=>
-                                {
-                                    return (reg.year == year);
-                                });
-                
-                                if (filteredList==0){
-                                    console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                                    response.status(404).send("Data not found");
-                                }
-                                else{
-                                     // Apartado para búsqueda por viajeros                
-                                    if (traveler != null){
-                                        var filteredList = filteredList.filter((reg)=>
-                                        {
-                                            return (reg.traveler == traveler);
-                                        });
-                        
-                                        if (filteredList==0){
-                                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                                            response.status(404).send("Data not found");
-                                        }
-                                        else{
-                                            // Apartado para búsqueda por pernotacion
-                        
-                                            if (overnight_stay != null){
-                                                var filteredList = filteredList.filter((reg)=>
-                                                {
-                                                    return (reg.overnight_stay == overnight_stay);
-                                                });
-                                
-                                                if (filteredList==0){
-                                                    console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                                                    response.status(404).send("Data not found");
-                                                }
-                                                else{
-                                                        // Apartado para búsqueda por estancia media
-                                
-                                                    if (average_stay != null){
-                                                        var filteredList = filteredList.filter((reg)=>
-                                                        {
-                                                            return (reg.average_stay == average_stay);
-                                                        });
-                                        
-                                                        if (filteredList==0){
-                                                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                                                            response.status(404).send("Data not found");
-                                                        }
-                                                        else{
-                                                                // Apartado para from y to
-                                                    
-                                                            if(from != null && to != null){
-                                                                filteredList = filteredList.filter((reg)=>
-                                                                {
-                                                                    return (reg.year >= from && reg.year <=to);
-                                                                });
-                                                
-                                                                if (filteredList==0){
-                                                                    console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
-                                                                    response.status(404).send("Data not found");
-                                                                }  
-                                                                else{
-                                                                    // Resultado
-                                                
-                                                                    if(request.query.limit != undefined || request.query.offset != undefined){
-                                                                        filteredList = paginacion(request,filteredList);
-                                                                    }
-                                                                    
-                                                                    filteredList.forEach((element)=>{
-                                                                        delete element._id;
-                                                                    });
-                                                        
-                                                                    if(request.query.fields!=null){
-                                                                        //Comprobamos si los campos son correctos
-                                                                        var listaFields = request.query.fields.split(",");
-                                                                        for(var i = 0; i<listaFields.length;i++){
-                                                                            var element = listaFields[i];
-                                                                            if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay"){
-                                                                                console.log(`No se han recibido los campos esperados:`);
-                                                                                response.status(400).send("Bad Request");
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    response.send(JSON.stringify(filteredList,null,2));
-                                                                }  
-                                                            }
-                                                        }
-                                                    }
+                    }
 
-                                                    
-                                        
-                                                    
-                                                }
-                                            }
-
-                                            
-                                        }
-                                    }
-
-                                    
-                                }
-                            }
-
-                           
+                    // Apartado para búsqueda por viajeros
+        
+                    if (traveler != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.traveler == traveler);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
                         }
                     }
+
+                    // Apartado para búsqueda por pernotacion
         
+                    if (overnight_stay != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.overnight_stay == overnight_stay);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }
+                    }
+
+                     // Apartado para búsqueda por estancia media
+        
+                     if (average_stay != null){
+                        var filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.average_stay == average_stay);
+                        });
+        
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }
+                    }
+
+                     
+        
+                    // Apartado para from y to
                     
+                    if(from != null && to != null){
+                        filteredList = filteredList.filter((reg)=>
+                        {
+                            return (reg.year >= from && reg.year <=to);
+                        });
         
+                        if (filteredList==0){
+                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            response.status(404).send("Data not found");
+                        }    
+                    }
+        
+                    // Resultado
+        
+                    if(request.query.limit != undefined || request.query.offset != undefined){
+                        filteredList = paginacion(request,filteredList);
+                    }
+                    
+                    filteredList.forEach((element)=>{
+                        delete element._id;
+                    });
+        
+                    if(request.query.fields!=null){
+                        //Comprobamos si los campos son correctos
+                        var listaFields = request.query.fields.split(",");
+                        for(var i = 0; i<listaFields.length;i++){
+                            var element = listaFields[i];
+                            if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay"){
+                                console.log(`No se han recibido los campos esperados:`);
+                                response.status(400).send("Bad Request");
+                            }
+                        }
+                    }
+                    if(filteredList.length!=0){
+                        response.send(JSON.stringify(filteredList,null,2));
+                    }       
                 }
             }            
         });
@@ -353,7 +340,7 @@ module.exports = (app) => {
             else{
                 if(filteredList.length==0){
                     console.log(`Data not found /apartment-occupancy-surveys/${ciudad}: ${err}`);
-                    response.status(404).send("Not Found");
+                    response.status(404).send("Data not found");
                 }
                 else{
                     filteredList = filteredList.filter((reg)=> {
@@ -409,7 +396,9 @@ module.exports = (app) => {
                         }
                     }
 
-                    response.send(JSON.stringify(filteredList,null,2));
+                    if(filteredList.length!=0){
+                        response.send(JSON.stringify(filteredList,null,2));
+                    } 
                 }
             }
         })
