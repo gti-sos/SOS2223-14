@@ -1320,7 +1320,7 @@
 			]
 		},
 		{
-			"name": "/apartment-occupancy-surveys",
+			"name": "Alicante_1",
 			"event": [
 				{
 					"listen": "test",
@@ -1339,7 +1339,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n    }",
+					"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1360,13 +1360,13 @@
 			},
 			"response": [
 				{
-					"name": "/apartment-occupancy-surveys",
+					"name": "Alicante_1",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n    }",
+							"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1390,32 +1390,136 @@
 					"_postman_previewlanguage": "html",
 					"header": [
 						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
 							"key": "Content-Type",
 							"value": "text/html; charset=utf-8"
 						},
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
+							"key": "Content-Length",
+							"value": "7"
 						},
 						{
 							"key": "ETag",
 							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
 						},
 						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "a8449d0c0373c5362e63886d3d8681bd"
-						},
-						{
 							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:23:14 GMT"
+							"value": "Sat, 25 Mar 2023 16:31:59 GMT"
 						},
 						{
-							"key": "Server",
-							"value": "Google Frontend"
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Created"
+				}
+			]
+		},
+		{
+			"name": "Alicante_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Exitosa peticion POST\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2024,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Alicante_2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2024,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"apartment-occupancy-surveys"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
 							"value": "7"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Mar 2023 16:34:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
@@ -2268,6 +2372,95 @@
 						"apartment-occupancy-surveys",
 						"Alicante",
 						"2023"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/Alicante/2023",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante/2023",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"apartment-occupancy-surveys",
+								"Alicante",
+								"2023"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Mar 2023 16:04:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "OK"
+				}
+			]
+		},
+		{
+			"name": "/Alicante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Existosa peticion DELETE\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys",
+						"Alicante"
 					]
 				}
 			},
