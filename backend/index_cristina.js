@@ -294,9 +294,16 @@ module.exports = (app) => {
                     }
                 }
                     
-                if(data.length!=0){
+                if(data.length>1){
                     response.send(JSON.stringify(data,null,2));
                     console.log(`Datos devueltos: ${data.length}`);
+                }
+                else{
+                    if(data.length!=0){
+                        console.log(`data returned ${data.length}`);
+                        delete data[0]._id;
+                        response.json(data[0]);
+                    }
                 }       
             }
                        
@@ -397,8 +404,16 @@ module.exports = (app) => {
                         }
                     }
 
-                    if(filteredList.length!=0){
-                        response.send(JSON.stringify(filteredList,null,2));
+                    if(data.length>1){
+                        response.send(JSON.stringify(data,null,2));
+                        console.log(`Datos devueltos: ${data.length}`);
+                    }
+                    else{
+                        if(data.length!=0){
+                            console.log(`data returned ${data.length}`);
+                            delete data[0]._id;
+                            response.json(data[0]);
+                        }
                     } 
                 }
             }
