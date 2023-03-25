@@ -15,8 +15,6 @@ jobs:
       
       - run : npm install
       - run : npm start &
-      - run : npm run test-andalusia-tourism-situation-surveys
-      - run : npm run test-apartment-occupancy-surveys
       - run : npm test
 
       - id: 'auth'
