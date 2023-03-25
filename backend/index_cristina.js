@@ -119,11 +119,6 @@ module.exports = (app) => {
         }
     ];
 
-    //Apartado docs
-    app.get(BASE_API_URL+"/apartment-occupancy-surveys/docs", (request,response) => {
-        response.redirect("https://documenter.getpostman.com/view/25998017/2s93Jxqfu4");
-    });
-
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/loadInitialData", (request,response) => {
         console.log("New GET to /apartment-occupancy-surveys/loadInitialData");
         db.find({}, function(err,data){
