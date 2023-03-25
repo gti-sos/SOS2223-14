@@ -1,0 +1,749 @@
+{
+	"info": {
+		"_postman_id": "111d62a6-b999-4368-ba76-7684545a835c",
+		"name": "tests-RSB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25998638"
+	},
+	"item": [
+		{
+			"name": "D01",
+			"item": [
+				{
+					"name": "/loadInitialData",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/loadInitialData",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"loadInitialData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/andalusia-tourism-situation-surveys",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "?province=Sevilla {Array}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La respuesta contiene Sevilla.\", function(){\r",
+									"    pm.expect(pm.response.text()).contains(\"Sevilla\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys?province=Sevilla",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							],
+							"query": [
+								{
+									"key": "province",
+									"value": "Sevilla"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "?from=2021&to=2021 {Array}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La pregunta contiene from y to.\", function(){\r",
+									"    pm.request.url.query.has(\"from\"&&\"to\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys?from=2021&to=2021",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2021"
+								},
+								{
+									"key": "to",
+									"value": "2021"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "?province=Sevilla&from=2020&to=2021 {Array}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La pregunta contiene from y to y Sevilla.\", function(){\r",
+									"    pm.request.url.query.has(\"from\"&&\"to\"&&\"Sevilla\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys?province=Sevilla&from=2020&to=2021",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							],
+							"query": [
+								{
+									"key": "province",
+									"value": "Sevilla"
+								},
+								{
+									"key": "from",
+									"value": "2020"
+								},
+								{
+									"key": "to",
+									"value": "2021"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "?limit=4&offset=3 {Array}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La pregunta contiene limit y offset.\", function(){\r",
+									"    pm.request.url.query.has(\"limit\"&&\"offset\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys?limit=4&offset=3",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "offset",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/Sevilla {Array}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La respuesta contiene Sevilla.\", function(){\r",
+									"    pm.expect(pm.response.text()).to.include(\"Sevilla\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Sevilla",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Sevilla"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/Sevilla/2022 {Object}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La respuesta contiene Sevilla.\", function(){\r",
+									"    pm.expect(pm.response.text()).to.include(\"Sevilla\"&&\"2022\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Sevilla/2022",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Sevilla",
+								"2022"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ERROR 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"404 NOT FOUND\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Alicante",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Alicante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/Toledo/2020 {200 OK}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Petición POST - ÉXITO\", function() {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"province\": \"Toledo\",\r\n    \"year\": 2020,\r\n    \"tourist\": 1234567,\r\n    \"average_daily_expenditure\": 89.89,\r\n    \"average_stay\": 3.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ERROR 405",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"ERROR 405 METHOD NOT ALLOWD\", function() {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"province\": \"Toledo\",\r\n    \"year\": 2020,\r\n    \"tourist\": 1234567,\r\n    \"average_daily_expenditure\": 89.89,\r\n    \"average_stay\": 3.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Sevilla/2021",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Sevilla",
+								"2021"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ERROR 400 - campo no esperado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"ERROR 400: El campo introducido no es el esperado.\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"province\": \"Andalucía\",\r\n    \"year\": 2021,\r\n    \"tourist\": 20035828,\r\n    \"campo_prueba_error\": \"ERROR\",\r\n    \"average_stay\": 6.9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ERROR 409",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"ERROR 409: El dato ya existe.\", function() {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"province\": \"Andalucía\",\r\n    \"year\": 2021,\r\n    \"tourist\": 20035828,\r\n    \"average_daily_expenditure\": 68.6,\r\n    \"average_stay\": 6.9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/Toledo/2023 {200 OK}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Petición PUT - ÉXITO\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"province\": \"Toledo\",\r\n    \"year\": 2023,\r\n    \"tourist\": 1234567,\r\n    \"average_daily_expenditure\": 89.89,\r\n    \"average_stay\": 3.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Toledo/2020",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Toledo",
+								"2020"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ERROR 400 - id incorrecta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"ERROR 400: La ID introducida no es correcta.\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"province\": \"Toledo\",\r\n    \"year\": 2024,\r\n    \"tourist\": 1234567,\r\n    \"average_daily_expenditure\": 89.89,\r\n    \"average_stay\": 3.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Toledo",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Toledo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ERROR 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"404 NOT FOUND: No se encuentra la id introducida.\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"province\": \"Toledo\",\r\n    \"year\": 2024,\r\n    \"tourist\": 1234567,\r\n    \"average_daily_expenditure\": 89.89,\r\n    \"average_stay\": 3.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Alicante/2013",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Alicante",
+								"2013"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/Toledo/2023 {200 OK}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Petición DELETE - ÉXITO\", function() {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,404]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Toledo/2023",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Toledo",
+								"2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ERROR 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"404 NOT FOUND: No se encuentra el elemento con dicha ID.\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Sevilla/2012",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Sevilla",
+								"2012"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
