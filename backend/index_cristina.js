@@ -174,13 +174,13 @@ module.exports = (app) => {
         for(var i = 0; i<Object.keys(request.query).length;i++){
             var element = Object.keys(request.query)[i];
             if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay" && element != "from" && element != "to" && element != "limit" && element != "offset"){
-                console.log(`No se han recibido los campos esperados:`);
+                console.log(`Error en la peticion:`);
                 response.status(400).send("Bad Request");
             }
         }
         
         if(from>to){
-            console.log(`No se han recibido los campos esperados:`);
+            console.log(`Error de sintaxis:`);
             response.status(400).send("Bad Request");
         }
 
@@ -322,11 +322,22 @@ module.exports = (app) => {
 
         console.log(`New GET to /apartment-occupancy-surveys/${ciudad}`);
 
+        db.remove({}, {multi:true}, function(err,numRemoved){
+            if(err){
+                console.log("Error al borrar la base de datos: ", err);
+            }
+            else{
+                console.log("");
+            }
+        });
+
+        db.insert(datos);
+
         //Comprobamos query
 
         for(var i = 0; i<Object.keys(request.query).length;i++){
             var element = Object.keys(request.query)[i];
-            if(element != "from" && element != "to"){
+            if(element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay" && element != "from" && element != "to" && element != "limit" && element != "offset"){
                 console.log(`No se han recibido los campos esperados:`);
                 response.status(400).send("Bad Request");
             }
@@ -339,21 +350,18 @@ module.exports = (app) => {
             response.status(400).send("Bad Request");
         }
 
-        db.find({province:ciudad}, function(err,filteredList){
+        db.find({province:ciudad}, function(err,data){
             
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys: ${err}`);
                 response.sendStatus(500);
             }
             else{
-                if(filteredList.length==0){
+                if(data.length==0){
                     console.log(`Data not found /apartment-occupancy-surveys/${ciudad}: ${err}`);
                     response.status(404).send("Data not found");
                 }
-                else{
-                    filteredList = filteredList.filter((reg)=> {
-                        return (reg.province == ciudad);
-                    });          
+                else{         
         
                     // Apartado para from y to
                     var from = request.query.from;
@@ -366,7 +374,7 @@ module.exports = (app) => {
                     }
                 
                     if(from != null && to != null && from<=to){
-                        filteredList = filteredList.filter((reg)=>
+                        data = data.filter((reg)=>
                         {
                         return (reg.year >= from && reg.year <=to);
                         }); 
@@ -374,7 +382,7 @@ module.exports = (app) => {
                     }
                     //Comprobamos si existe 
 
-                    if (filteredList==0){
+                    if (data==0){
                         console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
                             response.status(404).send("Data not found");
                     }
@@ -382,9 +390,9 @@ module.exports = (app) => {
                     //Resultado
 
                     if(request.query.limit != undefined || request.query.offset != undefined){
-                        filteredList = paginacion(request,filteredList);
+                        data = paginacion(request,data);
                     }
-                    filteredList.forEach((element)=>{
+                    data.forEach((element)=>{
                         delete element._id;
                     });
 
@@ -404,8 +412,16 @@ module.exports = (app) => {
                         }
                     }
 
-                    if(filteredList.length!=0){
-                        response.send(JSON.stringify(filteredList,null,2));
+                    if(data.length>1){
+                        response.send(JSON.stringify(data,null,2));
+                        console.log(`Datos devueltos: ${data.length}`);
+                    }
+                    else{
+                        if(data.length!=0){
+                            console.log(`data returned ${data.length}`);
+                            delete data[0]._id;
+                            response.json(data[0]);
+                        }
                     } 
                 }
             }
@@ -415,6 +431,16 @@ module.exports = (app) => {
 
     app.get(BASE_API_URL+"/apartment-occupancy-surveys//:year", (request,response) => {
         var año = parseInt(request.params.year);
+        db.remove({}, {multi:true}, function(err,numRemoved){
+            if(err){
+                console.log("Error al borrar la base de datos: ", err);
+            }
+            else{
+                console.log("");
+            }
+        });
+
+        db.insert(datos);
         console.log(`New GET to /apartment-occupancy-surveys//${año}`);
         db.find({$and: [{year:año}]}).exec(function(err,data){
             if(err){
@@ -440,6 +466,17 @@ module.exports = (app) => {
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/:province/:year", (request,response) => {
         var año = parseInt(request.params.year);
         var ciudad = request.params.province;
+
+        db.remove({}, {multi:true}, function(err,numRemoved){
+            if(err){
+                console.log("Error al borrar la base de datos: ", err);
+            }
+            else{
+                console.log("");
+            }
+        });
+
+        db.insert(datos);
     
         console.log(`New GET to /apartment-occupancy-surveys/${ciudad}/${año}`);
         db.find({province : ciudad,year : año}, function(err, data){
@@ -465,6 +502,17 @@ module.exports = (app) => {
         var añoFin = parseInt(request.params.yearFin);
         var ciudad = request.params.province;
 
+
+        db.remove({}, {multi:true}, function(err,numRemoved){
+            if(err){
+                console.log("Error al borrar la base de datos: ", err);
+            }
+            else{
+                console.log("");
+            }
+        });
+
+        db.insert(datos);
         
         db.find({province : ciudad,year : {$gte: añoIni, $lte: añoFin}}, function(err, data){
             if(err){
@@ -489,7 +537,16 @@ module.exports = (app) => {
         var añoIni = parseInt(request.params.yearIni);
         var añoFin = parseInt(request.params.yearFin);
 
-        
+        db.remove({}, {multi:true}, function(err,numRemoved){
+            if(err){
+                console.log("Error al borrar la base de datos: ", err);
+            }
+            else{
+                console.log("");
+            }
+        });
+
+        db.insert(datos);
         db.find({$and: [{year: {$gte: añoIni, $lte: añoFin}}]}, function(err, data){
             if(err){
                 console.log(`Error geting /apartment-occupancy-surveys//${añoIni}/${añoFin}: ${err}`);
