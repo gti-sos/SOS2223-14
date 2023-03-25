@@ -16,6 +16,7 @@ jobs:
       - run : npm install
       - run : npm start &
       - run : npm run test-andalusia-tourism-situation-surveys
+      - run : npm run test-apartment-occupancy-surveys
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
