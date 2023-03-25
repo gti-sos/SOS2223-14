@@ -816,6 +816,10 @@
 							"\r",
 							"pm.test(\"Contiene Sevilla\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include(\"Sevilla\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La longitud de la respuesta es mayor a 0\", function(){\r",
+							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2242,8 +2246,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Existosa peticion DELETE si lo encuentra sino NOT FOUND\", function () {\r",
-							"   pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+							"pm.test(\"Existosa peticion DELETE\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2292,32 +2296,32 @@
 					"_postman_previewlanguage": "plain",
 					"header": [
 						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
 							"key": "Content-Type",
 							"value": "text/plain; charset=utf-8"
 						},
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
+							"key": "Content-Length",
+							"value": "2"
 						},
 						{
 							"key": "ETag",
 							"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
 						},
 						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "a70a45df182bbcf5d83ed5bdc9d174fb;o=1"
-						},
-						{
 							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:24:12 GMT"
+							"value": "Sat, 25 Mar 2023 16:04:21 GMT"
 						},
 						{
-							"key": "Server",
-							"value": "Google Frontend"
+							"key": "Connection",
+							"value": "keep-alive"
 						},
 						{
-							"key": "Content-Length",
-							"value": "2"
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
@@ -2326,14 +2330,14 @@
 			]
 		},
 		{
-			"name": "/Alicante Not Found",
+			"name": "Delete Not Found",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Existosa peticion DELETE si lo encuentra sino NOT FOUND\", function () {\r",
-							"   pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+							"pm.test(\"Error DELETE, elemento no encontrado\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2344,7 +2348,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante",
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante/2023",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -2352,18 +2356,19 @@
 						"api",
 						"v1",
 						"apartment-occupancy-surveys",
-						"Alicante"
+						"Alicante",
+						"2023"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "/Alicante Not Found",
+					"name": "Delete Not Found",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante",
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys/Alicante/2023",
 							"host": [
 								"{{URLBASE}}"
 							],
@@ -2371,7 +2376,8 @@
 								"api",
 								"v1",
 								"apartment-occupancy-surveys",
-								"Alicante"
+								"Alicante",
+								"2023"
 							]
 						}
 					},
@@ -2397,7 +2403,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Fri, 24 Mar 2023 10:15:28 GMT"
+							"value": "Sat, 25 Mar 2023 16:10:02 GMT"
 						},
 						{
 							"key": "Connection",
@@ -2410,6 +2416,108 @@
 					],
 					"cookie": [],
 					"body": "Not Found"
+				}
+			]
+		},
+		{
+			"name": "/apartment-occupancy-surveys",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" pm.test(\"Codigo de estado es 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La longitud de la respuesta es mayor a 0\", function(){\r",
+							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/apartment-occupancy-surveys",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"apartment-occupancy-surveys"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"835-AB8zAqcyzVnzhllgSa1Awa0sdfQ\""
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "f63b0bb7c3767402713306d7923a34a4;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 21 Mar 2023 19:19:11 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Content-Length",
+							"value": "477"
+						}
+					],
+					"cookie": [],
+					"body": "[\n  {\n    \"province\": \"Cádiz\",\n    \"year\": 2021,\n    \"traveler\": 141934,\n    \"overnight_stay\": 547194,\n    \"average_stay\": 3.9\n  },\n  {\n    \"province\": \"Huelva\",\n    \"year\": 2021,\n    \"traveler\": 70746,\n    \"overnight_stay\": 324824,\n    \"average_stay\": 4.6\n  },\n  {\n    \"province\": \"Huelva\",\n    \"year\": 2022,\n    \"traveler\": 86304,\n    \"overnight_stay\": 332581,\n    \"average_stay\": 3.9\n  },\n  {\n    \"province\": \"Almeria\",\n    \"year\": 2021,\n    \"traveler\": 175430,\n    \"overnight_stay\": 852651,\n    \"average_stay\": 4.9\n  },\n  {\n    \"province\": \"Málaga\",\n    \"year\": 2022,\n    \"traveler\": 1087377,\n    \"overnight_stay\": 5479489,\n    \"average_stay\": 5\n  },\n  {\n    \"province\": \"Granada\",\n    \"year\": 2022,\n    \"traveler\": 280920,\n    \"overnight_stay\": 759208,\n    \"average_stay\": 2.7\n  },\n  {\n    \"province\": \"Jaén\",\n    \"year\": 2021,\n    \"traveler\": 54969,\n    \"overnight_stay\": 138818,\n    \"average_stay\": 2.5\n  },\n  {\n    \"province\": \"Almeria\",\n    \"year\": 2022,\n    \"traveler\": 221240,\n    \"overnight_stay\": 980040,\n    \"average_stay\": 4.4\n  },\n  {\n    \"province\": \"Granada\",\n    \"year\": 2021,\n    \"traveler\": 208463,\n    \"overnight_stay\": 527799,\n    \"average_stay\": 2.5\n  },\n  {\n    \"province\": \"Cádiz\",\n    \"year\": 2022,\n    \"traveler\": 249383,\n    \"overnight_stay\": 805508,\n    \"average_stay\": 3.2\n  },\n  {\n    \"province\": \"Córdoba\",\n    \"year\": 2022,\n    \"traveler\": 67647,\n    \"overnight_stay\": 141530,\n    \"average_stay\": 2.1\n  },\n  {\n    \"province\": \"Jaén\",\n    \"year\": 2022,\n    \"traveler\": 60408,\n    \"overnight_stay\": 142543,\n    \"average_stay\": 2.4\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2021,\n    \"traveler\": 220579,\n    \"overnight_stay\": 669075,\n    \"average_stay\": 3\n  },\n  {\n    \"province\": \"Córdoba\",\n    \"year\": 2021,\n    \"traveler\": 40273,\n    \"overnight_stay\": 92011,\n    \"average_stay\": 2.3\n  },\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  },\n  {\n    \"province\": \"Málaga\",\n    \"year\": 2021,\n    \"traveler\": 722109,\n    \"overnight_stay\": 3411916,\n    \"average_stay\": 4.7\n  }\n]"
 				}
 			]
 		}
