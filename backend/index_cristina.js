@@ -119,6 +119,11 @@ module.exports = (app) => {
         }
     ];
 
+    //Apartado docs
+    app.get(BASE_API_URL+"/apartment-occupancy-surveys/docs", (request,response) => {
+        response.redirect("https://documenter.getpostman.com/view/25998017/2s93Jxqfu4");
+    });
+
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/loadInitialData", (request,response) => {
         console.log("New GET to /apartment-occupancy-surveys/loadInitialData");
         db.find({}, function(err,data){
@@ -399,16 +404,8 @@ module.exports = (app) => {
                         }
                     }
 
-                    if(data.length>1){
-                        response.send(JSON.stringify(data,null,2));
-                        console.log(`Datos devueltos: ${data.length}`);
-                    }
-                    else{
-                        if(data.length!=0){
-                            console.log(`data returned ${data.length}`);
-                            delete data[0]._id;
-                            response.json(data[0]);
-                        }
+                    if(filteredList.length!=0){
+                        response.send(JSON.stringify(filteredList,null,2));
                     } 
                 }
             }
