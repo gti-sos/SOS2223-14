@@ -47,10 +47,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys",
+							"protocol": "http",
 							"host": [
-								"{{URLBASE}}"
+								"localhost"
 							],
+							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -159,10 +161,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?province=Sevilla",
+							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?province=Sevilla",
+							"protocol": "http",
 							"host": [
-								"{{URLBASE}}"
+								"localhost"
 							],
+							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -269,10 +273,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?province=Sevilla&limit=1&offset=1",
+							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?province=Sevilla&limit=1&offset=1",
+							"protocol": "http",
 							"host": [
-								"{{URLBASE}}"
+								"localhost"
 							],
+							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -387,10 +393,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?province=Sevilla&year=2022",
+							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?province=Sevilla&year=2022",
+							"protocol": "http",
 							"host": [
-								"{{URLBASE}}"
+								"localhost"
 							],
+							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -501,10 +509,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?province=Alicante",
+							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?province=Alicante",
+							"protocol": "http",
 							"host": [
-								"{{URLBASE}}"
+								"localhost"
 							],
+							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -603,10 +613,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?year=2022",
+							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?year=2022",
+							"protocol": "http",
 							"host": [
-								"{{URLBASE}}"
+								"localhost"
 							],
+							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -713,10 +725,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?from=2021&to=2022",
+							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?from=2021&to=2022",
+							"protocol": "http",
 							"host": [
-								"{{URLBASE}}"
+								"localhost"
 							],
+							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -918,7 +932,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Codigo de estado es 404 Not Found\", function () {\r",
+							"pm.test(\"Codigo de estado es 404\", function () {\r",
 							"    pm.response.to.have.status(404);\r",
 							"});"
 						],
@@ -1528,13 +1542,117 @@
 			]
 		},
 		{
+			"name": "400 Bad Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Error peticion POST, error en los campos esperados BAD REQUEST ERROR 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2023,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"apartment-occupancy-surveys"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Alicante_2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"province\": \"Alicante\",\r\n        \"year\": 2024,\r\n        \"traveler\": 1,\r\n        \"overnight_stay\": 1,\r\n        \"average_stay\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"apartment-occupancy-surveys"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "7"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Mar 2023 16:34:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Created"
+				}
+			]
+		},
+		{
 			"name": "Resource already exists",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Dato ya existe\", function () {\r",
+							"pm.test(\"Dato ya existe, ERROR 409\", function () {\r",
 							"    pm.response.to.have.status(409);\r",
 							"});"
 						],
@@ -1638,7 +1756,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Method not allowed\", function () {\r",
+							"pm.test(\"Method not allowed ERROR 405\", function () {\r",
 							"  pm.response.to.have.status(405);\r",
 							"});"
 						],
@@ -1744,7 +1862,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Method not allowed\", function () {\r",
+							"pm.test(\"Method not allowed ERROR 405\", function () {\r",
 							"  pm.response.to.have.status(405);\r",
 							"});"
 						],
@@ -1960,7 +2078,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Error peticion PUT, elemento no encontrado\", function () {\r",
+							"pm.test(\"Error peticion PUT, elemento no encontrado ERROR NOT FOUND 404\", function () {\r",
 							"    pm.response.to.have.status(404);\r",
 							"});"
 						],
@@ -2062,13 +2180,14 @@
 			]
 		},
 		{
-			"name": "/Alicante/2023 Without a field",
+			"name": "400 Bad Request",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							" pm.test(\"Error put, faltan campos, \", function () {\r",
+							"pm.test(\"Error peticion PUT, error en los campos esperados ERROR BAD REQUEST 400\", \r",
+							"                                                                                function () {\r",
 							"    pm.response.to.have.status(400);\r",
 							"});"
 						],
@@ -2176,7 +2295,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Method not allowed\", function () {\r",
+							"pm.test(\"Method not allowed ERROR 405\", function () {\r",
 							"  pm.response.to.have.status(405);\r",
 							"});"
 						],
@@ -2264,7 +2383,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Method not allowed\", function () {\r",
+							"pm.test(\"Method not allowed ERROR 405\", function () {\r",
 							"  pm.response.to.have.status(405);\r",
 							"});"
 						],
@@ -2529,7 +2648,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Error DELETE, elemento no encontrado\", function () {\r",
+							"pm.test(\"ERROR NOT FOUND 404, DELETE, elemento no encontrado\", function () {\r",
 							"    pm.response.to.have.status(404);\r",
 							"});"
 						],
