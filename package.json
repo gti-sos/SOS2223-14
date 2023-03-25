@@ -12,8 +12,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "test-apartment-occupancy-surveys": "npx newman run ./tests/backend_apartment-occupancy-surveys.json -e ./tests/env/gcloud.json",
-    "test-andalusia-tourism-situation-surveys": "npx newman run ./tests/backend_andalusia-tourism-situation-surveys.json -e ./tests/env/gcloud.json",
+    "test-apartment-occupancy-surveys": "npx newman run ./tests/backend_apartment-occupancy-surveys.json -e ./tests/env/localhost.json",
+    "test-andalusia-tourism-situation-surveys": "npx newman run ./tests/backend_andalusia-tourism-situation-surveys.json -e ./tests/env/localhost.json",
     "test": "npm run test-apartment-occupancy-surveys && test-andalusia-tourism-situation-surveys"
   },
   "repository": {
