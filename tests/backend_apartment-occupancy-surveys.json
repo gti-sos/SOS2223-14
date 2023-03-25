@@ -47,12 +47,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys",
-							"protocol": "http",
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys",
 							"host": [
-								"localhost"
+								"{{URLBASE}}"
 							],
-							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -161,12 +159,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?province=Sevilla",
-							"protocol": "http",
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?province=Sevilla",
 							"host": [
-								"localhost"
+								"{{URLBASE}}"
 							],
-							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -493,12 +489,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?province=Alicante",
-							"protocol": "http",
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?province=Alicante",
 							"host": [
-								"localhost"
+								"{{URLBASE}}"
 							],
-							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -597,12 +591,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?year=2022",
-							"protocol": "http",
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?year=2022",
 							"host": [
-								"localhost"
+								"{{URLBASE}}"
 							],
-							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -709,12 +701,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:12345/api/v1/apartment-occupancy-surveys?from=2021&to=2022",
-							"protocol": "http",
+							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys?from=2021&to=2022",
 							"host": [
-								"localhost"
+								"{{URLBASE}}"
 							],
-							"port": "12345",
 							"path": [
 								"api",
 								"v1",
@@ -1220,220 +1210,6 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n}"
-				}
-			]
-		},
-		{
-			"name": "//2022",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Codigo de estado es 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Contiene solo 2022\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(2022);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys//2022",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"apartment-occupancy-surveys",
-						"",
-						"2022"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "New Request",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys//2022",
-							"host": [
-								"{{URLBASE}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"apartment-occupancy-surveys",
-								"",
-								"2022"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2fc-muPIFSyDNHYTv2iowPPov9OSXh8\""
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "a41908e6db17dcad2b6c41a4b49910ba"
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:22:14 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "private"
-						},
-						{
-							"key": "Content-Length",
-							"value": "285"
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"province\": \"Sevilla\",\n        \"year\": 2022,\n        \"traveler\": 420921,\n        \"overnight_stay\": 1218569,\n        \"average_stay\": 2.9\n    },\n    {\n        \"province\": \"Cádiz\",\n        \"year\": 2022,\n        \"traveler\": 249383,\n        \"overnight_stay\": 805508,\n        \"average_stay\": 3.2\n    },\n    {\n        \"province\": \"Córdoba\",\n        \"year\": 2022,\n        \"traveler\": 67647,\n        \"overnight_stay\": 141530,\n        \"average_stay\": 2.1\n    },\n    {\n        \"province\": \"Jaén\",\n        \"year\": 2022,\n        \"traveler\": 60408,\n        \"overnight_stay\": 142543,\n        \"average_stay\": 2.4\n    },\n    {\n        \"province\": \"Huelva\",\n        \"year\": 2022,\n        \"traveler\": 86304,\n        \"overnight_stay\": 332581,\n        \"average_stay\": 3.9\n    },\n    {\n        \"province\": \"Granada\",\n        \"year\": 2022,\n        \"traveler\": 280920,\n        \"overnight_stay\": 759208,\n        \"average_stay\": 2.7\n    },\n    {\n        \"province\": \"Almeria\",\n        \"year\": 2022,\n        \"traveler\": 221240,\n        \"overnight_stay\": 980040,\n        \"average_stay\": 4.4\n    },\n    {\n        \"province\": \"Málaga\",\n        \"year\": 2022,\n        \"traveler\": 1087377,\n        \"overnight_stay\": 5479489,\n        \"average_stay\": 5\n    }\n]"
-				}
-			]
-		},
-		{
-			"name": "/2021/2022",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Codigo de estado es 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"}); \r",
-							"\r",
-							"pm.test(\"Contiene 2021 o 2022\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(2021 || 2022);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys//2021/2022",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"apartment-occupancy-surveys",
-						"",
-						"2021",
-						"2022"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "/2021/2022",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URLBASE}}/api/v1/apartment-occupancy-surveys//2021/2022",
-							"host": [
-								"{{URLBASE}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"apartment-occupancy-surveys",
-								"",
-								"2021",
-								"2022"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"5f4-N6Gudrq01QHSWHe4+yiJ/KjAWdc\""
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "X-Cloud-Trace-Context",
-							"value": "54efdcbed20ce0fc9ecb42e60f02317a;o=1"
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 21 Mar 2023 19:22:54 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Google Frontend"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "private"
-						},
-						{
-							"key": "Content-Length",
-							"value": "435"
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"province\": \"Cádiz\",\n        \"year\": 2021,\n        \"traveler\": 141934,\n        \"overnight_stay\": 547194,\n        \"average_stay\": 3.9\n    },\n    {\n        \"province\": \"Almeria\",\n        \"year\": 2021,\n        \"traveler\": 175430,\n        \"overnight_stay\": 852651,\n        \"average_stay\": 4.9\n    },\n    {\n        \"province\": \"Sevilla\",\n        \"year\": 2022,\n        \"traveler\": 420921,\n        \"overnight_stay\": 1218569,\n        \"average_stay\": 2.9\n    },\n    {\n        \"province\": \"Granada\",\n        \"year\": 2021,\n        \"traveler\": 208463,\n        \"overnight_stay\": 527799,\n        \"average_stay\": 2.5\n    },\n    {\n        \"province\": \"Cádiz\",\n        \"year\": 2022,\n        \"traveler\": 249383,\n        \"overnight_stay\": 805508,\n        \"average_stay\": 3.2\n    },\n    {\n        \"province\": \"Jaén\",\n        \"year\": 2021,\n        \"traveler\": 54969,\n        \"overnight_stay\": 138818,\n        \"average_stay\": 2.5\n    },\n    {\n        \"province\": \"Córdoba\",\n        \"year\": 2022,\n        \"traveler\": 67647,\n        \"overnight_stay\": 141530,\n        \"average_stay\": 2.1\n    },\n    {\n        \"province\": \"Córdoba\",\n        \"year\": 2021,\n        \"traveler\": 40273,\n        \"overnight_stay\": 92011,\n        \"average_stay\": 2.3\n    },\n    {\n        \"province\": \"Huelva\",\n        \"year\": 2021,\n        \"traveler\": 70746,\n        \"overnight_stay\": 324824,\n        \"average_stay\": 4.6\n    },\n    {\n        \"province\": \"Jaén\",\n        \"year\": 2022,\n        \"traveler\": 60408,\n        \"overnight_stay\": 142543,\n        \"average_stay\": 2.4\n    },\n    {\n        \"province\": \"Sevilla\",\n        \"year\": 2021,\n        \"traveler\": 220579,\n        \"overnight_stay\": 669075,\n        \"average_stay\": 3\n    },\n    {\n        \"province\": \"Málaga\",\n        \"year\": 2021,\n        \"traveler\": 722109,\n        \"overnight_stay\": 3411916,\n        \"average_stay\": 4.7\n    },\n    {\n        \"province\": \"Huelva\",\n        \"year\": 2022,\n        \"traveler\": 86304,\n        \"overnight_stay\": 332581,\n        \"average_stay\": 3.9\n    },\n    {\n        \"province\": \"Granada\",\n        \"year\": 2022,\n        \"traveler\": 280920,\n        \"overnight_stay\": 759208,\n        \"average_stay\": 2.7\n    },\n    {\n        \"province\": \"Almeria\",\n        \"year\": 2022,\n        \"traveler\": 221240,\n        \"overnight_stay\": 980040,\n        \"average_stay\": 4.4\n    },\n    {\n        \"province\": \"Málaga\",\n        \"year\": 2022,\n        \"traveler\": 1087377,\n        \"overnight_stay\": 5479489,\n        \"average_stay\": 5\n    }\n]"
 				}
 			]
 		},

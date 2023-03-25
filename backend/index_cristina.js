@@ -428,40 +428,6 @@ module.exports = (app) => {
         })
 
     });
-
-    app.get(BASE_API_URL+"/apartment-occupancy-surveys//:year", (request,response) => {
-        var año = parseInt(request.params.year);
-        db.remove({}, {multi:true}, function(err,numRemoved){
-            if(err){
-                console.log("Error al borrar la base de datos: ", err);
-            }
-            else{
-                console.log("");
-            }
-        });
-
-        db.insert(datos);
-        console.log(`New GET to /apartment-occupancy-surveys//${año}`);
-        db.find({$and: [{year:año}]}).exec(function(err,data){
-            if(err){
-                console.log(`Error geting /apartment-occupancy-surveys//${año}: ${err}`);
-                response.sendStatus(500);
-            }else{
-                if(data.length!= 0){
-                    console.log(`data returned ${data.length}`);
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    }));
-                }
-                 else{
-                    console.log(`Data not found /apartment-occupancy-surveys//${year}: ${err}`);
-                    response.status(404).send("Data not found");
-                 }    
-            }
-        })
-        
-    });
     
     app.get(BASE_API_URL+"/apartment-occupancy-surveys/:province/:year", (request,response) => {
         var año = parseInt(request.params.year);
@@ -491,75 +457,6 @@ module.exports = (app) => {
                 }
                 else{
                     console.log(`Data not found /apartment-occupancy-surveys/${province}/${year}: ${err}`);
-                    response.status(404).send("Data not found");
-                }
-            }
-        });
-    });
-
-    app.get(BASE_API_URL+"/apartment-occupancy-surveys/:province/:yearIni/:yearFin", (request,response) => {
-        var añoIni = parseInt(request.params.yearIni);
-        var añoFin = parseInt(request.params.yearFin);
-        var ciudad = request.params.province;
-
-
-        db.remove({}, {multi:true}, function(err,numRemoved){
-            if(err){
-                console.log("Error al borrar la base de datos: ", err);
-            }
-            else{
-                console.log("");
-            }
-        });
-
-        db.insert(datos);
-        
-        db.find({province : ciudad,year : {$gte: añoIni, $lte: añoFin}}, function(err, data){
-            if(err){
-                console.log(`Error geting /apartment-occupancy-surveys/${ciudad}/${añoIni}/${añoFin}: ${err}`);
-                response.sendStatus(500);
-            }else{
-                if(data.length!=0){
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    }));
-                }
-                else{
-                    console.log(`Data not found /apartment-occupancy-surveys/${ciudad}/${añoIni}/${añoFin}: ${err}`);
-                    response.status(404).send("Data not found");
-                }                
-            }
-        });
-    });
-
-    app.get(BASE_API_URL+"/apartment-occupancy-surveys//:yearIni/:yearFin", (request,response) => {
-        var añoIni = parseInt(request.params.yearIni);
-        var añoFin = parseInt(request.params.yearFin);
-
-        db.remove({}, {multi:true}, function(err,numRemoved){
-            if(err){
-                console.log("Error al borrar la base de datos: ", err);
-            }
-            else{
-                console.log("");
-            }
-        });
-
-        db.insert(datos);
-        db.find({$and: [{year: {$gte: añoIni, $lte: añoFin}}]}, function(err, data){
-            if(err){
-                console.log(`Error geting /apartment-occupancy-surveys//${añoIni}/${añoFin}: ${err}`);
-                response.sendStatus(500);
-            }else{
-                if(data.length!=0){
-                    response.json(data.map((d)=>{
-                        delete d._id;
-                        return d;
-                    })); 
-                }
-                else{
-                    console.log(`Data not found /apartment-occupancy-surveys//${añoIni}/${añoFin}: ${err}`);
                     response.status(404).send("Data not found");
                 }
             }
