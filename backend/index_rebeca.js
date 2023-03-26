@@ -175,12 +175,26 @@ module.exports = (app) => {
         var year = request.query.year;
         var from = request.query.from;
         var to = request.query.to;
+        var tourist = request.query.tourist;
+        var below_tourist = request.query.below_tourist;
+        var above_tourist = request.query.above_tourist;
+        var average_daily_expenditure = request.query.average_daily_expenditure;
+        var below_average_daily_expenditure = request.query.below_average_daily_expenditure;
+        var above_average_daily_expenditure = request.query.above_average_daily_expenditure;
+        var average_stay = request.query.average_stay;
+        var below_average_stay = request.query.below_average_stay;
+        var above_average_stay = request.query.above_average_stay;
 
         // Comprobamos query
 
         for(var i = 0; i<Object.keys(request.query).length;i++){
             var element = Object.keys(request.query)[i];
-            if(element != "year" && element != "from" && element != "to" && element != "province" && element != "limit" && element != "offset"){
+            if(element != "year" && element != "from" && element != "to" && element != "province" 
+            && element != "limit" && element != "offset" && element != "tourist" && 
+            element != "average_daily_expenditure" && element != "average_stay" &&
+            element != "below_tourist" && element != "above_tourist" && 
+            element != "below_average_daily_expenditure" && element != "above_average_daily_expenditure"
+            && element != "below_average_stay" && element != "above_average_stay"){
                 console.log(`No se han recibido los campos esperados:`);
                 response.status(400).send("Bad Request");
             }
@@ -193,12 +207,37 @@ module.exports = (app) => {
             response.status(400).send("Bad Request");
         }
 
-        // db.find({}).skip(0).limit(5).exec((err, data) =>{ 
+        // Comprobamos si below_tourist es menor o igual a above_tourist
+        
+        if(above_tourist>below_tourist){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }
+
+        // Comprobamos si below_average_daily_expenditure es menor o igual a above_average_daily_expenditure
+        
+        if(above_average_daily_expenditure>below_average_daily_expenditure){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }
+
+        // Comprobamos si below_average_stay es menor o igual a above_average_stay
+        
+        if(above_average_stay>below_average_stay){
+            console.log(`No se han recibido los campos esperados:`);
+            response.status(400).send("Bad Request");
+        }
+ 
         db.find({},function(err, filteredList){
             
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys: ${err}`);
                 response.sendStatus(500);
+            }
+
+            if (filteredList==0){
+                console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                response.status(404).send("Data not found");
             }
 
             // Apartado para búsqueda por provincia
@@ -212,7 +251,6 @@ module.exports = (app) => {
                 if (filteredList==0){
                     console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
                     response.status(404).send("Data not found");
-                    // return;
                 }
             }
 
@@ -227,7 +265,6 @@ module.exports = (app) => {
                 if (filteredList==0){
                     console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
                     response.status(404).send("Data not found");
-                    // return;
                 }
             }
 
@@ -237,6 +274,176 @@ module.exports = (app) => {
                 filteredList = filteredList.filter((reg)=>
                 {
                     return (reg.year >= from && reg.year <=to);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para búsqueda por turistas
+
+            if (tourist != null){
+                var filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.tourist == tourist);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }
+            }
+
+            // Apartado para above_tourist
+            
+            if(above_tourist != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.tourist >= above_tourist);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para below_tourist
+            
+            if(below_tourist != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.tourist <=below_tourist);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para above_tourist y below_tourist
+            
+            if(above_tourist != null && below_tourist != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.tourist >= above_tourist && reg.tourist <=below_tourist);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para búsqueda por gasto medio diario
+
+            if (average_daily_expenditure != null){
+                var filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.average_daily_expenditure == average_daily_expenditure);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }
+            }
+
+            // Apartado para above_average_daily_expenditure
+            
+            if(above_average_daily_expenditure != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.average_daily_expenditure >= above_average_daily_expenditure);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para below_average_daily_expenditure
+            
+            if(below_average_daily_expenditure != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.average_daily_expenditure<=below_average_daily_expenditure);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para above_average_daily_expenditure y below_average_daily_expenditure
+            
+            if(above_average_daily_expenditure != null && below_average_daily_expenditure != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.average_daily_expenditure >= above_average_daily_expenditure && 
+                        reg.average_daily_expenditure <=below_average_daily_expenditure);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para búsqueda por estancia media
+
+            if (average_stay != null){
+                var filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.average_stay == average_stay);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }
+            }
+
+            // Apartado para above_average_stay
+            
+            if(above_average_stay != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.average_stay >= above_average_stay);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para below_average_stay
+            
+            if(below_average_stay != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.average_stay<=below_average_stay);
+                });
+
+                if (filteredList==0){
+                    console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+            // Apartado para above_average_stay y below_average_stay
+            
+            if(above_average_stay != null && below_average_stay != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.average_stay >= above_average_stay && 
+                        reg.average_stay <=below_average_stay);
                 });
 
                 if (filteredList==0){
@@ -266,9 +473,17 @@ module.exports = (app) => {
                     }
                 }
             }
-            
-            if(filteredList.length!=0){
+
+            if(filteredList.length>1){
                 response.send(JSON.stringify(filteredList,null,2));
+                console.log(`Datos devueltos: ${filteredList.length}`);
+            }
+            else{
+                if(filteredList.length!=0){
+                    console.log(`data returned ${filteredList.length}`);
+                    delete filteredList[0]._id;
+                    response.json(filteredList[0]);
+                }
             } 
         });
         
@@ -315,12 +530,9 @@ module.exports = (app) => {
                     filteredList = filteredList.filter((reg)=> {
                         return (reg.province == ciudad);
                     });          
-        
-                    // Apartado para from y to
-                    var from = request.query.from;
-                    var to = request.query.to;
             
                     //Comprobamos si from es mas pequeño o igual a to
+
                     if(from>to){
                         console.log(`No se han recibido los campos esperados:`);
                         response.status(400).send("Bad Request");
@@ -333,6 +545,7 @@ module.exports = (app) => {
                         }); 
                         
                     }
+
                     //Comprobamos si existe 
 
                     if (filteredList==0){
@@ -365,7 +578,17 @@ module.exports = (app) => {
                         }
                     }
 
-                    response.send(JSON.stringify(filteredList,null,2));
+                    if(filteredList.length>1){
+                        response.send(JSON.stringify(filteredList,null,2));
+                        console.log(`Datos devueltos: ${filteredList.length}`);
+                    }
+                    else{
+                        if(filteredList.length!=0){
+                            console.log(`Dato devuelto: ${filteredList.length}`);
+                            delete filteredList[0]._id;
+                            response.json(filteredList[0]);
+                        }
+                    }
                 }
             }
         });

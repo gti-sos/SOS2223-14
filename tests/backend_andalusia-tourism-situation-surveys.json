@@ -66,7 +66,7 @@
 					"response": []
 				},
 				{
-					"name": "?province=Sevilla {Array}",
+					"name": "?province=Sevilla",
 					"event": [
 						{
 							"listen": "test",
@@ -112,7 +112,7 @@
 					"response": []
 				},
 				{
-					"name": "?from=2021&to=2021 {Array}",
+					"name": "?from=2021&to=2021",
 					"event": [
 						{
 							"listen": "test",
@@ -162,7 +162,7 @@
 					"response": []
 				},
 				{
-					"name": "?province=Sevilla&from=2020&to=2021 {Array}",
+					"name": "?province=Sevilla&from=2020&to=2021",
 					"event": [
 						{
 							"listen": "test",
@@ -216,7 +216,157 @@
 					"response": []
 				},
 				{
-					"name": "?limit=4&offset=3 {Array}",
+					"name": "?above_tourist=3000000&below_tourist=4000000",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La pregunta contiene above_tourist y below_tourist.\", function(){\r",
+									"    pm.request.url.query.has(\"above_tourist\"&&\"below_tourist\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys?above_tourist=3000000&below_tourist=4000000",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							],
+							"query": [
+								{
+									"key": "above_tourist",
+									"value": "3000000"
+								},
+								{
+									"key": "below_tourist",
+									"value": "4000000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "?above_average_daily_expenditure=60&below_average_daily_expenditure=70",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La pregunta contiene above_average_daily_expenditure y below_average_daily_expenditure.\", function(){\r",
+									"    pm.request.url.query.has(\"above_average_daily_expenditure\"&&\"below_average_daily_expenditure\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys?above_average_daily_expenditure=60&below_average_daily_expenditure=70",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							],
+							"query": [
+								{
+									"key": "above_average_daily_expenditure",
+									"value": "60"
+								},
+								{
+									"key": "below_average_daily_expenditure",
+									"value": "70"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "?above_average_stay=5&below_average_stay=7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+									"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La pregunta contiene above_average_stay y below_average_stay.\", function(){\r",
+									"    pm.request.url.query.has(\"above_average_stay\"&&\"below_average_stay\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys?above_average_stay=5&below_average_stay=7",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							],
+							"query": [
+								{
+									"key": "above_average_stay",
+									"value": "5"
+								},
+								{
+									"key": "below_average_stay",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "?limit=4&offset=3",
 					"event": [
 						{
 							"listen": "test",
@@ -266,7 +416,7 @@
 					"response": []
 				},
 				{
-					"name": "/Sevilla {Array}",
+					"name": "/Sevilla",
 					"event": [
 						{
 							"listen": "test",
@@ -307,7 +457,37 @@
 					"response": []
 				},
 				{
-					"name": "/Sevilla/2022 {Object}",
+					"name": "/Sevilla?from=2021&to=2021",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys/Sevilla?from=2021&to=2021",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys",
+								"Sevilla"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2021"
+								},
+								{
+									"key": "to",
+									"value": "2021"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/Sevilla/2022",
 					"event": [
 						{
 							"listen": "test",
