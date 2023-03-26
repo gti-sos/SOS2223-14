@@ -14,7 +14,7 @@ module.exports = (app) => {
             "average_stay": 6.9
         },
         {
-            "province": "Almeria",
+            "province": "Almería",
             "year": 2021,
             "tourist": 1927988,
             "average_daily_expenditure": 64.5,
@@ -77,7 +77,7 @@ module.exports = (app) => {
             "average_stay": 6.4
         },
         {
-            "province": "Almeria",
+            "province": "Almería",
             "year": 2022,
             "tourist": 2514258,
             "average_daily_expenditure": 66.8,
