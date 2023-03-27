@@ -473,7 +473,7 @@ module.exports = (app) => {
                 }
                 else{
                     if(data.length!=0){
-                        response.status(409).send("This resource already exists");
+                        response.status(409).send("Este elemento ya existe");
                     }
                     else{
                         db.insert(newFile, function(err, data){
