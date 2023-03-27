@@ -12,9 +12,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
+    "test-hotel-occupancy-surveys": "npx newman run ./tests/backend_hotel_occupancy_surveys.json -e ./tests/env/localhost.json",
     "test-apartment-occupancy-surveys": "npx newman run ./tests/backend_apartment-occupancy-surveys.json -e ./tests/env/localhost.json",
     "test-andalusia-tourism-situation-surveys": "npx newman run ./tests/backend_andalusia-tourism-situation-surveys.json -e ./tests/env/localhost.json",
-    "test": "npm run test-apartment-occupancy-surveys && npm run test-andalusia-tourism-situation-surveys"
+    "test": "npm run test-apartment-occupancy-surveys && npm run test-andalusia-tourism-situation-surveys && npm rum test-hotel-occupancy-surveys"
   },
   "repository": {
     "type": "git",
