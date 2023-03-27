@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     name: Deploy to Google Cloud Run
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: production
     steps:
       - uses: actions/checkout@v2
