@@ -257,13 +257,32 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     console.log("New GET to /hotel-occupancy-surveys");
     var province = request.query.province;
     var year = request.query.year;
+    var average_employment = request.query.average_employment;
+    var estimated_average_open_establishment = request.query.estimated_average_open_establishment;
+    var estimated_average_place = request.query.estimated_average_place;
+    var estimated_room = request.query.estimated_room;
+    var occupancy_rate_by_place = request.query.occupancy_rate_by_place;
+    var occupancy_rate_by_weekend_place = request.query.occupancy_rate_by_weekend_place;
+    var room_occupancy_rate = request.query.room_occupancy_rate;
     var from = request.query.from;
     var to = request.query.to;
 
     // Query
     for(var i = 0; i<Object.keys(request.query).length;i++){
         var element = Object.keys(request.query)[i];
-        if(element != "year" && element != "from" && element != "to" && element != "province" && element != "limit" && element != "offset"){
+        if(element != "year" 
+        && element != "from"
+        && element != "to"
+        && element != "province"
+        && element != "limit" 
+        && element != "offset" 
+        && element != "average_employment" 
+        && element != "estimated_average_open_establishment"
+        && element != "estimated_average_place"
+        && element != "estimated_room" 
+        && element != "occupancy_rate_by_place"
+        && element != "occupancy_rate_by_weekend_place"
+        && element != "room_occupancy_rate"){
             console.log(`No se han recibido los campos esperados:`);
             response.status(400).send("Bad Request");
         }
@@ -273,13 +292,18 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     if(from>to){
         console.log(`No se han recibido los campos esperados:`);
         response.status(400).send("Bad Request");
-    }
+    }else{
 
     db.find({},function(err, filteredList){
         if(err){
             console.log(`Error geting /hotel-occupancy-surveys: ${err}`);
             response.sendStatus(500);
         }
+        
+        if (filteredList.length==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
 
         // Búsqueda por provincia
         if (province != null){
@@ -287,18 +311,17 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
             {
                 return (reg.province == province);
             });
-
             if (filteredList==0){
                 console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
                 response.status(404).send("Data not found");
             }
         }
-
-        // Apartado para búsqueda por año
+        // Búsqueda por año
         if (year != null){
             var filteredList = filteredList.filter((reg)=>
             {
                 return (reg.year == year);
+
             });
 
             if (filteredList==0){
@@ -306,7 +329,90 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
                 response.status(404).send("Data not found");
             }
         }
+        // Búsqueda por average_employment
+        if (average_employment != null){
+            var filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.average_employment == average_employment);
+            });
 
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
+        }
+        // Búsqueda por estimated_average_open_establishment
+        if (estimated_average_open_establishment != null){
+            var filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.estimated_average_open_establishment == estimated_average_open_establishment);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
+        }
+        // Búsqueda por estimated_average_place
+        if (estimated_average_place != null){
+            var filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.estimated_average_place == estimated_average_place);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
+        }
+        // Búsqueda por estimated_room
+        if (estimated_room != null){
+            var filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.estimated_room == estimated_room);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
+        }
+        // Búsqueda por occupancy_rate_by_place
+        if (occupancy_rate_by_place != null){
+            var filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.occupancy_rate_by_place == occupancy_rate_by_place);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
+        }
+        // Búsqueda por occupancy_rate_by_weekend_place
+        if (occupancy_rate_by_weekend_place != null){
+            var filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.occupancy_rate_by_weekend_place == occupancy_rate_by_weekend_place);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
+        }
+        // Búsqueda por room_occupancy_rate
+        if (room_occupancy_rate != null){
+            var filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.room_occupancy_rate == room_occupancy_rate);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
+        }
         // "from"/"to"
         if(from != null && to != null){
             filteredList = filteredList.filter((reg)=>
@@ -319,32 +425,48 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
                 response.status(404).send("Data not found");
             }    
         }
-
         // Resultado
         if(request.query.limit != undefined || request.query.offset != undefined){
             filteredList = paginacion(request,filteredList);
         }
-        
         filteredList.forEach((element)=>{
             delete element._id;
         });
-
         if(request.query.fields!=null){
             //¿Los campos son correctos?
-            var listaFields = request.query.fields.split(",");
-            for(var i = 0; i<listaFields.length;i++){
-                var element = listaFields[i];
-                if(element != "province" && element != "year" && element != "average_employment" && element != "estimated_average_open_establishment" && element != "estimated_average_place" && element != "estimated_room" && element != "occupancy_rate_by_place" && element != "room_occupancy_rate"){
+            var fieldsList = request.query.fields.split(",");
+            for(var i = 0; i<fieldsList.length;i++){
+                var element = fieldsList[i];
+                if(element != "province"
+                && element != "year"
+                && element != "average_employment"
+                && element != "estimated_average_open_establishment"
+                && element != "estimated_average_place"
+                && element != "estimated_room"
+                && element != "occupancy_rate_by_place" 
+                && element != "room_occupancy_rate"){
                     console.log(`No se han recibido los campos esperados:`);
                     response.status(400).send("Bad Request");
                 }
             }
         }
-        response.send(JSON.stringify(filteredList,null,2));
-
-    });
-    
+        if(filteredList.length>1){
+            response.send(JSON.stringify(filteredList,null,2));
+            console.log(`Datos devueltos: ${filteredList.length}`);
+        }
+        else{
+            if(filteredList.length!=0){
+                console.log(`data returned ${filteredList.length}`);
+                delete filteredList[0]._id;
+                response.json(filteredList[0]);
+            }
+        }}
+    )};
 });
+
+
+
+
 
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,response) => {
     var año = parseInt(request.params.year);
@@ -491,4 +613,17 @@ app.delete(BASE_API_URL +"/hotel-occupancy-surveys",(request, response)=>{
     });
 });
 
+function paginacion(req, lista){
+    var res = [];
+    const limit = req.query.limit;
+    const offset = req.query.offset;
+
+    if(limit < 1 || offset < 0 || offset > lista.length){
+        res.push("Error en 'limit' y 'offset'");
+        return res;
+    }
+    res = lista.slice(offset,parseInt(limit)+parseInt(offset));
+    return res;
 };
+};
+
