@@ -562,6 +562,48 @@
 					"response": []
 				},
 				{
+					"name": "ERROR 400 - ?above_tourist=5000000&below_tourist=4000000",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Bad Request\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URLBASE}}/api/v1/andalusia-tourism-situation-surveys?above_tourist=5000000&below_tourist=4000000",
+							"host": [
+								"{{URLBASE}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"andalusia-tourism-situation-surveys"
+							],
+							"query": [
+								{
+									"key": "above_tourist",
+									"value": "5000000"
+								},
+								{
+									"key": "below_tourist",
+									"value": "4000000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/Toledo/2020 {200 OK}",
 					"event": [
 						{
