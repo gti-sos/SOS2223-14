@@ -160,7 +160,7 @@ module.exports = (app) => {
 
         db.remove({}, {multi:true}, function(err,numRemoved){
             if(err){
-                console.log("Error al borrar la base de datos: ", err);
+                console.log("Error deleting database: ", err);
             }
             else{
                 console.log("");
@@ -174,13 +174,13 @@ module.exports = (app) => {
         for(var i = 0; i<Object.keys(request.query).length;i++){
             var element = Object.keys(request.query)[i];
             if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay" && element != "from" && element != "to" && element != "limit" && element != "offset"){
-                console.log(`Error en la peticion:`);
+                console.log(`Error request:`);
                 response.status(400).send("Bad Request");
             }
         }
         
         if(from>to){
-            console.log(`Error de sintaxis from > to`);
+            console.log(`Error request from > to`);
             response.status(400).send("Bad Request");
         }
         else{
@@ -197,7 +197,7 @@ module.exports = (app) => {
                         });
             
                         if (data.length==0){
-                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            console.log(`Data not found /apartment-occupancy-surveys: ${province}`);
                             response.status(404).send("Data not found");
                         }
                     }
@@ -211,7 +211,7 @@ module.exports = (app) => {
                         });
             
                         if (data==0){
-                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            console.log(`Data not found /apartment-occupancy-surveys: ${year}`);
                             response.status(404).send("Data not found");
                         }
                     }
@@ -225,7 +225,7 @@ module.exports = (app) => {
                         });
             
                         if (data==0){
-                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            console.log(`Data not found /apartment-occupancy-surveys: ${traveler}`);
                             response.status(404).send("Data not found");
                         }
                     }
@@ -239,7 +239,7 @@ module.exports = (app) => {
                         });
             
                         if (data==0){
-                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            console.log(`Data not found /apartment-occupancy-surveys: ${overnight_stay}`);
                             response.status(404).send("Data not found");
                         }
                     }
@@ -252,7 +252,7 @@ module.exports = (app) => {
                         });
                 
                         if (data==0){
-                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            console.log(`Data not found /apartment-occupancy-surveys: ${average_stay}`);
                             response.status(404).send("Data not found");
                         }
                     }
@@ -267,7 +267,7 @@ module.exports = (app) => {
                         });
             
                         if (data==0){
-                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            console.log(`Data not found /apartment-occupancy-surveys: ${from} / ${to}`);
                             response.status(404).send("Data not found");
                         }    
                     }
@@ -288,7 +288,7 @@ module.exports = (app) => {
                         for(var i = 0; i<listaFields.length;i++){
                             var element = listaFields[i];
                             if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay"){
-                                console.log(`No se han recibido los campos esperados:`);
+                                console.log(`Error in query fields`);
                                 response.status(400).send("Bad Request");
                             }
                         }
@@ -296,7 +296,7 @@ module.exports = (app) => {
                         
                     if(data.length>1){
                         response.send(JSON.stringify(data,null,2));
-                        console.log(`Datos devueltos: ${data.length}`);
+                        console.log(`data returned: ${data.length}`);
                     }
                     else{
                         if(data.length!=0){
@@ -324,7 +324,7 @@ module.exports = (app) => {
 
         db.remove({}, {multi:true}, function(err,numRemoved){
             if(err){
-                console.log("Error al borrar la base de datos: ", err);
+                console.log("Error deleting database: ", err);
             }
             else{
                 console.log("");
@@ -338,7 +338,7 @@ module.exports = (app) => {
         for(var i = 0; i<Object.keys(request.query).length;i++){
             var element = Object.keys(request.query)[i];
             if(element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay" && element != "from" && element != "to" && element != "limit" && element != "offset"){
-                console.log(`No se han recibido los campos esperados:`);
+                console.log(`Error request`);
                 response.status(400).send("Bad Request");
             }
         }
@@ -346,7 +346,7 @@ module.exports = (app) => {
         //Comprobamos si from es mas pequeño o igual a to
 
         if(from>to){
-            console.log(`Error de sintaxis from > to`);
+            console.log(`Error request from > to`);
             response.status(400).send("Bad Request");
         }
         else{
@@ -366,7 +366,7 @@ module.exports = (app) => {
                         // Apartado para from y to
                         var from = request.query.from;
                         var to = request.query.to;
-                                            
+
                         if(from != null && to != null && from<=to){
                             data = data.filter((reg)=>
                             {
@@ -377,7 +377,7 @@ module.exports = (app) => {
                         //Comprobamos si existe 
     
                         if (data==0){
-                            console.log(`Data not found /apartment-occupancy-surveys: ${err}`);
+                            console.log(`Data not found /apartment-occupancy-surveys: ${from} \ ${to}`);
                                 response.status(404).send("Data not found");
                         }
     
@@ -400,7 +400,7 @@ module.exports = (app) => {
                             for(var i = 0; i<listaFields.length;i++){
                                 var element = listaFields[i];
                                 if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay"){
-                                    console.log(`No se han recibido los campos esperados:`);
+                                    console.log(`Error in query fields`);
                                     response.status(400).send("Bad Request");
                                 }
                             }
@@ -408,7 +408,7 @@ module.exports = (app) => {
     
                         if(data.length>1){
                             response.send(JSON.stringify(data,null,2));
-                            console.log(`Datos devueltos: ${data.length}`);
+                            console.log(`data returned: ${data.length}`);
                         }
                         else{
                             if(data.length!=0){
@@ -429,7 +429,7 @@ module.exports = (app) => {
 
         db.remove({}, {multi:true}, function(err,numRemoved){
             if(err){
-                console.log("Error al borrar la base de datos: ", err);
+                console.log("Error deleting database: ", err);
             }
             else{
                 console.log("");
@@ -461,7 +461,7 @@ module.exports = (app) => {
         var newFile = request.body;
 
         if(!newFile.province || !newFile.year || !newFile.traveler || !newFile.overnight_stay || !newFile.average_stay){
-            console.log(`No se han recibido los campos esperados:`);
+            console.log(`Error fields`);
             response.status(400).send("Bad Request");
         }
         else{
@@ -515,7 +515,7 @@ module.exports = (app) => {
         var año = parseInt(request.params.year);
 
         if(!newFile.province || !newFile.year || !newFile.traveler || !newFile.overnight_stay || !newFile.average_stay){
-            console.log(`No se han recibido los campos esperados:`);
+            console.log(`Error fields`);
             response.status(400).send("Bad Request");
         }else{
             db.update({$and: [{province:ciudad}, {year:año}]}, {$set: newFile},function(err, data){
@@ -529,7 +529,7 @@ module.exports = (app) => {
                         response.sendStatus(404);  
                     }
                     else{
-                        console.log(`Numero de documentos actualizados: ${data}`);
+                        console.log(`Files updated: ${data}`);
                         response.sendStatus(200);  
                     }
                     }
@@ -627,7 +627,7 @@ function paginacion(req, lista){
     const offset = req.query.offset;
     
     if(limit < 1 || offset < 0 || offset > lista.length){
-        res.push("ERROR EN PARAMETROS LIMIT Y/O OFFSET");
+        res.push("ERROR IN PARAMETERS LIMIT / OFFSET");
         return res;
     }
 
