@@ -174,12 +174,12 @@ module.exports = (app) => {
         for(var i = 0; i<Object.keys(request.query).length;i++){
             var element = Object.keys(request.query)[i];
             if(element != "province" && element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay" && element != "from" && element != "to" && element != "limit" && element != "offset"){
-                console.log(`Error en la peticion:`);
-                response.status(400).send("Error en la peticion, resuelvelo");
+                console.log(`Error en la peticion, no se han recibido los campos esperados`);
+                response.status(400).send("Error en la peticion, no se han recibido los campos esperados");
             }else{
                 if(from>to){
-                    console.log(`Error en la peticion, resuelvelo`);
-                    response.status(400).send("Error en la peticion, resuelvelo");
+                    console.log(`Error en la peticion, from > to`);
+                    response.status(400).send("Error en la peticion, from > to");
                 }
                 else{
                     db.find({},function(err, data){
@@ -338,15 +338,15 @@ module.exports = (app) => {
         for(var i = 0; i<Object.keys(request.query).length;i++){
             var element = Object.keys(request.query)[i];
             if(element != "year" && element != "traveler" && element != "overnight_stay" && element != "average_stay" && element != "from" && element != "to" && element != "limit" && element != "offset"){
-                console.log(`No se han recibido los campos esperados:`);
-                response.status(400).send("Bad Request");
+                console.log(`Error en la peticion, no se han recibido los campos esperados`);
+                response.status(400).send("Error en la peticion, no se han recibido los campos esperados");
             }
             else{
                  //Comprobamos si from es mas pequeño o igual a to
 
                 if(from>to){
-                    console.log(`Error en la peticion, resuelvelo`);
-                    response.status(400).send("Error en la peticion, resuelvelo");
+                    console.log(`Error en la peticion, from > to`);
+                    response.status(400).send("Error en la peticion, from > to");
                 }
                 else{
                     db.find({province:ciudad}, function(err,data){
