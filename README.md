@@ -9,6 +9,6 @@
 - **Repository**: [gti-sos/SOS2223-14](https://github.com/gti-sos/SOS2223-14)
 - **URL**: https://sos2223-14.appspot.com
 - **APIs**:
-  - https://sos2223-14.ew.r.appspot.com/api/v1/andalusia-tourism-situation-surveys/docs (developed by Rebeca Suárez Bascón)
+  - https://sos2223-14.appspot.com/api/v1/andalusia-tourism-situation-surveys/docs (developed by Rebeca Suárez Bascón)
   - http://sos2223-14.appspot.com/api/v1/apartment-occupancy-surveys/docs (developed by Cristina Calderón García)
   - https://sos2223-14.ew.r.appspot.com/api/v1/hotel-occupancy-surveys/docs (developed by Ana Chávez Velasco)
