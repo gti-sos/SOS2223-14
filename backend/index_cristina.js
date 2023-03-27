@@ -158,6 +158,7 @@ module.exports = (app) => {
         var from = request.query.from;
         var to = request.query.to;
 
+
         db.remove({}, {multi:true}, function(err,numRemoved){
             if(err){
                 console.log("Error deleting database: ", err);
@@ -293,18 +294,9 @@ module.exports = (app) => {
                             }
                         }
                     }
-                        
-                    if(data.length>1){
-                        response.send(JSON.stringify(data,null,2));
-                        console.log(`data returned: ${data.length}`);
-                    }
-                    else{
-                        if(data.length!=0){
-                            console.log(`data returned ${data.length}`);
-                            delete data[0]._id;
-                            response.json(data[0]);
-                        }
-                    }       
+                    
+                    response.send(JSON.stringify(data,null,2));
+                    console.log(`data returned: ${data.length}`);   
                 }
                            
             });
@@ -406,17 +398,8 @@ module.exports = (app) => {
                             }
                         }
     
-                        if(data.length>1){
-                            response.send(JSON.stringify(data,null,2));
-                            console.log(`data returned: ${data.length}`);
-                        }
-                        else{
-                            if(data.length!=0){
-                                console.log(`data returned ${data.length}`);
-                                delete data[0]._id;
-                                response.json(data[0]);
-                            }
-                        } 
+                        response.send(JSON.stringify(data,null,2));
+                        console.log(`data returned: ${data.length}`);
                     }
                 }
             });
@@ -525,8 +508,8 @@ module.exports = (app) => {
                 }
                 else{
                     if(data==0){
-                        console.log(`Not Found`);
-                        response.sendStatus(404);  
+                        console.log(`Bad Request`);
+                        response.sendStatus(400);  
                     }
                     else{
                         console.log(`Files updated: ${data}`);
