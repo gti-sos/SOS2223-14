@@ -252,24 +252,6 @@ app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     }        
 });
 
-/*
-app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-    console.log("New GET to /hotel-occupancy-surveys");
-    db.insert(datos, (err, data)=>{
-        if(err){
-            console.log(`Error geting /hotel-occupancy-surveys: ${err}`);
-            response.sendStatus(500);
-        }else{
-            console.log(`data returned: ${datos.length}`);
-            response.json(datos.map((d)=>{
-                delete d._id;
-                return d;
-            }));                           
-        }
-    });
-});
-*/
-
 //GET
 app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     console.log("New GET to /hotel-occupancy-surveys");
@@ -363,22 +345,30 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     });
     
 });
-/*
-app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-    console.log("New GET to /hotel-occupancy-surveys");
-    db.find({}, (err, data)=>{
+
+app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,response) => {
+    var año = parseInt(request.params.year);
+    var ciudad = request.params.province;
+    console.log(`New GET to /hotel-occupancy-surveys/${ciudad}/${año}`);
+    db.find({province : ciudad, year : año}).exec((err, data) =>{
         if(err){
-            console.log(`Error geting /hotel-occupancy-surveys: ${err}`);
+            console.log(`Error geting /hotel-occupancy-surveys/${ciudad}/${año}: ${err}`);
             response.sendStatus(500);
         }else{
-            console.log(`data inserted: ${datos.length}`);
-            response.json(datos.map((d)=>{
-                delete d._id;
-                return d;
-            }));                           
+            if(data.length!=0){
+                console.log(`data returned ${data.length}`);
+                response.json(data.map((d)=>{
+                    delete d._id;
+                    return d;
+                })); 
+            }
+            else{
+                console.log(`Data not found /hotel-occupancy-surveys/${province}/${year}: ${err}`);
+                response.status(404).send("Data not found");
+            }
         }
     });
-});*/
+});
 
 //Paginación
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province", (request,response) => {
@@ -404,46 +394,6 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province", (request,response) =>
     });
 });
 
-
-/*
-//POST
-app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
-    var newFile = request.body;
-    console.log("new request new POST request /hotel-occupancy-surveys");
-    if(!newFile.province || !newFile.year || !newFile.average_employment || !newFile.estimated_average_open_establishment || !newFile.estimated_average_place || !newFile.estimated_room || !newFile.occupancy_rate_by_place || !newFile.occupancy_rate_by_weekend_place || !newFile.room_occupancy_rate){
-        console.log(`No se han recibido los campos esperados:`);
-        response.status(400).send("Bad Request");
-    }else{
-        db.find({province: newFile.province, year:newFile.year}, function(err, data){
-            if(err){
-                console.log(`Error posting /hotel-occupancy-surveys: ${err}`);
-                response.sendStatus(500);
-            }
-            else{
-                if(data.length!=0){
-                    response.status(409).send("This resource already exists");
-                }
-                else{
- //                   datos.push(newFile);
-                    db.insert(newFile, function(err, data){
-                        if(err){
-                            console.log(`Error posting /hotel-occupancy-surveys: ${err}`);
-                            response.sendStatus(500);
-                        }
-                        else{
-                            console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
-                            console.log("New POST to /hotel-occupancy-surveys");
-                            response.status(201).send("Created");
-                        }
-                    });
-                }
-            }
-        });
-        
-    }        
-});
-*/
-
 app.post(BASE_API_URL+"/hotel-occupancy-surveys/:province",(request,response)=>{
     response.sendStatus(405, "Method not allowed");
 });
@@ -465,7 +415,6 @@ app.put(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,respon
     var newFile = request.body;
     var ciudad = request.params.province;
     var anyo = parseInt(request.params.year);
-
     if(!newFile.province || !newFile.year || !newFile.average_employment || !newFile.estimated_average_open_establishment || !newFile.estimated_average_place || !newFile.estimated_room || !newFile.occupancy_rate_by_place || !newFile.occupancy_rate_by_weekend_place || !newFile.room_occupancy_rate){
         console.log(`No se han recibido los campos esperados:`);
         response.status(400).send("Bad Request");
@@ -498,6 +447,28 @@ app.delete(BASE_API_URL +"/hotel-occupancy-surveys/:province",(request, response
                 console.log(`Files removed ${numRemoved}`);
                 response.sendStatus(200);
             }              
+        }
+    });
+});
+
+app.delete(BASE_API_URL +"/hotel-occupancy-surveys/:province/:year",(request, response)=>{
+    var ciudad = request.params.province;
+    var año = parseInt(request.params.year);
+
+    console.log(`New DELETE to //hotel-occupancy-surveys/${ciudad}/${año}`);
+
+    db.remove({province:ciudad, year:año},{multi:true},function (err, dbRemoved){
+        if(err){
+            console.log(`Error deleting /hotel-occupancy-surveys/${ciudad}/${año}: ${err}`);
+            response.sendStatus(500);
+        }else{
+            if(dbRemoved==0){
+                response.status(404).send("Not Found");
+            }
+            else{
+                console.log(`Files removed ${dbRemoved}`);
+                response.sendStatus(200);
+            }               
         }
     });
 });
