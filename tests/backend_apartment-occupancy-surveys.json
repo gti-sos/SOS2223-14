@@ -296,7 +296,7 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
+					"_postman_previewlanguage": "html",
 					"header": [
 						{
 							"key": "X-Powered-By",
@@ -304,19 +304,19 @@
 						},
 						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "text/html; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
-							"value": "96"
+							"value": "135"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"60-FtzFVgCRrLxBHyM147CGx3o+3Ss\""
+							"value": "W/\"87-sCyCffRtQA+FcQ8eWlOke9Ylc/k\""
 						},
 						{
 							"key": "Date",
-							"value": "Sat, 25 Mar 2023 17:00:30 GMT"
+							"value": "Mon, 27 Mar 2023 12:57:12 GMT"
 						},
 						{
 							"key": "Connection",
@@ -328,7 +328,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n}"
+					"body": "[\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  }\n]"
 				}
 			]
 		},
@@ -410,7 +410,7 @@
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
+					"_postman_previewlanguage": "html",
 					"header": [
 						{
 							"key": "X-Powered-By",
@@ -418,19 +418,19 @@
 						},
 						{
 							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
+							"value": "text/html; charset=utf-8"
 						},
 						{
 							"key": "Content-Length",
-							"value": "96"
+							"value": "135"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"60-FtzFVgCRrLxBHyM147CGx3o+3Ss\""
+							"value": "W/\"87-sCyCffRtQA+FcQ8eWlOke9Ylc/k\""
 						},
 						{
 							"key": "Date",
-							"value": "Sat, 25 Mar 2023 17:00:39 GMT"
+							"value": "Mon, 27 Mar 2023 12:56:58 GMT"
 						},
 						{
 							"key": "Connection",
@@ -442,7 +442,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n}"
+					"body": "[\n  {\n    \"province\": \"Sevilla\",\n    \"year\": 2022,\n    \"traveler\": 420921,\n    \"overnight_stay\": 1218569,\n    \"average_stay\": 2.9\n  }\n]"
 				}
 			]
 		},
@@ -1958,8 +1958,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Error peticion PUT, elemento no encontrado ERROR NOT FOUND 404\", function () {\r",
-							"    pm.response.to.have.status(404);\r",
+							"pm.test(\"Error peticion PUT, 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
 							"});"
 						],
 						"type": "text/javascript"

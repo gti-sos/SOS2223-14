@@ -295,8 +295,11 @@ module.exports = (app) => {
                         }
                     }
                     
-                    response.send(JSON.stringify(data,null,2));
-                    console.log(`data returned: ${data.length}`);   
+                    if(data.length!=0){
+                        response.send(JSON.stringify(data,null,2));
+                        console.log(`data returned: ${data.length}`); 
+                    }
+                      
                 }
                            
             });
@@ -398,8 +401,10 @@ module.exports = (app) => {
                             }
                         }
     
-                        response.send(JSON.stringify(data,null,2));
-                        console.log(`data returned: ${data.length}`);
+                        if(data.length!=0){
+                            response.send(JSON.stringify(data,null,2));
+                            console.log(`data returned: ${data.length}`); 
+                        }
                     }
                 }
             });
