@@ -180,7 +180,7 @@ module.exports = (app) => {
         }
         
         if(from>to){
-            console.log(`Error de sintaxis:`);
+            console.log(`Error de sintaxis from > to`);
             response.status(400).send("Bad Request");
         }
         else{
@@ -346,7 +346,7 @@ module.exports = (app) => {
         //Comprobamos si from es mas pequeño o igual a to
 
         if(from>to){
-            console.log(`No se han recibido los campos esperados:`);
+            console.log(`Error de sintaxis from > to`);
             response.status(400).send("Bad Request");
         }
         else{
@@ -366,13 +366,7 @@ module.exports = (app) => {
                         // Apartado para from y to
                         var from = request.query.from;
                         var to = request.query.to;
-                
-                        //Comprobamos si from es mas pequeño o igual a to
-                        if(from>to){
-                            console.log(`No se han recibido los campos esperados:`);
-                            response.status(400).send("Bad Request");
-                        }
-                    
+                                            
                         if(from != null && to != null && from<=to){
                             data = data.filter((reg)=>
                             {
