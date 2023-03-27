@@ -619,6 +619,11 @@ module.exports = (app) => {
     });   
 };
 
+/*
+     Slice: Devuelve una copia de una parte del array dentro
+            de un nuevo array empezando por inicio hasta fin.
+            El array original no se modificará.
+*/
 
 function paginacion(req, lista){
 
