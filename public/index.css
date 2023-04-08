@@ -1,0 +1,30 @@
+h1 {
+    text-align: center;
+}
+h2 {
+    margin-left: 20px;
+}
+p{
+    margin-left: 20px;
+}
+
+li{
+    margin-top: 10px;
+}
+
+main{
+    margin-left: 40px;
+}
+#final{
+    margin-bottom: 50px;
+}
+
+a{
+    text-decoration: none;
+    font-style: oblique;
+    font-size: 20px;
+    color: rgb(0, 115, 255);
+}
+.margen{
+    margin-left: 45px;
+}

@@ -1,20 +1,30 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var backend_cris = require("./backend/index_cristina");
-var backend_rebeca = require("./backend/index_rebeca");
-var backend_ana = require("./backend/index_ana");
+import express from "express";
+import cors from "cors";
+
+import  { loadBackend_cris } from "./backend/v2/index_cristina.js";
+import  { loadBackend_rebeca } from "./backend/v2/index_rebeca.js";
+import  { loadBackend_ana } from "./backend/v2/index_ana.js";
+import { handler } from "./frontend/build/handler.js";
+
+
 
 var app = express();
+app.use(cors());
 var port = process.env.PORT || 12345;
 
-app.use("/",express.static("./public"));
+app.use(express.json());
+app.use(express.static("./public"));
 
-app.use(bodyParser.json());
+app.get("/", (request,response) => {
+    response.sendFile("/public/index.html");
+});
+
+loadBackend_cris(app);
+loadBackend_rebeca(app);
+loadBackend_ana(app);
+
+app.use(handler);
 
 app.listen(port,()=>{
     console.log(`Server ready in port ${port}`);
 });
-
-backend_cris(app);
-backend_rebeca(app);
-backend_ana(app);
