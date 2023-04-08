@@ -211,7 +211,7 @@ const Table = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
-  code: "#result.svelte-2ws04y{margin-top:80px}",
+  code: "#result.svelte-jo0cbs{margin-top:30px}h1.svelte-jo0cbs{padding-top:50px;text-align:center;margin-bottom:20px}main.svelte-jo0cbs{margin-left:100px;margin-right:40px}#delete-all.svelte-jo0cbs{font-style:oblique;text-align:center;padding-top:40px}",
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -222,51 +222,57 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let newFileOvernightStay = "";
   let newFileAverageStay = "";
   $$result.css.add(css);
-  return `<h1 style="text-align: center;">Create data</h1>
+  return `<main class="svelte-jo0cbs"><h1 class="svelte-jo0cbs"><u>Apartment-Occupancy-Surveys</u></h1>
+    ${validate_component(Table, "Table").$$render($$result, {}, {}, {
+    default: () => {
+      return `<thead><tr><th>Province</th>
+                <th>Year</th>
+                <th>Traveler</th>
+                <th>Overnight_stay</th>
+                <th>Average_stay</th>
+                <th>Action</th></tr></thead>
+        <tbody>${each(datos, (dato) => {
+        return `<tr><td>${escape(dato.province)}</td>
+                    <td>${escape(dato.year)}</td>
+                    <td>${escape(dato.traveler)}</td>
+                    <td>${escape(dato.overnight_stay)}</td>
+                    <td>${escape(dato.average_stay)}</td>
+                    <td>${validate_component(Button, "Button").$$render($$result, {}, {}, {
+          default: () => {
+            return `Delete`;
+          }
+        })}
+                        ${validate_component(Button, "Button").$$render($$result, {}, {}, {
+          default: () => {
+            return `Edit`;
+          }
+        })}</td>
+                </tr>`;
+      })}</tbody>`;
+    }
+  })}
 
-<div>Province: <input${add_attribute("value", newFileProvince, 0)}>
-    Year: <input${add_attribute("value", newFileYear, 0)}>
-    Traveler: <input${add_attribute("value", newFileTraveler, 0)}>
-    Overnight: <input${add_attribute("value", newFileOvernightStay, 0)}>
-    Average: <input${add_attribute("value", newFileAverageStay, 0)}>
-    ${validate_component(Button, "Button").$$render($$result, {}, {}, {
+    <h1 class="svelte-jo0cbs">Create data</h1>
+    <div><input placeholder="Province"${add_attribute("value", newFileProvince, 0)}>
+        <input placeholder="Year"${add_attribute("value", newFileYear, 0)}>
+        <input placeholder="Traveler"${add_attribute("value", newFileTraveler, 0)}>
+        <input placeholder="Overnight stay"${add_attribute("value", newFileOvernightStay, 0)}>
+        <input placeholder="Average stay"${add_attribute("value", newFileAverageStay, 0)}>
+        ${validate_component(Button, "Button").$$render($$result, {}, {}, {
     default: () => {
       return `Create`;
     }
   })}</div>
 
-<h1 style="text-align: center;">Apartment-Occupancy-Surveys</h1>
-${validate_component(Table, "Table").$$render($$result, {}, {}, {
+    ${``}
+
+    <div id="delete-all" class="svelte-jo0cbs"><p>¿Quieres borrar todos los datos?</p>
+        ${validate_component(Button, "Button").$$render($$result, {}, {}, {
     default: () => {
-      return `<thead><tr><th>Province</th>
-            <th>Year</th>
-            <th>Traveler</th>
-            <th>Overnight_stay</th>
-            <th>Average_stay</th>
-            <th>Action</th></tr></thead>
-    <tbody>${each(datos, (dato) => {
-        return `<tr><td>${escape(dato.province)}</td>
-                <td>${escape(dato.year)}</td>
-                <td>${escape(dato.traveler)}</td>
-                <td>${escape(dato.overnight_stay)}</td>
-                <td>${escape(dato.average_stay)}</td>
-                <td>${validate_component(Button, "Button").$$render($$result, {}, {}, {
-          default: () => {
-            return `Delete`;
-          }
-        })}
-                    ${validate_component(Button, "Button").$$render($$result, {}, {}, {
-          default: () => {
-            return `Edit`;
-          }
-        })}</td>
-            </tr>`;
-      })}</tbody>`;
+      return `Borrar todo`;
     }
-  })}
-
-
-${``}`;
+  })}</div>
+</main>`;
 });
 export {
   Page as default

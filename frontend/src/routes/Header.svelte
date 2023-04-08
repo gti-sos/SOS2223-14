@@ -14,6 +14,9 @@
         text-decoration: none;
         font-size: 20px;
     }
+    main{
+        margin-top: 20px;
+    }
 
     .container {
         display: grid;

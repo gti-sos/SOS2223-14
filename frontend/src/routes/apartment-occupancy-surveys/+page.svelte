@@ -2,7 +2,17 @@
     //@ts-nocheck
     import { onMount } from "svelte";
     import { dev } from "$app/environment";
-    import { Table, Button } from "sveltestrap";
+    import { Table, Button, Alert } from "sveltestrap";
+    const colors = [
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark'
+  ];
 
     onMount(async () => {
         getFiles();
@@ -23,13 +33,14 @@
 
     let result = "";
     let resultStatus = "";
+    let message="";
+    let c="";
 
     async function getFiles() {
         resultStatus = result = "";
         const res = await fetch(API, {
             method: "GET",
         });
-
         try {
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
@@ -58,8 +69,15 @@
         });
         const status = await res.status;
         resultStatus = status;
-        if (status == 201) {
+        if (status==201) {
             getFiles();
+        }else if(status==409){
+            message="Error 409, Conflicto, el archivo ya existe"
+            c="danger";
+        }
+        else if(status==400){
+            message="Error 400, Bad Request, faltan campos por rellenar"
+            c="warning";
         }
     }
 
@@ -74,59 +92,92 @@
             getFiles();
         }
     }
+
+    async function deleteAll() {
+        resultStatus = result = "";
+        const res = await fetch(API, {
+            method: "DELETE",
+        });
+        const status = await res.status;
+        resultStatus = status;
+        if (status==200) {
+            location.reload();
+            window.alert("Everything is deleted");
+        }
+    }
 </script>
 
-<h1 style="text-align: center;">Create data</h1>
+<main>
+    {#if message != ""}
+        <Alert color={c}>{message}</Alert>
+    {/if}
 
-<div>
-    Province: <input bind:value={newFileProvince} />
-    Year: <input bind:value={newFileYear} />
-    Traveler: <input bind:value={newFileTraveler} />
-    Overnight: <input bind:value={newFileOvernightStay} />
-    Average: <input bind:value={newFileAverageStay} />
-    <Button on:click={createFile}>Create</Button>
-</div>
-
-<h1 style="text-align: center;">Apartment-Occupancy-Surveys</h1>
-<Table>
-    <thead>
-        <tr>
-            <th>Province</th>
-            <th>Year</th>
-            <th>Traveler</th>
-            <th>Overnight_stay</th>
-            <th>Average_stay</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {#each datos as dato}
+    <h1><u>Apartment-Occupancy-Surveys</u></h1>
+    <Table>
+        <thead>
             <tr>
-                <td>{dato.province}</td>
-                <td>{dato.year}</td>
-                <td>{dato.traveler}</td>
-                <td>{dato.overnight_stay}</td>
-                <td>{dato.average_stay}</td>
-                <td>
-                    <Button on:click={deleteFile(dato.province, dato.year)}
-                        >Delete</Button
-                    >
-                    <Button>Edit</Button>
-                </td>
+                <th>Province</th>
+                <th>Year</th>
+                <th>Traveler</th>
+                <th>Overnight_stay</th>
+                <th>Average_stay</th>
+                <th>Action</th>
             </tr>
-        {/each}
-    </tbody>
-</Table>
+        </thead>
+        <tbody>
+            {#each datos as dato}
+                <tr>
+                    <td>{dato.province}</td>
+                    <td>{dato.year}</td>
+                    <td>{dato.traveler}</td>
+                    <td>{dato.overnight_stay}</td>
+                    <td>{dato.average_stay}</td>
+                    <td>
+                        <Button on:click={deleteFile(dato.province, dato.year)}>Delete</Button>
+                        <Button>Edit</Button>
+                    </td>
+                </tr>
+            {/each}
+        </tbody>
+    </Table>
 
+    <h1>Create data</h1>
+    <div>
+        <input placeholder="Province" bind:value={newFileProvince} />
+        <input placeholder="Year" bind:value={newFileYear} />
+        <input placeholder="Traveler" bind:value={newFileTraveler} />
+        <input placeholder="Overnight stay" bind:value={newFileOvernightStay} />
+        <input placeholder="Average stay" bind:value={newFileAverageStay} />
+        <Button on:click={createFile}>Create resource</Button>
+    </div>
 
-{#if resultStatus != ""}
-    <p id="result">
-        Result: {resultStatus}
-    </p>
-{/if}
+    {#if resultStatus != ""}
+        <p id="result">
+            Result: {resultStatus}
+        </p>
+    {/if}
+    <div id="delete-all">
+        <p>Do you want to delete all data?</p>
+        <Button on:click={deleteAll}>Borrar todo</Button>
+    </div>
 
+</main>
 <style>
     #result {
-        margin-top: 80px;
+        margin-top: 30px;
+    }
+    h1{
+        padding-top: 50px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    main{
+        margin-left: 100px;
+        margin-right: 40px;
+    }
+    #delete-all{
+        font-style: oblique;
+        text-align: center;
+        padding-top: 40px;
     }
 </style>
