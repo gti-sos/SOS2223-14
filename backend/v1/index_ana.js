@@ -1,8 +1,8 @@
-var Datastore = require('nedb');
+import Datastore from 'nedb';
 var db = new Datastore();
 const BASE_API_URL = "/api/v1";
 
-module.exports = (app) => {    
+function loadBackend_ana(app) {    
 
 var datos = [
     {
@@ -627,3 +627,4 @@ function paginacion(req, lista){
 };
 };
 
+export {loadBackend_ana};
