@@ -3,7 +3,7 @@ var db = new Datastore();
 const BASE_API_URL = "/api/v2";
 
 //module.exports = (app) => {    
-function loadBackend_cris(app){
+function loadBackend_cris_v2(app){
     var datos = [
         {
             "province": "Almeria",
@@ -611,4 +611,4 @@ function paginacion(req, lista){
 
 
 
-export {loadBackend_cris};
+export {loadBackend_cris_v2};

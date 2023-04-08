@@ -1,11 +1,10 @@
 import express from "express";
 import cors from "cors";
 
-import  { loadBackend_cris } from "./backend/v2/index_cristina.js";
+import  { loadBackend_cris_v2 } from "./backend/v2/index_cristina.js";
 import  { loadBackend_rebeca } from "./backend/v2/index_rebeca.js";
 import  { loadBackend_ana } from "./backend/v2/index_ana.js";
 import { handler } from "./frontend/build/handler.js";
-
 
 
 var app = express();
@@ -19,7 +18,8 @@ app.get("/", (request,response) => {
     response.sendFile("/public/index.html");
 });
 
-loadBackend_cris(app);
+
+loadBackend_cris_v2(app);
 loadBackend_rebeca(app);
 loadBackend_ana(app);
 
