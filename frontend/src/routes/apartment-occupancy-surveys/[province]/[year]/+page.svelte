@@ -57,9 +57,15 @@
         }
         const status = await res.status;
         resultStatus = status;
-        if(status==404){
+        if (status == 404) {
+            message = "Error 404, Not Found, data not found";
             c = "danger";
-            message = "Error, Data doesn't exist";
+        } else if (status == 400) {
+            message = "Error 400, Bad Request, complete all the fields";
+            c = "warning";
+        } else if (status == 500) {
+            message = "Error 500, Internal Error";
+            c = "danger";
         }
     }
 
@@ -83,13 +89,12 @@
         resultStatus = status;
 
         if (status == 200) {
+            message = "Success";
+            c = "success";
             getData();
         } else if (status == 404) {
             message = "Error 404, Not Found, data not found";
             c = "danger";
-        } else if (status == 400) {
-            message = "Error 400, Bad Request, complete all the fields";
-            c = "warning";
         } else if (status == 500) {
             message = "Error 500, Internal Error";
             c = "danger";
@@ -98,6 +103,9 @@
 </script>
 
 <main>
+    {#if message != ""}
+        <Alert color={c}>{message}</Alert>
+    {/if}
     <h1><u>Data details</u></h1>
     <Table>
         <thead>
@@ -118,7 +126,7 @@
                 <td><input bind:value={updatedOvernightStay}></td>
                 <td><input bind:value={updatedAverageStay}></td>
                 <td>
-                    <Button on:click={updateData}>Update Data</Button>
+                    <Button color="info" on:click={updateData}>Update Data</Button>
                 </td>
             </tr>
         </tbody>
@@ -142,7 +150,4 @@
             </li>
         </ul>
     </div>
-    {#if message != ""}
-        <Alert color={c}>{message}</Alert>
-    {/if}
 </main>

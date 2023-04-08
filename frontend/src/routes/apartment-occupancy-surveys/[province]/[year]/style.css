@@ -11,8 +11,17 @@ main{
     margin-left: 70px;
     margin-right: 70px;
 }
+th{
+    text-align: center;
+    color: blue;
+}
+td{
+    text-align: center;
+}
 li{
     list-style-type: none;
+    font-size: 18px;
+    text-align: center;
 }
 .container{
     text-align: center;

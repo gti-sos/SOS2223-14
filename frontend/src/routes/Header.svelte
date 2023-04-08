@@ -15,9 +15,8 @@
         font-size: 20px;
     }
     main{
-        margin-top: 20px;
+        margin-top: 20px; 
     }
-
     .container {
         display: grid;
         grid-template-columns: 25% 25% 25% 25%;

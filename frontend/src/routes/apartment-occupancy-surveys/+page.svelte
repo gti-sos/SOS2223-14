@@ -135,8 +135,8 @@
                     <td>{dato.overnight_stay}</td>
                     <td>{dato.average_stay}</td>
                     <td>
-                        <Button on:click={deleteFile(dato.province, dato.year)}>Delete</Button>
-                        <Button>Edit</Button>
+                        <Button color="info" on:click={deleteFile(dato.province, dato.year)}>Delete</Button>
+                        <Button color="success">Edit</Button>
                     </td>
                 </tr>
             {/each}
@@ -150,13 +150,13 @@
         <input placeholder="Traveler" bind:value={newFileTraveler} />
         <input placeholder="Overnight stay" bind:value={newFileOvernightStay} />
         <input placeholder="Average stay" bind:value={newFileAverageStay} />
-        <Button on:click={createFile}>Create resource</Button>
+        <Button color="warning" on:click={createFile}>Create resource</Button>
     </div>
     {#if message != ""}
         <Alert color={c}>{message}</Alert>
     {/if}
     <div id="delete-all">
         <p>Do you want to delete all data?</p>
-        <Button on:click={deleteAll}>Borrar todo</Button>
+        <Button color="danger" on:click={deleteAll}>Borrar todo</Button>
     </div>
 </main>
