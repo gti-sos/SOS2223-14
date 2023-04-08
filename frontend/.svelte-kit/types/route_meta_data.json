@@ -1,4 +1,5 @@
 {
 	"/": [],
-	"/apartment-occupancy-surveys": []
+	"/apartment-occupancy-surveys": [],
+	"/apartment-occupancy-surveys/[province]/[year]": []
 }

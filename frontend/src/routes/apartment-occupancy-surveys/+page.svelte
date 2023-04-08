@@ -3,6 +3,8 @@
     import { onMount } from "svelte";
     import { dev } from "$app/environment";
     import { Table, Button, Alert } from "sveltestrap";
+    import {} from "./apartment-occupancy-surveys.css";
+    
     const colors = [
     'primary',
     'secondary',
@@ -72,12 +74,15 @@
         if (status==201) {
             getFiles();
         }else if(status==409){
-            message="Error 409, Conflicto, el archivo ya existe"
+            message="Error 409, Conflict, data already exists"
             c="danger";
         }
         else if(status==400){
-            message="Error 400, Bad Request, faltan campos por rellenar"
+            message="Error 400, Bad Request, complete all the fields"
             c="warning";
+        }else if(status == 500){
+            message="Error 500, Internal Error"
+            c="danger";
         }
     }
 
@@ -108,11 +113,8 @@
 </script>
 
 <main>
-    {#if message != ""}
-        <Alert color={c}>{message}</Alert>
-    {/if}
-
     <h1><u>Apartment-Occupancy-Surveys</u></h1>
+    <p>Data returned: {datos.length}</p>
     <Table>
         <thead>
             <tr>
@@ -141,7 +143,7 @@
         </tbody>
     </Table>
 
-    <h1>Create data</h1>
+    <h3>Create data</h3>
     <div>
         <input placeholder="Province" bind:value={newFileProvince} />
         <input placeholder="Year" bind:value={newFileYear} />
@@ -150,34 +152,11 @@
         <input placeholder="Average stay" bind:value={newFileAverageStay} />
         <Button on:click={createFile}>Create resource</Button>
     </div>
-
-    {#if resultStatus != ""}
-        <p id="result">
-            Result: {resultStatus}
-        </p>
+    {#if message != ""}
+        <Alert color={c}>{message}</Alert>
     {/if}
     <div id="delete-all">
         <p>Do you want to delete all data?</p>
         <Button on:click={deleteAll}>Borrar todo</Button>
     </div>
-
 </main>
-<style>
-    #result {
-        margin-top: 30px;
-    }
-    h1{
-        padding-top: 50px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    main{
-        margin-left: 100px;
-        margin-right: 40px;
-    }
-    #delete-all{
-        font-style: oblique;
-        text-align: center;
-        padding-top: 40px;
-    }
-</style>
