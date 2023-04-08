@@ -110,6 +110,11 @@
             window.alert("Everything is deleted");
         }
     }
+
+    async function changePage(province,year) {
+        window.location.href = "http://localhost:12345/apartment-occupancy-surveys/"+province+"/"+year;
+    }
+
 </script>
 
 <main>
@@ -135,8 +140,8 @@
                     <td>{dato.overnight_stay}</td>
                     <td>{dato.average_stay}</td>
                     <td>
-                        <Button color="info" on:click={deleteFile(dato.province, dato.year)}>Delete</Button>
-                        <Button color="success">Edit</Button>
+                        <Button color="info" on:click={deleteFile(dato.province, dato.year)}>Borrar dato</Button>
+                        <Button color="success" on:click={changePage(dato.province,dato.year)}>Edit</Button>
                     </td>
                 </tr>
             {/each}
@@ -150,7 +155,7 @@
         <input placeholder="Traveler" bind:value={newFileTraveler} />
         <input placeholder="Overnight stay" bind:value={newFileOvernightStay} />
         <input placeholder="Average stay" bind:value={newFileAverageStay} />
-        <Button color="warning" on:click={createFile}>Create resource</Button>
+        <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
     {#if message != ""}
         <Alert color={c}>{message}</Alert>

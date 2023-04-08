@@ -58,13 +58,13 @@
         const status = await res.status;
         resultStatus = status;
         if (status == 404) {
-            message = "Error 404, Not Found, data not found";
+            message = "Error 404, dato no encontrado";
             c = "danger";
         } else if (status == 400) {
-            message = "Error 400, Bad Request, complete all the fields";
+            message = "Error 400, Bad Request, completa todos los campos";
             c = "warning";
         } else if (status == 500) {
-            message = "Error 500, Internal Error";
+            message = "Error 500, Error interno";
             c = "danger";
         }
     }
@@ -89,14 +89,14 @@
         resultStatus = status;
 
         if (status == 200) {
-            message = "Success";
+            message = "Éxito";
             c = "success";
             getData();
         } else if (status == 404) {
-            message = "Error 404, Not Found, data not found";
+            message = "Error 404, dato no encontrado";
             c = "danger";
         } else if (status == 500) {
-            message = "Error 500, Internal Error";
+            message = "Error 500, Error interno";
             c = "danger";
         }
     }
@@ -126,7 +126,7 @@
                 <td><input bind:value={updatedOvernightStay}></td>
                 <td><input bind:value={updatedAverageStay}></td>
                 <td>
-                    <Button color="info" on:click={updateData}>Update Data</Button>
+                    <Button color="info" on:click={updateData}>Actualizar dato</Button>
                 </td>
             </tr>
         </tbody>

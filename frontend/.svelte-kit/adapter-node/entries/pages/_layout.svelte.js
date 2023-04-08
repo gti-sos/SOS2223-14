@@ -1,15 +1,15 @@
 import { c as create_ssr_component, v as validate_component } from "../../chunks/index.js";
 const Header_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: "a.svelte-ynsp8b{color:rgb(2, 56, 107);text-decoration:none;font-size:20px}main.svelte-ynsp8b{margin-top:20px}.container.svelte-ynsp8b{display:grid;grid-template-columns:25% 25% 25% 25%;text-align:center}",
+  code: "a.svelte-135b9fn{color:rgb(2, 56, 107);text-decoration:none;font-size:20px}main.svelte-135b9fn{margin-top:20px}.container.svelte-135b9fn{display:grid;grid-template-columns:25% 25% 25% 25%;text-align:center}",
   map: null
 };
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$1);
-  return `<main class="svelte-ynsp8b"><nav><div class="container svelte-ynsp8b"><a href="/" class="svelte-ynsp8b">Home</a>
-            <a href="/apartment-occupancy-surveys" class="svelte-ynsp8b">Apartment Occupancy Surveys</a>
-            <a href="/andalusia-tourism-situation-surveys" class="svelte-ynsp8b">Andalusia Tourism Situation Surveys</a>
-            <a href="/hotel-occupancy-surveys" class="svelte-ynsp8b">Hotel Occupancy Surveys</a></div></nav>
+  return `<main class="svelte-135b9fn"><nav><div class="container svelte-135b9fn"><a href="/" class="svelte-135b9fn">Home</a>
+            <a href="/apartment-occupancy-surveys" class="svelte-135b9fn">Apartment Occupancy Surveys</a>
+            <a href="/andalusia-tourism-situation-surveys" class="svelte-135b9fn">Andalusia Tourism Situation Surveys</a>
+            <a href="/hotel-occupancy-surveys" class="svelte-135b9fn">Hotel Occupancy Surveys</a></div></nav>
 </main>`;
 });
 const Footer_svelte_svelte_type_style_lang = "";

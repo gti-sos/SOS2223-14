@@ -14,6 +14,7 @@ main{
 th{
     text-align: center;
     color: blue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 td{
     text-align: center;
