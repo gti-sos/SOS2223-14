@@ -58,7 +58,7 @@
         const status = await res.status;
         resultStatus = status;
         if (status == 404) {
-            message = "Error 404, dato no encontrado";
+            message = "Error 404, este dato no existe";
             c = "danger";
         } else if (status == 400) {
             message = "Error 400, Bad Request, completa todos los campos";
@@ -95,6 +95,9 @@
         } else if (status == 404) {
             message = "Error 404, dato no encontrado";
             c = "danger";
+        }else if (status == 400) {
+            message = "Error 400, rellena todos los campos";
+            c = "warning";
         } else if (status == 500) {
             message = "Error 500, Error interno";
             c = "danger";
