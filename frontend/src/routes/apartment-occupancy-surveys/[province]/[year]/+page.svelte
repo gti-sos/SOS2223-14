@@ -150,20 +150,6 @@
             </tr>
         </tbody>
     </Table>
-    <Table class="elementos">
-        <tbody>
-            <tr>
-                <td>{updatedProvince}</td>
-                <td>{updatedYear}</td>
-                <td>{updatedTraveler}</td>
-                <td>{updatedOvernightStay}</td>
-                <td>{updatedAverageStay}</td>                
-                <td>
-                    <Button color="danger" on:click={deleteFile(updatedProvince,updatedYear)}>Borrar dato</Button>
-                </td>
-            </tr>
-        </tbody>
-    </Table>
     <div class="elementos">
         <ul>
             <li>
@@ -183,4 +169,5 @@
             </li>
         </ul>
     </div>
+    <Button id="borrar" color="danger" on:click={deleteFile(updatedProvince,updatedYear)}>Borrar dato</Button>
 </main>

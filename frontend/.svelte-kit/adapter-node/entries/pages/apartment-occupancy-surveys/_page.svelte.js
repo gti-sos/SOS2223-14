@@ -26,7 +26,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
                     <td>${escape(dato.average_stay)}</td>
                     <td>${validate_component(Button, "Button").$$render($$result, { color: "info" }, {}, {
           default: () => {
-            return `Ir al dato`;
+            return `Borrar/actualizar dato`;
           }
         })}</td>
                 </tr>`;
@@ -35,11 +35,11 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}
 
     <h3>Create data</h3>
-    <div><input placeholder="Province"${add_attribute("value", newFileProvince, 0)}>
-        <input placeholder="Year"${add_attribute("value", newFileYear, 0)}>
-        <input placeholder="Traveler"${add_attribute("value", newFileTraveler, 0)}>
-        <input placeholder="Overnight stay"${add_attribute("value", newFileOvernightStay, 0)}>
-        <input placeholder="Average stay"${add_attribute("value", newFileAverageStay, 0)}>
+    <div><input id="create" placeholder="Province"${add_attribute("value", newFileProvince, 0)}>
+        <input id="create" placeholder="Year"${add_attribute("value", newFileYear, 0)}>
+        <input id="create" placeholder="Traveler"${add_attribute("value", newFileTraveler, 0)}>
+        <input id="create" placeholder="Overnight stay"${add_attribute("value", newFileOvernightStay, 0)}>
+        <input id="create" placeholder="Average stay"${add_attribute("value", newFileAverageStay, 0)}>
         ${validate_component(Button, "Button").$$render($$result, { color: "warning" }, {}, {
     default: () => {
       return `Crear dato`;

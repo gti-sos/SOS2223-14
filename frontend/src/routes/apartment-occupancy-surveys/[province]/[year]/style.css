@@ -8,8 +8,8 @@ h3{
     padding-top: 50px;
 }
 main{
-    margin-left: 70px;
     margin-right: 70px;
+    margin-left: 70px;
 }
 th{
     text-align: center;
@@ -29,4 +29,9 @@ li{
 }
 #delete{
     margin-left: 50px;
+}
+#borrar{
+    margin-top: 10px;
+    margin-left: 530px;
+    margin-bottom: 20px;
 }

@@ -24,3 +24,9 @@ th{
     text-align: center;
     padding-top: 40px;
 }
+#create{
+    border-width: 3px;
+    border-style: solid;
+    border-color: darkslateblue;
+    height: 40px;
+}

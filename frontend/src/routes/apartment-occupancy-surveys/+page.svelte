@@ -17,7 +17,7 @@
   ];
 
     onMount(async () => {
-        getFiles();
+        getAllData();
     });
 
     let API = "/api/v2/apartment-occupancy-surveys";
@@ -39,7 +39,7 @@
     let message="";
     let c="";
 
-    async function getFiles() {
+    async function getAllData() {
         resultStatus = result = "";
         const res = await fetch(API, {
             method: "GET",
@@ -81,7 +81,7 @@
         const status = await res.status;
         resultStatus = status;
         if (status==201) {
-            getFiles();
+            getAllData();
         }else if(status==409){
             message="Error 409, Conflict, data already exists"
             c="danger";
@@ -139,7 +139,7 @@
                     <td>{dato.overnight_stay}</td>
                     <td>{dato.average_stay}</td>
                     <td>
-                        <Button color="info" on:click={view(dato.province, dato.year)}>Ir al dato</Button>
+                        <Button color="info" on:click={view(dato.province, dato.year)}>Borrar/actualizar dato</Button>
                     </td>
                 </tr>
             {/each}
@@ -148,11 +148,11 @@
 
     <h3>Create data</h3>
     <div>
-        <input placeholder="Province" bind:value={newFileProvince} />
-        <input placeholder="Year" bind:value={newFileYear} />
-        <input placeholder="Traveler" bind:value={newFileTraveler} />
-        <input placeholder="Overnight stay" bind:value={newFileOvernightStay} />
-        <input placeholder="Average stay" bind:value={newFileAverageStay} />
+        <input id="create" placeholder="Province" bind:value={newFileProvince} />
+        <input id="create" placeholder="Year" bind:value={newFileYear} />
+        <input id="create" placeholder="Traveler" bind:value={newFileTraveler} />
+        <input id="create" placeholder="Overnight stay" bind:value={newFileOvernightStay} />
+        <input id="create" placeholder="Average stay" bind:value={newFileAverageStay} />
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
     {#if message != ""}
