@@ -1,6 +1,6 @@
 import Datastore from 'nedb';
 var db = new Datastore();
-const BASE_API_URL = "/api/v1";
+const BASE_API_URL = "/api/v2";
 console.log("Init Module index_rebeca.js load.");
 
 function loadBackend_rebeca(app) {
@@ -134,13 +134,15 @@ function loadBackend_rebeca(app) {
         }
     ];
 
+    db.insert(datos);
+
     // GET /andalusia-tourism-situation-surveys/docs
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/docs", (request,response) => {
 
         console.log(`REDIRECT TO /andalusia-tourism-situation-surveys/docs`);
 
-        response.status(301).redirect("https://documenter.getpostman.com/view/25998638/2s93JzLgAC")
+        response.status(301).redirect("https://documenter.getpostman.com/view/25998638/2s93RZLV4Z")
     
     });
 

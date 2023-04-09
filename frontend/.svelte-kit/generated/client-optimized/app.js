@@ -5,15 +5,19 @@ export const nodes = [
 	() => import('./nodes/1'),
 	() => import('./nodes/2'),
 	() => import('./nodes/3'),
-	() => import('./nodes/4')
+	() => import('./nodes/4'),
+	() => import('./nodes/5'),
+	() => import('./nodes/6')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/apartment-occupancy-surveys": [3],
-		"/apartment-occupancy-surveys/[province]/[year]": [4]
+		"/andalusia-tourism-situation-surveys": [3],
+		"/andalusia-tourism-situation-surveys/[province]/[year]": [4],
+		"/apartment-occupancy-surveys": [5],
+		"/apartment-occupancy-surveys/[province]/[year]": [6]
 	};
 
 export const hooks = {
