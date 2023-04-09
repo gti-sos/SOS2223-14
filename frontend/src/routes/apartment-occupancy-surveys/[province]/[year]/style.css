@@ -24,6 +24,9 @@ li{
     font-size: 18px;
     text-align: center;
 }
-.container{
+.elementos{
     text-align: center;
+}
+#delete{
+    margin-left: 50px;
 }

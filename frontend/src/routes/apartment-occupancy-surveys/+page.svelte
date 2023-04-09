@@ -27,6 +27,7 @@
     }
 
     let datos = [];
+    let dato = "";
     let newFileProvince = "";
     let newFileYear = "";
     let newFileTraveler = "";
@@ -63,12 +64,20 @@
             },
             body: JSON.stringify({
                 province: newFileProvince,
-                year: newFileYear,
-                traveler: newFileTraveler,
-                overnight_stay: newFileOvernightStay,
-                average_stay: newFileAverageStay,
+                year: parseInt(newFileYear),
+                traveler: parseInt(newFileTraveler),
+                overnight_stay: parseFloat(newFileOvernightStay),
+                average_stay: parseFloat(newFileAverageStay),
             }),
         });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            dato = data;
+            
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
         const status = await res.status;
         resultStatus = status;
         if (status==201) {
@@ -86,17 +95,7 @@
         }
     }
 
-    async function deleteFile(province, year) {
-        resultStatus = result = "";
-        const res = await fetch(API + "/" + province + "/" + year, {
-            method: "DELETE",
-        });
-        const status = await res.status;
-        resultStatus = status;
-        if (status == 200) {
-            getFiles();
-        }
-    }
+   
 
     async function deleteAll() {
         resultStatus = result = "";
@@ -111,8 +110,8 @@
         }
     }
 
-    async function changePage(province,year) {
-        window.location.href = "http://localhost:12345/apartment-occupancy-surveys/"+province+"/"+year;
+    async function view(province,year) {
+        window.location.href = "http://localhost:12345/apartment-occupancy-surveys/"+province + "/" + year;
     }
 
 </script>
@@ -140,8 +139,7 @@
                     <td>{dato.overnight_stay}</td>
                     <td>{dato.average_stay}</td>
                     <td>
-                        <Button color="info" on:click={deleteFile(dato.province, dato.year)}>Borrar dato</Button>
-                        <Button color="success" on:click={changePage(dato.province,dato.year)}>Edit</Button>
+                        <Button color="info" on:click={view(dato.province, dato.year)}>Ir al dato</Button>
                     </td>
                 </tr>
             {/each}

@@ -26,12 +26,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
                     <td>${escape(dato.average_stay)}</td>
                     <td>${validate_component(Button, "Button").$$render($$result, { color: "info" }, {}, {
           default: () => {
-            return `Borrar dato`;
-          }
-        })}
-                        ${validate_component(Button, "Button").$$render($$result, { color: "success" }, {}, {
-          default: () => {
-            return `Edit`;
+            return `Ir al dato`;
           }
         })}</td>
                 </tr>`;
