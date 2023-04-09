@@ -88,7 +88,7 @@
 
     async function deleteFile(province, year) {
         resultStatus = result = "";
-        const res = await fetch(API + "/" + province, {
+        const res = await fetch(API + "/" + province + "/" + year, {
             method: "DELETE",
         });
         const status = await res.status;
