@@ -35,7 +35,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}
 
     <h3>Create data</h3>
-    <div><input id="create" placeholder="Province"${add_attribute("value", newFileProvince, 0)}>
+    <div class="createData"><input id="create" placeholder="Province"${add_attribute("value", newFileProvince, 0)}>
         <input id="create" placeholder="Year"${add_attribute("value", newFileYear, 0)}>
         <input id="create" placeholder="Traveler"${add_attribute("value", newFileTraveler, 0)}>
         <input id="create" placeholder="Overnight stay"${add_attribute("value", newFileOvernightStay, 0)}>
@@ -45,6 +45,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `Crear dato`;
     }
   })}</div>
+
     ${``}
     <div id="delete-all"><p>Do you want to delete all data?</p>
         ${validate_component(Button, "Button").$$render($$result, { color: "danger" }, {}, {

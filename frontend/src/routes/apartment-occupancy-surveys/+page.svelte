@@ -83,11 +83,11 @@
         if (status==201) {
             getAllData();
         }else if(status==409){
-            message="Error 409, Conflict, data already exists"
-            c="danger";
+            message="Error 409, Conflicto, el elemento ya existe"
+            c="warning";
         }
         else if(status==400){
-            message="Error 400, Bad Request, complete all the fields"
+            message="Error 400, Bad Request, rellena todos los campos"
             c="warning";
         }else if(status == 500){
             message="Error 500, Internal Error"
@@ -106,7 +106,7 @@
         resultStatus = status;
         if (status==200) {
             location.reload();
-            window.alert("Everything is deleted");
+            window.alert("Todo borrado");
         }
     }
 
@@ -147,7 +147,7 @@
     </Table>
 
     <h3>Create data</h3>
-    <div>
+    <div class="createData">
         <input id="create" placeholder="Province" bind:value={newFileProvince} />
         <input id="create" placeholder="Year" bind:value={newFileYear} />
         <input id="create" placeholder="Traveler" bind:value={newFileTraveler} />
@@ -155,6 +155,7 @@
         <input id="create" placeholder="Average stay" bind:value={newFileAverageStay} />
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
+
     {#if message != ""}
         <Alert color={c}>{message}</Alert>
     {/if}

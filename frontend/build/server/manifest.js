@@ -4,15 +4,15 @@ const manifest = {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.53e1fabb.js","imports":["_app/immutable/entry/start.53e1fabb.js","_app/immutable/chunks/index.f18abe4c.js","_app/immutable/chunks/singletons.9937a5f7.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.21724671.js","imports":["_app/immutable/entry/app.21724671.js","_app/immutable/chunks/index.f18abe4c.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.1887aad8.js","imports":["_app/immutable/entry/start.1887aad8.js","_app/immutable/chunks/index.f18abe4c.js","_app/immutable/chunks/singletons.acc56c64.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.c73a1416.js","imports":["_app/immutable/entry/app.c73a1416.js","_app/immutable/chunks/index.f18abe4c.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('./chunks/0-b8cf1d7b.js'),
-			() => import('./chunks/1-6ccc1d7b.js'),
+			() => import('./chunks/1-0b4e7c03.js'),
 			() => import('./chunks/2-bbef0351.js'),
 			() => import('./chunks/3-b31db48e.js'),
-			() => import('./chunks/4-98be5101.js'),
-			() => import('./chunks/5-302f03ff.js'),
-			() => import('./chunks/6-dd58a35b.js')
+			() => import('./chunks/4-7c89097e.js'),
+			() => import('./chunks/5-966b1dee.js'),
+			() => import('./chunks/6-f05bd4dd.js')
 		],
 		routes: [
 			{
