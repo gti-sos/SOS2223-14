@@ -114,7 +114,6 @@
             for (let i = 0; i < elementos.length; i++) {
                 elementos[i].textContent = "";
             }
-
             message = "El elemento está borrado";
             c = "success";
         }
@@ -125,7 +124,7 @@
     {#if message != ""}
         <Alert color={c}>{message}</Alert>
     {/if}
-    <div id="main">
+    <div class="elementos">
         <h1><u>Detalles del dato</u></h1>
         <Table>
             <thead>
@@ -153,7 +152,7 @@
                 </tr>
             </tbody>
         </Table>
-        <div class="elementos">
+        <div>
             <ul>
                 <li>
                     Provincia:{updatedProvince}
@@ -172,11 +171,6 @@
                 </li>
             </ul>
         </div>
-        <Button
-            id="borrar"
-            color="danger"
-            on:click={deleteFile(updatedProvince, updatedYear)}
-            >Borrar dato</Button
-        >
+        <Button id="borrar" color="danger" on:click={deleteFile(updatedProvince, updatedYear)}>Borrar dato</Button>
     </div>
 </main>
