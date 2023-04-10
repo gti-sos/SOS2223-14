@@ -2,9 +2,9 @@
     <nav>
         <div class="container">
             <a href="/">Home</a>
-            <a href="/apartment-occupancy-surveys">Apartment Occupancy Surveys</a>
-            <a href="/andalusia-tourism-situation-surveys">Andalusia Tourism Situation Surveys</a>
-            <a href="/hotel-occupancy-surveys">Hotel Occupancy Surveys</a>          
+            <a href="/apartment-occupancy-surveys">Encuesta de ocupacion de apartamentos</a>
+            <a href="/andalusia-tourism-situation-surveys">Encuesta de situacion turistica de Andalucía</a>
+            <a href="/hotel-occupancy-surveys">Encuesta de ocupación hotelera</a>          
         </div>
     </nav>
 </main>
