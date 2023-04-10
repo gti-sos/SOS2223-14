@@ -146,13 +146,13 @@
         </tbody>
     </Table>
 
-    <h3>Create data</h3>
+    <h3>Crear dato</h3>
     <div>
-        <input placeholder="Province" bind:value={newFileProvince} />
-        <input placeholder="Year" bind:value={newFileYear} />
-        <input placeholder="Tourist" bind:value={newFileTourist} />
-        <input placeholder="Average daily expenditure" bind:value={newFileAverageDailyExpenditure} />
-        <input placeholder="Average stay" bind:value={newFileAverageStay} />
+        <input placeholder="Provincia" bind:value={newFileProvince} />
+        <input placeholder="Año" bind:value={newFileYear} />
+        <input placeholder="Turista" bind:value={newFileTourist} />
+        <input placeholder="Gasto medio diario" bind:value={newFileAverageDailyExpenditure} />
+        <input placeholder="Estancia media" bind:value={newFileAverageStay} />
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
     {#if message != ""}

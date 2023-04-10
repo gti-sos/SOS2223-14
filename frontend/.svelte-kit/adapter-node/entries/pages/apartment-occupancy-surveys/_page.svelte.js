@@ -8,16 +8,16 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let newFileTraveler = "";
   let newFileOvernightStay = "";
   let newFileAverageStay = "";
-  return `<main><h1><u>Apartment-Occupancy-Surveys</u></h1>
-    <p>Data returned: ${escape(datos.length)}</p>
+  return `<main><h1><u>Encuesta de ocupacion de apartamentos</u></h1>
+    <p>Datos devueltos: ${escape(datos.length)}</p>
     ${validate_component(Table, "Table").$$render($$result, {}, {}, {
     default: () => {
-      return `<thead><tr><th>Province</th>
-                <th>Year</th>
-                <th>Traveler</th>
-                <th>Overnight_stay</th>
-                <th>Average_stay</th>
-                <th>Action</th></tr></thead>
+      return `<thead><tr><th>Provincia</th>
+                <th>Año</th>
+                <th>Turistas</th>
+                <th>Pernoctacion media</th>
+                <th>Estancia media</th>
+                <th>Accion</th></tr></thead>
         <tbody>${each(datos, (dato) => {
         return `<tr><td>${escape(dato.province)}</td>
                     <td>${escape(dato.year)}</td>
@@ -34,12 +34,12 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     }
   })}
 
-    <h3>Create data</h3>
-    <div class="createData"><input id="create" placeholder="Province"${add_attribute("value", newFileProvince, 0)}>
-        <input id="create" placeholder="Year"${add_attribute("value", newFileYear, 0)}>
-        <input id="create" placeholder="Traveler"${add_attribute("value", newFileTraveler, 0)}>
-        <input id="create" placeholder="Overnight stay"${add_attribute("value", newFileOvernightStay, 0)}>
-        <input id="create" placeholder="Average stay"${add_attribute("value", newFileAverageStay, 0)}>
+    <h3>Crear elemento</h3>
+    <div class="createData"><input id="create" placeholder="Provincia"${add_attribute("value", newFileProvince, 0)}>
+        <input id="create" placeholder="Año"${add_attribute("value", newFileYear, 0)}>
+        <input id="create" placeholder="Turista"${add_attribute("value", newFileTraveler, 0)}>
+        <input id="create" placeholder="Pernoctacion media"${add_attribute("value", newFileOvernightStay, 0)}>
+        <input id="create" placeholder="Estancia media"${add_attribute("value", newFileAverageStay, 0)}>
         ${validate_component(Button, "Button").$$render($$result, { color: "warning" }, {}, {
     default: () => {
       return `Crear dato`;
@@ -47,7 +47,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}</div>
 
     ${``}
-    <div id="delete-all"><p>Do you want to delete all data?</p>
+    <div id="delete-all"><p>¿Quieres borrarlo todo?</p>
         ${validate_component(Button, "Button").$$render($$result, { color: "danger" }, {}, {
     default: () => {
       return `Borrar todo`;
