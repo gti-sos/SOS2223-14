@@ -51,13 +51,13 @@
             updatedAverageStay = dato.average_stay;
         }
          catch (error) {
-            console.log(`Error parsing result: ${error}`);
+            console.log(`Error al parsear el resultado: ${error}`);
         }
         const status = await res.status;
         resultStatus = status;
 
         if (status == 500) {
-            message = "Error 500, Error interno";
+            message = "Error interno del servidor";
             c = "danger";
         }
     }
@@ -92,10 +92,10 @@
             c = "success";
             getData();
         }else if (status == 400) {
-            message = "Error 400, rellena todos los campos";
+            message = "Es necesario rellenar todos los campos";
             c = "warning";
         } else if (status == 500) {
-            message = "Error 500, Error interno";
+            message = "Error interno del servidor";
             c = "danger";
         }
     }
@@ -125,16 +125,16 @@
     {#if message != ""}
         <Alert color={c}>{message}</Alert>
     {/if}
-    <h1><u>Data details</u></h1>
+    <h1><u>Detalles</u></h1>
     <Table>
         <thead>
             <tr>
-                <th>Province</th>
-                <th>Year</th>
-                <th>Tourist</th>
-                <th>Average_daily_expenditure</th>
-                <th>Average_stay</th>
-                <th>Action</th>
+                <th>Provincia</th>
+                <th>Año</th>
+                <th>Turista</th>
+                <th>Gasto medio diario</th>
+                <th>Estancia media</th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -167,19 +167,19 @@
     <div class="elementos">
         <ul>
             <li>
-                Province:{updatedProvince}
+                Provincia:{updatedProvince}
             </li>
             <li>
-                Year: {updatedYear}
+                Año: {updatedYear}
             </li>
             <li>
-                Tourist: {updatedTourist}
+                Turistas: {updatedTourist}
             </li>
             <li>
-                Average_daily_expenditure: {updatedAverageDailyExpenditure}
+                Gasto medio diario: {updatedAverageDailyExpenditure}
             </li>
             <li>
-                Average_stay:{updatedAverageStay}
+                Estancia media:{updatedAverageStay}
             </li>
         </ul>
     </div>

@@ -49,7 +49,7 @@
             result = JSON.stringify(data, null, 2);
             datos = data;
         } catch (error) {
-            console.log(`Error parsing result: ${error}`);
+            console.log(`Error al parsear el resultado: ${error}`);
         }
         const status = await res.status;
         resultStatus = status;
@@ -76,21 +76,21 @@
             dato = data;
             
         } catch (error) {
-            console.log(`Error parsing result: ${error}`);
+            console.log(`Error al parsear el resultado: ${error}`);
         }
         const status = await res.status;
         resultStatus = status;
         if (status==201) {
             getFiles();
         }else if(status==409){
-            message="Error 409, Conflict, data already exists"
+            message="Conflicto, el dato ya se encuentra en la base de datos."
             c="danger";
         }
         else if(status==400){
-            message="Error 400, Bad Request, complete all the fields"
+            message="Se necesitan completar todos los campos."
             c="warning";
         }else if(status == 500){
-            message="Error 500, Internal Error"
+            message="Error interno del servidor"
             c="danger";
         }
     }
@@ -106,7 +106,7 @@
         resultStatus = status;
         if (status==200) {
             location.reload();
-            window.alert("Everything is deleted");
+            window.alert("Todo a sido borrado.");
         }
     }
 
@@ -117,17 +117,17 @@
 </script>
 
 <main>
-    <h1><u>Andalusia tourism situation surveys</u></h1>
-    <p>Data returned: {datos.length}</p>
+    <h1><u>Encuesta de Coyuntura Turística de Andalucía</u></h1>
+    <p>Datos devueltos: {datos.length}</p>
     <Table>
         <thead>
             <tr>
-                <th>Province</th>
-                <th>Year</th>
-                <th>Tourist</th>
-                <th>Average_daily_expenditure</th>
-                <th>Average_stay</th>
-                <th>Action</th>
+                <th>Provincia</th>
+                <th>Año</th>
+                <th>Turistas</th>
+                <th>Gasto medio diario</th>
+                <th>Estancia media</th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -159,7 +159,7 @@
         <Alert color={c}>{message}</Alert>
     {/if}
     <div id="delete-all">
-        <p>Do you want to delete all data?</p>
+        <p>¿Quieres borrar todos los datos?</p>
         <Button color="danger" on:click={deleteAll}>Borrar todo</Button>
     </div>
 </main>
