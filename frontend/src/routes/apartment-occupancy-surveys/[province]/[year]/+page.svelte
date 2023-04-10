@@ -173,4 +173,5 @@
         </div>
         <Button id="borrar" color="danger" on:click={deleteFile(updatedProvince, updatedYear)}>Borrar dato</Button>
     </div>
+    
 </main>
