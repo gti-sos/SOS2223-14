@@ -19,7 +19,7 @@
     onMount(async () => {
         getData();
     });
-    
+
     let province = $page.params.province;
     let year = $page.params.year;
 
@@ -49,20 +49,22 @@
             updatedTraveler = dato.traveler;
             updatedOvernightStay = dato.average_stay;
             updatedAverageStay = dato.average_stay;
-        }
-         catch (error) {
+        } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
         const status = await res.status;
         resultStatus = status;
-
+        if (status == 404) {
+            message = `El elemento: ${province} ${year}; No encontrado`;
+            c = "danger";
+            document.getElementById("main").textContent = "";
+        }
         if (status == 500) {
-            message = "Error 500, Error interno";
+            message = "Error interno";
             c = "danger";
         }
     }
 
-    
     let updatedProvince = province;
     let updatedYear = year;
     let updatedTraveler = "";
@@ -88,19 +90,19 @@
         resultStatus = status;
 
         if (status == 200) {
-            message = "Éxito";
+            message = "El elemento se ha actualizado";
             c = "success";
             getData();
-        }else if (status == 400) {
-            message = "Error 400, rellena todos los campos";
+        } else if (status == 400) {
+            message = "Rellena todos los campos";
             c = "warning";
         } else if (status == 500) {
-            message = "Error 500, Error interno";
+            message = "Error interno";
             c = "danger";
         }
     }
 
-    async function deleteFile(province,year) {
+    async function deleteFile(province, year) {
         resultStatus = result = "";
         const res = await fetch(API, {
             method: "DELETE",
@@ -109,65 +111,72 @@
         resultStatus = status;
         if (status == 200) {
             const elementos = document.getElementsByClassName("elementos");
-            for(let i=0; i<elementos.length; i++){
+            for (let i = 0; i < elementos.length; i++) {
                 elementos[i].textContent = "";
             }
-            
-            message = "Elemento borrado";
+
+            message = "El elemento está borrado";
             c = "success";
         }
     }
-
-
 </script>
 
 <main>
     {#if message != ""}
         <Alert color={c}>{message}</Alert>
     {/if}
-    <h1><u>Data details</u></h1>
-    <Table>
-        <thead>
-            <tr>
-                <th>Province</th>
-                <th>Year</th>
-                <th>Traveler</th>
-                <th>Overnight_stay</th>
-                <th>Average_stay</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{updatedProvince}</td>
-                <td>{updatedYear}</td>
-                <td><input bind:value={updatedTraveler}></td>
-                <td><input bind:value={updatedOvernightStay}></td>
-                <td><input bind:value={updatedAverageStay}></td>
-                <td>
-                    <Button color="info" on:click={updateData}>Actualizar dato</Button>
-                </td>
-            </tr>
-        </tbody>
-    </Table>
-    <div class="elementos">
-        <ul>
-            <li>
-                Province:{updatedProvince}
-            </li>
-            <li>
-                Year: {updatedYear}
-            </li>
-            <li>
-                Traveler: {updatedTraveler}
-            </li>
-            <li>
-                Overnight_stay: {updatedOvernightStay}
-            </li>
-            <li>
-                Average_stay:{updatedAverageStay}
-            </li>
-        </ul>
+    <div id="main">
+        <h1><u>Detalles del dato</u></h1>
+        <Table>
+            <thead>
+                <tr>
+                    <th>Provincia</th>
+                    <th>Año</th>
+                    <th>Turistas</th>
+                    <th>Pernoctacion media</th>
+                    <th>Estancia media</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{updatedProvince}</td>
+                    <td>{updatedYear}</td>
+                    <td><input bind:value={updatedTraveler} /></td>
+                    <td><input bind:value={updatedOvernightStay} /></td>
+                    <td><input bind:value={updatedAverageStay} /></td>
+                    <td>
+                        <Button color="info" on:click={updateData}
+                            >Actualizar dato</Button
+                        >
+                    </td>
+                </tr>
+            </tbody>
+        </Table>
+        <div class="elementos">
+            <ul>
+                <li>
+                    Provincia:{updatedProvince}
+                </li>
+                <li>
+                    Año: {updatedYear}
+                </li>
+                <li>
+                    Turistas: {updatedTraveler}
+                </li>
+                <li>
+                    Pernoctacion media: {updatedOvernightStay}
+                </li>
+                <li>
+                    Estancia media:{updatedAverageStay}
+                </li>
+            </ul>
+        </div>
+        <Button
+            id="borrar"
+            color="danger"
+            on:click={deleteFile(updatedProvince, updatedYear)}
+            >Borrar dato</Button
+        >
     </div>
-    <Button id="borrar" color="danger" on:click={deleteFile(updatedProvince,updatedYear)}>Borrar dato</Button>
 </main>
