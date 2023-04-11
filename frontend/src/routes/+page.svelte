@@ -89,7 +89,7 @@
     </ul>
     <div id="final">
         <h2>FrontEnd</h2>
-        <a href="http://localhost:12345/apartment-occupancy-surveys" class="margen">
+        <a href="https://sos2223-14.appspot.com/apartment-occupancy-surveys" class="margen">
             FrontEnd -> Encuesta de ocupacion de apartamentos
         </a>
         <a href="http://localhost:12345/andalusia-tourism-situation-surveys" class="margen">
