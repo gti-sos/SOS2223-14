@@ -107,8 +107,7 @@
     }
 
     async function view(province, year) {
-        window.location.href =
-            "https://sos2223-14.appspot.com/apartment-occupancy-surveys/" + province + "/" + year;
+        window.location.href = "https://sos2223-14.appspot.com/apartment-occupancy-surveys/"+province+"/"+year;
     }
 </script>
 
@@ -135,11 +134,7 @@
                     <td>{dato.overnight_stay}</td>
                     <td>{dato.average_stay}</td>
                     <td>
-                        <Button
-                            color="info"
-                            on:click={view(dato.province, dato.year)}
-                            >Borrar/actualizar dato</Button
-                        >
+                        <Button color="info" on:click={view(dato.province, dato.year)}>Borrar/actualizar dato</Button>
                     </td>
                 </tr>
             {/each}
@@ -148,29 +143,16 @@
 
     <h3>Crear elemento</h3>
     <div class="createData">
-        <input
-            id="create"
-            placeholder="Provincia"
-            bind:value={newFileProvince}
-        />
+        <input id="create" placeholder="Provincia" bind:value={newFileProvince}/>
         <input id="create" placeholder="Año" bind:value={newFileYear} />
-        <input
-            id="create"
-            placeholder="Turista"
-            bind:value={newFileTraveler}
-        />
-        <input
-            id="create"
-            placeholder="Pernoctacion media"
-            bind:value={newFileOvernightStay}
-        />
-        <input
-            id="create"
-            placeholder="Estancia media"
-            bind:value={newFileAverageStay}
-        />
+        <input id="create" placeholder="Turista" bind:value={newFileTraveler}/>
+        <input id="create" placeholder="Pernoctacion media" bind:value={newFileOvernightStay}/>
+        <input id="create" placeholder="Estancia media" bind:value={newFileAverageStay}/>
+    </div>
+    <div id="delete-all">
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
+    
 
     {#if message != ""}
         <Alert color={c}>{message}</Alert>

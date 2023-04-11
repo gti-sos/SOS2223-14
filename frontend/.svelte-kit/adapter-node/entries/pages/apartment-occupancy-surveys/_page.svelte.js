@@ -39,12 +39,13 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         <input id="create" placeholder="Año"${add_attribute("value", newFileYear, 0)}>
         <input id="create" placeholder="Turista"${add_attribute("value", newFileTraveler, 0)}>
         <input id="create" placeholder="Pernoctacion media"${add_attribute("value", newFileOvernightStay, 0)}>
-        <input id="create" placeholder="Estancia media"${add_attribute("value", newFileAverageStay, 0)}>
-        ${validate_component(Button, "Button").$$render($$result, { color: "warning" }, {}, {
+        <input id="create" placeholder="Estancia media"${add_attribute("value", newFileAverageStay, 0)}></div>
+    <div id="delete-all">${validate_component(Button, "Button").$$render($$result, { color: "warning" }, {}, {
     default: () => {
       return `Crear dato`;
     }
   })}</div>
+    
 
     ${``}
     <div id="delete-all"><p>¿Quieres borrarlo todo?</p>

@@ -23,7 +23,7 @@
     let province = $page.params.province;
     let year = $page.params.year;
 
-    let API = "/api/v2/apartment-occupancy-surveys/" + province + "/" + year;
+    let API = "/api/v2/apartment-occupancy-surveys";
 
     if (dev) {
         API = "https://sos2223-14.appspot.com" + API;
@@ -37,7 +37,7 @@
 
     async function getData() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(API + "/" + province + "/" + year, {
             method: "GET",
         });
         try {
@@ -73,7 +73,7 @@
 
     async function updateData() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(API + "/" + province + "/" + year, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -104,7 +104,7 @@
 
     async function deleteFile(province, year) {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(API + "/" + province + "/" + year, {
             method: "DELETE",
         });
         const status = await res.status;

@@ -64,7 +64,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         (desarrollado por Ana Chávez Velasco)
     </ul>
     <div id="final" class="svelte-10s4wk5"><h2 class="svelte-10s4wk5">FrontEnd</h2>
-        <a href="http://localhost:12345/apartment-occupancy-surveys" class="margen svelte-10s4wk5">FrontEnd -&gt; Encuesta de ocupacion de apartamentos
+        <a href="https://sos2223-14.appspot.com/apartment-occupancy-surveys" class="margen svelte-10s4wk5">FrontEnd -&gt; Encuesta de ocupacion de apartamentos
         </a>
         <a href="http://localhost:12345/andalusia-tourism-situation-surveys" class="margen svelte-10s4wk5">FrontEnd -&gt; Encuesta de situacion turistica de Andalucía
         </a></div>
