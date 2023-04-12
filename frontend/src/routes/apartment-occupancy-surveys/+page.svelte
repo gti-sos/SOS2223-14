@@ -80,7 +80,8 @@
         const status = await res.status;
         resultStatus = status;
         if (status == 201) {
-            window.alert("Elemento creado");
+            message = "Elemento creado";
+            c = "success";
             getAllData();
         } else if (status == 409) {
             message = "Conflicto, el elemento ya existe";
