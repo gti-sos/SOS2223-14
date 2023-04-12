@@ -8,7 +8,8 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let newFileTraveler = "";
   let newFileOvernightStay = "";
   let newFileAverageStay = "";
-  return `<main><h1><u>Encuesta de ocupacion de apartamentos</u></h1>
+  return `<main>${``}
+    <h1><u>Encuesta de ocupacion de apartamentos</u></h1>
     <p>Datos devueltos: ${escape(datos.length)}</p>
     ${validate_component(Table, "Table").$$render($$result, {}, {}, {
     default: () => {
@@ -45,9 +46,6 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `Crear dato`;
     }
   })}</div>
-    
-
-    ${``}
     <div id="delete-all"><p>¿Quieres borrarlo todo?</p>
         ${validate_component(Button, "Button").$$render($$result, { color: "danger" }, {}, {
     default: () => {

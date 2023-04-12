@@ -80,6 +80,7 @@
         const status = await res.status;
         resultStatus = status;
         if (status == 201) {
+            window.alert("Elemento creado");
             getAllData();
         } else if (status == 409) {
             message = "Conflicto, el elemento ya existe";
@@ -112,6 +113,9 @@
 </script>
 
 <main>
+    {#if message != ""}
+        <Alert color={c}>{message}</Alert>
+    {/if}
     <h1><u>Encuesta de ocupacion de apartamentos</u></h1>
     <p>Datos devueltos: {datos.length}</p>
     <Table>
@@ -152,11 +156,6 @@
     <div id="delete-all">
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
-    
-
-    {#if message != ""}
-        <Alert color={c}>{message}</Alert>
-    {/if}
     <div id="delete-all">
         <p>¿Quieres borrarlo todo?</p>
         <Button color="danger" on:click={deleteAll}>Borrar todo</Button>
