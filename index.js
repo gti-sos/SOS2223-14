@@ -14,7 +14,7 @@ var port = process.env.PORT || 12345;
 app.use(express.json());
 app.use(express.static("./public"));
 
-app.get("/", (request,response) => {
+app.get("/#/info", (request,response) => {
     response.sendFile("/public/index.html");
 });
 

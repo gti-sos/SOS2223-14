@@ -1,0 +1,28 @@
+.nav{
+    color: rgb(2, 56, 107);
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin-right: 120px;
+}
+
+nav{    
+    border-bottom: 1px solid rgb(2, 56, 107);
+    padding-bottom: 20px;
+}
+#inicio{
+    margin-top: 15px;
+}
+h1{
+    padding-top: 30px;;
+}
+#nav {
+    margin-top: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    text-align: center;
+}

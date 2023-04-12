@@ -5,6 +5,7 @@
         Nuestro proyecto consiste en analizar la ocupación en apartamentos turísticos,
         la situación del turismo y la ocupación hotelera en Andalucía
     </p>
+    <br>
     <h2>Equipo</h2>
     <ul>
         <li>
@@ -18,13 +19,13 @@
         </li>
     </ul>
     <h2>Repositorio</h2>
-    <a href="https://github.com/gti-sos/SOS2223-14" class="margen"
-        >gti-sos/SOS2223-14</a
-    >
+    <a href="https://github.com/gti-sos/SOS2223-14" class="margen">gti-sos/SOS2223-14</a>
+    <br>
+    <br>
     <h2>URL</h2>
-    <a href="https://sos2223-14.appspot.com" class="margen"
-        >https://sos2223-14.appspot.com</a
-    >
+    <a href="https://sos2223-14.appspot.com" class="margen">https://sos2223-14.appspot.com</a>
+    <br>
+    <br>
     <h2>Documentación PostMan</h2>
     <ul>
         <a href="https://sos2223-14.appspot.com/api/v1/andalusia-tourism-situation-surveys/docs">
@@ -56,6 +57,7 @@
         </a>
         (desarrollado por Ana Chávez Velasco)
     </ul>
+    <br>
     <h2>APIs</h2>
     <ul>
         <a href="https://sos2223-14.appspot.com/api/v1/andalusia-tourism-situation-surveys">
@@ -72,7 +74,7 @@
             https://sos2223-14.appspot.com/api/v1/apartment-occupancy-surveys
         </a>
         <br/>
-        <a href="http://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys">
+        <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys">
             https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys
         </a>
         (desarrollado por Cristina Calderón García)
@@ -87,12 +89,13 @@
         </a>
         (desarrollado por Ana Chávez Velasco)
     </ul>
+    <br>
     <div id="final">
         <h2>FrontEnd</h2>
         <a href="https://sos2223-14.appspot.com/apartment-occupancy-surveys" class="margen">
             FrontEnd -> Encuesta de ocupacion de apartamentos
         </a>
-        <a href="http://localhost:12345/andalusia-tourism-situation-surveys" class="margen">
+        <a href="https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys" class="margen">
             FrontEnd -> Encuesta de situacion turistica de Andalucía
         </a>
     </div>
@@ -104,6 +107,7 @@
     }
     h2 {
         margin-left: 20px;
+        font-size: 25px;
     }
     p{
         margin-left: 20px;
