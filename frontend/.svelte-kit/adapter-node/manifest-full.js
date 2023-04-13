@@ -4,7 +4,7 @@ export const manifest = {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.a2037d3e.js","imports":["_app/immutable/entry/start.a2037d3e.js","_app/immutable/chunks/index.f18abe4c.js","_app/immutable/chunks/singletons.ed309644.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.1942ab72.js","imports":["_app/immutable/entry/app.1942ab72.js","_app/immutable/chunks/index.f18abe4c.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.f6515c56.js","imports":["_app/immutable/entry/start.f6515c56.js","_app/immutable/chunks/index.f18abe4c.js","_app/immutable/chunks/singletons.f41927ed.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.ff101f2b.js","imports":["_app/immutable/entry/app.ff101f2b.js","_app/immutable/chunks/index.f18abe4c.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
@@ -12,7 +12,8 @@ export const manifest = {
 			() => import('./nodes/3.js'),
 			() => import('./nodes/4.js'),
 			() => import('./nodes/5.js'),
-			() => import('./nodes/6.js')
+			() => import('./nodes/6.js'),
+			() => import('./nodes/7.js')
 		],
 		routes: [
 			{
@@ -48,6 +49,13 @@ export const manifest = {
 				pattern: /^\/apartment-occupancy-surveys\/([^/]+?)\/([^/]+?)\/?$/,
 				params: [{"name":"province","optional":false,"rest":false,"chained":false},{"name":"year","optional":false,"rest":false,"chained":false}],
 				page: { layouts: [0], errors: [1], leaf: 6 },
+				endpoint: null
+			},
+			{
+				id: "/hotel-occupancy-surveys",
+				pattern: /^\/hotel-occupancy-surveys\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 7 },
 				endpoint: null
 			}
 		],

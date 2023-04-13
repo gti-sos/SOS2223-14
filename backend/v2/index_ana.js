@@ -1,6 +1,6 @@
 import Datastore from 'nedb';
 var db = new Datastore();
-const BASE_API_URL = "/api/v1";
+const BASE_API_URL = "/api/v2";
 
 function loadBackend_ana(app) {    
 
@@ -183,7 +183,7 @@ var datos = [
     }
 ];
 
-//db.insert(datos);
+db.insert(datos);
 
 //loadInitialData
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {

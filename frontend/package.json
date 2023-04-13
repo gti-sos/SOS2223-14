@@ -24,6 +24,6 @@
 	"type": "module",
 	"dependencies": {
 		"sveltestrap": "^5.10.0",
-		"sweetalert2": "^11.7.3"
+		"sweetalert2": "^11.4.8"
 	}
 }

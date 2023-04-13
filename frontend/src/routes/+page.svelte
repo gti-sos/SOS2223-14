@@ -15,7 +15,7 @@
             <a href="https://github.com/rebsuabas">Rebeca Suárez Bascón(Encuesta de situación turística de Andalucía)</a>
         </li>
         <li>
-            <a href="https://github.com/anachavel1">Ana Chávez Velasco</a>
+            <a href="https://github.com/anachavel1">Ana Chávez Velasco (Encuesta de ocupación hotelera)</a>
         </li>
     </ul>
     <h2>Repositorio</h2>
@@ -97,6 +97,9 @@
         </a>
         <a href="https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys" class="margen">
             FrontEnd -> Encuesta de situacion turistica de Andalucía
+        </a>
+        <a href="https://sos2223-14.appspot.com/hotel-occupancy-surveys" class="margen">
+            FrontEnd -> Encuesta de ocupación hotelera
         </a>
     </div>
 </main>

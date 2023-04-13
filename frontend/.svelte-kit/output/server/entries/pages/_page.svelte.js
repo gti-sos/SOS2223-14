@@ -15,7 +15,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     <h2 class="svelte-1p2ooba">Equipo</h2>
     <ul><li class="svelte-1p2ooba"><a href="https://github.com/criscalgar" class="svelte-1p2ooba">Cristina Calderón García (Encuesta de ocupación de apartamentos)</a></li>
         <li class="svelte-1p2ooba"><a href="https://github.com/rebsuabas" class="svelte-1p2ooba">Rebeca Suárez Bascón(Encuesta de situación turística de Andalucía)</a></li>
-        <li class="svelte-1p2ooba"><a href="https://github.com/anachavel1" class="svelte-1p2ooba">Ana Chávez Velasco</a></li></ul>
+        <li class="svelte-1p2ooba"><a href="https://github.com/anachavel1" class="svelte-1p2ooba">Ana Chávez Velasco (Encuesta de ocupación hotelera)</a></li></ul>
     <h2 class="svelte-1p2ooba">Repositorio</h2>
     <a href="https://github.com/gti-sos/SOS2223-14" class="margen svelte-1p2ooba">gti-sos/SOS2223-14</a>
     <br>
@@ -74,6 +74,8 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         <a href="https://sos2223-14.appspot.com/apartment-occupancy-surveys" class="margen svelte-1p2ooba">FrontEnd -&gt; Encuesta de ocupacion de apartamentos
         </a>
         <a href="https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys" class="margen svelte-1p2ooba">FrontEnd -&gt; Encuesta de situacion turistica de Andalucía
+        </a>
+        <a href="https://sos2223-14.appspot.com/hotel-occupancy-surveys" class="margen svelte-1p2ooba">FrontEnd -&gt; Encuesta de ocupación hotelera
         </a></div>
 </main>`;
 });
