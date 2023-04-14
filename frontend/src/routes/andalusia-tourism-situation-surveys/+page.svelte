@@ -33,6 +33,8 @@
     let newFileTourist = "";
     let newFileAverageDailyExpenditure = "";
     let newFileAverageStay = "";
+    let offset = 0;
+    let limit = 10;
 
     let result = "";
     let resultStatus = "";
@@ -41,7 +43,23 @@
 
     async function getFiles() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(API+`?offset=${offset}&&limit=${limit}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+    }
+
+    async function getNextPage() {
+        resultStatus = result = "";
+        const res = await fetch(API+`?offset=10&&limit=${limit}`, {
             method: "GET",
         });
         try {
@@ -117,7 +135,7 @@
 </script>
 
 <main>
-    <h1><u>Encuesta de Coyuntura Turística de Andalucía</u></h1>
+    <h1><u>Encuesta de coyuntura turística de Andalucía</u></h1>
     <p>Datos devueltos: {datos.length}</p>
     <Table>
         <thead>
@@ -143,6 +161,9 @@
                     </td>
                 </tr>
             {/each}
+            <br>
+            <Button color="warning" on:click={getFiles}>1</Button>
+            <Button color="warning" offset=10 on:click={getNextPage}>2</Button>
         </tbody>
     </Table>
 

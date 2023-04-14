@@ -101,7 +101,7 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n		<meta name="viewport" content="width=device-width" />\r\n		' + head + '\r\n	</head>\r\n	<body data-sveltekit-preload-data="hover">\r\n		<div style="display: contents">' + body + "</div>\r\n	</body>\r\n</html>\r\n",
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
     error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -162,7 +162,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1kxpfdf"
+  version_hash: "1d8alqy"
 };
 function get_hooks() {
   return {};
@@ -1029,16 +1029,12 @@ function requireCookie () {
 
 var cookieExports = requireCookie();
 
-var setCookieExports$1 = {};
-var setCookie = {
-  get exports(){ return setCookieExports$1; },
-  set exports(v){ setCookieExports$1 = v; },
-};
+var setCookie = {exports: {}};
 
 var hasRequiredSetCookie;
 
 function requireSetCookie () {
-	if (hasRequiredSetCookie) return setCookieExports$1;
+	if (hasRequiredSetCookie) return setCookie.exports;
 	hasRequiredSetCookie = 1;
 
 	var defaultParseOptions = {
@@ -1262,10 +1258,10 @@ function requireSetCookie () {
 	}
 
 	setCookie.exports = parse;
-	setCookieExports$1.parse = parse;
-	setCookieExports$1.parseString = parseString;
-	setCookieExports$1.splitCookiesString = splitCookiesString;
-	return setCookieExports$1;
+	setCookie.exports.parse = parse;
+	setCookie.exports.parseString = parseString;
+	setCookie.exports.splitCookiesString = splitCookiesString;
+	return setCookie.exports;
 }
 
 var setCookieExports = requireSetCookie();
@@ -1413,12 +1409,10 @@ function method_not_allowed(mod, method) {
   });
 }
 function allowed_methods(mod) {
-  const allowed = [];
-  for (const method in ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]) {
-    if (method in mod)
-      allowed.push(method);
-  }
-  if (mod.GET || mod.HEAD)
+  const allowed = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"].filter(
+    (method) => method in mod
+  );
+  if ("GET" in mod || "HEAD" in mod)
     allowed.push("HEAD");
   return allowed;
 }
@@ -3962,13 +3956,19 @@ class Server {
     const pub = Object.fromEntries(entries.filter(([k]) => k.startsWith(prefix)));
     set_public_env(pub);
     if (!this.#options.hooks) {
-      const module = await get_hooks();
-      this.#options.hooks = {
-        handle: module.handle || (({ event, resolve }) => resolve(event)),
-        // @ts-expect-error
-        handleError: module.handleError || (({ error: error2 }) => console.error(error2?.stack)),
-        handleFetch: module.handleFetch || (({ request, fetch: fetch2 }) => fetch2(request))
-      };
+      try {
+        const module = await get_hooks();
+        this.#options.hooks = {
+          handle: module.handle || (({ event, resolve }) => resolve(event)),
+          // @ts-expect-error
+          handleError: module.handleError || (({ error: error2 }) => console.error(error2?.stack)),
+          handleFetch: module.handleFetch || (({ request, fetch: fetch2 }) => fetch2(request))
+        };
+      } catch (error2) {
+        {
+          throw error2;
+        }
+      }
     }
   }
   /**
