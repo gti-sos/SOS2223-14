@@ -33,7 +33,7 @@
     let newFileTourist = "";
     let newFileAverageDailyExpenditure = "";
     let newFileAverageStay = "";
-    let offset = 0;
+    let offset = 1;
     let limit = 10;
 
     let result = "";
@@ -59,7 +59,10 @@
 
     async function getNextPage() {
         resultStatus = result = "";
-        const res = await fetch(API+`?offset=10&&limit=${limit}`, {
+        if (offset+10 > datos.length) {
+            offset=10
+        }
+        const res = await fetch(API+`?offset=${offset}&&limit=${limit}`, {
             method: "GET",
         });
         try {
@@ -163,7 +166,7 @@
             {/each}
             <br>
             <Button color="warning" on:click={getFiles}>1</Button>
-            <Button color="warning" offset=10 on:click={getNextPage}>2</Button>
+            <Button color="warning" on:click={getNextPage}>2</Button>
         </tbody>
     </Table>
 
