@@ -162,7 +162,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "10ww305"
+  version_hash: "1kxpfdf"
 };
 function get_hooks() {
   return {};
@@ -1029,12 +1029,16 @@ function requireCookie () {
 
 var cookieExports = requireCookie();
 
-var setCookie = {exports: {}};
+var setCookieExports$1 = {};
+var setCookie = {
+  get exports(){ return setCookieExports$1; },
+  set exports(v){ setCookieExports$1 = v; },
+};
 
 var hasRequiredSetCookie;
 
 function requireSetCookie () {
-	if (hasRequiredSetCookie) return setCookie.exports;
+	if (hasRequiredSetCookie) return setCookieExports$1;
 	hasRequiredSetCookie = 1;
 
 	var defaultParseOptions = {
@@ -1258,10 +1262,10 @@ function requireSetCookie () {
 	}
 
 	setCookie.exports = parse;
-	setCookie.exports.parse = parse;
-	setCookie.exports.parseString = parseString;
-	setCookie.exports.splitCookiesString = splitCookiesString;
-	return setCookie.exports;
+	setCookieExports$1.parse = parse;
+	setCookieExports$1.parseString = parseString;
+	setCookieExports$1.splitCookiesString = splitCookiesString;
+	return setCookieExports$1;
 }
 
 var setCookieExports = requireSetCookie();
@@ -1409,10 +1413,12 @@ function method_not_allowed(mod, method) {
   });
 }
 function allowed_methods(mod) {
-  const allowed = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"].filter(
-    (method) => method in mod
-  );
-  if ("GET" in mod || "HEAD" in mod)
+  const allowed = [];
+  for (const method in ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]) {
+    if (method in mod)
+      allowed.push(method);
+  }
+  if (mod.GET || mod.HEAD)
     allowed.push("HEAD");
   return allowed;
 }
@@ -3956,19 +3962,13 @@ class Server {
     const pub = Object.fromEntries(entries.filter(([k]) => k.startsWith(prefix)));
     set_public_env(pub);
     if (!this.#options.hooks) {
-      try {
-        const module = await get_hooks();
-        this.#options.hooks = {
-          handle: module.handle || (({ event, resolve }) => resolve(event)),
-          // @ts-expect-error
-          handleError: module.handleError || (({ error: error2 }) => console.error(error2?.stack)),
-          handleFetch: module.handleFetch || (({ request, fetch: fetch2 }) => fetch2(request))
-        };
-      } catch (error2) {
-        {
-          throw error2;
-        }
-      }
+      const module = await get_hooks();
+      this.#options.hooks = {
+        handle: module.handle || (({ event, resolve }) => resolve(event)),
+        // @ts-expect-error
+        handleError: module.handleError || (({ error: error2 }) => console.error(error2?.stack)),
+        handleFetch: module.handleFetch || (({ request, fetch: fetch2 }) => fetch2(request))
+      };
     }
   }
   /**

@@ -8,7 +8,7 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$1);
   return `<main class="svelte-17zxjtf"><nav><div class="container svelte-17zxjtf"><a id="inicio" href="/" class="svelte-17zxjtf">Inicio</a>
             <a href="/apartment-occupancy-surveys" class="svelte-17zxjtf">Encuesta de ocupación de apartamentos</a>
-            <a href="/andalusia-tourism-situation-surveys" class="svelte-17zxjtf">Encuesta de situación turística de Andalucía</a>
+            <a href="/andalusia-tourism-situation-surveys" class="svelte-17zxjtf">Encuesta de coyuntura turística de Andalucía</a>
             <a href="/hotel-occupancy-surveys" class="svelte-17zxjtf">Encuesta de ocupación hotelera</a></div></nav>
 </main>`;
 });

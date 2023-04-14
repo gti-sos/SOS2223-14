@@ -606,7 +606,7 @@ function loadBackend_rebeca(app) {
                     response.json(data[0]); 
                 }
                 else{
-                    console.log(`Data not found /andalusia-tourism-situation-surveys/${province}/${year}: ${err}`);
+                    console.log(`Data not found /andalusia-tourism-situation-surveys/${ciudad}/${año}: ${err}`);
                     response.status(404).send("Data not found");
                 }
             }

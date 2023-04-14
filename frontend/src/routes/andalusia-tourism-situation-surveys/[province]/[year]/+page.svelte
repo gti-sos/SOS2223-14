@@ -56,7 +56,11 @@
         const status = await res.status;
         resultStatus = status;
 
-        if (status == 500) {
+        if (status == 404) {
+            message = `El elemento: ${province} ${year}; No encontrado`;
+            c = "danger";
+            document.getElementById("main").textContent = "";
+        }else if (status == 500) {
             message = "Error interno del servidor";
             c = "danger";
         }
