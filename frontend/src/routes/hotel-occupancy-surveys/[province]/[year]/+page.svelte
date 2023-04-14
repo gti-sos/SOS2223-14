@@ -27,7 +27,7 @@
     let API = "/api/v2/hotel-occupancy-surveys/" + province + "/" + year;
 
     if (dev) {
-        API = "http://localhost:12345" + API;
+        API = "https://sos2223-14.appspot.com" + API;
     }
 
     let dato = [];
