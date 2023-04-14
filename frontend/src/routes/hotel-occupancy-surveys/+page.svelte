@@ -69,7 +69,7 @@
             body: JSON.stringify({
                 province: newFileProvince,
                 year: parseInt(newFileYear),
-                average_employment: parseInt(newFileAverageEmployment),
+                average_employment: parseFloat(newFileAverageEmployment),
                 estimated_average_open_establishment: parseFloat(newFileEstimatedAverageOpenEstablishment),
                 estimated_average_place: parseFloat(newFileEstimatedAveragePlace),
                 estimated_room: parseFloat(newFileEstimatedRoom),
@@ -79,13 +79,13 @@
 
             }),
         });
-        try {
-            const data = await res.json();
-            result = JSON.stringify(data, null, 2);
-            dato = data;
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
+//        try {
+//            const data = await res.json();
+//            result = JSON.stringify(data, null, 2);
+//            dato = data;
+//        } catch (error) {
+//            console.log(`Error parsing result: ${error}`);
+//        }
         const status = await res.status;
         resultStatus = status;
         if (status == 201) {
@@ -93,7 +93,7 @@
             c = "success";
             getAllData();
         } else if (status == 409) {
-            message = "Conflicto, el elemento ya existe";
+            message = "Conflicto, elemento ya existente";
             c = "warning";
         } else if (status == 400) {
             message = "Rellena todos los campos";
@@ -101,6 +101,19 @@
         } else if (status == 500) {
             message = "Error interno";
             c = "danger";
+        }
+    }
+
+    async function deleteFile(province) {
+        resultStatus = result = "";
+        const res = await fetch(API+"/"+province, {
+            method: "DELETE",
+        });
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            location.reload();
+            window.alert("Se ha borrado el dato");
         }
     }
 
@@ -157,7 +170,11 @@
                     <td>{dato.room_occupancy_rate}</td>
 
                     <td>
-                        <Button color="info" on:click={view(dato.province, dato.year)}>Borrar/actualizar dato</Button>
+                        <Button color="info" on:click={view(dato.province, dato.year)}>Editar</Button>
+                    </td>
+
+                    <td>
+                        <Button color="danger" on:click={deleteFile(dato.province)}>Borrar</Button>
                     </td>
                 </tr>
             {/each}
@@ -177,12 +194,12 @@
         <input id="create" placeholder="Tasa de ocupación de la habitación" bind:value={newFileRoomOccupancyRate}/>
 
     </div>
-    <div id="delete-all">
+    <div id="new-post">
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
     <div id="delete-all">
-        <p>¿Quieres borrarlo todo?</p>
-        <Button color="danger" on:click={deleteAll}>Borrar todo</Button>
+        <p>¿Seguro que quieres borrar todos los datos?</p>
+        <Button color="danger" on:click={deleteAll}>Sí, borrar</Button>
     </div>
 </main>
 

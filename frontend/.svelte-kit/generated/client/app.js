@@ -8,7 +8,8 @@ export const nodes = [
 	() => import('./nodes/4'),
 	() => import('./nodes/5'),
 	() => import('./nodes/6'),
-	() => import('./nodes/7')
+	() => import('./nodes/7'),
+	() => import('./nodes/8')
 ];
 
 export const server_loads = [];
@@ -19,7 +20,8 @@ export const dictionary = {
 		"/andalusia-tourism-situation-surveys/[province]/[year]": [4],
 		"/apartment-occupancy-surveys": [5],
 		"/apartment-occupancy-surveys/[province]/[year]": [6],
-		"/hotel-occupancy-surveys": [7]
+		"/hotel-occupancy-surveys": [7],
+		"/hotel-occupancy-surveys/[province]/[year]": [8]
 	};
 
 export const hooks = {

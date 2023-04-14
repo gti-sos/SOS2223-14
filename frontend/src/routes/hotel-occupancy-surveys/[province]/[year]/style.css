@@ -7,36 +7,32 @@ h3{
     text-align: center;
     padding-top: 50px;
 }
-p{
-    font-size: 15px;
-    font-style: oblique;
-}
 main{
-    margin-left: 70px;
     margin-right: 70px;
+    margin-left: 70px;
 }
 th{
+    text-align: center;
     color: blue;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-#delete-all{
-    font-style: oblique;
+td{
     text-align: center;
-    padding-top: 40px;
+}
+li{
+    list-style-type: none;
+    font-size: 18px;
+    text-align: center;
+}
+.elementos{
+    text-align: center;
 }
 
-#new-post{
-    font-style: oblique;
+#info{
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+input{
     text-align: center;
-    padding-top: 45px;
-}
-
-#create{
-    border-width: 3px;
-    border-style: solid;
-    border-color: darkslateblue;
-    height: 40px;
-}
-.createData{
-    margin-bottom: 15px;
 }

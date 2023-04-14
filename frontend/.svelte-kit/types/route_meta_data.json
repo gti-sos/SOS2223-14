@@ -4,5 +4,6 @@
 	"/andalusia-tourism-situation-surveys/[province]/[year]": [],
 	"/apartment-occupancy-surveys": [],
 	"/apartment-occupancy-surveys/[province]/[year]": [],
-	"/hotel-occupancy-surveys": []
+	"/hotel-occupancy-surveys": [],
+	"/hotel-occupancy-surveys/[province]/[year]": []
 }
