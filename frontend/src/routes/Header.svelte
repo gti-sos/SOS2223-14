@@ -3,7 +3,7 @@
         <div class="container">
             <a  id="inicio" href="/">Inicio</a>
             <a href="/apartment-occupancy-surveys">Encuesta de ocupación de apartamentos</a>
-            <a href="/andalusia-tourism-situation-surveys">Encuesta de situación turística de Andalucía</a>
+            <a href="/andalusia-tourism-situation-surveys">Encuesta de coyuntura turística de Andalucía</a>
             <a href="/hotel-occupancy-surveys">Encuesta de ocupación hotelera</a>          
         </div>
     </nav>

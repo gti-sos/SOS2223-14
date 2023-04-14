@@ -23,7 +23,7 @@
     let API = "/api/v2/andalusia-tourism-situation-surveys";
 
     if (dev) {
-        API = "http://localhost:12345" + API;
+        API = "https://sos2223-14.appspot.com" + API;
     }
 
     let datos = [];
@@ -111,7 +111,7 @@
     }
 
     async function view(province,year) {
-        window.location.href = "http://localhost:12345/andalusia-tourism-situation-surveys/"+province + "/" + year;
+        window.location.href = "https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys/"+province + "/" + year;
     }
 
 </script>
