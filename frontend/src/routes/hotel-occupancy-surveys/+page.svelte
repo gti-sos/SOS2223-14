@@ -79,13 +79,6 @@
 
             }),
         });
-//        try {
-//            const data = await res.json();
-//            result = JSON.stringify(data, null, 2);
-//            dato = data;
-//        } catch (error) {
-//            console.log(`Error parsing result: ${error}`);
-//        }
         const status = await res.status;
         resultStatus = status;
         if (status == 201) {
@@ -96,7 +89,7 @@
             message = "Conflicto, elemento ya existente";
             c = "warning";
         } else if (status == 400) {
-            message = "Rellena todos los campos";
+            message = "Rellene todos los campos de manera correcta";
             c = "warning";
         } else if (status == 500) {
             message = "Error interno";

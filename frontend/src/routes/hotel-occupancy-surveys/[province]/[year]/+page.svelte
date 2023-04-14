@@ -1,10 +1,10 @@
 <script>
     //@ts-nocheck
-    import { onMount } from "svelte";
-    import { dev } from "$app/environment";
-    import { Table, Button, Alert } from "sveltestrap";
-    import { page } from "$app/stores";
-    import {} from "./style.css";
+    import { onMount } from 'svelte';
+    import { dev } from '$app/environment';
+    import { Table, Button, Alert } from 'sveltestrap';
+    import { page } from '$app/stores';
+    import {} from './style.css';
 
     const colors = [
         "primary",
@@ -30,16 +30,7 @@
         API = "http://localhost:12345" + API;
     }
 
-    let updatedProvince = "";
-    let updatedYear = "";
-    let updatedAverageEmployment = "";
-    let updatedEstimatedAverageOpenEstablishment = "";
-    let updatedEstimatedAveragePlace = "";
-    let updatedEstimatedRoom = "";
-    let updatedOccupancyRateByPlace = "";
-    let updatedOccupancyRateByWeekendPlace = "";
-    let updatedRoomOccupancyRate = "";
-
+    let dato = [];
     let result = "";
     let resultStatus = "";
     let message = "";
@@ -47,22 +38,22 @@
 
     async function getData() {
         resultStatus = result = "";
-        const res = await fetch(API + "/" + province + "/" + year, {
+        const res = await fetch(API, {
             method: "GET",
         });
         try {
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
-
-            updatedProvince = data.province;
-            updatedYear = data.year;
-            updatedAverageEmployment = data.average_employment;
-            updatedEstimatedAverageOpenEstablishment = data.estimated_average_open_establishment;
-            updatedEstimatedAveragePlace = data.estimated_average_place;
-            updatedEstimatedRoom = data.estimated_room;
-            updatedOccupancyRateByPlace = data.occupancy_rate_by_place;
-            updatedOccupancyRateByWeekendPlace = data.occupancy_rate_by_weekend_place;
-            updatedRoomOccupancyRate = data.room_occupancy_rate;
+            dato = data;
+            updatedProvince = dato.province;
+            updatedYear = dato.year;
+            updatedAverageEmployment = dato.average_employment;
+            updatedEstimatedAverageOpenEstablishment = dato.estimated_average_open_establishment;
+            updatedEstimatedAveragePlace = dato.estimated_average_place;
+            updatedEstimatedRoom = dato.estimated_room;
+            updatedOccupancyRateByPlace = dato.occupancy_rate_by_place;
+            updatedOccupancyRateByWeekendPlace = dato.occupancy_rate_by_weekend_place;
+            updatedRoomOccupancyRate = dato.room_occupancy_rate;
 
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
@@ -70,7 +61,7 @@
         const status = await res.status;
         resultStatus = status;
         if (status == 404) {
-            message = `El elemento: ${province} ${year} no ha sido encontrado`;
+            message = `El elemento: ${province} ${year}; no ha sido encontrado`;
             c = "danger";
             document.getElementById("main").textContent = "";
         }
@@ -81,9 +72,19 @@
 
     }
 
+    let updatedProvince = province;
+    let updatedYear = year;
+    let updatedAverageEmployment = "";
+    let updatedEstimatedAverageOpenEstablishment = "";
+    let updatedEstimatedAveragePlace = "";
+    let updatedEstimatedRoom = "";
+    let updatedOccupancyRateByPlace = "";
+    let updatedOccupancyRateByWeekendPlace = "";
+    let updatedRoomOccupancyRate = "";
+
     async function updateFile() {
         resultStatus = result = "";
-        const res = await fetch(API + "/" + province + "/" + year, {
+        const res = await fetch(API, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -108,7 +109,7 @@
             c = "success";
             getData();
         } else if (status == 400) {
-            message = "Rellena todos los campos";
+            message = "Rellene todos los campos y de manera correcta";
             c = "warning";
         } else if (status == 500) {
             message = "Error interno";
@@ -118,6 +119,9 @@
 
 </script>
 <main>
+    {#if message != ""}
+        <Alert color={c}>{message}</Alert>
+    {/if}
     <div class="elementos">
     <h1><u>Detalles del elemento</u></h1>
     <Table>
@@ -137,8 +141,8 @@
         </thead>
         <tbody>
                 <tr>
-                    <td>{updatedProvince}</td>
-                    <td>{updatedYear}</td>
+                    <td>{province}</td>
+                    <td>{year}</td>
                     <td><input bind:value={updatedAverageEmployment}></td>
                     <td><input bind:value={updatedEstimatedAverageOpenEstablishment}></td>
                     <td><input bind:value={updatedEstimatedAveragePlace}></td>
