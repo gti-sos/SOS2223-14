@@ -19,11 +19,11 @@
     onMount(async () => {
         getData();
     });
-    
+
     let province = $page.params.province;
     let year = $page.params.year;
 
-    let API = "/api/v2/andalusia-tourism-situation-surveys/" + province + "/" + year;
+    let API = "/api/v2/andalusia-tourism-situation-surveys";
 
     if (dev) {
         API = "https://sos2223-14.appspot.com" + API;
@@ -35,43 +35,36 @@
     let message = "";
     let c = "";
 
-    let actualProvince = province;
-    let actualYear = year;
-    let actualTourist = "";
-    let actualAverageDailyExpenditure = "";
-    let actualAverageStay = "";
-
     async function getData() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(API + "/" + province + "/" + year, {
             method: "GET",
         });
         try {
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
             dato = data;
-            actualProvince = dato.province;
-            actualYear = dato.year;
-            actualTourist = dato.tourist;
-            actualAverageDailyExpenditure = dato.average_stay;
-            actualAverageStay = dato.average_stay;
-        }
-         catch (error) {
-            console.log(`Error al parsear el resultado: ${error}`);
+            updatedProvince = dato.province;
+            updatedYear = dato.year;
+            updatedTourist = dato.tourist;
+            updatedAverageDailyExpenditure = dato.average_stay;
+            updatedAverageStay = dato.average_stay;
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
         }
         const status = await res.status;
         resultStatus = status;
-
         if (status == 404) {
             message = `El elemento: ${province} ${year}; No encontrado`;
             c = "danger";
             document.getElementById("main").textContent = "";
-        }else if (status == 500) {
-            message = "Error interno del servidor";
+        }
+        if (status == 500) {
+            message = "Error interno";
             c = "danger";
         }
     }
-    
+
     let updatedProvince = province;
     let updatedYear = year;
     let updatedTourist = "";
@@ -80,7 +73,7 @@
 
     async function updateData() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(API + "/" + province + "/" + year, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -97,36 +90,38 @@
         resultStatus = status;
 
         if (status == 200) {
-            message = "Éxito";
+            message = "El elemento se ha actualizado";
             c = "success";
             getData();
-        }else if (status == 400) {
-            message = "Es necesario rellenar todos los campos";
+        } else if (status == 400) {
+            message = "Rellena todos los campos";
             c = "warning";
         } else if (status == 500) {
-            message = "Error interno del servidor";
+            message = "Error interno";
             c = "danger";
         }
     }
 
-    async function deleteFile(province,year) {
+    async function deleteFile(province, year) {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(API + "/" + province + "/" + year, {
             method: "DELETE",
         });
         const status = await res.status;
         resultStatus = status;
         if (status == 200) {
             const elementos = document.getElementsByClassName("elementos");
-            for(let i=0; i<elementos.length; i++){
+            for (let i = 0; i < elementos.length; i++) {
                 elementos[i].textContent = "";
             }
-            
-            message = "Elemento borrado";
+            message = "El elemento está borrado";
             c = "success";
         }
     }
 
+    async function view() {
+        window.location.href = "https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys";
+    }
 
 </script>
 
@@ -157,10 +152,6 @@
                     <Button color="info" on:click={updateData}>Actualizar dato</Button>
                 </td>
             </tr>
-        </tbody>
-    </Table>
-    <Table class="elementos">
-        <tbody>
             <tr>
                 <td>{updatedProvince}</td>
                 <td>{updatedYear}</td>
@@ -173,23 +164,8 @@
             </tr>
         </tbody>
     </Table>
+    <br>
     <div class="elementos">
-        <ul>
-            <li>
-                Provincia:{updatedProvince}
-            </li>
-            <li>
-                Año: {updatedYear}
-            </li>
-            <li>
-                Turistas: {updatedTourist}
-            </li>
-            <li>
-                Gasto medio diario: {updatedAverageDailyExpenditure}
-            </li>
-            <li>
-                Estancia media:{updatedAverageStay}
-            </li>
-        </ul>
+        <Button color="info" on:click={view}>Atrás</Button>
     </div>
 </main>

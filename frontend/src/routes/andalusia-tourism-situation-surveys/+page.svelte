@@ -3,6 +3,7 @@
     import { onMount } from "svelte";
     import { dev } from "$app/environment";
     import { Table, Button, Alert } from "sveltestrap";
+    import { page } from "$app/stores";
     import {} from "./andalusia-tourism-situation-surveys.css";
     
     const colors = [
@@ -154,7 +155,6 @@
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
             dato = data;
-            datos.push(dato);
         } catch (error) {
             console.log(`Error al parsear el resultado: ${error}`);
         }
@@ -328,6 +328,7 @@
             window.alert("Todo a sido borrado.");
         }
     }
+
     async function view(province,year) {
         window.location.href = "https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys/"+province + "/" + year;
     }
