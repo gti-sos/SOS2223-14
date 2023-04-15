@@ -134,8 +134,6 @@ function loadBackend_rebeca(app) {
         }
     ];
 
-    db.insert(datos);
-
     // GET /andalusia-tourism-situation-surveys/docs
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/docs", (request,response) => {
@@ -150,7 +148,7 @@ function loadBackend_rebeca(app) {
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/loadInitialData", (request,response) => {
         console.log("New GET to /andalusia-tourism-situation-surveys/loadInitialData");
-        db.find({}).sort({year:1}).exec(function(err,data){
+        db.find({}, function(err,data){
             if(err){
                 console.log(`Error geting /andalusia-tourism-situation-surveys/loadInitialData: ${err}`);
                 response.sendStatus(500);
@@ -159,8 +157,7 @@ function loadBackend_rebeca(app) {
                     console.log(`data inserted: ${datos.length}`);  
                     db.insert(datos);   
                     response.status(200).send("OK");
-                }
-                else{
+                } else {
                      console.log(`Data is already inserted: ${data.length}`);
                      response.status(200).send("Data is already inserted");          
                 }
@@ -463,18 +460,12 @@ function loadBackend_rebeca(app) {
                         }
                     }
                 }
-    
-                if(filteredList.length>1){
+                
+                if(filteredList.length!=0){
                     response.send(JSON.stringify(filteredList,null,2));
-                    console.log(`Datos devueltos: ${filteredList.length}`);
+                    console.log(`data returned: ${filteredList.length}`); 
                 }
-                else{
-                    if(filteredList.length!=0){
-                        console.log(`data returned ${filteredList.length}`);
-                        delete filteredList[0]._id;
-                        response.json(filteredList[0]);
-                    }
-                } 
+
             });
         }
         
@@ -569,16 +560,9 @@ function loadBackend_rebeca(app) {
                         }
                     }
 
-                    if(filteredList.length>1){
+                    if(filteredList.length!=0){
                         response.send(JSON.stringify(filteredList,null,2));
-                        console.log(`Datos devueltos: ${filteredList.length}`);
-                    }
-                    else{
-                        if(filteredList.length!=0){
-                            console.log(`Dato devuelto: ${filteredList.length}`);
-                            delete filteredList[0]._id;
-                            response.json(filteredList[0]);
-                        }
+                        console.log(`data returned: ${filteredList.length}`); 
                     }
                 }
             }

@@ -35,6 +35,12 @@
     let message = "";
     let c = "";
 
+    let actualProvince = province;
+    let actualYear = year;
+    let actualTourist = "";
+    let actualAverageDailyExpenditure = "";
+    let actualAverageStay = "";
+
     async function getData() {
         resultStatus = result = "";
         const res = await fetch(API, {
@@ -44,11 +50,11 @@
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
             dato = data;
-            updatedProvince = dato.province;
-            updatedYear = dato.year;
-            updatedTourist = dato.tourist;
-            updatedAverageDailyExpenditure = dato.average_stay;
-            updatedAverageStay = dato.average_stay;
+            actualProvince = dato.province;
+            actualYear = dato.year;
+            actualTourist = dato.tourist;
+            actualAverageDailyExpenditure = dato.average_stay;
+            actualAverageStay = dato.average_stay;
         }
          catch (error) {
             console.log(`Error al parsear el resultado: ${error}`);
@@ -65,7 +71,6 @@
             c = "danger";
         }
     }
-
     
     let updatedProvince = province;
     let updatedYear = year;
