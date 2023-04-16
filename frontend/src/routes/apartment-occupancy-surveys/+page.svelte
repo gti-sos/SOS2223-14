@@ -15,35 +15,46 @@
         "light",
         "dark",
     ];
-
-    onMount(async () => {
-        getAllData();
-    });
-
-    let API = "/api/v2/apartment-occupancy-surveys";
-
-    if (dev) {
-        API = "https://sos2223-14.appspot.com" + API;
-    }
-
+    
     let datos = [];
     let dato = "";
+    let searchProvince = "";
+    let searchYear = "";
+    let searchTraveler = "";
+    let searchOvernightStay = "";
+    let searchAverageStay = "";
+    let b = "";
+    let from = "";
+    let to = "";
+    let API = "/api/v2/apartment-occupancy-surveys";
     let newFileProvince = "";
     let newFileYear = "";
     let newFileTraveler = "";
     let newFileOvernightStay = "";
     let newFileAverageStay = "";
-
     let result = "";
     let resultStatus = "";
+    let limit = 10;
+    let offset=0;
     let message = "";
     let c = "";
 
+    let URL_BASE = "";
+
+    if (dev) {
+        URL_BASE = "https://sos2223-14.appspot.com";
+    }
+
+    onMount(async () => {
+        getAllData();
+    });
+
+    
     async function getAllData() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(URL_BASE+API+`?limit=${limit}&&offset=${offset}`, {
             method: "GET",
-        });
+        });        
         try {
             const data = await res.json();
             result = JSON.stringify(data, null, 2);
@@ -55,9 +66,33 @@
         resultStatus = status;
     }
 
+    async function loadAllData() {
+        resultStatus = result = "";
+        const res = await fetch(URL_BASE+`/api/v2/apartment-occupancy-surveys/loadInitialData`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Recarga completada";
+            c = "success";
+            location.reload();
+        }else if (status == 500) {
+            message = "Error interno";
+            c = "danger";
+        }
+    }
+
     async function createFile() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(URL_BASE+API, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -95,9 +130,118 @@
         }
     }
 
+    async function searchData(searchProvince,searchYear,searchTraveler,searchOvernightStay,searchAverageStay) {
+        resultStatus = result = "";
+        if(searchProvince!="" && searchYear!=""){
+            b = `province=${searchProvince}&&year=${searchYear}`;
+        }
+        else if(searchProvince!="" && searchYear===""){
+            if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay!=""){
+                b = `province=${searchProvince}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay===""){
+                b = `province=${searchProvince}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay!=""){
+                b = `province=${searchProvince}&&traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay!=""){
+                b = `province=${searchProvince}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay===""){
+                b = `province=${searchProvince}&&traveler=${searchTraveler}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay===""){
+                b = `province=${searchProvince}&&overnight_stay=${searchOvernightStay}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay===""&& searchAverageStay!=""){
+                b = `province=${searchProvince}&&average_stay=${searchAverageStay}`;
+            }
+            else{
+                b = `province=${searchProvince}`;
+            }            
+        }
+        else if(searchProvince==="" && searchYear!=""){
+            if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay!=""){
+                b = `year=${searchYear}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay===""){
+                b = `year=${searchYear}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay!=""){
+                b = `year=${searchYear}&&traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay!=""){
+                b = `year=${searchYear}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay===""){
+                b = `year=${searchYear}&&traveler=${searchTraveler}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay===""){
+                b = `year=${searchYear}&&overnight_stay=${searchOvernightStay}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay===""&& searchAverageStay!=""){
+                b = `year=${searchYear}&&average_stay=${searchAverageStay}`;
+            }
+            else{
+                b = `year=${searchYear}`;
+            } 
+        }
+        else if(searchTraveler!="" || searchOvernightStay!="" || searchAverageStay!=""){
+            if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay!=""){
+                b = `traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay===""){
+                b = `traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay!=""){
+                b = `traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay!=""){
+                b = `overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+            }
+            else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay===""){
+                b = `traveler=${searchTraveler}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay===""){
+                b = `overnight_stay=${searchOvernightStay}`;
+            }
+            else if(searchTraveler==="" && searchOvernightStay===""&& searchAverageStay!=""){
+                b = `average_stay=${searchAverageStay}`;
+            }
+        }
+        else{
+            b = "";
+        }
+
+        const res = await fetch(URL_BASE+API+"?"+b, {
+            method: "GET",
+        });        
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "El elemento encontrado";
+            c = "success";
+        } else if (status == 404) {
+            message = "Elemento no encontrado";
+            c = "danger";
+        }else if (status == 500) {
+            message = "Error interno";
+            c = "danger";
+        }
+    }
+
+    
     async function deleteAll() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(URL_BASE+API, {
             method: "DELETE",
         });
         const status = await res.status;
@@ -108,26 +252,125 @@
         }
     }
 
+    
     async function view(province, year) {
-        window.location.href = "https://sos2223-14.appspot.com/apartment-occupancy-surveys/"+province+"/"+year;
+        window.location.href = URL_BASE + "/apartment-occupancy-surveys/"+province +"/" +year;
     }
+
+    async function fromTo(from,to) {
+        resultStatus = result = "";
+        const res = await fetch(URL_BASE+API+`?limit=${limit}&&offset=${offset}&&from=${from}&&to=${to}`, {
+            method: "GET",
+        });        
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Intervalo encontrado";
+            c = "success";
+        } else if (status == 404) {
+            message = "Intervalo no encontrado";
+            c = "danger";
+        }else if (status == 500) {
+            message = "Error interno";
+            c = "danger";
+        }
+    }
+
+    async function previousPage() {
+        offset -= limit;
+        if(offset<0){
+            message = "No puedes retroceder estás en el principio de la lista de elementos";
+            c = "danger";
+            offset += limit;
+        }
+        else {
+            getAllData();
+        }
+    }
+
+    async function nextPage() {
+        offset += limit;
+        if(offset>=16){
+            message = "No hay más elementos para mostrar";
+            c = "danger";
+            offset -= limit;
+        }
+        else{
+            getAllData();            
+        }        
+    }
+
 </script>
 
 <main>
+
     {#if message != ""}
         <Alert color={c}>{message}</Alert>
     {/if}
-    <h1><u>Encuesta de ocupacion de apartamentos</u></h1>
+    <h1><u>Encuesta de ocupación de apartamentos</u></h1>
     <p>Datos devueltos: {datos.length}</p>
+    <h3><u>Insertar intervalo de tiempo</u></h3>
+    <Table id="tabla">
+        <thead>
+            <tr>
+                <th>Desde</th>
+                <th>Hasta</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input bind:value={from} /></td>
+                <td><input bind:value={to} /></td>
+                <td>
+                    <Button color="success" on:click={fromTo(from, to)}>Buscar intervalo</Button>
+                </td>
+            </tr>
+        </tbody>
+    </Table>
+    <h3><u>Busca un elemento</u></h3>
     <Table>
         <thead>
             <tr>
                 <th>Provincia</th>
                 <th>Año</th>
                 <th>Turistas</th>
-                <th>Pernoctacion media</th>
+                <th>Pernoctación</th>
                 <th>Estancia media</th>
-                <th>Accion</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input bind:value={searchProvince} /></td>
+                <td><input bind:value={searchYear} /></td>
+                <td><input bind:value={searchTraveler} /></td>
+                <td><input bind:value={searchOvernightStay} /></td>
+                <td><input bind:value={searchAverageStay} /></td>
+                <td>
+                    <Button color="success" on:click={searchData(searchProvince, searchYear,
+                                                                searchTraveler,searchOvernightStay, searchAverageStay)}>Buscar dato</Button>
+                </td>
+            </tr>
+        </tbody>
+    </Table>
+    <h3><u>Elementos encontrados</u></h3>
+    <Table>
+        <thead>
+            <tr>
+                <th>Provincia</th>
+                <th>Año</th>
+                <th>Turistas</th>
+                <th>Pernoctación media</th>
+                <th>Estancia media</th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -145,21 +388,24 @@
             {/each}
         </tbody>
     </Table>
-
+    <div id="buttons">
+        <Button color="dark" on:click={previousPage}>Página anterior</Button>
+        <Button color="dark" on:click={nextPage}>Página siguiente</Button>
+    </div>
     <h3>Crear elemento</h3>
     <div class="createData">
         <input id="create" placeholder="Provincia" bind:value={newFileProvince}/>
         <input id="create" placeholder="Año" bind:value={newFileYear} />
-        <input id="create" placeholder="Turista" bind:value={newFileTraveler}/>
+        <input id="create" placeholder="Turista" bind:value={newFileTraveler} />
         <input id="create" placeholder="Pernoctacion media" bind:value={newFileOvernightStay}/>
         <input id="create" placeholder="Estancia media" bind:value={newFileAverageStay}/>
     </div>
-    <div id="delete-all">
+    <div id="create-button">
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
-    <div id="delete-all">
-        <p>¿Quieres borrarlo todo?</p>
+    <div id="buttons">
+        <p>¿Quieres borrarlo todo?  ¿Quieres recargar la base?</p>
         <Button color="danger" on:click={deleteAll}>Borrar todo</Button>
+        <Button id="load" color="success" on:click={loadAllData}>Recargar datos</Button>
     </div>
 </main>
-

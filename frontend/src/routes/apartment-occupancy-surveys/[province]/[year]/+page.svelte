@@ -16,10 +16,16 @@
         "dark",
     ];
 
+    let URL_BASE = "";
+
+    if (dev) {
+        URL_BASE = "https://sos2223-14.appspot.com";
+    }
+
     onMount(async () => {
         getData();
     });
-
+   
     let province = $page.params.province;
     let year = $page.params.year;
 
@@ -118,6 +124,10 @@
             c = "success";
         }
     }
+
+    async function comeBack() {
+        window.location.href = URL_BASE + "/apartment-occupancy-surveys";
+    }
 </script>
 
 <main>
@@ -173,5 +183,6 @@
         </div>
         <Button id="borrar" color="danger" on:click={deleteFile(updatedProvince, updatedYear)}>Borrar dato</Button>
     </div>
-    
+    <br>
+    <Button id="volver" color="info" on:click={comeBack}>Volver a la página</Button>
 </main>

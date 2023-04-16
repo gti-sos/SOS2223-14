@@ -223,7 +223,7 @@ function loadBackend_cris_v2(app){
                     if (traveler != null){
                         var data = data.filter((reg)=>
                         {
-                             return (reg.traveler == traveler);
+                             return (reg.traveler >= traveler);
                         });
             
                         if (data==0){
@@ -237,7 +237,7 @@ function loadBackend_cris_v2(app){
                     if (overnight_stay != null){
                         var data = data.filter((reg)=>
                         {
-                            return (reg.overnight_stay == overnight_stay);
+                            return (reg.overnight_stay >= overnight_stay);
                         });
             
                         if (data==0){
@@ -250,7 +250,7 @@ function loadBackend_cris_v2(app){
             
                     if (average_stay != null){
                         var data = data.filter((reg)=>{
-                            return (reg.average_stay == average_stay);
+                            return (reg.average_stay >= average_stay);
                         });
                 
                         if (data==0){
@@ -597,7 +597,6 @@ function paginacion(req, lista){
         res.push("ERROR IN PARAMETERS LIMIT / OFFSET");
         return res;
     }
-
     res = lista.slice(offset,parseInt(limit)+parseInt(offset));
     return res;
 
