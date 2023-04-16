@@ -162,7 +162,7 @@
 
     async function getID(getFileProvinceID,getFileYearID) {
         resultStatus = result = ""; 
-        const res = await fetch(API+`?province=${getFileProvinceID}&&year=${getFileYearID}`, {
+        const res = await fetch(API+`?province=${getFileProvinceID}&year=${getFileYearID}`, {
             method: "GET",
         });
         try {
@@ -193,10 +193,10 @@
     let getFrom = null;
     let getTo = null;
 
-    async function getFromTo(getFrom,getTo) {
+    async function getFromTo(getFileProvinceRange,getFrom,getTo) {
         resultStatus = result = "";
         if (getFileProvinceRange != "") {
-            const res = await fetch(API+`?province=${getFileProvinceRange}&&from=${getFrom}&&to=${getTo}`, {
+            const res = await fetch(API+`?province=${getFileProvinceRange}&from=${getFrom}&to=${getTo}`, {
                 method: "GET",
             });
             try {
@@ -206,6 +206,21 @@
             } catch (error) {
                 console.log(`Error al parsear el resultado: ${error}`);
             }
+            const status = await res.status;
+            resultStatus = status;
+            if (status == 200) {
+                message = "Elemento encontrado";
+                c = "success";
+            } else if (status == 400) {
+                message = "La petición no es correcta."
+                c = "danger";
+            } else if (status == 404) {
+                message="No hay datos disponibles del rango indicado."
+                c = "danger";
+            } else if (status == 500) {
+                message = "Error del servidor";
+                c = "danger";
+            } 
         } else {
             const res = await fetch(API+`?from=${getFrom}&&to=${getTo}`, {
                 method: "GET",
@@ -217,30 +232,30 @@
             } catch (error) {
                 console.log(`Error al parsear el resultado: ${error}`);
             }
+            const status = await res.status;
+            resultStatus = status;
+            if (status == 200) {
+                message = "Elemento encontrado";
+                c = "success";
+            } else if (status == 400) {
+                message = "La petición no es correcta."
+                c = "danger";
+            } else if (status == 404) {
+                message="No hay datos disponibles del rango indicado."
+                c = "danger";
+            } else if (status == 500) {
+                message = "Error del servidor";
+                c = "danger";
+            } 
         }
-        const status = await res.status;
-        resultStatus = status;
-        if (status == 200) {
-            message = "Elemento encontrado";
-            c = "success";
-        } else if (status == 400) {
-            message = "La petición no es correcta."
-            c = "danger";
-        } else if (status == 404) {
-            message="No hay datos disponibles del rango indicado."
-            c = "danger";
-        } else if (status == 500) {
-            message = "Error del servidor";
-            c = "danger";
-        } 
+        
     }
 
     let getAboveTourist = null;
-    let getBelowTourist = null;
 
-    async function getTourist(getAboveTourist,getBelowTourist) {
+    async function getAboveT(getAboveTourist) {
         resultStatus = result = "";
-        const res = await fetch(API+`?above_tourist=${getAboveTourist}&&below_tourist=${getBelowTourist}`, {
+        const res = await fetch(API+`?above_tourist=${getAboveTourist}`, {
             method: "GET",
         });
         try {
@@ -259,7 +274,38 @@
             message = "La petición no es correcta."
             c = "danger";
         } else if (status == 404) {
-            message="No hay datos con ese rango de turistas."
+            message="No hay datos por encima de ese número de turistas."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        } 
+    }
+
+    let getBelowTourist = null;
+
+    async function getBelowT(getBelowTourist) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?below_tourist=${getBelowTourist}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos por debajo de ese número de turistas."
             c = "danger";
         } else if (status == 500) {
             message = "Error del servidor";
@@ -268,11 +314,10 @@
     }
 
     let getAboveAverageDailyExpenditure = null;
-    let getBelowAverageDailyExpenditure = null;
 
-    async function getAverageDailyExpenditure(getAboveAverageDailyExpenditure,getBelowAverageDailyExpenditure) {
+    async function getAboveADE(getAboveAverageDailyExpenditure) {
         resultStatus = result = "";
-        const res = await fetch(API+`?above_average_daily_expenditure=${getAboveAverageDailyExpenditure}&&below_average_daily_expenditure=${getBelowAverageDailyExpenditure}`, {
+        const res = await fetch(API+`?above_average_daily_expenditure=${getAboveAverageDailyExpenditure}`, {
             method: "GET",
         });
         try {
@@ -291,7 +336,38 @@
             message = "La petición no es correcta."
             c = "danger";
         } else if (status == 404) {
-            message="No hay datos con ese rango de gasto medio diario."
+            message="No hay datos por encima de ese gasto medio diario."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    }
+
+    let getBelowAverageDailyExpenditure = null;
+
+    async function getBelowADE(getBelowAverageDailyExpenditure) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?below_average_daily_expenditure=${getBelowAverageDailyExpenditure}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos por debajo de ese gasto medio diario."
             c = "danger";
         } else if (status == 500) {
             message = "Error del servidor";
@@ -300,11 +376,10 @@
     }
 
     let getAboveAverageStay = null;
-    let getBelowAverageStay = null;
 
-    async function getAverageStay(getAboveAverageStay,getBelowAverageStay) {
+    async function getAboveAS(getAboveAverageStay) {
         resultStatus = result = "";
-        const res = await fetch(API+`?above_average_stay=${getAboveAverageStay}&&below_average_stay=${getBelowAverageStay}`, {
+        const res = await fetch(API+`?above_average_stay=${getAboveAverageStay}`, {
             method: "GET",
         });
         try {
@@ -323,7 +398,38 @@
             message = "La petición no es correcta."
             c = "danger";
         } else if (status == 404) {
-            message="No hay datos con ese rango de estancia media."
+            message="No hay datos por encima de esa estancia media."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    } 
+
+    let getBelowAverageStay = null;
+
+    async function getBelowAS(getBelowAverageStay) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?below_average_stay=${getBelowAverageStay}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos=data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos por debajo de esa estancia media."
             c = "danger";
         } else if (status == 500) {
             message = "Error del servidor";
@@ -454,26 +560,39 @@
         <input placeholder="Provincia del rango" bind:value={getFileProvinceRange} />
         <input placeholder="Año de inicio" bind:value={getFrom} />
         <input placeholder="Año de fin" bind:value={getTo} />
-        <Button color="warning" on:click={getFromTo(getFrom,getTo)}>Buscar por rango de año</Button>
+        <Button color="warning" on:click={getFromTo(getFileProvinceRange,getFrom,getTo)}>Buscar por rango de año</Button>
     </div>
     <br>
     <div>
-        <input placeholder="Min. turistas" bind:value={getAboveTourist} />
-        <input placeholder="Max. turistas" bind:value={getBelowTourist} />
-        <Button color="warning" on:click={getTourist(getAboveTourist,getBelowTourist)}>Buscar por turistas</Button>
+        <input placeholder="Turistas por encima de..." bind:value={getAboveTourist} />
+        <Button color="warning" on:click={getAboveT(getAboveTourist)}>Número de turistas por encima de...</Button>
     </div>
     <br>
     <div>
-        <input placeholder="Min. gasto medio diario" bind:value={getAboveAverageDailyExpenditure} />
-        <input placeholder="Max. gasto medio diario" bind:value={getBelowAverageDailyExpenditure} />
-        <Button color="warning" on:click={getAverageDailyExpenditure(getAboveAverageDailyExpenditure,getBelowAverageDailyExpenditure)}>Buscar por gasto medio diario</Button>
+        <input placeholder="Turistas por debajo de..." bind:value={getBelowTourist} />
+        <Button color="warning" on:click={getBelowT(getBelowTourist)}>Número de turistas por debajo de...</Button>
     </div>
     <br>
     <div>
-        <input placeholder="Min. estancia media" bind:value={getAboveAverageStay} />
-        <input placeholder="Max. estancia media" bind:value={getBelowAverageStay} />
-        <Button color="warning" on:click={getAverageStay(getAboveAverageStay,getBelowAverageStay)}>Buscar por estancia media</Button>
+        <input placeholder="Gasto medio diario por encima de..." bind:value={getAboveAverageDailyExpenditure} />
+        <Button color="warning" on:click={getAboveADE(getAboveAverageDailyExpenditure)}>Gasto medio diario por encima de...</Button>
     </div>
+    <br>
+    <div>
+        <input placeholder="Gasto medio diario por debajo de..." bind:value={getBelowAverageDailyExpenditure} />
+        <Button color="warning" on:click={getBelowADE(getBelowAverageDailyExpenditure)}>Gasto medio diario por debajo de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Estancia media por encima de..." bind:value={getAboveAverageStay} />
+        <Button color="warning" on:click={getAboveAS(getAboveAverageStay)}>Estancia media por encima de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Estancia media por debajo de..." bind:value={getBelowAverageStay} />
+        <Button color="warning" on:click={getBelowAS(getBelowAverageStay)}>Estancia media por debajo de...</Button>
+    </div>
+    <br>
 
     <h3>Crear dato</h3>
     <div>

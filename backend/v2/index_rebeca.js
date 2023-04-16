@@ -174,7 +174,6 @@ function loadBackend_rebeca(app) {
         var year = request.query.year;
         var from = request.query.from;
         var to = request.query.to;
-        var tourist = request.query.tourist;
         var below_tourist = request.query.below_tourist;
         var above_tourist = request.query.above_tourist;
         var average_daily_expenditure = request.query.average_daily_expenditure;
@@ -204,15 +203,6 @@ function loadBackend_rebeca(app) {
         if(from>to){
             console.log(`No se han recibido los campos esperados.`);
             response.status(400).send("Bad Request");
-        } else if (above_tourist>below_tourist) {
-            console.log(`No se han recibido los campos esperados.`);
-            response.status(400).send("Bad Request");
-        } else if (above_average_daily_expenditure>below_average_daily_expenditure) {
-            console.log(`No se han recibido los campos esperados.`);
-            response.status(400).send("Bad Request");
-        } else if (above_average_stay>below_average_stay) {
-            console.log(`No se han recibido los campos esperados.`);
-            response.status(400).send("Bad Request");
         } else {
 
             db.find({},function(err, filteredList){
@@ -229,7 +219,7 @@ function loadBackend_rebeca(app) {
     
                 // Apartado para búsqueda por provincia
     
-                if (province != null){
+                if (province != null && year == null){
                     var filteredList = filteredList.filter((reg)=>
                     {
                         return (reg.province == province);
@@ -243,10 +233,24 @@ function loadBackend_rebeca(app) {
     
                 // Apartado para búsqueda por año
     
-                if (year != null){
+                if (province == null && year != null){
                     var filteredList = filteredList.filter((reg)=>
                     {
                         return (reg.year == year);
+                    });
+    
+                    if (filteredList==0){
+                        console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
+                        response.status(404).send("Data not found");
+                    }
+                }
+
+                // Apartado para búsqueda por provincia y año
+    
+                if (province != null && year != null){
+                    var filteredList = filteredList.filter((reg)=>
+                    {
+                        return (reg.province == province && reg.year == year);
                     });
     
                     if (filteredList==0){
@@ -269,20 +273,6 @@ function loadBackend_rebeca(app) {
                     }    
                 }
     
-                // Apartado para búsqueda por turistas
-    
-                if (tourist != null){
-                    var filteredList = filteredList.filter((reg)=>
-                    {
-                        return (reg.tourist == tourist);
-                    });
-    
-                    if (filteredList==0){
-                        console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
-                        response.status(404).send("Data not found");
-                    }
-                }
-    
                 // Apartado para above_tourist
                 
                 if(above_tourist != null){
@@ -302,41 +292,13 @@ function loadBackend_rebeca(app) {
                 if(below_tourist != null){
                     filteredList = filteredList.filter((reg)=>
                     {
-                        return (reg.tourist <=below_tourist);
+                        return (reg.tourist <= below_tourist);
                     });
     
                     if (filteredList==0){
                         console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
                         response.status(404).send("Data not found");
                     }    
-                }
-    
-                // Apartado para above_tourist y below_tourist
-                
-                if(above_tourist != null && below_tourist != null){
-                    filteredList = filteredList.filter((reg)=>
-                    {
-                        return (reg.tourist >= above_tourist && reg.tourist <=below_tourist);
-                    });
-    
-                    if (filteredList==0){
-                        console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
-                        response.status(404).send("Data not found");
-                    }    
-                }
-    
-                // Apartado para búsqueda por gasto medio diario
-    
-                if (average_daily_expenditure != null){
-                    var filteredList = filteredList.filter((reg)=>
-                    {
-                        return (reg.average_daily_expenditure == average_daily_expenditure);
-                    });
-    
-                    if (filteredList==0){
-                        console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
-                        response.status(404).send("Data not found");
-                    }
                 }
     
                 // Apartado para above_average_daily_expenditure
@@ -367,35 +329,6 @@ function loadBackend_rebeca(app) {
                     }    
                 }
     
-                // Apartado para above_average_daily_expenditure y below_average_daily_expenditure
-                
-                if(above_average_daily_expenditure != null && below_average_daily_expenditure != null){
-                    filteredList = filteredList.filter((reg)=>
-                    {
-                        return (reg.average_daily_expenditure >= above_average_daily_expenditure && 
-                            reg.average_daily_expenditure <=below_average_daily_expenditure);
-                    });
-    
-                    if (filteredList==0){
-                        console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
-                        response.status(404).send("Data not found");
-                    }    
-                }
-    
-                // Apartado para búsqueda por estancia media
-    
-                if (average_stay != null){
-                    var filteredList = filteredList.filter((reg)=>
-                    {
-                        return (reg.average_stay == average_stay);
-                    });
-    
-                    if (filteredList==0){
-                        console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
-                        response.status(404).send("Data not found");
-                    }
-                }
-    
                 // Apartado para above_average_stay
                 
                 if(above_average_stay != null){
@@ -416,21 +349,6 @@ function loadBackend_rebeca(app) {
                     filteredList = filteredList.filter((reg)=>
                     {
                         return (reg.average_stay<=below_average_stay);
-                    });
-    
-                    if (filteredList==0){
-                        console.log(`Data not found /andalusia-tourism-situation-surveys: ${err}`);
-                        response.status(404).send("Data not found");
-                    }    
-                }
-    
-                // Apartado para above_average_stay y below_average_stay
-                
-                if(above_average_stay != null && below_average_stay != null){
-                    filteredList = filteredList.filter((reg)=>
-                    {
-                        return (reg.average_stay >= above_average_stay && 
-                            reg.average_stay <=below_average_stay);
                     });
     
                     if (filteredList==0){

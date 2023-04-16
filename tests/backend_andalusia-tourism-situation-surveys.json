@@ -213,7 +213,7 @@
 			"response": []
 		},
 		{
-			"name": "?above_tourist=3000000&below_tourist=4000000",
+			"name": "?above_tourist=8000000",
 			"event": [
 				{
 					"listen": "test",
@@ -225,10 +225,6 @@
 							"\r",
 							"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
 							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"La pregunta contiene above_tourist y below_tourist.\", function(){\r",
-							"    pm.request.url.query.has(\"above_tourist\"&&\"below_tourist\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -239,7 +235,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?above_tourist=3000000&below_tourist=4000000",
+					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?above_tourist=8000000",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -251,11 +247,7 @@
 					"query": [
 						{
 							"key": "above_tourist",
-							"value": "3000000"
-						},
-						{
-							"key": "below_tourist",
-							"value": "4000000"
+							"value": "8000000"
 						}
 					]
 				}
@@ -263,7 +255,7 @@
 			"response": []
 		},
 		{
-			"name": "?above_average_daily_expenditure=60&below_average_daily_expenditure=70",
+			"name": "?below_tourist=1000000",
 			"event": [
 				{
 					"listen": "test",
@@ -275,10 +267,6 @@
 							"\r",
 							"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
 							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"La pregunta contiene above_average_daily_expenditure y below_average_daily_expenditure.\", function(){\r",
-							"    pm.request.url.query.has(\"above_average_daily_expenditure\"&&\"below_average_daily_expenditure\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -289,7 +277,49 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?above_average_daily_expenditure=60&below_average_daily_expenditure=70",
+					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?below_tourist=1000000",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"andalusia-tourism-situation-surveys"
+					],
+					"query": [
+						{
+							"key": "below_tourist",
+							"value": "1000000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "?above_average_daily_expenditure=75",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?above_average_daily_expenditure=75",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -301,11 +331,7 @@
 					"query": [
 						{
 							"key": "above_average_daily_expenditure",
-							"value": "60"
-						},
-						{
-							"key": "below_average_daily_expenditure",
-							"value": "70"
+							"value": "75"
 						}
 					]
 				}
@@ -313,7 +339,7 @@
 			"response": []
 		},
 		{
-			"name": "?above_average_stay=5&below_average_stay=7",
+			"name": "?below_average_daily_expenditure=60",
 			"event": [
 				{
 					"listen": "test",
@@ -325,10 +351,6 @@
 							"\r",
 							"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
 							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"La pregunta contiene above_average_stay y below_average_stay.\", function(){\r",
-							"    pm.request.url.query.has(\"above_average_stay\"&&\"below_average_stay\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -339,7 +361,49 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?above_average_stay=5&below_average_stay=7",
+					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?below_average_daily_expenditure=60",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"andalusia-tourism-situation-surveys"
+					],
+					"query": [
+						{
+							"key": "below_average_daily_expenditure",
+							"value": "60"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "?above_average_stay=7.5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?above_average_stay=7.5",
 					"host": [
 						"{{URLBASE}}"
 					],
@@ -351,11 +415,49 @@
 					"query": [
 						{
 							"key": "above_average_stay",
-							"value": "5"
-						},
+							"value": "7.5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "?below_average_stay=4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La longitud de la respuesta es mayor a 0.\",function(){\r",
+							"    pm.expect(pm.response.json).to.have.lengthOf.above(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?below_average_stay=4",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"andalusia-tourism-situation-surveys"
+					],
+					"query": [
 						{
 							"key": "below_average_stay",
-							"value": "7"
+							"value": "4"
 						}
 					]
 				}
@@ -553,48 +655,6 @@
 						"v2",
 						"andalusia-tourism-situation-surveys",
 						"Alicante"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ERROR 400 - ?above_tourist=5000000&below_tourist=4000000",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Bad Request\", function() {\r",
-							"    pm.response.to.have.status(400);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URLBASE}}/api/v2/andalusia-tourism-situation-surveys?above_tourist=5000000&below_tourist=4000000",
-					"host": [
-						"{{URLBASE}}"
-					],
-					"path": [
-						"api",
-						"v2",
-						"andalusia-tourism-situation-surveys"
-					],
-					"query": [
-						{
-							"key": "above_tourist",
-							"value": "5000000"
-						},
-						{
-							"key": "below_tourist",
-							"value": "4000000"
-						}
 					]
 				}
 			},
