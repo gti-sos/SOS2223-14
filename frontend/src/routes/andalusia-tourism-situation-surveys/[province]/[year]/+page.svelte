@@ -165,7 +165,5 @@
         </tbody>
     </Table>
     <br>
-    <div class="elementos">
-        <Button color="info" on:click={view}>Atrás</Button>
-    </div>
+    <Button id="volver" color="success" on:click={view}>Volver a la página principal</Button>
 </main>
