@@ -38,6 +38,7 @@
     let offset=0;
     let message = "";
     let c = "";
+    let l = `?limit=${limit}&&offset=${offset}`;
 
     let URL_BASE = "";
 
@@ -52,7 +53,7 @@
     
     async function getAllData() {
         resultStatus = result = "";
-        const res = await fetch(URL_BASE+API+`?limit=${limit}&&offset=${offset}`, {
+        const res = await fetch(URL_BASE+API+b+l, {
             method: "GET",
         });        
         try {
@@ -133,88 +134,95 @@
     async function searchData(searchProvince,searchYear,searchTraveler,searchOvernightStay,searchAverageStay) {
         resultStatus = result = "";
         if(searchProvince!="" && searchYear!=""){
-            b = `province=${searchProvince}&&year=${searchYear}`;
+            b = `?province=${searchProvince}&&year=${searchYear}`;
         }
         else if(searchProvince!="" && searchYear===""){
             if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay!=""){
-                b = `province=${searchProvince}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+                b = `?province=${searchProvince}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay===""){
-                b = `province=${searchProvince}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
+                b = `?province=${searchProvince}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay!=""){
-                b = `province=${searchProvince}&&traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
+                b = `?province=${searchProvince}&&traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay!=""){
-                b = `province=${searchProvince}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+                b = `?province=${searchProvince}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay===""){
-                b = `province=${searchProvince}&&traveler=${searchTraveler}`;
+                b = `?province=${searchProvince}&&traveler=${searchTraveler}`;
             }
             else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay===""){
-                b = `province=${searchProvince}&&overnight_stay=${searchOvernightStay}`;
+                b = `?province=${searchProvince}&&overnight_stay=${searchOvernightStay}`;
             }
             else if(searchTraveler==="" && searchOvernightStay===""&& searchAverageStay!=""){
-                b = `province=${searchProvince}&&average_stay=${searchAverageStay}`;
+                b = `?province=${searchProvince}&&average_stay=${searchAverageStay}`;
             }
             else{
-                b = `province=${searchProvince}`;
+                b = `?province=${searchProvince}`;
             }            
         }
         else if(searchProvince==="" && searchYear!=""){
             if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay!=""){
-                b = `year=${searchYear}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+                b = `?=${searchYear}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay===""){
-                b = `year=${searchYear}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
+                b = `?year=${searchYear}&&traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay!=""){
-                b = `year=${searchYear}&&traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
+                b = `?year=${searchYear}&&traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay!=""){
-                b = `year=${searchYear}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+                b = `?year=${searchYear}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay===""){
-                b = `year=${searchYear}&&traveler=${searchTraveler}`;
+                b = `?year=${searchYear}&&traveler=${searchTraveler}`;
             }
             else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay===""){
-                b = `year=${searchYear}&&overnight_stay=${searchOvernightStay}`;
+                b = `?year=${searchYear}&&overnight_stay=${searchOvernightStay}`;
             }
             else if(searchTraveler==="" && searchOvernightStay===""&& searchAverageStay!=""){
-                b = `year=${searchYear}&&average_stay=${searchAverageStay}`;
+                b = `?year=${searchYear}&&average_stay=${searchAverageStay}`;
             }
             else{
-                b = `year=${searchYear}`;
+                b = `?year=${searchYear}`;
             } 
         }
         else if(searchTraveler!="" || searchOvernightStay!="" || searchAverageStay!=""){
             if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay!=""){
-                b = `traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+                b = `?traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay!=""&& searchAverageStay===""){
-                b = `traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
+                b = `?traveler=${searchTraveler}&&overnight_stay=${searchOvernightStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay!=""){
-                b = `traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
+                b = `?traveler=${searchTraveler}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay!=""){
-                b = `overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
+                b = `?overnight_stay=${searchOvernightStay}&&average_stay=${searchAverageStay}`;
             }
             else if(searchTraveler!="" && searchOvernightStay===""&& searchAverageStay===""){
-                b = `traveler=${searchTraveler}`;
+                b = `?traveler=${searchTraveler}`;
             }
             else if(searchTraveler==="" && searchOvernightStay!=""&& searchAverageStay===""){
-                b = `overnight_stay=${searchOvernightStay}`;
+                b = `?overnight_stay=${searchOvernightStay}`;
             }
             else if(searchTraveler==="" && searchOvernightStay===""&& searchAverageStay!=""){
-                b = `average_stay=${searchAverageStay}`;
+                b = `?average_stay=${searchAverageStay}`;
             }
         }
         else{
             b = "";
         }
 
-        const res = await fetch(URL_BASE+API+"?"+b, {
+        if(b!=""){
+            l = `&&limit=${limit}&&offset=${offset}`;
+        }
+        else{
+            l = `?limit=${limit}&&offset=${offset}`
+        }
+
+        const res = await fetch(URL_BASE+API+b+l, {
             method: "GET",
         });        
         try {
@@ -291,18 +299,20 @@
             offset += limit;
         }
         else {
+            l = `?limit=${limit}&&offset=${offset}`;
             getAllData();
         }
     }
 
     async function nextPage() {
         offset += limit;
-        if(offset>=16){
+        if(offset>=datos.length){
             message = "No hay más elementos para mostrar";
             c = "danger";
             offset -= limit;
         }
         else{
+            l = `?limit=${limit}&&offset=${offset}`;
             getAllData();            
         }        
     }
