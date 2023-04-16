@@ -212,7 +212,7 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,respon
 
 //GET DOCS
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/docs", (request,response) => {
-    response.redirect("https://documenter.getpostman.com/view/25974748/2s93K1nyei");
+    response.redirect("https://documenter.getpostman.com/view/25974748/2s93Xwzj4Q");
 });
 
 //POST

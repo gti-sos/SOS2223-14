@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "2d86b1f7-c0ee-4228-a901-78b762a345ba",
-		"name": "Ana",
+		"_postman_id": "8dca2fcd-7660-4f4d-b6cb-ca7baca71738",
+		"name": "Ana-v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25974748"
 	},
 	"item": [
 		{
-			"name": "/hotel-occupancy-surveys/loadInitialData",
+			"name": "/hotel-occupancy-surveys/",
 			"event": [
 				{
 					"listen": "test",
@@ -25,13 +25,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/loadInitialData",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/loadInitialData",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						"loadInitialData"
 					]
@@ -58,13 +58,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys"
 					]
 				}
@@ -95,13 +95,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/?province=Sevilla",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/?province=Sevilla",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						""
 					],
@@ -134,13 +134,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/?province=Sevilla&limit=1&offset=1",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/?province=Sevilla&limit=1&offset=1",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						""
 					],
@@ -181,13 +181,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/?province=Sevilla&year=2022",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/?province=Sevilla&year=2022",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						""
 					],
@@ -229,13 +229,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/?from=2021&to=2022",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/?from=2021&to=2022",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						""
 					],
@@ -272,13 +272,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/Madrid",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/Madrid",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						"Madrid"
 					]
@@ -314,13 +314,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/Sevilla",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/Sevilla",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						"Sevilla"
 					]
@@ -356,13 +356,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys"
 					]
 				}
@@ -397,13 +397,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys"
 					]
 				}
@@ -434,13 +434,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys"
 					]
 				}
@@ -475,13 +475,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys"
 					]
 				}
@@ -516,13 +516,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/?limit=3&offset=5",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/?limit=3&offset=5",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						""
 					],
@@ -568,13 +568,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/Madrid",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/Madrid",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						"Madrid"
 					]
@@ -610,13 +610,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/Andalucía/2025",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/Andalucía/2025",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						"Andalucía",
 						"2025"
@@ -653,13 +653,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/Andalucía/2022",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/Andalucía/2022",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						"Andalucía",
 						"2022"
@@ -687,13 +687,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/Andalucía/2022",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/Andalucía/2022",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						"Andalucía",
 						"2022"
@@ -721,13 +721,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{URLBASE}}/api/v1/hotel-occupancy-surveys/Andalucía/2021",
+					"raw": "{{URLBASE}}/api/v2/hotel-occupancy-surveys/Andalucía/2021",
 					"host": [
 						"{{URLBASE}}"
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"hotel-occupancy-surveys",
 						"Andalucía",
 						"2021"

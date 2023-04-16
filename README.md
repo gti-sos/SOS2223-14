@@ -13,4 +13,5 @@
   - https://sos2223-14.appspot.com/api/v2/andalusia-tourism-situation-surveys/docs
    (developed by Rebeca Suárez Bascón)
   - http://sos2223-14.appspot.com/api/v1/apartment-occupancy-surveys/docs (developed by Cristina Calderón García)
-  - https://sos2223-14.appspot.com/api/v1/hotel-occupancy-surveys/docs (developed by Ana Chávez Velasco)
+  - https://sos2223-14.appspot.com/api/v1/hotel-occupancy-surveys/docs
+  - https://sos2223-14.appspot.com/api/v2/hotel-occupancy-surveys/docs (developed by Ana Chávez Velasco)
