@@ -118,6 +118,11 @@
         if (status == 201) {
             message = "Elemento creado";
             c = "success";
+            b = "";
+            const elementos = document.getElementsByClassName("input");
+            for(let i=0; i<elementos.length; i++){
+                elementos[i].value = "";
+            }
             getAllData();
         } else if (status == 409) {
             message = "Conflicto, el elemento ya existe";
@@ -298,7 +303,6 @@
 
     async function nextPage() {
         offset += limit;
-<<<<<<< HEAD
         resultStatus = result = "";
         const res = await fetch(URL_BASE+API+b, {
             method: "GET",
@@ -315,10 +319,6 @@
 
         if(offset>=datos.length){
             message = "No hay más elementos para mostrar";
-=======
-        if(offset>16){
-            message = "No puedes retroceder estás en el principio de la lista de elementos";
->>>>>>> 1d39a319af8874137cbcc324b281d009b2a272c6
             c = "danger";
             offset -= limit;
             l = `?limit=${limit}&&offset=${offset}`;
@@ -418,11 +418,11 @@
     </div>
     <h3>Crear elemento</h3>
     <div class="createData">
-        <input id="create" placeholder="Provincia" bind:value={newFileProvince}/>
-        <input id="create" placeholder="Año" bind:value={newFileYear} />
-        <input id="create" placeholder="Turista" bind:value={newFileTraveler} />
-        <input id="create" placeholder="Pernoctacion media" bind:value={newFileOvernightStay}/>
-        <input id="create" placeholder="Estancia media" bind:value={newFileAverageStay}/>
+        <input id="create" class="input" placeholder="Provincia" bind:value={newFileProvince}/>
+        <input id="create" class="input" placeholder="Año" bind:value={newFileYear} />
+        <input id="create" class="input" placeholder="Turista" bind:value={newFileTraveler} />
+        <input id="create" class="input" placeholder="Pernoctacion media" bind:value={newFileOvernightStay}/>
+        <input id="create" class="input" placeholder="Estancia media" bind:value={newFileAverageStay}/>
     </div>
     <div id="create-button">
         <Button color="warning" on:click={createFile}>Crear dato</Button>

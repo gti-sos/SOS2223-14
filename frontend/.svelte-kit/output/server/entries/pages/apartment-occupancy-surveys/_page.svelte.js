@@ -89,11 +89,11 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     }
   })}</div>
     <h3>Crear elemento</h3>
-    <div class="createData"><input id="create" placeholder="Provincia"${add_attribute("value", newFileProvince, 0)}>
-        <input id="create" placeholder="Año"${add_attribute("value", newFileYear, 0)}>
-        <input id="create" placeholder="Turista"${add_attribute("value", newFileTraveler, 0)}>
-        <input id="create" placeholder="Pernoctacion media"${add_attribute("value", newFileOvernightStay, 0)}>
-        <input id="create" placeholder="Estancia media"${add_attribute("value", newFileAverageStay, 0)}></div>
+    <div class="createData"><input id="create" class="input" placeholder="Provincia"${add_attribute("value", newFileProvince, 0)}>
+        <input id="create" class="input" placeholder="Año"${add_attribute("value", newFileYear, 0)}>
+        <input id="create" class="input" placeholder="Turista"${add_attribute("value", newFileTraveler, 0)}>
+        <input id="create" class="input" placeholder="Pernoctacion media"${add_attribute("value", newFileOvernightStay, 0)}>
+        <input id="create" class="input" placeholder="Estancia media"${add_attribute("value", newFileAverageStay, 0)}></div>
     <div id="create-button">${validate_component(Button, "Button").$$render($$result, { color: "warning" }, {}, {
     default: () => {
       return `Crear dato`;
