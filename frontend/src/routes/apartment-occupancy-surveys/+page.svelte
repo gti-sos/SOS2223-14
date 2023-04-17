@@ -306,15 +306,16 @@
 
     async function nextPage() {
         offset += limit;
-        if(offset>=datos.length){
-            message = "No hay más elementos para mostrar";
+        if(offset>16){
+            message = "No puedes retroceder estás en el principio de la lista de elementos";
             c = "danger";
             offset -= limit;
         }
         else{
             l = `?limit=${limit}&&offset=${offset}`;
-            getAllData();            
-        }        
+            getAllData();
+        }
+              
     }
 
 </script>

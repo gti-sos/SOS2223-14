@@ -130,7 +130,6 @@
         const status = await res.status;
         resultStatus = status;
         if (status == 200) {
-            location.reload();
             window.alert("Se ha borrado el dato");
         }
     }

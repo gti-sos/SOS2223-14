@@ -95,7 +95,7 @@
             body: JSON.stringify({
                 province: updatedProvince,
                 year: updatedYear,
-                updatedAverageEmployment: updatedAverageEmployment,
+                average_employment: updatedAverageEmployment,
                 estimated_average_open_establishment: updatedEstimatedAverageOpenEstablishment,
                 estimated_average_place: updatedEstimatedAveragePlace,
                 estimated_room: updatedEstimatedRoom,
@@ -119,24 +119,6 @@
             c = "danger";
         }
     }
-/*
-    async function deleteFile(province, year) {
-        resultStatus = result = "";
-        const res = await fetch(API + "/" + province + "/" + year, {
-            method: "DELETE",
-        });
-        const status = await res.status;
-        resultStatus = status;
-        if (status == 200) {
-            const elementos = document.getElementsByClassName("elementos");
-            for (let i = 0; i < elementos.length; i++) {
-                elementos[i].textContent = "";
-            }
-            message = "El elemento está borrado";
-            c = "success";
-        }
-    }
-    */
 
     async function comeBack() {
         window.location.href = URL_BASE + "/hotel-occupancy-surveys";
@@ -164,8 +146,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{$page.params.province}</td>
-                    <td>{$page.params.year}</td>
+                    <td>{province}</td>
+                    <td>{$year}</td>
                     <td><input bind:value={updatedAverageEmployment}></td>
                     <td><input bind:value={updatedEstimatedAverageOpenEstablishment}></td>
                     <td><input bind:value={updatedEstimatedAveragePlace}></td>

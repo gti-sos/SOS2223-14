@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "URLBASE",
-			"value": "http://sos2223-14.appspot.com/api/v2",
+			"value": "http://sos2223-14.appspot.com",
 			"type": "default",
 			"enabled": true
 		}

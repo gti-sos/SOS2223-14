@@ -1,5 +1,6 @@
 import Datastore from 'nedb';
 var db = new Datastore();
+const BASE_API_URL_V1 = "/api/v1";
 const BASE_API_URL = "/api/v2";
 
 function loadBackend_ana(app) {    
@@ -211,6 +212,11 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,respon
 });
 
 //GET DOCS
+
+app.get(BASE_API_URL_V1 +"/hotel-occupancy-surveys/docs", (request,response) => {
+    response.redirect("https://documenter.getpostman.com/view/25974748/2s93K1nyei");
+});
+
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/docs", (request,response) => {
     response.redirect("https://documenter.getpostman.com/view/25974748/2s93Xwzj4Q");
 });
