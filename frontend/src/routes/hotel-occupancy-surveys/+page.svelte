@@ -84,6 +84,27 @@
         resultStatus = status;
     }
 
+    async function getInitialData() {
+        resultStatus = result = "";
+        const res = await fetch(API+`/loadInitialData`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if(status==200){
+            getFiles();
+            message = "Los datos han sido insertados correctamente."
+            c = "success";
+        }
+    }
+
     async function createFile() {
         resultStatus = result = "";
         const res = await fetch(API, {
@@ -444,30 +465,38 @@
             {/each}
         </tbody>
     </Table>
-
-    <div id="buttons">
+    <br>
+    {#if datos.length == 0}
+        <p>¿Quieres recargar todos los datos iniciales?</p>
+        <Button color="success" on:click={getInitialData}>Cargar datos iniciales</Button>
+    {:else if datos.length > 0}
         <Button color="dark" on:click={getAllData}>Página anterior</Button>
         <Button color="dark" on:click={nextPage}>Página siguiente</Button>
-    </div>
+        <br>
+        <Table id="tabla">
+            <thead>
+                <tr>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input bind:value={from} /></td>
+                    <td><input bind:value={to} /></td>
+                    <td>
+                        <Button color="success" on:click={fromTo(from, to)}>Buscar intervalo</Button>
+                    </td>
+                </tr>
+            </tbody>
+        </Table>
+    
+        <div id="delete-all">
+            <p>¿Seguro que quieres borrar todos los datos?</p>
+            <Button color="danger" on:click={deleteAll}>Borrar datos</Button>
+        </div>
 
-    <Table id="tabla">
-        <thead>
-            <tr>
-                <th>Desde</th>
-                <th>Hasta</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input bind:value={from} /></td>
-                <td><input bind:value={to} /></td>
-                <td>
-                    <Button color="success" on:click={fromTo(from, to)}>Buscar intervalo</Button>
-                </td>
-            </tr>
-        </tbody>
-    </Table>
     
     <h3>Búsqueda avanzada</h3>
     <br>
@@ -500,6 +529,7 @@
         <Button color="warning" on:click={getFromTo(getFrom,getTo)}>Buscar por rango de año</Button>
     </div>
     <br>
+    {/if}
     
     <h3>Crear elemento</h3>
     <div class="createData">
@@ -516,10 +546,5 @@
     </div>
     <div id="new-post">
         <Button color="warning" on:click={createFile}>Crear dato</Button>
-    </div>
-
-    <div id="delete-all">
-        <p>¿Seguro que quieres borrar todos los datos?</p>
-        <Button color="danger" on:click={deleteAll}>Sí, borrar</Button>
     </div>
 </main>
