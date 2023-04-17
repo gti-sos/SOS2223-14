@@ -27,12 +27,17 @@ li{
 .elementos{
     text-align: center;
 }
-
-#info{
+#delete{
+    margin-left: 50px;
+}
+#borrar{
     margin-top: 10px;
     margin-left: 50px;
     margin-bottom: 20px;
 }
 input{
     text-align: center;
+}
+#volver{
+    margin-left: 670px;
 }

@@ -40,3 +40,9 @@ th{
 .createData{
     margin-bottom: 15px;
 }
+
+#tabla{
+    width: 100px;
+    margin-left: 400px;
+    text-align: center;
+}

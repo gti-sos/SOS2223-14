@@ -258,6 +258,8 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     var province = request.query.province;
     var year = request.query.year;
     var average_employment = request.query.average_employment;
+    var below_employment = request.query.below_employment;
+    var above_employment = request.query.above_employment;
     var estimated_average_open_establishment = request.query.estimated_average_open_establishment;
     var estimated_average_place = request.query.estimated_average_place;
     var estimated_room = request.query.estimated_room;
@@ -276,6 +278,8 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
         && element != "province"
         && element != "limit" 
         && element != "offset" 
+        && element != "above_employment" 
+        && element != "below_employment" 
         && element != "average_employment" 
         && element != "estimated_average_open_establishment"
         && element != "estimated_average_place"
@@ -288,10 +292,14 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
         }
     }
 
-    // "from" tiene que ser menor o igual a "to"
+    // "from" tiene que ser menor o igual a "to", etc
     if(from>to){
         console.log(`No se han recibido los campos esperados:`);
         response.status(400).send("Bad Request");
+    }else if(above_employment>below_employment) {
+        console.log(`No se han recibido los campos esperados.`);
+        response.status(400).send("Bad Request");
+
     }else{
 
     db.find({},function(err, filteredList){
@@ -369,7 +377,7 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
         if (estimated_room != null){
             var filteredList = filteredList.filter((reg)=>
             {
-                return (reg.estimated_room == estimated_room);
+                return (reg.estimated_room >= estimated_room);
             });
 
             if (filteredList==0){
@@ -413,6 +421,47 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
                 response.status(404).send("Data not found");
             }
         }
+
+        // Apartado para above_employment
+        if(above_employment != null){
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.average_employment == above_employment);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }    
+        }
+        // Apartado para below_employment
+        
+        if(below_employment != null){
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.average_employment == below_employment);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }    
+        }
+
+        // Apartado para above_employment y below_employment
+        
+        if(above_employment != null && below_employment != null){
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.average_employment >= above_employment && reg.average_employment <=below_employment);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }    
+        }
+
         // "from"/"to"
         if(from != null && to != null){
             filteredList = filteredList.filter((reg)=>
@@ -463,10 +512,6 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
         }}
     )};
 });
-
-
-
-
 
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,response) => {
     var año = parseInt(request.params.year);

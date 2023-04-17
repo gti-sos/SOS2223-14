@@ -43,9 +43,34 @@
     let message = "";
     let c = "";
 
+    let searchAverageEmployment = "";
+    let searchEstimatedAverageOpenEstablishment = "";
+    let searchEstimatedAveragePlace = "";
+    let searchEstimatedRoom = "";
+    let searchOccupancyRateByPlace = "";
+    let searchOccupancyRateByWeekendPlace = "";
+    let searchRoomOccupancyRate = "";
+
+    let searchProvince = "";
+    let searchYear = "";
+    let searchProvinceID = "";
+    let searchYearID = null;
+    let searchProvinceRange = "";
+    let getFrom = "";
+    let getTo = "";
+    let searchAboveEmployment = "";
+    let searchBelowEmployment = "";
+    let AboveAverageStay = null;
+    let BelowAverageStay = null;
+
+    let limit = 10;
+    let offset=0;
+    let from = "";
+    let to = "";
+
     async function getAllData() {
         resultStatus = result = "";
-        const res = await fetch(API, {
+        const res = await fetch(API+`?offset=0&&limit=${limit}`, {
             method: "GET",
         });
         try {
@@ -123,6 +148,253 @@
         }
     }
 
+    async function fromTo(from,to) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?limit=${limit}&&offset=${offset}&&from=${from}&&to=${to}`, {
+            method: "GET",
+        });        
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Intervalo encontrado";
+            c = "success";
+        } else if (status == 404) {
+            message = "Intervalo no encontrado";
+            c = "danger";
+        }else if (status == 500) {
+            message = "Error interno";
+            c = "danger";
+        }
+    }
+
+/*
+    async function previousPage() {
+        resultStatus = result = "";
+        const res = await fetch(API+`?offset=10&&limit=${limit}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+    }
+*/
+    async function nextPage() {
+        resultStatus = result = "";
+        const res = await fetch(API+`?offset=10&&limit=${limit}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+    }
+
+    async function getProvince(searchProvince) {
+        resultStatus = result = ""; 
+        const res = await fetch(API+`?province=${searchProvince}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="La provincia indicada no se encuentra registrada en la base de datos."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    }
+
+    async function getYear(searchYear) {
+        resultStatus = result = ""; 
+        const res = await fetch(API+`?year=${searchYear}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="El año indicado no se encuentra registrado en la base de datos."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    }
+
+    async function getEmployment(searchAboveEmployment,searchBelowEmployment) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?above_employment=${searchAboveEmployment}&&below_employment=${searchBelowEmployment}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos para mostrar."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        } 
+    }
+
+    async function getID(searchProvinceID,searchYearID) {
+        resultStatus = result = ""; 
+        const res = await fetch(API+`?province=${searchProvinceID}&&year=${searchYearID}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="El ID indicado no se encuentra registrado en la base de datos."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    }
+
+    async function getFromTo(searchProvinceRange,getFrom,getTo) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?province=${searchProvinceRange}&&from=${getFrom}&&to=${getTo}`, {
+                method: "GET",
+            });
+            if (searchProvinceRange != "") {
+            try {
+                const data = await res.json();
+                result = JSON.stringify(data, null, 2);
+                datos = data;
+            } catch (error) {
+                console.log(`Error al parsear el resultado: ${error}`);
+            }
+        } else {
+            const res = await fetch(API+`?from=${getFrom}&&to=${getTo}`, {
+                method: "GET",
+            });
+            try {
+                const data = await res.json();
+                result = JSON.stringify(data, null, 2);
+                datos = data;
+            } catch (error) {
+                console.log(`Error al parsear el resultado: ${error}`);
+            }
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos disponibles del rango indicado."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        } 
+    }
+
+
+    async function getAverageStay(getAboveAverageStay,getBelowAverageStay) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?above_average_stay=${getAboveAverageStay}&&below_average_stay=${getBelowAverageStay}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos=data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos con ese rango de estancia media."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    } 
+
     async function view(province, year) {
         window.location.href = "https://sos2223-14.appspot.com/hotel-occupancy-surveys/"+province+"/"+year;
     }
@@ -174,6 +446,62 @@
         </tbody>
     </Table>
 
+    <div id="buttons">
+        <Button color="dark" on:click={getAllData}>Página anterior</Button>
+        <Button color="dark" on:click={nextPage}>Página siguiente</Button>
+    </div>
+
+    <Table id="tabla">
+        <thead>
+            <tr>
+                <th>Desde</th>
+                <th>Hasta</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input bind:value={from} /></td>
+                <td><input bind:value={to} /></td>
+                <td>
+                    <Button color="success" on:click={fromTo(from, to)}>Buscar intervalo</Button>
+                </td>
+            </tr>
+        </tbody>
+    </Table>
+    
+    <h3>Búsqueda avanzada</h3>
+    <br>
+    <div>
+        <input placeholder="Provincia que quiere buscar" bind:value={searchProvince} />
+        <Button color="warning" on:click={getProvince(searchProvince)}>Buscar por provincia</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Año que quiere buscar" bind:value={searchYear} />
+        <Button color="warning" on:click={getYear(searchYear)}>Buscar por año</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Provincia ID" bind:value={searchProvinceID} />
+        <input placeholder="Año ID" bind:value={searchYearID} />
+        <Button color="warning" on:click={getID(searchProvinceID,searchYearID)}>Buscar por ID</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Mín. empleo" bind:value={searchAboveEmployment} />
+        <input placeholder="Máx. empleo" bind:value={searchBelowEmployment} />
+        <Button color="warning" on:click={getEmployment(searchAboveEmployment,searchBelowEmployment)}>Buscar por media de empleo</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Provincia del rango" bind:value={searchProvinceRange} />
+        <input placeholder="Año de inicio" bind:value={getFrom} />
+        <input placeholder="Año de fin" bind:value={getTo} />
+        <Button color="warning" on:click={getFromTo(getFrom,getTo)}>Buscar por rango de año</Button>
+    </div>
+    <br>
+    
     <h3>Crear elemento</h3>
     <div class="createData">
         <input id="create" placeholder="Provincia" bind:value={newFileProvince}/>
@@ -190,9 +518,9 @@
     <div id="new-post">
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
+
     <div id="delete-all">
         <p>¿Seguro que quieres borrar todos los datos?</p>
         <Button color="danger" on:click={deleteAll}>Sí, borrar</Button>
     </div>
 </main>
-
