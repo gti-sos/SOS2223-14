@@ -184,7 +184,16 @@ var datos = [
     }
 ];
 
-db.insert(datos);
+//db.insert(datos);
+
+//GET DOCS
+/*app.get(BASE_API_URL_V1 +"/hotel-occupancy-surveys/docs", (request,response) => {
+    response.redirect("https://documenter.getpostman.com/view/25974748/2s93K1nyei");
+});*/
+
+app.get(BASE_API_URL+"/hotel-occupancy-surveys/docs", (request,response) => {
+    response.redirect("https://documenter.getpostman.com/view/25974748/2s93Xwzj4Q");
+});
 
 //loadInitialData
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,response) => {
@@ -193,8 +202,7 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,respon
         if(err){
             console.log(`Error geting /hotel-occupancy-surveys/loadInitialData: ${err}`);
             response.sendStatus(500);
-        }
-        else{
+        }else{
             if(data.length==0){
                 console.log(`data inserted: ${datos.length}`);  
                 db.insert(datos); 
@@ -209,16 +217,6 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,respon
             }
         }
     });
-});
-
-//GET DOCS
-
-/*app.get(BASE_API_URL_V1 +"/hotel-occupancy-surveys/docs", (request,response) => {
-    response.redirect("https://documenter.getpostman.com/view/25974748/2s93K1nyei");
-});*/
-
-app.get(BASE_API_URL+"/hotel-occupancy-surveys/docs", (request,response) => {
-    response.redirect("https://documenter.getpostman.com/view/25974748/2s93Xwzj4Q");
 });
 
 //POST
@@ -245,7 +243,6 @@ app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
                             response.sendStatus(500);
                         }
                         else{
-//                            datos.push(newFile);
                             console.log(`newFile = ${JSON.stringify(newFile,null,2)}`);
                             console.log("New POST to /hotel-occupancy-surveys");
                             response.status(201).send("Created");
@@ -596,11 +593,15 @@ app.put(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,respon
             if(err){
                 console.log(`Error put /hotel-occupancy-surveys/${ciudad}/${anyo}: ${err}`);
                 response.sendStatus(500);
-            }
-            else{
+            } else {
+                if(data==0){
+                    console.log(`Not Found`);
+                    response.sendStatus(404);  
+            } else{
                 console.log(`Numero de documentos actualizados: ${data}`);
                 response.sendStatus(200);  
                 }
+            }
         });
     }
 });

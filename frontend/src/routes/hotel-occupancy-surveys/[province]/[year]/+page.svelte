@@ -5,6 +5,7 @@
     import { Table, Button, Alert } from "sveltestrap";
     import { page } from "$app/stores";
     import {} from "./style.css";
+
     const colors = [
         "primary",
         "secondary",
@@ -15,12 +16,6 @@
         "light",
         "dark",
     ];
-
-    let URL_BASE = "";
-
-    if (dev) {
-        URL_BASE = "https://sos2223-14.appspot.com";
-    }
 
     onMount(async () => {
         getData();
@@ -126,8 +121,9 @@
 </script>
 
 <main>
-
-    <div class="elementos">
+    {#if message != ""}
+        <Alert color={c}>{message}</Alert>
+    {/if}
         <h1><u>Detalles del dato</u></h1>
         <Table>
             <thead>
@@ -146,8 +142,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{province}</td>
-                    <td>{$year}</td>
+                    <td>{updatedProvince}</td>
+                    <td>{updatedYear}</td>
                     <td><input bind:value={updatedAverageEmployment}></td>
                     <td><input bind:value={updatedEstimatedAverageOpenEstablishment}></td>
                     <td><input bind:value={updatedEstimatedAveragePlace}></td>
@@ -155,10 +151,9 @@
                     <td><input bind:value={updatedOccupancyRateByPlace}></td>
                     <td><input bind:value={updatedOccupancyRateByWeekendPlace}></td>
                     <td><input bind:value={updatedRoomOccupancyRate}></td>
-                        <td>
+                    <td>
                         <Button color="info" on:click={updateData}
-                            >Guardar</Button
-                        >
+                            >Guardar</Button>
                     </td>
                 </tr>
             </tbody>
@@ -166,10 +161,10 @@
         <div>
             <ul>
                 <li>
-                    Provincia:{$page.params.province}
+                    Provincia:{updatedProvince}
                 </li>
                 <li>
-                    Año: {$page.params.year}
+                    Año: {updatedYear}
                 </li>
                 <li>
                     Media de empleo: {updatedAverageEmployment}
@@ -195,7 +190,6 @@
 
             </ul>
         </div>
-    </div>
     <br>
     <Button id="volver" color="info" on:click={comeBack}>Volver a la página</Button>
 </main>
