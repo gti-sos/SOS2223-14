@@ -95,9 +95,11 @@
         <a href="https://sos2223-14.appspot.com/apartment-occupancy-surveys" class="margen">
             FrontEnd -> Encuesta de ocupacion de apartamentos
         </a>
+        <br>
         <a href="https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys" class="margen">
             FrontEnd -> Encuesta de coyuntura turistica de Andalucía
         </a>
+        <br>
         <a href="https://sos2223-14.appspot.com/hotel-occupancy-surveys" class="margen">
             FrontEnd -> Encuesta de ocupación hotelera
         </a>

@@ -47,7 +47,7 @@
             updatedProvince = dato.province;
             updatedYear = dato.year;
             updatedTourist = dato.tourist;
-            updatedAverageDailyExpenditure = dato.average_stay;
+            updatedAverageDailyExpenditure = dato.average_daily_expenditure;
             updatedAverageStay = dato.average_stay;
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
