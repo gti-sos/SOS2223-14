@@ -327,7 +327,7 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
                 response.status(404).send("Data not found");
             }
         }
-        // Búsqueda por año
+        // Búsqueda por anyo
         if (year != null){
             var filteredList = filteredList.filter((reg)=>
             {
@@ -569,14 +569,12 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province",(request, response)=>{
                 }
 
                 //Comprobamos si existe 
-
                 if (filteredList==0){
                     console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
                         response.status(404).send("Data not found");
                 }
 
                 //Resultado
-
                 if(request.query.limit != undefined || request.query.offset != undefined){
                     filteredList = paginacion(request,filteredList);
                 }
@@ -585,7 +583,6 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province",(request, response)=>{
                 });
 
                 //Comprobamos fields
-
                 if(request.query.fields!=null){
 
                     //Comprobamos si los campos son correctos
@@ -611,20 +608,19 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province",(request, response)=>{
 });
 
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,response) => {
-    var año = parseInt(request.params.year);
+    var anyo = parseInt(request.params.year);
     var ciudad = request.params.province;
-    console.log(`New GET to /hotel-occupancy-surveys/${ciudad}/${año}`);
-    db.find({province : ciudad, year : año}).exec((err, data) =>{
+    console.log(`New GET to /hotel-occupancy-surveys/${ciudad}/${anyo}`);
+    
+    db.find({province : ciudad, year : anyo}).exec((err, data) =>{
         if(err){
-            console.log(`Error geting /hotel-occupancy-surveys/${ciudad}/${año}: ${err}`);
+            console.log(`Error geting /hotel-occupancy-surveys/${ciudad}/${anyo}: ${err}`);
             response.sendStatus(500);
         }else{
             if(data.length!=0){
                 console.log(`data returned ${data.length}`);
-                response.json(data.map((d)=>{
-                    delete d._id;
-                    return d;
-                })); 
+                delete data[0]._id;
+                response.json(data[0]); 
             }
             else{
                 console.log(`Data not found /hotel-occupancy-surveys/${province}/${year}: ${err}`);
@@ -681,6 +677,7 @@ app.put(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,respon
     var newFile = request.body;
     var ciudad = request.params.province;
     var anyo = parseInt(request.params.year);
+
     if(!newFile.province || !newFile.year || !newFile.average_employment || !newFile.estimated_average_open_establishment || !newFile.estimated_average_place || !newFile.estimated_room || !newFile.occupancy_rate_by_place || !newFile.occupancy_rate_by_weekend_place || !newFile.room_occupancy_rate){
         console.log(`No se han recibido los campos esperados:`);
         response.status(400).send("Bad Request");
@@ -723,13 +720,13 @@ app.delete(BASE_API_URL +"/hotel-occupancy-surveys/:province",(request, response
 
 app.delete(BASE_API_URL +"/hotel-occupancy-surveys/:province/:year",(request, response)=>{
     var ciudad = request.params.province;
-    var año = parseInt(request.params.year);
+    var anyo = parseInt(request.params.year);
 
-    console.log(`New DELETE to //hotel-occupancy-surveys/${ciudad}/${año}`);
+    console.log(`New DELETE to //hotel-occupancy-surveys/${ciudad}/${anyo}`);
 
-    db.remove({province:ciudad, year:año},{multi:true},function (err, dbRemoved){
+    db.remove({province:ciudad, year:anyo},{multi:true},function (err, dbRemoved){
         if(err){
-            console.log(`Error deleting /hotel-occupancy-surveys/${ciudad}/${año}: ${err}`);
+            console.log(`Error deleting /hotel-occupancy-surveys/${ciudad}/${anyo}: ${err}`);
             response.sendStatus(500);
         }else{
             if(dbRemoved==0){

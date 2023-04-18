@@ -213,7 +213,7 @@
 */
     async function nextPage() {
         resultStatus = result = "";
-        const res = await fetch(API+`?offset=${offset}&&limit=${limit}`, {
+        const res = await fetch(API+`?offset=10&&limit=${limit}`, {
             method: "GET",
         });
         try {
@@ -314,6 +314,7 @@
         } 
     }
 
+/*
     async function getID(searchProvinceID,searchYearID) {
         resultStatus = result = ""; 
         const res = await fetch(API+`?province=${searchProvinceID}&&year=${searchYearID}`, {
@@ -342,7 +343,8 @@
             c = "danger";
         }
     }
-
+*/
+/*
     async function getFromTo(searchProvinceRange,getFrom,getTo) {
         resultStatus = result = "";
         const res = await fetch(API+`?province=${searchProvinceRange}&&from=${getFrom}&&to=${getTo}`, {
@@ -356,7 +358,7 @@
             } catch (error) {
                 console.log(`Error al parsear el resultado: ${error}`);
             }
-        } else {
+            } else {
             const res = await fetch(API+`?from=${getFrom}&&to=${getTo}`, {
                 method: "GET",
             });
@@ -384,7 +386,65 @@
             c = "danger";
         } 
     }
+*/
 
+async function getFromTo(searchProvinceRange,getFrom,getTo) {
+        resultStatus = result = "";
+        if (searchProvinceRange != "") {
+            const res = await fetch(API+`?province=${searchProvinceRange}&from=${getFrom}&to=${getTo}`, {
+                method: "GET",
+            });
+            try {
+                const data = await res.json();
+                result = JSON.stringify(data, null, 2);
+                datos = data;
+            } catch (error) {
+                console.log(`Error al parsear el resultado: ${error}`);
+            }
+            const status = await res.status;
+            resultStatus = status;
+            if (status == 200) {
+                message = "Elemento encontrado";
+                c = "success";
+            } else if (status == 400) {
+                message = "La petición no es correcta."
+                c = "danger";
+            } else if (status == 404) {
+                message="No hay datos disponibles del rango indicado."
+                c = "danger";
+            } else if (status == 500) {
+                message = "Error del servidor";
+                c = "danger";
+            } 
+            } else {
+            const res = await fetch(API+`?from=${getFrom}&&to=${getTo}`, {
+                method: "GET",
+            });
+            try {
+                const data = await res.json();
+                result = JSON.stringify(data, null, 2);
+                datos = data;
+            } catch (error) {
+                console.log(`Error al parsear el resultado: ${error}`);
+            }
+            const status = await res.status;
+            resultStatus = status;
+            if (status == 200) {
+                message = "Elemento encontrado";
+                c = "success";
+            } else if (status == 400) {
+                message = "La petición no es correcta."
+                c = "danger";
+            } else if (status == 404) {
+                message="No hay datos disponibles del rango indicado."
+                c = "danger";
+            } else if (status == 500) {
+                message = "Error del servidor";
+                c = "danger";
+            } 
+        }
+        
+    }
 
     async function getAverageStay(getAboveAverageStay,getBelowAverageStay) {
         resultStatus = result = "";
