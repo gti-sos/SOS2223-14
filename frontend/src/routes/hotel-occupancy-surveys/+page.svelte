@@ -70,7 +70,7 @@
 
     async function getAllData() {
         resultStatus = result = "";
-        const res = await fetch(API+`?offset=0&&limit=${limit}`, {
+        const res = await fetch(API+`?offset=${offset}&&limit=${limit}`, {
             method: "GET",
         });
         try {
@@ -99,7 +99,7 @@
         const status = await res.status;
         resultStatus = status;
         if(status==200){
-            getFiles();
+            getAllData();
             message = "Los datos han sido insertados correctamente."
             c = "success";
         }
@@ -213,7 +213,7 @@
 */
     async function nextPage() {
         resultStatus = result = "";
-        const res = await fetch(API+`?offset=10&&limit=${limit}`, {
+        const res = await fetch(API+`?offset=${offset}&&limit=${limit}`, {
             method: "GET",
         });
         try {
@@ -426,6 +426,11 @@
     {/if}
     <h1><u>Encuesta de ocupación hotelera</u></h1>
     <p>Datos devueltos: {datos.length}</p>
+    <br>
+    {#if datos.length == 0}
+        <p>¿Quieres recargar todos los datos iniciales?</p>
+        <Button color="success" on:click={getInitialData}>Cargar datos iniciales</Button>
+    {:else if datos.length > 0}
     <Table>
         <thead>
             <tr>
@@ -464,12 +469,7 @@
                 </tr>
             {/each}
         </tbody>
-    </Table>
-    <br>
-    {#if datos.length == 0}
-        <p>¿Quieres recargar todos los datos iniciales?</p>
-        <Button color="success" on:click={getInitialData}>Cargar datos iniciales</Button>
-    {:else if datos.length > 0}
+        </Table>
         <Button color="dark" on:click={getAllData}>Página anterior</Button>
         <Button color="dark" on:click={nextPage}>Página siguiente</Button>
         <br>
