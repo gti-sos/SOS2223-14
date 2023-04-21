@@ -43,7 +43,7 @@
     let URL_BASE = "";
 
     if (dev) {
-        URL_BASE = "https://sos2223-14.appspot.com";
+        URL_BASE = "http://localhost:12345";
     }
 
     onMount(async () => {
