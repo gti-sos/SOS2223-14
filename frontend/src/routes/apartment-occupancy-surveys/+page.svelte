@@ -219,6 +219,7 @@
         else{
             b = "";
         }
+        l = `?limit=${10}&&offset=${0}`;
         const res = await fetch(URL_BASE+API+l+b, {
             method: "GET",
         });        
