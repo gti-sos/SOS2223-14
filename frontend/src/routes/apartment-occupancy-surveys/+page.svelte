@@ -40,10 +40,8 @@
     let c = "";
     let l = `?limit=${limit}&&offset=${offset}`;
 
-    let URL_BASE = "";
-
     if (dev) {
-        URL_BASE = "http://localhost:12345";
+        API = "http://localhost:12345" + API;
     }
 
     onMount(async () => {
@@ -53,7 +51,7 @@
     
     async function getAllData() {
         resultStatus = result = "";
-        const res = await fetch(URL_BASE+API+l+b, {
+        const res = await fetch(API+l+b, {
             method: "GET",
         });        
         try {
@@ -69,7 +67,7 @@
 
     async function loadAllData() {
         resultStatus = result = "";
-        const res = await fetch(URL_BASE+`/api/v2/apartment-occupancy-surveys/loadInitialData`, {
+        const res = await fetch(API+`/loadInitialData`, {
             method: "GET",
         });
         try {
@@ -93,7 +91,7 @@
 
     async function createFile() {
         resultStatus = result = "";
-        const res = await fetch(URL_BASE+API, {
+        const res = await fetch(API, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -220,7 +218,7 @@
             b = "";
         }
         l = `?limit=${10}&&offset=${0}`;
-        const res = await fetch(URL_BASE+API+l+b, {
+        const res = await fetch(API+l+b, {
             method: "GET",
         });        
         try {
@@ -247,7 +245,7 @@
     
     async function deleteAll() {
         resultStatus = result = "";
-        const res = await fetch(URL_BASE+API, {
+        const res = await fetch(API, {
             method: "DELETE",
         });
         const status = await res.status;
@@ -260,12 +258,12 @@
 
     
     async function view(province, year) {
-        window.location.href = URL_BASE + "/apartment-occupancy-surveys/"+province +"/" +year;
+        window.location.href = API + "/" +province +"/" +year;
     }
 
     async function fromTo(from,to) {
         resultStatus = result = "";
-        const res = await fetch(URL_BASE+API+`?offset=${offset}&&limit=${limit}&&from=${from}&&to=${to}`, {
+        const res = await fetch(API+`?offset=${offset}&&limit=${limit}&&from=${from}&&to=${to}`, {
             method: "GET",
         });        
         try {
@@ -305,7 +303,7 @@
     async function nextPage() {
         offset += limit;
         resultStatus = result = "";
-        const res = await fetch(URL_BASE+API+b, {
+        const res = await fetch(API+b, {
             method: "GET",
         });        
         try {
@@ -330,6 +328,10 @@
             getAllData();
         }
               
+    }
+
+    async function redirect(province,year){
+        window.location.href = "/graph/apartment-occupancy-surveys/"+province+"/"+year;
     }
 
 </script>
@@ -408,6 +410,7 @@
                     <td>{dato.average_stay}</td>
                     <td>
                         <Button color="info" on:click={view(dato.province, dato.year)}>Borrar/actualizar dato</Button>
+                        <Button color="warning" on:click={redirect(dato.province, dato.year)}>Ver su gráfica</Button>
                     </td>
                 </tr>
             {/each}
@@ -433,4 +436,5 @@
         <Button color="danger" on:click={deleteAll}>Borrar todo</Button>
         <Button id="load" color="success" on:click={loadAllData}>Recargar datos</Button>
     </div>
+
 </main>

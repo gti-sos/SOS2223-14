@@ -584,7 +584,79 @@ function loadBackend_cris_v2(app){
                 }                               
             }
         });
-    });   
+    });
+    
+    app.get(BASE_API_URL+"/dataName", (request, response)=>{
+        console.log(`New GET to /dataNames`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /dataNames: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+                for(let i=0; i<data.length; i++){
+                    let dato = data[i]["province"]+", "+ data[i]["year"];
+                    array.push(dato);
+                }
+                response.send(JSON.stringify(array,null,2));
+            }
+        })
+    });
+
+    app.get(BASE_API_URL+"/dataTravelers", (request, response)=>{
+        console.log(`New GET to /dataTravelers`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /Travelers: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+                for(let i=0; i<data.length; i++){
+                    let dato = data[i]["traveler"];
+                    array.push(dato);
+                }
+                response.send(JSON.stringify(array,null,2));
+            }
+        })
+    });
+
+    app.get(BASE_API_URL+"/dataOvernightStay", (request, response)=>{
+        console.log(`New GET to /dataOvernightStay`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /dataOvernightStay: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+                for(let i=0; i<data.length; i++){
+                    let dato = data[i]["overnight_stay"];
+                    array.push(dato);
+                }
+                response.send(JSON.stringify(array,null,2));
+            }
+        })
+    });
+
+    app.get(BASE_API_URL+"/dataAverageStay", (request, response)=>{
+        console.log(`New GET to /dataAverageStay`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /dataAverageStay: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+                for(let i=0; i<data.length; i++){
+                    let dato = data[i]["average_stay"];
+                    array.push(dato);
+                }
+                response.send(JSON.stringify(array,null,2));
+            }
+        })
+    });
 };
 
 function paginacion(req, lista){
