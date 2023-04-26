@@ -72,15 +72,18 @@
                 occupancy_rate_by_weekend_place.push(parseInt(datos[i]["occupancy_rate_by_weekend_place"]));
                 room_occupancy_rate.push(parseInt(datos[i]["room_occupancy_rate"]));
             }
-            loadHighCharts(provincias,traveler,overnight_stay,average_stay,
+           /*loadHighCharts(provincias,traveler,overnight_stay,average_stay,
+                          average_daily_expenditure,rooms,occupancy_rate_by_place,occupancy_rate_by_weekend_place,room_occupancy_rate);*/
+                            loadJSCharting(provincias,traveler,overnight_stay,average_stay,
                           average_daily_expenditure,rooms,occupancy_rate_by_place,occupancy_rate_by_weekend_place,room_occupancy_rate);
+                          
             console.log(average_daily_expenditure);
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
     }
 
-    async function loadHighCharts(provincias,traveler,overnight_stay,average_stay,average_daily_expenditure,rooms,occupancy_rate_by_place,occupancy_rate_by_weekend_place,room_occupancy_rate) {
+    /*async function loadHighCharts(provincias,traveler,overnight_stay,average_stay,average_daily_expenditure,rooms,occupancy_rate_by_place,occupancy_rate_by_weekend_place,room_occupancy_rate) {
         Highcharts.chart("container", {
             chart: {
                 type: "column",
@@ -153,6 +156,113 @@
                 },
             ],
         });
+    }*/
+
+    async function loadJSCharting(provincias,traveler,overnight_stay,average_stay,average_daily_expenditure,rooms,occupancy_rate_by_place,occupancy_rate_by_weekend_place,room_occupancy_rate) {
+        var chart = JSC.chart('chartDiv_1', { 
+            debug: true, 
+            defaultSeries_type: 'column', 
+            title_label_text: 'Gráfica (parámetros pequeños) con JSCharting', 
+            yAxis: {label_text: ''}, 
+            xAxis: {
+                label_text: '', 
+                categories: provincias
+            }, 
+            series: [  
+                { 
+                    name: 'Estancia media', 
+                    points: average_stay
+                },
+                { 
+                    name: 'Gasto medio', 
+                    points: average_daily_expenditure
+                }, 
+                {
+                    name: "Tasa de ocupación por lugar",
+                    points: occupancy_rate_by_place,
+                },
+                {
+                    name: "Tasa de ocupación por lugar de fin de semana",
+                    points: occupancy_rate_by_weekend_place,
+                },
+                {
+                    name: "Tasa de ocupación de habitación",
+                    points: room_occupancy_rate,
+                }],
+
+        });
+
+        var chart = JSC.chart('chartDiv_3', { 
+            debug: true, 
+            defaultSeries_type: 'column', 
+            title_label_text: 'Gráfica (todo junto) con JSCharting', 
+            yAxis: {label_text: ''}, 
+            xAxis: {
+                label_text: '', 
+                categories: provincias
+            }, 
+            series: [ 
+                { 
+                    name: 'Turistas',  
+                    points: traveler
+                }, 
+                { 
+                    name: 'Pernoctaciones', 
+                    points: overnight_stay
+                }, 
+                {
+                    name: "Habitaciones",
+                    points: rooms,
+                },
+                { 
+                    name: 'Estancia media', 
+                    points: average_stay
+                },
+                { 
+                    name: 'Gasto medio', 
+                    points: average_daily_expenditure
+                }, 
+                {
+                    name: "Tasa de ocupación por lugar",
+                    points: occupancy_rate_by_place,
+                },
+                {
+                    name: "Tasa de ocupación por lugar de fin de semana",
+                    points: occupancy_rate_by_weekend_place,
+                },
+                {
+                    name: "Tasa de ocupación de habitación",
+                    points: room_occupancy_rate,
+                }
+                ],
+
+        });
+
+        var chart = JSC.chart('chartDiv_2', { 
+            debug: true, 
+            defaultSeries_type: 'column', 
+            title_label_text: 'Gráfica (parámetros grandes) con JSCharting', 
+            yAxis: {label_text: ''}, 
+            xAxis: {
+                label_text: '', 
+                categories: provincias
+            }, 
+            series: [ 
+                { 
+                    name: 'Turistas',  
+                    points: traveler
+                }, 
+                { 
+                    name: 'Pernoctaciones', 
+                    points: overnight_stay
+                }, 
+                {
+                    name: "Habitaciones",
+                    points: rooms,
+                },
+                ],
+
+        });
     }
 </script>
 <svelte:head>
@@ -160,10 +270,16 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
 </svelte:head>
 <main>
-    <figure class="highcharts-figure">
-        <div id="container" style="height: 700px;"/>
-        <p class="highcharts-description" />
-    </figure>
+    <div style="margin-left: 30px; margin-right:100px">
+        <div id="chartDiv_1" style="width:1900px; height:500px; margin: 0px auto; margin-top:40px">
+        </div>
+        <div id="chartDiv_2" style="width:1900px; height:500px; margin: 0px auto; margin-top:40px">
+        </div>
+        <div id="chartDiv_3" style="width:1900px; height:500px; margin: 0px auto; margin-top:40px">
+        </div>
+    </div>
+    
 </main>
