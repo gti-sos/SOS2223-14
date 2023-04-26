@@ -191,6 +191,5 @@
                 {result_2}
             </pre>
         {/if}
-    </div>
-    
+    </div>    
 </main>
