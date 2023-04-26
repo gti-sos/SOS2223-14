@@ -2,7 +2,9 @@
     <nav>
         <div class="container">
             <a  id="inicio" href="/">Inicio</a>
-            <a  id="inicio" href="/graph">Grafos</a>
+            <a  id="inicio" href="/graph">Gráfica conjunta</a>
+            <a href="/graph/apartment-occupancy-surveys">Gráfica ocupacion de apartamentos</a>
+            <a href="/integrations">Usos/Integraciones</a>
             <a href="/apartment-occupancy-surveys">Encuesta de ocupación de apartamentos</a>
             <a href="/andalusia-tourism-situation-surveys">Encuesta de coyuntura turística de Andalucía</a>
             <a href="/hotel-occupancy-surveys">Encuesta de ocupación hotelera</a>          
@@ -23,7 +25,7 @@
     }
     .container {
         display: grid;
-        grid-template-columns: 15% 15% 20% 20% 20%; 
+        grid-template-columns: 15% 15% 20% 20% 20% 20%; 
         text-align: center;
     }
 </style>

@@ -3,23 +3,33 @@
     import { onMount } from "svelte";
     import { dev } from "$app/environment";
 
-    let API = "/api/v2";
+    let API = "https://sos2223-14.appspot.com/api/v2";
     let dataNames = "";
     let dataTravelers = "";
     let dataOvernightStay = "";
     let dataAverageStay = "";
-    let result = "";
-    let resultStatus = "";
-
-    if (dev) {
-        API = "http://localhost:12345" + API;
-    }
+    let result_1 = "";
+    let resultStatus_1 = "";
+    let result_2 = "";
+    let resultStatus_2 = "";
+    let dato="";
+    let datos="";
+    let traveler=[];
+    let overnight_stay=[]
+    let average_stay=[];
 
     onMount(async () => {
+        getAllData();
+        getData();
         getNames();
     });
 
-    async function loadChart(dataNames,dataTravelers,dataOvernightStay,dataAverageStay) {
+    async function loadHighCharts(
+        dataNames,
+        dataTravelers,
+        dataOvernightStay,
+        dataAverageStay
+    ) {
         Highcharts.chart("container", {
             chart: {
                 type: "column",
@@ -75,71 +85,125 @@
     }
 
     async function getNames() {
-        resultStatus = result = "";
         const res = await fetch(API + "/dataName", {
             method: "GET",
         });
         try {
             const dataRecieved = await res.json();
-            result = JSON.stringify(dataRecieved, null, 2);
             dataNames = dataRecieved;
             getTravelers();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
+    }
+
+    async function getAllData() {
+        resultStatus_1 = result_1 = "";
+        const res = await fetch(API + "/apartment-occupancy-surveys", {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result_1 = JSON.stringify(data, null, 2);
+            datos = data;
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
         const status = await res.status;
-        resultStatus = status;
+        resultStatus_1 = status;
     }
 
     async function getTravelers() {
-        resultStatus = result = "";
         const res = await fetch(API + "/dataTravelers", {
             method: "GET",
         });
         try {
             const dataRecieved = await res.json();
-            result = JSON.stringify(dataRecieved, null, 2);
             dataTravelers = dataRecieved;
             getOvernightStay();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
-        const status = await res.status;
-        resultStatus = status;
     }
 
     async function getOvernightStay() {
-        resultStatus = result = "";
         const res = await fetch(API + "/dataOvernightStay", {
             method: "GET",
         });
         try {
             const dataRecieved = await res.json();
-            result = JSON.stringify(dataRecieved, null, 2);
             dataOvernightStay = dataRecieved;
             getAverageStay();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
-        const status = await res.status;
-        resultStatus = status;
     }
 
     async function getAverageStay() {
-        resultStatus = result = "";
         const res = await fetch(API + "/dataAverageStay", {
             method: "GET",
         });
         try {
             const dataRecieved = await res.json();
-            result = JSON.stringify(dataRecieved, null, 2);
             dataAverageStay = dataRecieved;
-            loadChart(dataNames,dataTravelers,dataOvernightStay,dataAverageStay);
+            loadHighCharts(
+                dataNames,
+                dataTravelers,
+                dataOvernightStay,
+                dataAverageStay
+            );
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+    }
+
+    async function loadJSCharting(traveler,overnight_stay,average_stay) {
+        var chart = JSC.chart('chartDiv', { 
+            debug: true, 
+            defaultSeries_type: 'column', 
+            title_label_text: '', 
+            yAxis: { label_text: ''}, 
+            xAxis: {
+                label_text: '', 
+                categories: ['']
+            }, 
+            series: [ 
+                { 
+                name: 'Turistas',  
+                points: traveler
+                }, 
+                { 
+                name: 'Pernoctaciones', 
+                points: overnight_stay 
+                }, 
+                { 
+                name: 'Estancia media', 
+                points: average_stay 
+                }, 
+            ] 
+        });
+    }
+
+    async function getData() {
+        resultStatus_2 = result_2 = "";
+        const res = await fetch(API + "/apartment-occupancy-surveys/Granada", {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result_2 = JSON.stringify(data, null, 2);
+            dato = data;
+            for(let i=0; i<dato.length; i++){
+                traveler.push(dato[i]["traveler"]);
+                overnight_stay.push(dato[i]["overnight_stay"]);
+                average_stay.push(dato[i]["average_stay"]);
+            }
+            loadJSCharting(traveler,overnight_stay,average_stay);
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
         const status = await res.status;
-        resultStatus = status;
+        resultStatus_2 = status;
     }
 </script>
 
@@ -148,11 +212,37 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
 </svelte:head>
 <main>
-    <h1 style="text-align:center;">Graph</h1>
+    <h1 style="text-align:center;font-style: oblique; font-family: initial;">Gráfica datos totales</h1>
     <figure class="highcharts-figure">
         <div id="container" />
         <p class="highcharts-description" />
     </figure>
+
+    {#if resultStatus_1 != ""}
+        <div style="margin-left: 20px; font-size:21px">
+            <p>Result:</p>
+            <pre>
+                {resultStatus_1}
+                {result_1}
+            </pre>
+        </div>
+    {/if}
+    <h2 style="text-align: center; font-style: oblique; font-family: initial;">Gráfica Granada</h2>
+    <u><p style="text-align: center;">
+        Gráfica con JSCharting
+    </p></u>
+    <div id="chartDiv" style="max-width:740px; height:400px; margin: 0px auto; margin-top:40px">
+    </div>
+    {#if resultStatus_2 != ""}
+        <div style="margin-left: 20px; font-size:21px">
+            <p>Result:</p>
+            <pre>
+                {resultStatus_2}
+                {result_2}
+            </pre>
+        </div>
+    {/if}
 </main>

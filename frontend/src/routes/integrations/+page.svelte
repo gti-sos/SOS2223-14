@@ -3,8 +3,9 @@
     import { onMount } from "svelte";
     import { Table } from "sveltestrap";
 
-    let API_compañerx = "https://sos2223-12.appspot.com/api/v2/agroclimatic";
-    let API_cristina = "https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
+    let API_compañerx_1 = "https://sos2223-12.appspot.com/api/v2/agroclimatic";
+    //let API_compañerx_2 = "https://sos2223-12.appspot.com/api/v2/pollutions";
+    let API_cristina = "https://sos2223-14.appspot.com/api/v2";
     let datos = "";
     let result = "";
     let a = "";
@@ -13,6 +14,7 @@
     let minimas = [];
     let maximas = [];
     let dataTravelers = "";
+    let dataNames = "";
     let dataOvernightStay = "";
     let dataAverageStay = "";
 
@@ -22,7 +24,7 @@
     });
 
     async function getNames_compañerx() {
-        const res = await fetch(API_compañerx, {
+        const res = await fetch(API_compañerx_1, {
             method: "GET",
         });
         try {
@@ -46,16 +48,14 @@
             const dataRecieved = await res.json();
             result = JSON.stringify(dataRecieved, null, 2);
             dataNames = dataRecieved;
-            for (let i = 0; i < datos.length; i++) {
-                a = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                provincias.push(a);
+            for (let i = 0; i < dataNames.length; i++) {
+                provincias.push(dataNames[i]);
             }
+            console.log(provincias);
             getTravelers();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
-        const status = await res.status;
-        resultStatus = status;
     }
 
     async function getTravelers() {
@@ -66,12 +66,11 @@
             const dataRecieved = await res.json();
             result = JSON.stringify(dataRecieved, null, 2);
             dataTravelers = dataRecieved;
+            console.log(dataTravelers);
             getOvernightStay();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
-        const status = await res.status;
-        resultStatus = status;
     }
 
     async function getOvernightStay() {
@@ -82,6 +81,7 @@
             const dataRecieved = await res.json();
             result = JSON.stringify(dataRecieved, null, 2);
             dataOvernightStay = dataRecieved;
+            console.log(dataOvernightStay);
             getAverageStay();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
@@ -96,6 +96,7 @@
             const dataRecieved = await res.json();
             result = JSON.stringify(dataRecieved, null, 2);
             dataAverageStay = dataRecieved;
+            console.log(dataAverageStay);
             getMinima();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
@@ -103,7 +104,7 @@
     }
 
     async function getMinima() {
-        const res = await fetch(API_compañerx, {
+        const res = await fetch(API_compañerx_1, {
             method: "GET",
         });
         try {
@@ -121,7 +122,7 @@
     }
 
     async function getMaxima() {
-        const res = await fetch(API_compañerx, {
+        const res = await fetch(API_compañerx_1, {
             method: "GET",
         });
         try {
@@ -132,41 +133,28 @@
                 maximas.push(parseInt(b));
             }
             console.log(maximas);
-            loadData();
+            loadData(provincias,dataTravelers,dataOvernightStay,dataAverageStay);
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
     }
 
-    async function loadData() {
-        Highcharts.chart("container", {
+    async function loadData(provincias,dataTravelers,dataOvernightStay,dataAverageStay) {
+        Highcharts.chart("container_1", {
             chart: {
                 zoomType: "xy",
             },
             title: {
-                text: "Average Monthly Weather Data for Tokyo",
-                align: "left",
+                text: "Gráfica",
+                align: "center",
             },
             subtitle: {
-                text: "Source: WorldClimate.com",
-                align: "left",
+                text: 'Source: <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank">API Ocupación de apartamentos en Andalucía</a> y  <a href="https://sos2223-12.appspot.com/api/v2/agroclimatic" target="_blank">API Agroclimaticas</a>',
+                align: "center",
             },
             xAxis: [
                 {
-                    categories: [
-                        "Jan",
-                        "Feb",
-                        "Mar",
-                        "Apr",
-                        "May",
-                        "Jun",
-                        "Jul",
-                        "Aug",
-                        "Sep",
-                        "Oct",
-                        "Nov",
-                        "Dec",
-                    ],
+                    categories: provincias,
                     crosshair: true,
                 },
             ],
@@ -190,14 +178,8 @@
                 {
                     // Secondary yAxis
                     gridLineWidth: 0,
-                    title: {
-                        text: "Rainfall",
-                        style: {
-                            color: Highcharts.getOptions().colors[0],
-                        },
-                    },
                     labels: {
-                        format: "{value} mm",
+                        format: "{value}",
                         style: {
                             color: Highcharts.getOptions().colors[0],
                         },
@@ -207,13 +189,12 @@
                     // Tertiary yAxis
                     gridLineWidth: 0,
                     title: {
-                        text: "Sea-Level Pressure",
                         style: {
                             color: Highcharts.getOptions().colors[1],
                         },
                     },
                     labels: {
-                        format: "{value} mb",
+                        format: "{value} ºC",
                         style: {
                             color: Highcharts.getOptions().colors[1],
                         },
@@ -237,40 +218,216 @@
             },
             series: [
                 {
-                    name: "Rainfall",
+                    name: "Turistas",
                     type: "column",
                     yAxis: 1,
-                    data: [
-                        49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5,
-                        216.4, 194.1, 95.6, 54.4,
-                    ],
+                    data: dataTravelers,
                     tooltip: {
-                        valueSuffix: " mm",
+                        valueSuffix: "",
                     },
                 },
                 {
-                    name: "Sea-Level Pressure",
+                    name: "Pernoctaciones",
+                    type: "column",
+                    yAxis: 1,
+                    data: dataOvernightStay,
+                    tooltip: {
+                        valueSuffix: "",
+                    },
+                },
+                {
+                    name: "Estancia media",
+                    type: "column",
+                    yAxis: 1,
+                    data: dataAverageStay,
+                    tooltip: {
+                        valueSuffix: "",
+                    },
+                },
+                {
+                    name: "Temperatura máxima",
                     type: "spline",
                     yAxis: 2,
-                    data: [
-                        1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6,
-                        1010.2, 1013.1, 1016.9, 1018.2, 1016.7,
-                    ],
+                    data: maximas,
                     marker: {
                         enabled: false,
                     },
                     dashStyle: "shortdot",
                     tooltip: {
-                        valueSuffix: " mb",
+                        valueSuffix: " ºC",
                     },
                 },
                 {
-                    name: "Temperature",
+                    name: "Temperatura mínima",
                     type: "spline",
-                    data: [
-                        7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3,
-                        13.9, 9.6,
-                    ],
+                    data: minimas,
+                    tooltip: {
+                        valueSuffix: " °C",
+                    },
+                },
+            ],
+            responsive: {
+                rules: [
+                    {
+                        condition: {
+                            maxWidth: 500,
+                        },
+                        chartOptions: {
+                            legend: {
+                                floating: false,
+                                layout: "horizontal",
+                                align: "center",
+                                verticalAlign: "bottom",
+                                x: 0,
+                                y: 0,
+                            },
+                            yAxis: [
+                                {
+                                    labels: {
+                                        align: "right",
+                                        x: 0,
+                                        y: -6,
+                                    },
+                                    showLastLabel: false,
+                                },
+                                {
+                                    labels: {
+                                        align: "left",
+                                        x: 0,
+                                        y: -6,
+                                    },
+                                    showLastLabel: false,
+                                },
+                                {
+                                    visible: false,
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        });
+        Highcharts.chart("container_2", {
+            chart: {
+                zoomType: "xy",
+            },
+            title: {
+                text: "Gráfica",
+                align: "center",
+            },
+            subtitle: {
+                text: 'Source: <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank">API Ocupación de apartamentos en Andalucía</a> y  <a href="https://sos2223-12.appspot.com/api/v2/agroclimatic" target="_blank">API Agroclimaticas</a>',
+                align: "center",
+            },
+            xAxis: [
+                {
+                    categories: provincias,
+                    crosshair: true,
+                },
+            ],
+            yAxis: [
+                {
+                    // Primary yAxis
+                    labels: {
+                        format: "{value}°C",
+                        style: {
+                            color: Highcharts.getOptions().colors[2],
+                        },
+                    },
+                    title: {
+                        text: "Temperature",
+                        style: {
+                            color: Highcharts.getOptions().colors[2],
+                        },
+                    },
+                    opposite: true,
+                },
+                {
+                    // Secondary yAxis
+                    gridLineWidth: 0,
+                    labels: {
+                        format: "{value}",
+                        style: {
+                            color: Highcharts.getOptions().colors[0],
+                        },
+                    },
+                },
+                {
+                    // Tertiary yAxis
+                    gridLineWidth: 0,
+                    title: {
+                        style: {
+                            color: Highcharts.getOptions().colors[1],
+                        },
+                    },
+                    labels: {
+                        format: "{value} ºC",
+                        style: {
+                            color: Highcharts.getOptions().colors[1],
+                        },
+                    },
+                    opposite: true,
+                },
+            ],
+            tooltip: {
+                shared: true,
+            },
+            legend: {
+                layout: "vertical",
+                align: "left",
+                x: 80,
+                verticalAlign: "top",
+                y: 55,
+                floating: true,
+                backgroundColor:
+                    Highcharts.defaultOptions.legend.backgroundColor || // theme
+                    "rgba(255,255,255,0.25)",
+            },
+            series: [
+                {
+                    name: "Turistas",
+                    type: "column",
+                    yAxis: 1,
+                    data: dataTravelers,
+                    tooltip: {
+                        valueSuffix: "",
+                    },
+                },
+                {
+                    name: "Pernoctaciones",
+                    type: "column",
+                    yAxis: 1,
+                    data: dataOvernightStay,
+                    tooltip: {
+                        valueSuffix: "",
+                    },
+                },
+                {
+                    name: "Estancia media",
+                    type: "column",
+                    yAxis: 1,
+                    data: dataAverageStay,
+                    tooltip: {
+                        valueSuffix: "",
+                    },
+                },
+                {
+                    name: "Temperatura máxima",
+                    type: "spline",
+                    yAxis: 2,
+                    data: maximas,
+                    marker: {
+                        enabled: false,
+                    },
+                    dashStyle: "shortdot",
+                    tooltip: {
+                        valueSuffix: " ºC",
+                    },
+                },
+                {
+                    name: "Temperatura mínima",
+                    type: "spline",
+                    data: minimas,
                     tooltip: {
                         valueSuffix: " °C",
                     },
@@ -329,7 +486,10 @@
 </svelte:head>
 <main>
     <figure class="highcharts-figure">
-        <div id="container"></div>
+        <div id="container_1" style="height: 900px;"></div>
+        <p class="highcharts-description">
+        </p>
+        <div id="container_2" style="height: 900px;"></div>
         <p class="highcharts-description">
         </p>
     </figure>

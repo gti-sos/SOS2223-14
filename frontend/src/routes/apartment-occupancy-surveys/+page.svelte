@@ -330,10 +330,6 @@
               
     }
 
-    async function redirect(province,year){
-        window.location.href = "/graph/apartment-occupancy-surveys/"+province+"/"+year;
-    }
-
 </script>
 
 <main>
@@ -410,7 +406,6 @@
                     <td>{dato.average_stay}</td>
                     <td>
                         <Button color="info" on:click={view(dato.province, dato.year)}>Borrar/actualizar dato</Button>
-                        <Button color="warning" on:click={redirect(dato.province, dato.year)}>Ver su gráfica</Button>
                     </td>
                 </tr>
             {/each}
