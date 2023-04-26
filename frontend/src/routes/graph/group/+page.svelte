@@ -50,7 +50,10 @@
             datos = data;
             for(let i=0; i<datos.length; i++){
                 p = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                provincias.push(p);
+                if(!provincias.includes(p)){
+                    provincias.push(p);
+                }
+                
                 average_daily_expenditure.push(parseFloat(datos[i]["average_daily_expenditure"]));
             }
             getDataHotel();
@@ -67,6 +70,10 @@
             const data = await res.json();
             datos = data;
             for(let i=0; i<datos.length; i++){
+                p = `${datos[i]["province"]} ${datos[i]["year"]}`;
+                if(!provincias.includes(p)){
+                    provincias.push(p);
+                }
                 rooms.push(parseFloat(datos[i]["estimated_room"]));
                 occupancy_rate_by_place.push(parseInt(datos[i]["occupancy_rate_by_place"]));
                 occupancy_rate_by_weekend_place.push(parseInt(datos[i]["occupancy_rate_by_weekend_place"]));
@@ -83,85 +90,11 @@
         }
     }
 
-    /*async function loadHighCharts(provincias,traveler,overnight_stay,average_stay,average_daily_expenditure,rooms,occupancy_rate_by_place,occupancy_rate_by_weekend_place,room_occupancy_rate) {
-        Highcharts.chart("container", {
-            chart: {
-                type: "column",
-            },
-            title: {
-                text: "Ocupación de apartamentos, de hoteles y coyuntura turística en Andalucía",
-            },
-            subtitle: {
-                text: 'Source: <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank">API Ocupación de apartamentos en Andalucía</a>,  <a href="https://sos2223-14.appspot.com/api/v2/andalusia-tourism-situation-surveys" target="_blank">API coyuntura turística en Andalucía</a> y <a href="https://sos2223-14.appspot.com/api/v2/hotel-occupancy-surveys" target="_blank">API Ocupación de hoteles en Andalucía</a>',
-            },
-            xAxis: {
-                categories: provincias,
-                crosshair: true,
-            },
-            yAxis: {
-                min: 0,
-                max: 10,
-                title: {
-                    text: "Total",
-                },
-            },
-            tooltip: {
-                headerFormat:
-                    '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat:
-                    '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.f}</b></td></tr>',
-                footerFormat: "</table>",
-                shared: true,
-                useHTML: true,
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0,
-                },
-            },
-            series: [
-                {
-                    name: "Turistas",
-                    data: traveler,
-                },
-                {
-                    name: "Pernoctaciones",
-                    data: overnight_stay,
-                },
-                {
-                    name: "Estancia media",
-                    data: average_stay,
-                },
-                {
-                    name: "Gasto medio",
-                    data: average_daily_expenditure,
-                },
-                {
-                    name: "Habitaciones",
-                    data: rooms,
-                },
-                {
-                    name: "Tasa de ocupación por lugar",
-                    data: occupancy_rate_by_place,
-                },
-                {
-                    name: "Tasa de ocupación por lugar de fin de semana",
-                    data: occupancy_rate_by_weekend_place,
-                },
-                {
-                    name: "Tasa de ocupación de habitación",
-                    data: room_occupancy_rate,
-                },
-            ],
-        });
-    }*/
-
     async function loadJSCharting(provincias,traveler,overnight_stay,average_stay,average_daily_expenditure,rooms,occupancy_rate_by_place,occupancy_rate_by_weekend_place,room_occupancy_rate) {
         var chart = JSC.chart('chartDiv_1', { 
             debug: true, 
             defaultSeries_type: 'column', 
+            
             title_label_text: 'Gráfica (parámetros pequeños) con JSCharting', 
             yAxis: {label_text: ''}, 
             xAxis: {
@@ -274,7 +207,10 @@
 </svelte:head>
 <main>
     <div style="margin-left: 30px; margin-right:100px">
-        <div id="chartDiv_1" style="width:1900px; height:500px; margin: 0px auto; margin-top:40px">
+        <h3 style="text-align: center; margin-top:100px">
+            Gráfica ocupación de apartamentos, de hoteles y coyuntura turística en Andalucía
+        </h3>
+        <div id="chartDiv_1" style="width:1900px; height:500px; margin: 0px auto;">
         </div>
         <div id="chartDiv_2" style="width:1900px; height:500px; margin: 0px auto; margin-top:40px">
         </div>
