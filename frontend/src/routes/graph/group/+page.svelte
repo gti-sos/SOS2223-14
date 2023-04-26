@@ -207,9 +207,9 @@
 </svelte:head>
 <main>
     <div style="margin-left: 30px; margin-right:100px">
-        <h3 style="text-align: center; margin-top:100px">
+        <h2 style="text-align: center; margin-top:100px; font-style:oblique; font-family:initial">
             Gráfica ocupación de apartamentos, de hoteles y coyuntura turística en Andalucía
-        </h3>
+        </h2>
         <div id="chartDiv_1" style="width:1900px; height:500px; margin: 0px auto;">
         </div>
         <div id="chartDiv_2" style="width:1900px; height:500px; margin: 0px auto; margin-top:40px">
