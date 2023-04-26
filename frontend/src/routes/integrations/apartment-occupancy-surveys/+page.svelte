@@ -33,11 +33,6 @@
         border: 1px solid gray;
         border-radius: 5%;
     }
-    div.photo-title {
-        font-size: 140%;
-        font-family: Arial;
-        text-decoration: underline;
-    }
     img {
         max-height: 400px;
         width: auto;

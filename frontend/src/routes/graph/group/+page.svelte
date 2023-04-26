@@ -265,15 +265,15 @@
         </h2>
         <div
             id="chartDiv_1"
-            style="width:1900px; height:500px; margin: 0px auto;"
+            style="width:1700px; height:500px; margin: 0px auto;"
         />
         <div
             id="chartDiv_2"
-            style="width:1900px; height:500px; margin: 0px auto; margin-top:40px"
+            style="width:1700px; height:500px; margin: 0px auto; margin-top:40px"
         />
         <div
             id="chartDiv_3"
-            style="width:1900px; height:500px; margin: 0px auto; margin-top:40px"
+            style="width:1700px; height:500px; margin: 0px auto; margin-top:40px"
         />
     </div>
 </main>
