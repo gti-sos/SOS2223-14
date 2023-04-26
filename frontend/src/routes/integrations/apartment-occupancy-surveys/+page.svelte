@@ -8,10 +8,7 @@
     let API_cristina = "https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
     let datos = "";
     let result = "";
-    let resultStatus = "";
-    let a = "";
     let p = "";
-    let b = "";
     let provincias = [];
     let minimas = [];
     let maximas = [];
@@ -20,29 +17,11 @@
     let average_stay = [];
 
     onMount(async () => {
-        getNames_compañerx();
-        getNames_cristina();
+        getData_cristina();
     });
 
-    async function getNames_compañerx() {
+    async function getData_compañerx() {
         const res = await fetch(API_compañerx_1, {
-            method: "GET",
-        });
-        try {
-            const data = await res.json();
-            result = JSON.stringify(data, null, 2);
-            datos = data;
-            for (let i = 0; i < datos.length; i++) {
-                a = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                provincias.push(a);
-            }
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-    }
-
-    async function getNames_cristina() {
-        const res = await fetch(API_cristina, {
             method: "GET",
         });
         try {
@@ -51,48 +30,33 @@
             datos = data;
             for (let i = 0; i < datos.length; i++) {
                 p = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                if (!provincias.includes(p)) {
+                if(!provincias.includes(p)){
                     provincias.push(p);
                 }
+                minimas.push(parseInt(datos[i]["minimun_temperature"]));
+                maximas.push(parseInt(datos[i]["maximun_temperature"]));
+            }
+            loadData(provincias,traveler,overnight_stay,average_stay);
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+    }
+
+    async function getData_cristina() {
+        const res = await fetch(API_cristina, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            datos = data;
+            for (let i = 0; i < datos.length; i++) {
+                p = `${datos[i]["province"]} ${datos[i]["year"]}`;
+                provincias.push(p);
                 traveler.push(datos[i]["traveler"]);
                 overnight_stay.push(datos[i]["overnight_stay"]);
                 average_stay.push(datos[i]["average_stay"]);
             }
-            getMinima();
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-    }
-
-    async function getMinima() {
-        const res = await fetch(API_compañerx_1, {
-            method: "GET",
-        });
-        try {
-            const data = await res.json();
-            datos = data;
-            for (let i = 0; i < datos.length; i++) {
-                b = `${datos[i]["minimun_temperature"]}`;
-                minimas.push(parseInt(b));
-            }
-            getMaxima();
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-    }
-
-    async function getMaxima() {
-        const res = await fetch(API_compañerx_1, {
-            method: "GET",
-        });
-        try {
-            const data = await res.json();
-            datos = data;
-            for (let i = 0; i < datos.length; i++) {
-                b = `${datos[i]["maximun_temperature"]}`;
-                maximas.push(parseInt(b));
-            }
-            loadData(provincias,traveler,overnight_stay,average_stay);
+            getData_compañerx();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }

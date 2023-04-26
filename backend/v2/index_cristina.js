@@ -6,7 +6,7 @@ const BASE_API_URL = "/api/v2";
 function loadBackend_cris_v2(app){
     var datos = [
         {
-            "province": "Almeria",
+            "province": "Almería",
             "year": 2021,
             "traveler": 175430,
             "overnight_stay": 852651,
@@ -62,7 +62,7 @@ function loadBackend_cris_v2(app){
             "average_stay": 3
         },
         {
-            "province": "Almeria",
+            "province": "Almería",
             "year": 2022,
             "traveler": 221240,
             "overnight_stay": 980040,
