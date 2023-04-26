@@ -5,6 +5,7 @@
 	"/apartment-occupancy-surveys": [],
 	"/apartment-occupancy-surveys/[province]/[year]": [],
 	"/graph/apartment-occupancy-surveys": [],
+	"/graph/group": [],
 	"/hotel-occupancy-surveys": [],
 	"/hotel-occupancy-surveys/[province]/[year]": [],
 	"/integrations": []

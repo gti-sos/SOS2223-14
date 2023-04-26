@@ -1,35 +1,26 @@
 <script>
     //@ts-nocheck
     import { onMount } from "svelte";
-    import { dev } from "$app/environment";
 
-    let API = "https://sos2223-14.appspot.com/api/v2";
-    let dataNames = "";
-    let dataTravelers = "";
-    let dataOvernightStay = "";
-    let dataAverageStay = "";
-    let result_1 = "";
-    let resultStatus_1 = "";
-    let result_2 = "";
-    let resultStatus_2 = "";
+    let API = "https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
+    let p = "";
     let dato="";
     let datos="";
+    let provincias=[];
     let traveler=[];
     let overnight_stay=[]
     let average_stay=[];
 
+    let traveler_js=[];
+    let overnight_stay_js=[]
+    let average_stay_js=[];
+
     onMount(async () => {
         getAllData();
         getData();
-        getNames();
     });
 
-    async function loadHighCharts(
-        dataNames,
-        dataTravelers,
-        dataOvernightStay,
-        dataAverageStay
-    ) {
+    async function loadHighCharts(provincias,traveler,overnight_stay,average_stay) {
         Highcharts.chart("container", {
             chart: {
                 type: "column",
@@ -41,7 +32,7 @@
                 text: 'Source: <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank">API Ocupación de apartamentos en Andalucía</a>',
             },
             xAxis: {
-                categories: dataNames,
+                categories: provincias,
                 crosshair: true,
             },
             yAxis: {
@@ -70,94 +61,46 @@
             series: [
                 {
                     name: "Turistas",
-                    data: dataTravelers,
+                    data: traveler,
                 },
                 {
                     name: "Pernoctaciones",
-                    data: dataOvernightStay,
+                    data: overnight_stay,
                 },
                 {
                     name: "Estancia media",
-                    data: dataAverageStay,
+                    data: average_stay,
                 },
             ],
         });
     }
 
-    async function getNames() {
-        const res = await fetch(API + "/dataName", {
-            method: "GET",
-        });
-        try {
-            const dataRecieved = await res.json();
-            dataNames = dataRecieved;
-            getTravelers();
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-    }
-
     async function getAllData() {
-        resultStatus_1 = result_1 = "";
-        const res = await fetch(API + "/apartment-occupancy-surveys", {
+        const res = await fetch(API, {
             method: "GET",
         });
         try {
             const data = await res.json();
-            result_1 = JSON.stringify(data, null, 2);
             datos = data;
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-        const status = await res.status;
-        resultStatus_1 = status;
-    }
-
-    async function getTravelers() {
-        const res = await fetch(API + "/dataTravelers", {
-            method: "GET",
-        });
-        try {
-            const dataRecieved = await res.json();
-            dataTravelers = dataRecieved;
-            getOvernightStay();
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-    }
-
-    async function getOvernightStay() {
-        const res = await fetch(API + "/dataOvernightStay", {
-            method: "GET",
-        });
-        try {
-            const dataRecieved = await res.json();
-            dataOvernightStay = dataRecieved;
-            getAverageStay();
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-    }
-
-    async function getAverageStay() {
-        const res = await fetch(API + "/dataAverageStay", {
-            method: "GET",
-        });
-        try {
-            const dataRecieved = await res.json();
-            dataAverageStay = dataRecieved;
+            for (let i = 0; i < datos.length; i++) {
+                p = `${datos[i]["province"]} ${datos[i]["year"]}`;
+                provincias.push(p);
+                traveler.push(parseInt(datos[i]["traveler"]));
+                overnight_stay.push(parseInt(datos[i]["overnight_stay"]));
+                average_stay.push(parseInt(datos[i]["average_stay"]));
+            }
             loadHighCharts(
-                dataNames,
-                dataTravelers,
-                dataOvernightStay,
-                dataAverageStay
+                provincias,
+                traveler,
+                overnight_stay,
+                average_stay
             );
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
     }
 
-    async function loadJSCharting(traveler,overnight_stay,average_stay) {
+    async function loadJSCharting(traveler_js,overnight_stay_js,average_stay_js) {
         var chart = JSC.chart('chartDiv', { 
             debug: true, 
             defaultSeries_type: 'column', 
@@ -170,40 +113,36 @@
             series: [ 
                 { 
                 name: 'Turistas',  
-                points: traveler
+                points: traveler_js
                 }, 
                 { 
                 name: 'Pernoctaciones', 
-                points: overnight_stay 
+                points: overnight_stay_js
                 }, 
                 { 
                 name: 'Estancia media', 
-                points: average_stay 
+                points: average_stay_js
                 }, 
             ] 
         });
     }
 
     async function getData() {
-        resultStatus_2 = result_2 = "";
-        const res = await fetch(API + "/apartment-occupancy-surveys/Granada", {
+        const res = await fetch(API + "/Granada", {
             method: "GET",
         });
         try {
             const data = await res.json();
-            result_2 = JSON.stringify(data, null, 2);
             dato = data;
             for(let i=0; i<dato.length; i++){
-                traveler.push(dato[i]["traveler"]);
-                overnight_stay.push(dato[i]["overnight_stay"]);
-                average_stay.push(dato[i]["average_stay"]);
+                traveler_js.push(dato[i]["traveler"]);
+                overnight_stay_js.push(dato[i]["overnight_stay"]);
+                average_stay_js.push(dato[i]["average_stay"]);
             }
-            loadJSCharting(traveler,overnight_stay,average_stay);
+            loadJSCharting(traveler_js,overnight_stay_js,average_stay_js);
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
-        const status = await res.status;
-        resultStatus_2 = status;
     }
 </script>
 
@@ -215,34 +154,15 @@
     <script src="https://code.jscharting.com/latest/jscharting.js"></script>
 </svelte:head>
 <main>
-    <h1 style="text-align:center;font-style: oblique; font-family: initial;">Gráfica datos totales</h1>
+    <h1 style="text-align:center;font-style: oblique; font-family: initial;">Gráfica ocupación de apartamentos</h1>
     <figure class="highcharts-figure">
-        <div id="container" />
+        <div id="container"/>
         <p class="highcharts-description" />
     </figure>
-
-    {#if resultStatus_1 != ""}
-        <div style="margin-left: 20px; font-size:21px">
-            <p>Result:</p>
-            <pre>
-                {resultStatus_1}
-                {result_1}
-            </pre>
-        </div>
-    {/if}
     <h2 style="text-align: center; font-style: oblique; font-family: initial;">Gráfica Granada</h2>
     <u><p style="text-align: center;">
         Gráfica con JSCharting
     </p></u>
     <div id="chartDiv" style="max-width:740px; height:400px; margin: 0px auto; margin-top:40px">
     </div>
-    {#if resultStatus_2 != ""}
-        <div style="margin-left: 20px; font-size:21px">
-            <p>Result:</p>
-            <pre>
-                {resultStatus_2}
-                {result_2}
-            </pre>
-        </div>
-    {/if}
 </main>

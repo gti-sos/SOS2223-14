@@ -1,9 +1,11 @@
 <main>
     <nav>
-        <div class="container">
+        <div class="container">            
             <a  id="inicio" href="/">Inicio</a>
-            <a  id="inicio" href="/graph">Gráfica conjunta</a>
-            <a href="/graph/apartment-occupancy-surveys">Gráfica ocupacion de apartamentos</a>
+            <a  id="inicio" href="/graph/group">Gráfica conjunta</a>
+            <a href="/graph/apartment-occupancy-surveys">Gráfica ocupación de apartamentos</a>
+            <a href="/graph/hotel-occupancy-surveys">Gráfica ocupación de hoteles</a>
+            <a href="/graph/andaluisa-tourism-situation-surveys">Gráfica de coyuntura turística en Andalucía</a>
             <a href="/integrations">Usos/Integraciones</a>
             <a href="/apartment-occupancy-surveys">Encuesta de ocupación de apartamentos</a>
             <a href="/andalusia-tourism-situation-surveys">Encuesta de coyuntura turística de Andalucía</a>
@@ -16,16 +18,25 @@
         margin-top: 15px;
     }   
     a {
-        color : rgb(2, 56, 107);
+        color : rgb(16, 16, 17);
         text-decoration: none;
-        font-size: 20px;
+        font-size: 21px;
+        padding-top: 20px;
+        margin-left: 10px;
+        text-align: center; 
+             
     }
     main{
-        margin-top: 20px; 
+        margin-top: 20px;
+        position: relative;
+        border-color: black;
+        border-style: solid;
+        border-width: 3px;
+
     }
     .container {
         display: grid;
-        grid-template-columns: 15% 15% 20% 20% 20% 20%; 
-        text-align: center;
+        grid-template-rows: 50% 50%;
+        grid-template-columns: 20% 20% 20% 20% 20%;
     }
 </style>
