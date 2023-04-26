@@ -1,0 +1,133 @@
+<script>
+    // @ts-nocheck
+    import { onMount } from "svelte";
+    import { Table } from "sveltestrap";
+    import axios, { formToJSON } from "axios";
+    import {} from "./style_tabla.css";
+
+    onMount(async () => {
+        datos1();
+        datos2();
+    });
+
+    let datos_1 = "";
+    let datos_2 = "";
+
+    async function datos1() {
+        const options = {
+            method: "GET",
+            url: "https://the-mexican-food-db.p.rapidapi.com/",
+            headers: {
+                "content-type": "application/octet-stream",
+                "X-RapidAPI-Key":
+                    "b428151735msh484420aaa35e088p13992ajsncca631e96bee",
+                "X-RapidAPI-Host": "the-mexican-food-db.p.rapidapi.com",
+            },
+        };
+        try {
+            const response = await axios.request(options);
+            datos_1 = response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function datos2() {
+        const options = {
+            method: "GET",
+            url: "https://exercisedb.p.rapidapi.com/exercises",
+            headers: {
+                "content-type": "application/octet-stream",
+                "X-RapidAPI-Key":
+                    "b428151735msh484420aaa35e088p13992ajsncca631e96bee",
+                "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+            },
+        };
+        try {
+            const response = await axios.request(options);
+            datos_2 = response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+</script>
+
+<main>
+    <div id="tabla">
+        <h3><u>The Mexican Food DB API Documentation</u></h3>
+        <p style="text-align:center">
+            Datos de: <a
+                style="text-decoration: none; color:black"
+                href="https://rapidapi.com/rapihub-rapihub-default/api/the-mexican-food-db/"
+                target="_blank"><u>Rapid API Comida mexicana</u></a
+            >
+        </p>
+        <Table>
+            <thead>
+                <tr>
+                    <th id="tabla1">Id</th>
+                    <th id="tabla1">Título</th>
+                    <th id="tabla1">Dificultad</th>
+                    <th id="tabla1">Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {#each datos_1 as dato}
+                    <tr>
+                        <td>{dato["id"]}</td>
+                        <td>{dato["title"]}</td>
+                        <td>{dato["difficulty"]}</td>
+                        <td>{dato["image"]}</td>
+                    </tr>
+                {/each}
+            </tbody>
+        </Table>
+        <h3><u>Datos de la API en JSON:</u></h3>
+        <br />
+        {#each datos_1 as dato}
+            {JSON.stringify(dato)}
+            <br />
+        {/each}
+    </div>
+
+    <div id="tabla">
+        <h3><u>Fitness and Healthy: ExerciseDB API</u></h3>
+        <p style="text-align:center">
+            Datos de: <a
+                style="text-decoration: none; color:black"
+                href="https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/"
+                target="_blank"><u>Rapid API ExerciseDB</u></a
+            >
+        </p>
+        <Table>
+            <thead>
+                <tr>
+                    <th id="tabla2">Id</th>
+                    <th id="tabla2">Nombre</th>
+                    <th id="tabla2">Etiqueta</th>
+                    <th id="tabla2">Parte del cuerpo</th>
+                    <th id="tabla2">Equipo</th>
+                    <th id="tabla2">Gif url</th>
+                </tr>
+            </thead>
+            <tbody>
+                {#each datos_2 as dato}
+                    <tr>
+                        <td>{dato["id"]}</td>
+                        <td>{dato["name"]}</td>
+                        <td>{dato["target"]}</td>
+                        <td>{dato["bodyPart"]}</td>
+                        <td>{dato["equipment"]}</td>
+                        <td>{dato["gifUrl"]}</td>
+                    </tr>
+                {/each}
+            </tbody>
+        </Table>
+        <h3><u>Datos de la API en JSON:</u></h3>
+        <br />
+        {#each datos_2 as dato}
+            {JSON.stringify(dato)}
+            <br />
+        {/each}
+    </div>
+</main>

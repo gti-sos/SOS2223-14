@@ -1,6 +1,3 @@
-<script>
-
-</script>
 <main>
     <div class="container">
         <div class="photo-block">

@@ -9,6 +9,8 @@
 	"/hotel-occupancy-surveys": [],
 	"/hotel-occupancy-surveys/[province]/[year]": [],
 	"/integrations/apartment-occupancy-surveys": [],
-	"/integrations/apartment-occupancy-surveys/withProxy": [],
-	"/integrations/apartment-occupancy-surveys/withoutProxy": []
+	"/integrations/apartment-occupancy-surveys/graficas": [],
+	"/integrations/apartment-occupancy-surveys/graficas/withProxy": [],
+	"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [],
+	"/integrations/apartment-occupancy-surveys/usos": []
 }

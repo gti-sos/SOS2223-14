@@ -32,6 +32,7 @@
         border-color: black;
         border-style: solid;
         border-width: 3px;
+        height: 200px;
 
     }
     .container {
