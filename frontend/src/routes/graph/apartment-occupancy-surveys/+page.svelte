@@ -155,17 +155,13 @@
 </svelte:head>
 <main>
     <h1 style="text-align:center;font-style: oblique; font-family: initial;">Gráfica ocupación de apartamentos</h1>
-    <u><p style="text-align: center;">
-        Gráfica con Highcharts
-    </p></u>
+    <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://www.highcharts.com/" target="_blank"><u>Highcharts</u></a></p>
     <figure class="highcharts-figure">
         <div id="container"/>
         <p class="highcharts-description" />
     </figure>
     <h2 style="text-align: center; font-style: oblique; font-family: initial;">Gráfica Granada</h2>
-    <u><p style="text-align: center;">
-        Gráfica con JSCharting
-    </p></u>
+    <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
     <div id="chartDiv" style="max-width:740px; height:400px; margin: 0px auto; margin-top:40px">
     </div>
 </main>

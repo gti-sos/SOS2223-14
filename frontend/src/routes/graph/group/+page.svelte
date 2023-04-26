@@ -146,7 +146,7 @@
             debug: true,
             defaultSeries_type: "column",
 
-            title_label_text: "Gráfica (parámetros pequeños) con JSCharting",
+            title_label_text: "Gráfica (parámetros pequeños)",
             yAxis: { label_text: "" },
             xAxis: {
                 label_text: "",
@@ -179,7 +179,7 @@
         var chart = JSC.chart("chartDiv_3", {
             debug: true,
             defaultSeries_type: "column",
-            title_label_text: "Gráfica (todo junto) con JSCharting",
+            title_label_text: "Gráfica (todo junto)",
             yAxis: { label_text: "" },
             xAxis: {
                 label_text: "",
@@ -224,7 +224,7 @@
         var chart = JSC.chart("chartDiv_2", {
             debug: true,
             defaultSeries_type: "column",
-            title_label_text: "Gráfica (parámetros grandes) con JSCharting",
+            title_label_text: "Gráfica (parámetros grandes)",
             yAxis: { label_text: "" },
             xAxis: {
                 label_text: "",
@@ -257,16 +257,12 @@
 </svelte:head>
 <main>
     <div style="margin-left: 30px; margin-right:100px">
-        <h2
-            style="text-align: center; margin-top:100px; font-style:oblique; font-family:initial"
-        >
+        <h2 style="text-align: center; margin-top:100px; font-style:oblique; font-family:initial">
             Gráfica ocupación de apartamentos, de hoteles y coyuntura turística
             en Andalucía
         </h2>
-        <div
-            id="chartDiv_1"
-            style="width:1700px; height:500px; margin: 0px auto;"
-        />
+        <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
+        <div id="chartDiv_1" style="width:1700px; height:500px; margin: 0px auto;"/>
         <div
             id="chartDiv_2"
             style="width:1700px; height:500px; margin: 0px auto; margin-top:40px"
