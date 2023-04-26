@@ -170,11 +170,11 @@
         <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
     </div>
     
-    <div id="chartDiv_1" style="width:1700px; height:600px; margin: 0px auto; margin-top:40px">
+    <div id="chartDiv_1" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
     </div>
-    <div id="chartDiv_2" style="width:1700px; height:600px; margin: 0px auto; margin-top:40px">
+    <div id="chartDiv_2" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
     </div>
-    <div id="chartDiv_3" style="width:1700px; height:600px; margin: 0px auto; margin-top:40px">
+    <div id="chartDiv_3" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
     </div>
     <div style="margin-left:40px;font-size:20px;">
         <h4>Resultado compañerx</h4>

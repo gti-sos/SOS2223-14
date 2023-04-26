@@ -262,14 +262,14 @@
             en Andalucía
         </h2>
         <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
-        <div id="chartDiv_1" style="width:1700px; height:500px; margin: 0px auto;"/>
+        <div id="chartDiv_1" style="width:1500px; height:500px; margin: 0px auto;"/>
         <div
             id="chartDiv_2"
-            style="width:1700px; height:500px; margin: 0px auto; margin-top:40px"
+            style="width:1500px; height:500px; margin: 0px auto; margin-top:40px"
         />
         <div
             id="chartDiv_3"
-            style="width:1700px; height:500px; margin: 0px auto; margin-top:40px"
+            style="width:1500px; height:500px; margin: 0px auto; margin-top:40px"
         />
     </div>
 </main>
