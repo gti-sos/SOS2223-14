@@ -1,249 +1,45 @@
 <script>
-    //@ts-nocheck
-    import { onMount } from "svelte";
-    import { Table } from "sveltestrap";
 
-    let API_compañerx_1 = "https://sos2223-12.appspot.com/api/v2/agroclimatic";
-    //let API_compañerx_2 = "https://sos2223-12.appspot.com/api/v2/pollutions";
-    let API_cristina = "https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
-    let datos = "";
-    let result = "";
-    let p = "";
-    let provincias = [];
-    let minimas = [];
-    let maximas = [];
-    let traveler = [];
-    let overnight_stay = [];
-    let average_stay = [];
-
-    onMount(async () => {
-        getData_cristina();
-    });
-
-    async function getData_compañerx() {
-        const res = await fetch(API_compañerx_1, {
-            method: "GET",
-        });
-        try {
-            const data = await res.json();
-            result = JSON.stringify(data, null, 2);
-            datos = data;
-            for (let i = 0; i < datos.length; i++) {
-                p = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                if(!provincias.includes(p)){
-                    provincias.push(p);
-                }
-                minimas.push(parseInt(datos[i]["minimun_temperature"]));
-                maximas.push(parseInt(datos[i]["maximun_temperature"]));
-            }
-            loadData(provincias,traveler,overnight_stay,average_stay);
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-    }
-
-    async function getData_cristina() {
-        const res = await fetch(API_cristina, {
-            method: "GET",
-        });
-        try {
-            const data = await res.json();
-            datos = data;
-            for (let i = 0; i < datos.length; i++) {
-                p = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                provincias.push(p);
-                traveler.push(datos[i]["traveler"]);
-                overnight_stay.push(datos[i]["overnight_stay"]);
-                average_stay.push(datos[i]["average_stay"]);
-            }
-            getData_compañerx();
-        } catch (error) {
-            console.log(`Error parsing result: ${error}`);
-        }
-    }
-
-    async function loadData(provincias,traveler,overnight_stay,average_stay) {
-        Highcharts.chart("container_1", {
-            chart: {
-                zoomType: "xy",
-            },
-            title: {
-                text: "Gráfica ocupación de apartamentos y agroclimática",
-                align: "center",
-            },
-            subtitle: {
-                text: 'Source: <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank">API Ocupación de apartamentos en Andalucía</a> y  <a href="https://sos2223-12.appspot.com/api/v2/agroclimatic" target="_blank">API Agroclimaticas</a>',
-                align: "center",
-            },
-            xAxis: [
-                {
-                    categories: provincias,
-                    crosshair: true,
-                },
-            ],
-            yAxis: [
-                {
-                    // Primary yAxis
-                    labels: {
-                        format: "{value}°C",
-                        style: {
-                            color: Highcharts.getOptions().colors[2],
-                        },
-                    },
-                    title: {
-                        text: "Temperature",
-                        style: {
-                            color: Highcharts.getOptions().colors[2],
-                        },
-                    },
-                    opposite: true,
-                },
-                {
-                    // Secondary yAxis
-                    gridLineWidth: 0,
-                    labels: {
-                        format: "{value}",
-                        style: {
-                            color: Highcharts.getOptions().colors[0],
-                        },
-                    },
-                },
-                {
-                    // Tertiary yAxis
-                    gridLineWidth: 0,
-                    title: {
-                        style: {
-                            color: Highcharts.getOptions().colors[1],
-                        },
-                    },
-                    labels: {
-                        format: "{value} ºC",
-                        style: {
-                            color: Highcharts.getOptions().colors[1],
-                        },
-                    },
-                    opposite: true,
-                },
-            ],
-            tooltip: {
-                shared: true,
-            },
-            legend: {
-                layout: "vertical",
-                align: "left",
-                x: 80,
-                verticalAlign: "top",
-                y: 55,
-                floating: true,
-                backgroundColor:
-                    Highcharts.defaultOptions.legend.backgroundColor || // theme
-                    "rgba(255,255,255,0.25)",
-            },
-            series: [
-                {
-                    name: "Turistas",
-                    type: "column",
-                    yAxis: 1,
-                    data: traveler,
-                    tooltip: {
-                        valueSuffix: "",
-                    },
-                },
-                {
-                    name: "Pernoctaciones",
-                    type: "column",
-                    yAxis: 1,
-                    data: overnight_stay,
-                    tooltip: {
-                        valueSuffix: "",
-                    },
-                },
-                {
-                    name: "Estancia media",
-                    type: "column",
-                    yAxis: 1,
-                    data: average_stay,
-                    tooltip: {
-                        valueSuffix: "",
-                    },
-                },
-                {
-                    name: "Temperatura máxima",
-                    type: "spline",
-                    yAxis: 2,
-                    data: maximas,
-                    marker: {
-                        enabled: false,
-                    },
-                    dashStyle: "shortdot",
-                    tooltip: {
-                        valueSuffix: " ºC",
-                    },
-                },
-                {
-                    name: "Temperatura mínima",
-                    type: "spline",
-                    data: minimas,
-                    tooltip: {
-                        valueSuffix: " °C",
-                    },
-                },
-            ],
-            responsive: {
-                rules: [
-                    {
-                        condition: {
-                            maxWidth: 500,
-                        },
-                        chartOptions: {
-                            legend: {
-                                floating: false,
-                                layout: "horizontal",
-                                align: "center",
-                                verticalAlign: "bottom",
-                                x: 0,
-                                y: 0,
-                            },
-                            yAxis: [
-                                {
-                                    labels: {
-                                        align: "right",
-                                        x: 0,
-                                        y: -6,
-                                    },
-                                    showLastLabel: false,
-                                },
-                                {
-                                    labels: {
-                                        align: "left",
-                                        x: 0,
-                                        y: -6,
-                                    },
-                                    showLastLabel: false,
-                                },
-                                {
-                                    visible: false,
-                                },
-                            ],
-                        },
-                    },
-                ],
-            },
-        });
-    }
 </script>
-
-<svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-</svelte:head>
 <main>
-    <figure class="highcharts-figure">
-        <div id="container_1" style="height: 900px;"></div>
-        <p class="highcharts-description">
-        </p>
-    </figure>
+    <div class="container">
+        <div class="photo-block">
+            <div class="photo-image-block">
+                <a href="http://sos2223-14.ew.r.appspot.com/integrations/apartment-occupancy-surveys/withProxy"><img src = "https://3.bp.blogspot.com/-X24aRlnk89Q/Vg6xCpICQEI/AAAAAAAAFAU/Pqm7ua8Cm5k/s1600/estadistica2.jpg" alt="Imagen"></a>
+            </div>
+            <div class="photo-metadata-block">
+                <h2 class="photo-title">Con proxy</h2>
+            </div>
+        </div>
+        <div class="photo-block" style="margin-left: 20px;">
+            <div class="photo-image-block">
+                <a href="http://sos2223-14.ew.r.appspot.com/integrations/apartment-occupancy-surveys/withoutProxy"><img src = "https://thumbs.dreamstime.com/b/gr%C3%A1ficos-financieros-41675922.jpg" alt="Imagen"></a>
+            </div>
+            <div class="photo-metadata-block">
+                <h2 class="photo-title">Sin proxy</h2>
+            </div>
+        </div>
+    
+    
+   </div> 
 </main>
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    div.photo-block {
+        text-align: center;
+        border: 1px solid gray;
+        border-radius: 5%;
+    }
+    div.photo-title {
+        font-size: 140%;
+        font-family: Arial;
+        text-decoration: underline;
+    }
+    img {
+        max-height: 400px;
+        width: auto;
+    }
+</style>
