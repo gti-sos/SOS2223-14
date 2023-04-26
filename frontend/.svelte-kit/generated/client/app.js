@@ -27,7 +27,7 @@ export const dictionary = {
 		"/graph/group": [8],
 		"/hotel-occupancy-surveys": [9],
 		"/hotel-occupancy-surveys/[province]/[year]": [10],
-		"/integrations": [11]
+		"/integrations/apartment-occupancy-surveys": [11]
 	};
 
 export const hooks = {

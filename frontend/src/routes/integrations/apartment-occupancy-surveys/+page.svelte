@@ -51,7 +51,9 @@
             datos = data;
             for (let i = 0; i < datos.length; i++) {
                 p = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                provincias.push(p);
+                if (!provincias.includes(p)) {
+                    provincias.push(p);
+                }
                 traveler.push(datos[i]["traveler"]);
                 overnight_stay.push(datos[i]["overnight_stay"]);
                 average_stay.push(datos[i]["average_stay"]);
@@ -102,7 +104,7 @@
                 zoomType: "xy",
             },
             title: {
-                text: "Gráfica",
+                text: "Gráfica ocupación de apartamentos y agroclimática",
                 align: "center",
             },
             subtitle: {

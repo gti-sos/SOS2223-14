@@ -20,7 +20,6 @@ h1{
 #nav {
     margin-top: 20px;
 }
-
 .container {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;

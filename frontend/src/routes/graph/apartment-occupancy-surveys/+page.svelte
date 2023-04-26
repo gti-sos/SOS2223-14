@@ -26,7 +26,7 @@
                 type: "column",
             },
             title: {
-                text: "Ocupación de apartamentos en Andalucía",
+                text: "",
             },
             subtitle: {
                 text: 'Source: <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank">API Ocupación de apartamentos en Andalucía</a>',
@@ -155,6 +155,9 @@
 </svelte:head>
 <main>
     <h1 style="text-align:center;font-style: oblique; font-family: initial;">Gráfica ocupación de apartamentos</h1>
+    <u><p style="text-align: center;">
+        Gráfica con Highcharts
+    </p></u>
     <figure class="highcharts-figure">
         <div id="container"/>
         <p class="highcharts-description" />

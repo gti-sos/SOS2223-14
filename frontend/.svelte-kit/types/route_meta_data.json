@@ -8,5 +8,5 @@
 	"/graph/group": [],
 	"/hotel-occupancy-surveys": [],
 	"/hotel-occupancy-surveys/[province]/[year]": [],
-	"/integrations": []
+	"/integrations/apartment-occupancy-surveys": []
 }
