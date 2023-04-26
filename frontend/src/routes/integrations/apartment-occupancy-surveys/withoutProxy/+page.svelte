@@ -167,6 +167,7 @@
     <div style="margin-left: 30px;">
         <h2 style="text-align:center; font-style: oblique;">Gráfica ocupación de apartamentos y contaminación</h2>
         <p style="text-align:center">Source: <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank"><u>API Ocupación de apartamentos en Andalucía</u></a> y  <a style="text-decoration: none; color:black" href="https://sos2223-12.appspot.com/api/v2/pollutions" target="_blank"><u>API Contaminación</u></a></p>
+        <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
     </div>
     
     <div id="chartDiv_1" style="width:1700px; height:600px; margin: 0px auto; margin-top:40px">
