@@ -1,7 +1,18 @@
 <script>
     //@ts-nocheck
     import { onMount } from "svelte";
-    import {Table, Button} from "sveltestrap";
+    import {Table, Button, Alert} from "sveltestrap";
+
+    const colors = [
+        "primary",
+        "secondary",
+        "success",
+        "danger",
+        "warning",
+        "info",
+        "light",
+        "dark",
+    ];
 
     let API = "https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
     let p = "";
@@ -12,6 +23,10 @@
     let overnight_stay=[]
     let average_stay=[];
     let province="";
+    let result="";
+    let resultStatus="";
+    let message="";
+    let c = "";
 
     let traveler_js=[];
     let overnight_stay_js=[]
@@ -129,6 +144,7 @@
     }
 
     async function getData(province) {
+        resultStatus = result = "";
         const res = await fetch(API + "/"+province, {
             method: "GET",
         });
@@ -143,9 +159,21 @@
                 overnight_stay_js.push(dato[i]["overnight_stay"]);
                 average_stay_js.push(dato[i]["average_stay"]);
             }
-            loadJSCharting(traveler_js,overnight_stay_js,average_stay_js);
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Provincia encontrada";
+            c = "success";
+            loadJSCharting(traveler_js,overnight_stay_js,average_stay_js);
+        } else if (status == 404) {
+            message = "Provincia no encontrada";
+            c = "danger";
+        }else if (status == 500) {
+            message = "Error interno";
+            c = "danger";
         }
     }
 
@@ -159,6 +187,9 @@
     <script src="https://code.jscharting.com/latest/jscharting.js"></script>
 </svelte:head>
 <main>
+    {#if message != ""}
+        <Alert color={c}>{message}</Alert>
+    {/if}
     <h1 style="text-align:center;font-style: oblique; font-family: initial;">Gráfica ocupación de apartamentos</h1>
     <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://www.highcharts.com/" target="_blank"><u>Highcharts</u></a></p>
     <figure class="highcharts-figure">
