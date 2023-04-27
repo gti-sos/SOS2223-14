@@ -1,6 +1,7 @@
 <script>
     //@ts-nocheck
     import { onMount } from "svelte";
+    import {Table, Button} from "sveltestrap";
 
     let API = "https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
     let p = "";
@@ -10,6 +11,7 @@
     let traveler=[];
     let overnight_stay=[]
     let average_stay=[];
+    let province="";
 
     let traveler_js=[];
     let overnight_stay_js=[]
@@ -17,7 +19,6 @@
 
     onMount(async () => {
         getAllData();
-        getData();
     });
 
     async function loadHighCharts(provincias,traveler,overnight_stay,average_stay) {
@@ -127,13 +128,16 @@
         });
     }
 
-    async function getData() {
-        const res = await fetch(API + "/Granada", {
+    async function getData(province) {
+        const res = await fetch(API + "/"+province, {
             method: "GET",
         });
         try {
             const data = await res.json();
             dato = data;
+            traveler_js=[];
+            overnight_stay_js=[]
+            average_stay_js=[];
             for(let i=0; i<dato.length; i++){
                 traveler_js.push(dato[i]["traveler"]);
                 overnight_stay_js.push(dato[i]["overnight_stay"]);
@@ -144,6 +148,7 @@
             console.log(`Error parsing result: ${error}`);
         }
     }
+
 </script>
 
 <svelte:head>
@@ -160,8 +165,19 @@
         <div id="container"/>
         <p class="highcharts-description" />
     </figure>
-    <h2 style="text-align: center; font-style: oblique; font-family: initial;">Gráfica Granada</h2>
+    <h2 style="text-align: center; font-style: oblique; font-family: initial;">Gráfica {province}</h2>
     <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
+    <h3 style="text-align: center; font-style: oblique;"><u>Introduce una ciudad para mostrar su gráfica</u></h3>
+    <Table>
+        <tbody>
+            <tr>
+                <td><input style="margin-left: 800px; height: 45px; text-align: center;" placeholder="Provincia" bind:value={province} /></td>
+                <td>
+                    <Button style="margin-right: 800px; height: 45px;" color="warning" on:click={getData(province)}>Buscar</Button>
+                </td>
+            </tr>
+        </tbody>
+    </Table>
     <div id="chartDiv" style="max-width:740px; height:400px; margin: 0px auto; margin-top:40px">
     </div>
 </main>
