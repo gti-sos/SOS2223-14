@@ -221,18 +221,13 @@
     <h3 style="text-align: center; font-style: oblique;">
         <u>Introduce una ciudad para mostrar su gráfica</u>
     </h3>
-    <Table>
-        <tbody>
-            <tr>
-                <td>
-                    <input style="margin-left: 850px;height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
-                </td>
-                <td>
-                    <Button style="height: 45px;" color="warning" on:click={getData(province)}>Buscar</Button>
-                </td>
-            </tr>
-        </tbody>
-    </Table>
+        <div>
+            <input style="margin-left: 800px;height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
+        </div>
+        <div>
+            <Button style="height: 45px;" color="warning" on:click={getData(province)}>Buscar</Button>
+        </div>
+                    
     <div
         id="chartDiv"
         style="max-width:740px; height:400px; margin: 0px auto; margin-top:40px"
