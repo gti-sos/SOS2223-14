@@ -226,14 +226,14 @@
             <tr>
                 <td>
                     <input
-                        style="margin-left: 800px;height: 45px; text-align: center;"
+                        style="margin-left: 1000px;height: 45px; text-align: center;"
                         placeholder="Provincia"
                         bind:value={province}
                     />
                 </td>
                 <td>
                     <Button
-                        style="margin-right: 800px; height: 45px;"
+                        style="height: 45px;"
                         color="warning"
                         on:click={getData(province)}>Buscar</Button
                     >
