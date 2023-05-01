@@ -222,10 +222,10 @@
         <u>Introduce una ciudad para mostrar su gráfica</u>
     </h3>
         <div>
-            <input style="margin-left: 750px;height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
+            <input style="margin-left: 780px;height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
         </div>
         <div>
-            <Button style="margin-left: 600px;height: 45px; margin-top: 20px;" color="warning" on:click={getData(province)}>Buscar</Button>
+            <Button style="margin-left: 780px;height: 45px; margin-top: 20px;" color="warning" on:click={getData(province)}>Buscar</Button>
         </div>
                     
     <div
