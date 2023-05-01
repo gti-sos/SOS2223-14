@@ -201,9 +201,9 @@
         Gráfica con: <a
             style="text-decoration: none; color:black"
             href="https://www.highcharts.com/"
-            target="_blank"><u>Highcharts</u></a
-        >
+            target="_blank"><u>Highcharts</u></a> 
     </p>
+    <p style="text-align:center">type: column</p>
     <figure class="highcharts-figure">
         <div id="container" />
         <p class="highcharts-description" />
@@ -215,9 +215,8 @@
         Gráfica con: <a
             style="text-decoration: none; color:black"
             href="https://jscharting.com/"
-            target="_blank"><u>JSCharting</u></a
-        >
-    </p>
+            target="_blank"><u>JSCharting</u></a></p>
+    <p style="text-align:center">type: column</p>
     <h3 style="text-align: center; font-style: oblique;">
         <u>Introduce una ciudad para mostrar su gráfica</u>
     </h3>

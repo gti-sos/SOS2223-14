@@ -71,60 +71,10 @@
     }
 
     async function loadJSCharting(provincias,traveler,overnight_stay,average_stay,nO2,O3,sO2) {
-        var chart = JSC.chart('chartDiv_1', { 
+        var chart = JSC.chart('chartDiv', { 
             debug: true, 
-            defaultSeries_type: 'column', 
-            title_label_text: '(parámetros pequeños)', 
-            yAxis: { label_text: ''}, 
-            xAxis: {
-                label_text: '', 
-                categories: provincias
-            }, 
-            series: [   
-                { 
-                    name: 'Estancia media', 
-                    points: average_stay
-                },
-                { 
-                    name: 'nO2', 
-                    points: nO2
-                },
-                { 
-                    name: 'O3', 
-                    points: O3
-                },
-                { 
-                    name: 'sO2', 
-                    points: sO2
-                }, 
-            ] 
-        });
-
-        var chart = JSC.chart('chartDiv_2', { 
-            debug: true, 
-            defaultSeries_type: 'column', 
-            title_label_text: '(parámetros grandes)', 
-            yAxis: { label_text: ''}, 
-            xAxis: {
-                label_text: '', 
-                categories: provincias
-            }, 
-            series: [   
-                { 
-                    name: 'Turistas', 
-                    points: traveler
-                },
-                { 
-                    name: 'Pernoctaciones', 
-                    points: overnight_stay
-                }, 
-            ] 
-        });
-
-        var chart = JSC.chart('chartDiv_3', { 
-            debug: true, 
-            defaultSeries_type: 'column', 
-            title_label_text: '(todos los parámetros)', 
+            defaultSeries_type: 'horizontalColumn', 
+            title_label_text: '', 
             yAxis: { label_text: ''}, 
             xAxis: {
                 label_text: '', 
@@ -167,14 +117,9 @@
     <div style="margin-left: 30px;">
         <h2 style="text-align:center; font-style: oblique;">Gráfica ocupación de apartamentos y contaminación</h2>
         <p style="text-align:center">Source: <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank"><u>API Ocupación de apartamentos en Andalucía</u></a> y  <a style="text-decoration: none; color:black" href="https://sos2223-12.appspot.com/api/v2/pollutions" target="_blank"><u>API Contaminación</u></a></p>
-        <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
+        <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a>, type: horizontalColumn</p>
     </div>
-    
-    <div id="chartDiv_1" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
-    </div>
-    <div id="chartDiv_2" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
-    </div>
-    <div id="chartDiv_3" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
+    <div id="chartDiv" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
     </div>
     <div style="margin-left:40px;font-size:20px;">
         <h4>Resultado compañerx</h4>

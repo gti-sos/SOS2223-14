@@ -19,6 +19,7 @@
     let traveler = [];
     let overnight_stay = [];
     let average_stay = [];
+    let average_temperature = [];
 
     onMount(async () => {
         getData_cristina();
@@ -37,6 +38,7 @@
                 if (!provincias.includes(p)) {
                     provincias.push(p);
                 }
+                average_temperature.push(parseInt(datos[i]["medium_temperature"]))
                 minimas.push(parseInt(datos[i]["minimun_temperature"]));
                 maximas.push(parseInt(datos[i]["maximun_temperature"]));
             }
@@ -78,57 +80,11 @@
         resultStatus_2 = status;
     }
 
-    async function loadJSCharting(provincias,traveler,overnight_stay,average_stay,maximas,minimas) {
-        var chart = JSC.chart('chartDiv_1', { 
+    async function loadJSCharting(provincias,traveler,overnight_stay,average_stay,maximas,minimas,average_temperature) {
+        var chart = JSC.chart('chartDiv', { 
             debug: true, 
             defaultSeries_type: 'column', 
-            title_label_text: '(parámetros pequeños)', 
-            yAxis: { label_text: ''}, 
-            xAxis: {
-                label_text: '', 
-                categories: provincias
-            }, 
-            series: [   
-                { 
-                    name: 'Estancia media', 
-                    points: average_stay
-                },
-                { 
-                    name: 'Temperatura maxima', 
-                    points: maximas
-                },
-                { 
-                    name: 'Temperatura minima', 
-                    points: minimas
-                }, 
-            ] 
-        });
-
-        var chart = JSC.chart('chartDiv_2', { 
-            debug: true, 
-            defaultSeries_type: 'column', 
-            title_label_text: '(parámetros grandes)', 
-            yAxis: { label_text: ''}, 
-            xAxis: {
-                label_text: '', 
-                categories: provincias
-            }, 
-            series: [   
-                { 
-                    name: 'Turistas', 
-                    points: traveler
-                },
-                { 
-                    name: 'Pernoctaciones', 
-                    points: overnight_stay
-                }, 
-            ] 
-        });
-
-        var chart = JSC.chart('chartDiv_3', { 
-            debug: true, 
-            defaultSeries_type: 'column', 
-            title_label_text: '(todos los parámetros)', 
+            title_label_text: '', 
             yAxis: { label_text: ''}, 
             xAxis: {
                 label_text: '', 
@@ -155,6 +111,10 @@
                     name: 'Temperatura minima', 
                     points: minimas
                 }, 
+                { 
+                    name: 'Temperatura media', 
+                    points: average_temperature
+                },
             ] 
         });
     }
@@ -168,13 +128,9 @@
         <h2 style="text-align:center; font-style: oblique;">Gráfica ocupación de apartamentos y agroclimática</h2>
         <p style="text-align:center">Source: <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank"><u>API Ocupación de apartamentos en Andalucía</u></a> y  <a style="text-decoration: none; color:black" href="https://sos2223-12.appspot.com/api/v2/agroclimatic" target="_blank"><u>API Agroclimaticas</u></a></p>
         <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
+        <p style="text-align:center">type: column</p>
     </div>
-    
-    <div id="chartDiv_1" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
-    </div>
-    <div id="chartDiv_2" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
-    </div>
-    <div id="chartDiv_3" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
+    <div id="chartDiv" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
     </div>
     <div style="margin-left:40px;font-size:20px;">
         <h4>Resultado compañerx</h4>
