@@ -1,5 +1,6 @@
 import { c as create_ssr_component, e as escape, v as validate_component, f as add_attribute, d as each } from "../../../chunks/index.js";
-import { T as Table, B as Button } from "../../../chunks/Table.js";
+import { B as Button } from "../../../chunks/Button.js";
+/* empty css                                                       */import { T as Table } from "../../../chunks/Table.js";
 const apartmentOccupancySurveys = "";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let datos = [];

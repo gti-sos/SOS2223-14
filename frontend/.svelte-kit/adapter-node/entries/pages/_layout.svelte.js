@@ -1,15 +1,20 @@
 import { c as create_ssr_component, v as validate_component } from "../../chunks/index.js";
 const Header_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: "#inicio.svelte-17zxjtf{margin-top:15px}a.svelte-17zxjtf{color:rgb(2, 56, 107);text-decoration:none;font-size:20px;margin-right:120px}main.svelte-17zxjtf{margin-top:20px}.container.svelte-17zxjtf{display:grid;grid-template-columns:25% 25% 25% 25%;text-align:center}",
+  code: "#inicio.svelte-1smkici{margin-top:15px}a.svelte-1smkici{color:rgb(16, 16, 17);text-decoration:none;font-size:21px;padding-top:20px;margin-left:10px;text-align:center}main.svelte-1smkici{margin-top:20px;position:relative;border-color:black;border-style:solid;border-width:3px;height:200px}.container.svelte-1smkici{display:grid;grid-template-rows:50% 50%;grid-template-columns:20% 20% 20% 20% 20%}",
   map: null
 };
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$1);
-  return `<main class="svelte-17zxjtf"><nav><div class="container svelte-17zxjtf"><a id="inicio" href="/" class="svelte-17zxjtf">Inicio</a>
-            <a href="/apartment-occupancy-surveys" class="svelte-17zxjtf">Encuesta de ocupación de apartamentos</a>
-            <a href="/andalusia-tourism-situation-surveys" class="svelte-17zxjtf">Encuesta de coyuntura turística de Andalucía</a>
-            <a href="/hotel-occupancy-surveys" class="svelte-17zxjtf">Encuesta de ocupación hotelera</a></div></nav>
+  return `<main class="svelte-1smkici"><nav><div class="container svelte-1smkici"><a id="inicio" href="/" class="svelte-1smkici">Inicio</a>
+            <a id="inicio" href="/graph/group" class="svelte-1smkici">Gráfica conjunta</a>
+            <a href="/graph/apartment-occupancy-surveys" class="svelte-1smkici">Gráfica ocupación de apartamentos</a>
+            <a href="/graph/hotel-occupancy-surveys" class="svelte-1smkici">Gráfica ocupación de hoteles</a>
+            <a href="/graph/andaluisa-tourism-situation-surveys" class="svelte-1smkici">Gráfica de coyuntura turística en Andalucía</a>
+            <a href="/integrations/apartment-occupancy-surveys" class="svelte-1smkici">Usos/Integraciones (Apartamentos)</a>
+            <a href="/apartment-occupancy-surveys" class="svelte-1smkici">Encuesta de ocupación de apartamentos</a>
+            <a href="/andalusia-tourism-situation-surveys" class="svelte-1smkici">Encuesta de coyuntura turística de Andalucía</a>
+            <a href="/hotel-occupancy-surveys" class="svelte-1smkici">Encuesta de ocupación hotelera</a></div></nav>
 </main>`;
 });
 const Footer_svelte_svelte_type_style_lang = "";

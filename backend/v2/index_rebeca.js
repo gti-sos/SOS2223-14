@@ -165,6 +165,152 @@ function loadBackend_rebeca(app) {
         });        
     });
 
+    // GET /andalusia-tourism-situation-surveys/data
+/*
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/data", (request, response)=>{
+        console.log(`New GET to /andalusia-tourism-situation-surveys/data`);
+        function getRandomInt(min,max) {
+            return Math.floor(Math.random()*(max-min)+min);
+        }
+        function v(){return getRandomInt(1,100)};
+
+        var data = new Array();
+
+        for (var i=0; i<10; i++)
+            data.push(v());
+        
+
+        response.json(data);
+
+    });
+
+*/
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/data", (request, response)=>{
+        console.log(`New GET to /andalusia-tourism-situation-surveys/data`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /andalusia-tourism-situation-surveys/data: ${err}`);
+                response.sendStatus(500);
+            } else {
+                    
+                if(data.length==0){
+                    db.insert(datos);
+                } 
+                
+                for(let i=0; i<data.length; i++){
+                    let dato = [];
+                    dato.push(data[i]["province"],data[i]["year"],data[i]["tourist"],
+                    data[i]["average_daily_expenditure"],data[i]["average_stay"]);
+                    array.push(dato);
+                }
+                response.send(JSON.stringify(array,null,2));
+ 
+            }
+        })
+    });
+/*
+    // GET /andalusia-tourism-situation-surveys/dataID
+
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/dataID", (request, response)=>{
+        console.log(`New GET to /andalusia-tourism-situation-surveys/dataID`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /andalusia-tourism-situation-surveys/dataID: ${err}`);
+                response.sendStatus(500);
+            } else {
+                    
+                if(data.length==0){
+                    db.insert(datos);
+                } 
+                
+                for(let i=0; i<data.length; i++){
+                    let dato = data[i]["province"]+", "+ data[i]["year"];
+                    array.push(dato);
+                }
+                response.send(JSON.stringify(array,null,2));
+ 
+            }
+        })
+    });
+
+    // GET /andalusia-tourism-situation-surveys/dataTourist
+
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/data", (request, response)=>{
+        console.log(`New GET to /andalusia-tourism-situation-surveys/dataTourist`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /andalusia-tourism-situation-surveys/dataTourist: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+                
+                if(data.length==0){
+                    db.insert(datos);
+                }
+                
+                for(let i=0; i<data.length; i++){
+                    let datoid = data[i]["province"]+", "+ data[i]["year"];
+                    let datot = data[i]["tourist"];
+                    array.push(datoid,datot);
+                }
+                response.send(JSON.stringify(array,null,2));
+            }
+        })
+    });
+
+    // GET /andalusia-tourism-situation-surveys/dataAverageDailyExpenditure
+
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/dataAverageDailyExpenditure", (request, response)=>{
+        console.log(`New GET to /andalusia-tourism-situation-surveys/dataAverageDailyExpenditure`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /andalusia-tourism-situation-surveys/dataAverageDailyExpenditure: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+
+                if(data.length==0){
+                    db.insert(datos);
+                }
+
+                for(let i=0; i<data.length; i++){
+                    let dato = data[i]["average_daily_expenditure"];
+                    array.push(dato);
+                }
+                response.send(JSON.stringify(array,null,2));
+            }
+        })
+    });
+
+    // GET /andalusia-tourism-situation-surveys/dataAverageStay
+
+    app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/dataAverageStay", (request, response)=>{
+        console.log(`New GET to /andalusia-tourism-situation-surveys/dataAverageStay`);
+        let array = new Array();
+        db.find({}, function(err,data){
+            if(err){
+                console.log(`Error geting /andalusia-tourism-situation-surveys/dataAverageStay: ${err}`);
+                response.sendStatus(500);
+            }
+            else{
+
+                if(data.length==0){
+                    db.insert(datos);
+                }
+
+                for(let i=0; i<data.length; i++){
+                    let dato = data[i]["average_stay"];
+                    array.push(dato);
+                }
+                response.send(JSON.stringify(array,null,2));
+            }
+        })
+    });
+*/
     // GET /andalusia-tourism-situation-surveys
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys", (request,response) => {
