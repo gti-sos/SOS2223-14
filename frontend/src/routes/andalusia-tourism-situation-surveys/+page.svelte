@@ -495,6 +495,11 @@
     async function view(province,year) {
         window.location.href = "https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys/"+province + "/" + year;
     }
+
+    async function view_graph() {
+        window.location.href = "https://sos2223-14.appspot.com/graph/andalusia-tourism-situation-surveys";
+        //window.location.href = "http://localhost:5173/graph/andalusia-tourism-situation-surveys";
+    }
     
 </script>
 
@@ -503,6 +508,11 @@
         <Alert color={c}>{message}</Alert>
     {/if}
     <h1><u>Encuesta de coyuntura turística de Andalucía</u></h1>
+    <br>
+    {#if datos.length > 0}
+        <Button color="success" on:click={view_graph}>Ver gráficas</Button>
+    {/if}
+    <br>
     <br>
     <Table>
         <thead>
