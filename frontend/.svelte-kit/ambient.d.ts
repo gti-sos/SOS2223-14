@@ -40,11 +40,16 @@ declare module '$env/static/private' {
 	export const DISPLAY: string;
 	export const DriverData: string;
 	export const EDITOR: string;
+<<<<<<< HEAD
 	export const EFC_20080: string;
 	export const EXEPATH: string;
 	export const FPS_BROWSER_APP_PROFILE_STRING: string;
 	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GUROBI_HOME: string;
+=======
+	export const FPS_BROWSER_APP_PROFILE_STRING: string;
+	export const FPS_BROWSER_USER_PROFILE_STRING: string;
+>>>>>>> 90e4e9a62228e68bd3595d5c95315a065d2e09b0
 	export const HOME: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
@@ -125,7 +130,14 @@ declare module '$env/static/private' {
 	export const USERDOMAIN_ROAMINGPROFILE: string;
 	export const USERNAME: string;
 	export const USERPROFILE: string;
+<<<<<<< HEAD
 	export const WINDIR: string;
+=======
+	export const windir: string;
+	export const WSLENV: string;
+	export const WT_PROFILE_ID: string;
+	export const WT_SESSION: string;
+>>>>>>> 90e4e9a62228e68bd3595d5c95315a065d2e09b0
 	export const ZES_ENABLE_SYSMAN: string;
 	export const _: string;
 }
@@ -171,11 +183,16 @@ declare module '$env/dynamic/private' {
 		DISPLAY: string;
 		DriverData: string;
 		EDITOR: string;
+<<<<<<< HEAD
 		EFC_20080: string;
 		EXEPATH: string;
 		FPS_BROWSER_APP_PROFILE_STRING: string;
 		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GUROBI_HOME: string;
+=======
+		FPS_BROWSER_APP_PROFILE_STRING: string;
+		FPS_BROWSER_USER_PROFILE_STRING: string;
+>>>>>>> 90e4e9a62228e68bd3595d5c95315a065d2e09b0
 		HOME: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;
@@ -256,7 +273,14 @@ declare module '$env/dynamic/private' {
 		USERDOMAIN_ROAMINGPROFILE: string;
 		USERNAME: string;
 		USERPROFILE: string;
+<<<<<<< HEAD
 		WINDIR: string;
+=======
+		windir: string;
+		WSLENV: string;
+		WT_PROFILE_ID: string;
+		WT_SESSION: string;
+>>>>>>> 90e4e9a62228e68bd3595d5c95315a065d2e09b0
 		ZES_ENABLE_SYSMAN: string;
 		_: string;
 		[key: `PUBLIC_${string}`]: undefined;

@@ -10,7 +10,6 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
             <a id="inicio" href="/graph/group" class="svelte-1smkici">Gráfica conjunta</a>
             <a href="/graph/apartment-occupancy-surveys" class="svelte-1smkici">Gráfica ocupación de apartamentos</a>
             <a href="/graph/hotel-occupancy-surveys" class="svelte-1smkici">Gráfica ocupación de hoteles</a>
-            <a href="/graph/andaluisa-tourism-situation-surveys" class="svelte-1smkici">Gráfica de coyuntura turística en Andalucía</a>
             <a href="/integrations/apartment-occupancy-surveys" class="svelte-1smkici">Usos/Integraciones (Apartamentos)</a>
             <a href="/apartment-occupancy-surveys" class="svelte-1smkici">Encuesta de ocupación de apartamentos</a>
             <a href="/andalusia-tourism-situation-surveys" class="svelte-1smkici">Encuesta de coyuntura turística de Andalucía</a>

@@ -15,6 +15,7 @@
     // @ts-nocheck
     import {onMount} from 'svelte';
     import { dev } from "$app/environment";
+    import { Button } from "sveltestrap";
 
     let API = "/api/v2/andalusia-tourism-situation-surveys/data";
     if (dev) {
@@ -190,6 +191,11 @@
         getData();
     })
 
+    async function view() {
+        window.location.href = "https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys";
+        //window.location.href = "http://localhost:12345/api/v2/andalusia-tourism-situation-surveys";
+    }
+
 </script>
 
 <main>
@@ -201,6 +207,9 @@
 
     <div id="piechart" style="width: 900px; height: 500px;"></div>
     
+    <br>
+    
+    <Button color="success" on:click={view}>Atrás</Button>
 
     {#if resultStatus != ""}
         <p>
