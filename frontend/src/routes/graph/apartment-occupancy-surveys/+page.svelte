@@ -225,18 +225,10 @@
         <tbody>
             <tr>
                 <td>
-                    <input
-                        style="margin-left: 1000px;height: 45px; text-align: center;"
-                        placeholder="Provincia"
-                        bind:value={province}
-                    />
+                    <input style="margin-left: 850px;height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
                 </td>
                 <td>
-                    <Button
-                        style="height: 45px;"
-                        color="warning"
-                        on:click={getData(province)}>Buscar</Button
-                    >
+                    <Button style="height: 45px;" color="warning" on:click={getData(province)}>Buscar</Button>
                 </td>
             </tr>
         </tbody>
