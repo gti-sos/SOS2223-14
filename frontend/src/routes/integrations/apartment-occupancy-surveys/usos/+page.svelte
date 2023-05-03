@@ -52,7 +52,7 @@
 
 <main>
     <div id="tabla">
-        <h3><u>The Mexican Food DB API Documentation</u></h3>
+        <h3><u>Base de datos Comida Mexicana API Documentación</u></h3>
         <p style="text-align:center">
             Datos de: <a
                 style="text-decoration: none; color:black"
@@ -83,7 +83,7 @@
     </div>
 
     <div id="tabla">
-        <h3><u>Fitness and Healthy: ExerciseDB API</u></h3>
+        <h3><u>Deporte y Salud: Base de Datos Ejercicios API</u></h3>
         <p style="text-align:center">
             Datos de: <a
                 style="text-decoration: none; color:black"

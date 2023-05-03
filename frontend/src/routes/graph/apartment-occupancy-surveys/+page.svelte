@@ -51,7 +51,7 @@
                 text: "",
             },
             subtitle: {
-                text: 'Source: <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank">API Ocupación de apartamentos en Andalucía</a>',
+                text: 'Fuente: <a href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank">API Ocupación de apartamentos en Andalucía</a>',
             },
             xAxis: {
                 categories: provincias,
@@ -202,7 +202,7 @@
             href="https://www.highcharts.com/"
             target="_blank"><u>Highcharts</u></a> 
     </p>
-    <p style="text-align:center">type: column</p>
+    <p style="text-align:center">tipo: columna</p>
     <figure class="highcharts-figure">
         <div id="container" />
         <p class="highcharts-description" />
@@ -215,7 +215,7 @@
             style="text-decoration: none; color:black"
             href="https://jscharting.com/"
             target="_blank"><u>JSCharting</u></a></p>
-    <p style="text-align:center">type: column</p>
+    <p style="text-align:center">tipo: columna</p>
     <h3 style="text-align: center; font-style: oblique;">
         <u>Introduce una ciudad para mostrar su gráfica</u>
     </h3>

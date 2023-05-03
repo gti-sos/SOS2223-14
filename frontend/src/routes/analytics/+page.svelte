@@ -237,7 +237,7 @@
             Gráfica ocupación de apartamentos, de hoteles y coyuntura turística
             en Andalucía
         </h2>
-        <p style="text-align:center">Source: <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank"><u>API Ocupación de apartamentos</u></a>, <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/hotel-occupancy-surveys" target="_blank"><u>API Ocupación de hoteles</u></a> y <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/andalusia-tourism-situation-surveys" target="_blank"><u>API Coyuntura turística</u></a></p>
+        <p style="text-align:center">Fuentes: <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys" target="_blank"><u>API Ocupación de apartamentos</u></a>, <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/hotel-occupancy-surveys" target="_blank"><u>API Ocupación de hoteles</u></a> y <a style="text-decoration: none; color:black" href="https://sos2223-14.appspot.com/api/v2/andalusia-tourism-situation-surveys" target="_blank"><u>API Coyuntura turística</u></a></p>
         <p style="text-align:center">Gráfica con: <a style="text-decoration: none; color:black" href="https://jscharting.com/" target="_blank"><u>JSCharting</u></a></p>
         <div id="chartDiv" style="width:1500px; height:500px; margin: 0px auto;"/>
     </div>
