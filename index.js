@@ -1,6 +1,5 @@
 import express from "express";
-//import cors from "cors";
-import request from "request";
+import cors from "cors";
 
 import  { loadBackend_cris_v2 } from "./backend/v2/index_cristina.js";
 import  { loadBackend_rebeca } from "./backend/v2/index_rebeca.js";
@@ -11,12 +10,7 @@ import { handler } from "./frontend/build/handler.js";
 var apiServerHost = 'http://sos2223-14.appspot.com';
 
 var app = express();
-app.use("/",
-        function(req,res){
-            var url = apiServerHost + req.url;
-            console.log('piped: ' + req.url); 
-            req.pipe(request(url)).pipe(res);
-        });
+app.use(cors());
 
 var port = process.env.PORT || 8080;
 
