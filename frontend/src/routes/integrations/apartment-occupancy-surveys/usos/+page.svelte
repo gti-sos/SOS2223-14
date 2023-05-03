@@ -12,8 +12,6 @@
 
     let datos_1 = "";
     let datos_2 = "";
-    let result_1="";
-    let result_2="";
 
     async function datos1() {
         const options = await fetch("https://the-mexican-food-db.p.rapidapi.com/", {
@@ -27,7 +25,6 @@
         });
         try {
             const response = await options.json();
-            result_1 = JSON.stringify(response, null, 2);
             datos_1 = response;
         } catch (error) {
             console.error(error);
@@ -46,7 +43,6 @@
         });
         try {
             const response = await options.json();
-            result_1 = JSON.stringify(response, null, 2);
             datos_2 = response;
         } catch (error) {
             console.error(error);
@@ -84,9 +80,6 @@
                 {/each}
             </tbody>
         </Table>
-        <h3><u>Datos de la API en JSON:</u></h3>
-        <br/>
-        {result_1}
     </div>
 
     <div id="tabla">
@@ -122,8 +115,5 @@
                 {/each}
             </tbody>
         </Table>
-        <h3><u>Datos de la API en JSON:</u></h3>
-        <br />
-        {result_2}
     </div>
 </main>
