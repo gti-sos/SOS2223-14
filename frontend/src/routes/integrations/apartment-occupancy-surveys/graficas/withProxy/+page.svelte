@@ -8,10 +8,6 @@
     let API_cristina =
         "https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
     let datos = "";
-    let result_1 = "";
-    let resultStatus_1 = "";
-    let result_2 = "";
-    let resultStatus_2 = "";
     let p = "";
     let provincias = [];
     let minimas = [];
@@ -31,7 +27,6 @@
         });
         try {
             const data = await res.json();
-            result_1 = JSON.stringify(data, null, 2);
             datos = data;
             for (let i = 0; i < datos.length; i++) {
                 p = `${datos[i]["province"]} ${datos[i]["year"]}`;
@@ -53,8 +48,6 @@
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
-        const status = await res.status;
-        resultStatus_1 = status;
     }
 
     async function getData_cristina() {
@@ -63,7 +56,6 @@
         });
         try {
             const data = await res.json();
-            result_2 = JSON.stringify(data, null, 2);
             datos = data;
             for (let i = 0; i < datos.length; i++) {
                 p = `${datos[i]["province"]} ${datos[i]["year"]}`;
@@ -76,8 +68,6 @@
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
-        const status = await res.status;
-        resultStatus_2 = status;
     }
 
     async function loadJSCharting(provincias,traveler,overnight_stay,average_stay,maximas,minimas,average_temperature) {
@@ -131,21 +121,5 @@
         <p style="text-align:center">type: column</p>
     </div>
     <div id="chartDiv" style="width:1500px; height:600px; margin: 0px auto; margin-top:40px">
-    </div>
-    <div style="margin-left:40px;font-size:20px;">
-        <h4>Resultado compañerx</h4>
-        {#if resultStatus_1 != ""}
-            <p>Result:{resultStatus_1}</p>
-            <pre>                
-                {result_1}
-            </pre>
-        {/if}
-        <h4>Resultados propios</h4>
-        {#if resultStatus_2 != ""}
-            <p>Result: {resultStatus_2}</p>
-            <pre>
-                {result_2}
-            </pre>
-        {/if}
     </div>
 </main>
