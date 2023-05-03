@@ -9,7 +9,7 @@
     let traveler = [];
     let overnight_stay = [];
     let average_stay = [];
-    let result = "";
+    let resultStatus = "";
 
     let average_daily_expenditure = [];
     let average_employment = [];
