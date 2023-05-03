@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "URLBASE",
-			"value": "http://localhost:12345",
+			"value": "http://localhost:8080",
 			"enabled": true
 		}
 	],
