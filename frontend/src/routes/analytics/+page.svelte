@@ -9,6 +9,7 @@
     let traveler = [];
     let overnight_stay = [];
     let average_stay = [];
+    let result = "";
 
     let average_daily_expenditure = [];
     let average_employment = [];
@@ -19,8 +20,6 @@
 
     onMount(async () => {
         getData1();
-        getData2();
-        await getDataApartment();
     });
 
 
@@ -34,6 +33,11 @@
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
+        const status = await res.status;
+        resultStatus = status;
+        if(resultStatus==200){
+            getData2();
+        }
     }
 
     async function getData2() {
@@ -43,8 +47,14 @@
         try {
             const data = await res.json();
             datos = data;
+            getDataApartment();
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if(resultStatus==200){
+            getDataApartment();
         }
     }
 
