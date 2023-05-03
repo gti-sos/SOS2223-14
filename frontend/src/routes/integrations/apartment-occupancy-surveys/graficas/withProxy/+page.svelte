@@ -2,10 +2,9 @@
     //@ts-nocheck
     import { onMount } from "svelte";
 
-    let API_compañerx_1 = "https://sos2223-12.appspot.com/api/v2/agroclimatic";
+    let API_compañerx_1 = "https://sos2223-12.appspot.com/agr";
    
-    let API_cristina =
-        "https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
+    let API_cristina ="https://sos2223-14.appspot.com/api/v2/apartment-occupancy-surveys";
     let datos = "";
     let p = "";
     let provincias = [];
