@@ -38,12 +38,6 @@
             console.log(`Error parsing result: ${error}`);
         }
     }    
-    
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) + min);
-    }
 
     async function getData_cristina() {
         const res = await fetch(API_cristina, {
@@ -54,18 +48,10 @@
             datos = data;
             for (let i = 0; i < datos.length; i++) {
                 p = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                if(provincias.includes(p)){
-                    provincias.push(p);
-                    traveler.push(parseInt(datos[i]["traveler"]));
-                    overnight_stay.push(parseInt(datos[i]["overnight_stay"]));
-                    average_stay.push(parseInt(datos[i]["average_stay"]));
-                }
-                else{
-                    provincias.push(p);
-                    traveler.push(getRandomInt(100000, 1000000));
-                    overnight_stay.push(getRandomInt(100000, 1000000));
-                    average_stay.push(getRandomInt(5, 10));
-                }
+                provincias.push(p);
+                traveler.push(parseInt(datos[i]["traveler"]));
+                overnight_stay.push(parseInt(datos[i]["overnight_stay"]));
+                average_stay.push(parseInt(datos[i]["average_stay"]));
                 
             }
             loadJSCharting(

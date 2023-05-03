@@ -176,6 +176,8 @@
         } else if (status == 404) {
             message = "Provincia no encontrada";
             c = "danger";
+            document.getElementById("chartDiv").textContent = "";
+            document.getElementById("input").textContent = ""; 
         } else if (status == 500) {
             message = "Error interno";
             c = "danger";
@@ -190,10 +192,7 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://code.jscharting.com/latest/jscharting.js"></script>
 </svelte:head>
-<main>
-    {#if message != ""}
-        <Alert color={c}>{message}</Alert>
-    {/if}
+<main>    
     <h1 style="text-align:center;font-style: oblique; font-family: initial;">
         Gráfica ocupación de apartamentos
     </h1>
@@ -221,12 +220,14 @@
         <u>Introduce una ciudad para mostrar su gráfica</u>
     </h3>
         <div>
-            <input style="margin-left: 650px;height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
+            <input id="input" style="margin-left: 650px;height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
         </div>
         <div>
-            <Button style="margin-left: 700px;height: 45px; margin-top: 20px;" color="warning" on:click={getData(province)}>Buscar</Button>
+            <Button style="margin-left: 700px;height: 45px; margin-top: 20px; margin-bottom: 20px;" color="warning" on:click={getData(province)}>Buscar</Button>
         </div>
-                    
+    {#if message != ""}
+        <Alert color={c}>{message}</Alert>
+    {/if}            
     <div
         id="chartDiv"
         style="max-width:740px; height:400px; margin: 0px auto; margin-top:40px"
