@@ -134,6 +134,8 @@ function loadBackend_rebeca(app) {
         }
     ];
 
+    db.insert(datos);
+
     // GET /andalusia-tourism-situation-surveys/docs
 
     app.get(BASE_API_URL+"/andalusia-tourism-situation-surveys/docs", (request,response) => {

@@ -19,7 +19,6 @@
 
     let API = "/api/v2/andalusia-tourism-situation-surveys/data";
     if (dev) {
-        //API = "http://localhost:12345" + API;
         API = "https://sos2223-14.appspot.com" + API;
     }
 
@@ -78,19 +77,6 @@
         }
         const status = await res.status;
         resultStatus = status;
-        if (status == 200) {
-            message = "Elemento encontrado";
-            c = "success";
-        } else if (status == 400) {
-            message = "La petición no es correcta."
-            c = "danger";
-        } else if (status == 404) {
-            message="El ID indicado no se encuentra registrado en la base de datos."
-            c = "danger";
-        } else if (status == 500) {
-            message = "Error del servidor";
-            c = "danger";
-        }
     }
 
     async function loadHChart(id,turistas,gasto_medio_diario,estancia_media) {
@@ -193,7 +179,6 @@
 
     async function view() {
         window.location.href = "https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys";
-        //window.location.href = "http://localhost:12345/api/v2/andalusia-tourism-situation-surveys";
     }
 
 </script>

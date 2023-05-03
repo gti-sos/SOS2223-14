@@ -498,7 +498,10 @@
 
     async function view_graph() {
         window.location.href = "https://sos2223-14.appspot.com/graph/andalusia-tourism-situation-surveys";
-        //window.location.href = "http://localhost:5173/graph/andalusia-tourism-situation-surveys";
+    }
+
+    async function view_uses() {
+        window.location.href = "https://sos2223-14.appspot.com/graph/andalusia-tourism-situation-surveys/uses";
     }
     
 </script>
@@ -511,6 +514,7 @@
     <br>
     {#if datos.length > 0}
         <Button color="success" on:click={view_graph}>Ver gráficas</Button>
+        <Button color="success" on:click={view_uses}>Ver usos</Button>
     {/if}
     <br>
     <br>
