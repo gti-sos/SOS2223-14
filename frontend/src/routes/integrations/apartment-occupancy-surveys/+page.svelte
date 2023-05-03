@@ -2,7 +2,7 @@
     <div class="container">
         <div class="photo-block">
             <div class="photo-image-block">
-                <a href="http://sos2223-14.ew.r.appspot.com/integrations/apartment-occupancy-surveys/graficas"><img src = "https://cdn.kastatic.org/ka-perseus-graphie/15d3a2a669ae35452b89b3332fed821ec5ff2e47.svg" alt="Imagen"></a>
+                <a href="http://sos2223-14.ew.r.appspot.com/integrations/apartment-occupancy-surveys/graficas"><img src = "https://cdn.kastatic.org/ka-perseus-graphie/15d3a2a669ae35452b89b3332fed821ec5ff2e47.svg" alt="Imagen" style="height: 450px;"></a>
             </div>
             <div class="photo-metadata-block">
                 <h2 class="photo-title">Gráficas</h2>

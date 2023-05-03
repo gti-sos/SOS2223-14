@@ -12,40 +12,42 @@
 
     let datos_1 = "";
     let datos_2 = "";
+    let result_1="";
+    let result_2="";
 
     async function datos1() {
-        const options = {
+        const options = await fetch("https://the-mexican-food-db.p.rapidapi.com/", {
             method: "GET",
-            url: "https://the-mexican-food-db.p.rapidapi.com/",
             headers: {
                 "content-type": "application/octet-stream",
                 "X-RapidAPI-Key":
                     "b428151735msh484420aaa35e088p13992ajsncca631e96bee",
                 "X-RapidAPI-Host": "the-mexican-food-db.p.rapidapi.com",
             },
-        };
+        });
         try {
-            const response = await axios.request(options);
-            datos_1 = response.data;
+            const response = await options.json();
+            result_1 = JSON.stringify(response, null, 2);
+            datos_1 = response;
         } catch (error) {
             console.error(error);
         }
     }
 
     async function datos2() {
-        const options = {
+        const options = await fetch("https://exercisedb.p.rapidapi.com/exercises", {
             method: "GET",
-            url: "https://exercisedb.p.rapidapi.com/exercises",
             headers: {
                 "content-type": "application/octet-stream",
                 "X-RapidAPI-Key":
                     "b428151735msh484420aaa35e088p13992ajsncca631e96bee",
                 "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
             },
-        };
+        });
         try {
-            const response = await axios.request(options);
-            datos_2 = response.data;
+            const response = await options.json();
+            result_1 = JSON.stringify(response, null, 2);
+            datos_2 = response;
         } catch (error) {
             console.error(error);
         }
@@ -83,11 +85,8 @@
             </tbody>
         </Table>
         <h3><u>Datos de la API en JSON:</u></h3>
-        <br />
-        {#each datos_1 as dato}
-            {JSON.stringify(dato)}
-            <br />
-        {/each}
+        <br/>
+        {result_1}
     </div>
 
     <div id="tabla">
@@ -125,9 +124,6 @@
         </Table>
         <h3><u>Datos de la API en JSON:</u></h3>
         <br />
-        {#each datos_2 as dato}
-            {JSON.stringify(dato)}
-            <br />
-        {/each}
+        {result_2}
     </div>
 </main>

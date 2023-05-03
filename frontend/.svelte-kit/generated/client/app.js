@@ -17,27 +17,29 @@ export const nodes = [
 	() => import('./nodes/13'),
 	() => import('./nodes/14'),
 	() => import('./nodes/15'),
-	() => import('./nodes/16')
+	() => import('./nodes/16'),
+	() => import('./nodes/17')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/andalusia-tourism-situation-surveys": [3],
-		"/andalusia-tourism-situation-surveys/[province]/[year]": [4],
-		"/apartment-occupancy-surveys": [5],
-		"/apartment-occupancy-surveys/[province]/[year]": [6],
-		"/graph/andalusia-tourism-situation-surveys": [7],
-		"/graph/apartment-occupancy-surveys": [8],
-		"/graph/group": [9],
+		"/analytics": [3],
+		"/andalusia-tourism-situation-surveys": [4],
+		"/andalusia-tourism-situation-surveys/[province]/[year]": [5],
+		"/apartment-occupancy-surveys": [6],
+		"/apartment-occupancy-surveys/[province]/[year]": [7],
+		"/graph/andalusia-tourism-situation-surveys": [8],
+		"/graph/apartment-occupancy-surveys": [9],
 		"/hotel-occupancy-surveys": [10],
 		"/hotel-occupancy-surveys/[province]/[year]": [11],
-		"/integrations/apartment-occupancy-surveys": [12],
-		"/integrations/apartment-occupancy-surveys/graficas": [13],
-		"/integrations/apartment-occupancy-surveys/graficas/withProxy": [15],
-		"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [14],
-		"/integrations/apartment-occupancy-surveys/usos": [16]
+		"/integrations": [12],
+		"/integrations/apartment-occupancy-surveys": [13],
+		"/integrations/apartment-occupancy-surveys/graficas": [14],
+		"/integrations/apartment-occupancy-surveys/graficas/withProxy": [16],
+		"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [15],
+		"/integrations/apartment-occupancy-surveys/usos": [17]
 	};
 
 export const hooks = {
