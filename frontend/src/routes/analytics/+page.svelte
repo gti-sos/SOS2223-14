@@ -12,6 +12,9 @@
     let resultStatus = "";
 
     let average_daily_expenditure = [];
+
+    let estimated_average_open_establishment = [];
+    let estimated_average_place = [];
     let average_employment = [];
     let rooms = [];
     let occupancy_rate_by_place = [];
@@ -113,6 +116,8 @@
                 if (!provincias.includes(p)) {
                     provincias.push(p);
                 }
+                estimated_average_open_establishment.push(parseInt(datos[i]["estimated_average_open_establishment"]));
+                estimated_average_place.push(parseInt(datos[i]["estimated_average_place"]));
                 average_employment.push(parseInt(datos[i]["average_employment"]))
                 rooms.push(parseFloat(datos[i]["estimated_room"]));
                 occupancy_rate_by_place.push(
@@ -133,6 +138,8 @@
                 average_stay,
                 average_daily_expenditure,
                 average_employment,
+                estimated_average_open_establishment,
+                estimated_average_place,
                 rooms,
                 occupancy_rate_by_place,
                 occupancy_rate_by_weekend_place,
@@ -150,6 +157,8 @@
         average_stay,
         average_daily_expenditure,
         average_employment,
+        estimated_average_open_establishment,
+        estimated_average_place,
         rooms,
         occupancy_rate_by_place,
         occupancy_rate_by_weekend_place,
@@ -185,6 +194,14 @@
                 {
                     name: "Media de empleo",
                     points: average_employment,
+                },
+                {
+                    name: "Establecimiento abierto medio estimado",
+                    points: estimated_average_open_establishment,
+                },
+                {
+                    name: "Lugar promedio estimado",
+                    points: estimated_average_place,
                 },
                 {
                     name: "Habitaciones",
