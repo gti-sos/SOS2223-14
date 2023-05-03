@@ -31,9 +31,9 @@
                 if (!provincias.includes(p)) {
                     provincias.push(p);
                 }
-                average_temperature.push(parseInt(datos[i]["medium_temperature"]))
-                minimas.push(parseInt(datos[i]["minimun_temperature"]));
-                maximas.push(parseInt(datos[i]["maximun_temperature"]));
+                average_temperature.push(parseFloat(datos[i]["medium_temperature"]))
+                minimas.push(parseFloat(datos[i]["minimun_temperature"]));
+                maximas.push(parseFloat(datos[i]["maximun_temperature"]));
             }
             loadJSCharting(
                 provincias,
@@ -58,9 +58,9 @@
             for (let i = 0; i < datos.length; i++) {
                 p = `${datos[i]["province"]} ${datos[i]["year"]}`;
                 provincias.push(p);
-                traveler.push(datos[i]["traveler"]);
-                overnight_stay.push(datos[i]["overnight_stay"]);
-                average_stay.push(datos[i]["average_stay"]);
+                traveler.push(parseInt(datos[i]["traveler"]));
+                overnight_stay.push(parseInt(datos[i]["overnight_stay"]));
+                average_stay.push(parseFloat(datos[i]["average_stay"]));
             }
             getData_compañerx();
         } catch (error) {
