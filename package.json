@@ -35,5 +35,8 @@
   "homepage": "https://github.com/gti-sos/SOS2223-14#readme",
   "directories": {
     "test": "tests"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.33.0"
   }
 }
