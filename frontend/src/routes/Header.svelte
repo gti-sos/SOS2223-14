@@ -1,3 +1,6 @@
+<svelte:head>
+    <title>SOS2223-14</title>
+</svelte:head>
 <main>
     <nav>
         <div class="container">            

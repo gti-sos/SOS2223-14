@@ -6,11 +6,13 @@ const css$1 = {
 };
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$1);
-  return `<main class="svelte-1smkici"><nav><div class="container svelte-1smkici"><a id="inicio" href="/" class="svelte-1smkici">Inicio</a>
-            <a id="inicio" href="/graph/group" class="svelte-1smkici">Gráfica conjunta</a>
+  return `${$$result.head += `<!-- HEAD_svelte-ntmb4z_START -->${$$result.title = `<title>SOS2223-14</title>`, ""}<!-- HEAD_svelte-ntmb4z_END -->`, ""}
+<main class="svelte-1smkici"><nav><div class="container svelte-1smkici"><a id="inicio" href="/" class="svelte-1smkici">Inicio</a>
+            <a id="inicio" href="/analytics" class="svelte-1smkici">Gráfica conjunta</a>
             <a href="/graph/apartment-occupancy-surveys" class="svelte-1smkici">Gráfica ocupación de apartamentos</a>
             <a href="/graph/hotel-occupancy-surveys" class="svelte-1smkici">Gráfica ocupación de hoteles</a>
-            <a href="/integrations/apartment-occupancy-surveys" class="svelte-1smkici">Usos/Integraciones (Apartamentos)</a>
+            <a href="/graph/andalusia-tourism-situation-surveys" class="svelte-1smkici">Gráfica de coyuntura turística en Andalucía</a>
+            <a href="/integrations" class="svelte-1smkici">Usos/Integraciones</a>
             <a href="/apartment-occupancy-surveys" class="svelte-1smkici">Encuesta de ocupación de apartamentos</a>
             <a href="/andalusia-tourism-situation-surveys" class="svelte-1smkici">Encuesta de coyuntura turística de Andalucía</a>
             <a href="/hotel-occupancy-surveys" class="svelte-1smkici">Encuesta de ocupación hotelera</a></div></nav>
