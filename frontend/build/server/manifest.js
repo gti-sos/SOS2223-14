@@ -4,30 +4,33 @@ const manifest = {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.e4347617.js","imports":["_app/immutable/entry/start.e4347617.js","_app/immutable/chunks/index.91b75a39.js","_app/immutable/chunks/singletons.96316088.js","_app/immutable/chunks/paths.3a1954a9.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.17b3b95e.js","imports":["_app/immutable/entry/app.17b3b95e.js","_app/immutable/chunks/index.91b75a39.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.2a467445.js","imports":["_app/immutable/entry/start.2a467445.js","_app/immutable/chunks/index.91b75a39.js","_app/immutable/chunks/singletons.529910a4.js","_app/immutable/chunks/paths.3eb4af80.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.a3d3bd51.js","imports":["_app/immutable/entry/app.a3d3bd51.js","_app/immutable/chunks/index.91b75a39.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('./chunks/0-77b01bb1.js'),
-			() => import('./chunks/1-087d2b65.js'),
-			() => import('./chunks/2-25548991.js'),
-			() => import('./chunks/3-6ce4ba81.js'),
-			() => import('./chunks/4-24cde3e6.js'),
-			() => import('./chunks/5-4931cc24.js'),
+			() => import('./chunks/1-9ccdf7c4.js'),
+			() => import('./chunks/2-66d35718.js'),
+			() => import('./chunks/3-860c0c68.js'),
+			() => import('./chunks/4-0bd34252.js'),
+			() => import('./chunks/5-e426054b.js'),
 			() => import('./chunks/6-77424f60.js'),
-			() => import('./chunks/7-bf2f4b93.js'),
+			() => import('./chunks/7-0c8e042d.js'),
 			() => import('./chunks/8-48e1c1ae.js'),
 			() => import('./chunks/9-b6921dd8.js'),
 			() => import('./chunks/10-e240eed5.js'),
-			() => import('./chunks/11-2b10efa7.js'),
+			() => import('./chunks/11-4cfbad2d.js'),
 			() => import('./chunks/12-89613a56.js'),
-			() => import('./chunks/13-33a30bce.js'),
-			() => import('./chunks/14-1e6c1e3a.js'),
-			() => import('./chunks/15-132cdd8d.js'),
-			() => import('./chunks/16-b149e8e6.js'),
-			() => import('./chunks/17-89c86722.js'),
-			() => import('./chunks/18-779b57c6.js'),
-			() => import('./chunks/19-37a79178.js'),
-			() => import('./chunks/20-a4c590d0.js'),
-			() => import('./chunks/21-2be797b6.js')
+			() => import('./chunks/13-1e53d72c.js'),
+			() => import('./chunks/14-28cab31c.js'),
+			() => import('./chunks/15-9079726c.js'),
+			() => import('./chunks/16-2206044f.js'),
+			() => import('./chunks/17-6ddd5884.js'),
+			() => import('./chunks/18-acb38a63.js'),
+			() => import('./chunks/19-46aed954.js'),
+			() => import('./chunks/20-ce7891a9.js'),
+			() => import('./chunks/21-512f0222.js'),
+			() => import('./chunks/22-b53845a8.js'),
+			() => import('./chunks/23-bbc756dc.js'),
+			() => import('./chunks/24-91ef23e7.js')
 		],
 		routes: [
 			{
@@ -108,66 +111,87 @@ const manifest = {
 				endpoint: null
 			},
 			{
+				id: "/integrations/andalusia-tourism-situation-surveys",
+				pattern: /^\/integrations\/andalusia-tourism-situation-surveys\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 13 },
+				endpoint: null
+			},
+			{
+				id: "/integrations/andalusia-tourism-situation-surveys/integrations",
+				pattern: /^\/integrations\/andalusia-tourism-situation-surveys\/integrations\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 14 },
+				endpoint: null
+			},
+			{
+				id: "/integrations/andalusia-tourism-situation-surveys/integrations/withProxy",
+				pattern: /^\/integrations\/andalusia-tourism-situation-surveys\/integrations\/withProxy\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 16 },
+				endpoint: null
+			},
+			{
 				id: "/integrations/andalusia-tourism-situation-surveys/integrations/withoutProxy",
 				pattern: /^\/integrations\/andalusia-tourism-situation-surveys\/integrations\/withoutProxy\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 13 },
+				page: { layouts: [0], errors: [1], leaf: 15 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/andalusia-tourism-situation-surveys/uses",
 				pattern: /^\/integrations\/andalusia-tourism-situation-surveys\/uses\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 14 },
+				page: { layouts: [0], errors: [1], leaf: 17 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/andalusia-tourism-situation-surveys/uses/IMDb",
 				pattern: /^\/integrations\/andalusia-tourism-situation-surveys\/uses\/IMDb\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 15 },
+				page: { layouts: [0], errors: [1], leaf: 18 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/andalusia-tourism-situation-surveys/uses/PokemonGo",
 				pattern: /^\/integrations\/andalusia-tourism-situation-surveys\/uses\/PokemonGo\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 16 },
+				page: { layouts: [0], errors: [1], leaf: 19 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/apartment-occupancy-surveys",
 				pattern: /^\/integrations\/apartment-occupancy-surveys\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 17 },
+				page: { layouts: [0], errors: [1], leaf: 20 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/apartment-occupancy-surveys/graficas",
 				pattern: /^\/integrations\/apartment-occupancy-surveys\/graficas\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 18 },
+				page: { layouts: [0], errors: [1], leaf: 21 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/apartment-occupancy-surveys/graficas/withProxy",
 				pattern: /^\/integrations\/apartment-occupancy-surveys\/graficas\/withProxy\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 20 },
+				page: { layouts: [0], errors: [1], leaf: 23 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/apartment-occupancy-surveys/graficas/withoutProxy",
 				pattern: /^\/integrations\/apartment-occupancy-surveys\/graficas\/withoutProxy\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 19 },
+				page: { layouts: [0], errors: [1], leaf: 22 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/apartment-occupancy-surveys/usos",
 				pattern: /^\/integrations\/apartment-occupancy-surveys\/usos\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 21 },
+				page: { layouts: [0], errors: [1], leaf: 24 },
 				endpoint: null
 			}
 		],

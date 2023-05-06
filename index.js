@@ -15,13 +15,26 @@ var port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(express.static("./public"));
 
+// Proxy Cristina
+
 var paths = "/agr";
 var apiServerHost = "https://sos2223-12.ew.r.appspot.com/api/v2/agroclimatic";
 
 app.use(paths, function(req,res){
     var url = apiServerHost + req.url;
     req.pipe(request(url)).pipe(res);
-})
+});
+
+// Proxy Rebeca
+
+var paths_r = "/bicycle";
+var apiServerHost_r = "https://sos2223-17.appspot.com/api/v2/andalusian-bicycle-plans";
+
+app.use(paths_r, function(req,res){
+    var url = apiServerHost_r + req.url;
+    req.pipe(request(url)).pipe(res);
+});
+
 
 app.get("/", (request,response) => {
     response.sendFile("/public/index.html");

@@ -44,7 +44,7 @@
     }
 
     async function getData2() {
-        const res = await fetch(API + "/andalusia-tourism-situation-surveys/loadInitialData", {
+        const res = await fetch(API + "/andalusia-tourism-situation-surveys", {
             method: "GET",
         });
         try {
