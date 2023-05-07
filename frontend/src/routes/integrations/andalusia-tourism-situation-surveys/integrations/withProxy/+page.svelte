@@ -78,7 +78,7 @@
                 height: 600,
                 chart: {
                     title: 'Turistas en Andalucía y ciclistas',
-                    subtitle: 'Provincia, Año, y Turistas o Población: 2015-2022'
+                    subtitle: 'Provincia, Año y Turistas o Población: 2015-2022'
                 }
             });
 

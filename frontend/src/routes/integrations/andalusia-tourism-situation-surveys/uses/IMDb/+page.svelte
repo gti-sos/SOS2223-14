@@ -32,7 +32,7 @@
 
 <main>
 
-    <h3><u>IMDb Top 100 Películas</u></h3>
+    <h3 align="center"><u>IMDb Top 100 Películas</u></h3>
         <p style="text-align:center">
             Datos de: <a
                 style="text-decoration: none; color:black"

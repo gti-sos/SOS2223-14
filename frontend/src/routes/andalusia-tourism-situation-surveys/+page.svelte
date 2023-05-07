@@ -512,12 +512,6 @@
     {/if}
     <h1><u>Encuesta de coyuntura turística de Andalucía</u></h1>
     <br>
-    {#if datos.length > 0}
-        <Button color="success" on:click={view_graph}>Ver gráficas</Button>
-        <Button color="success" on:click={view_uses}>Ver usos</Button>
-    {/if}
-    <br>
-    <br>
     <Table>
         <thead>
             <tr>

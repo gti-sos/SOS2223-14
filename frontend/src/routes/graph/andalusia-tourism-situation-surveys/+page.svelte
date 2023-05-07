@@ -178,7 +178,7 @@
     })
 
     async function view() {
-        window.location.href = "https://sos2223-14.appspot.com/andalusia-tourism-situation-surveys";
+        window.location.href = "https://sos2223-14.appspot.com";
     }
 
 </script>
@@ -196,13 +196,4 @@
     
     <Button color="success" on:click={view}>Atrás</Button>
 
-    {#if resultStatus != ""}
-        <p>
-            Result:
-        </p>
-        <pre>
-{resultStatus}
-{result}
-        </pre>
-    {/if}
 </main>

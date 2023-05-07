@@ -89,14 +89,16 @@
             const data = await res.json();
             datos = data;
             for (let i = 0; i < datos.length; i++) {
-                p = `${datos[i]["province"]} ${datos[i]["year"]}`;
-                if (!provincias.includes(p)) {
-                    provincias.push(p);
-                }
+                if (datos[i]["province"] != "Andalucía") {
+                    p = `${datos[i]["province"]} ${datos[i]["year"]}`;
+                    if (!provincias.includes(p)) {
+                        provincias.push(p);
+                    }
 
-                average_daily_expenditure.push(
-                    parseFloat(datos[i]["average_daily_expenditure"])
-                );
+                    average_daily_expenditure.push(
+                        parseFloat(datos[i]["average_daily_expenditure"])
+                    );
+                }
             }
             getDataHotel();
         } catch (error) {
@@ -172,7 +174,7 @@
             yAxis: { label_text: "" },
             xAxis: {
                 label_text: "",
-                categories: provincias,
+                categories: provincias
             },
             series: [
                 {

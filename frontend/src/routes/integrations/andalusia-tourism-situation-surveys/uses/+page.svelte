@@ -2,7 +2,7 @@
     <div class="container">
         <div class="photo-block">
             <div class="photo-image-block">
-                <a href="http://sos2223-14.ew.r.appspot.com/integrations/andalusia-tourism-situation-surveys/uses/IMDb"><img src="https://icons.iconarchive.com/icons/danleech/simple/256/imdb-icon.png" id="imdb" alt="Imagen"></a>
+                <a href="http://sos2223-14.ew.r.appspot.com/integrations/andalusia-tourism-situation-surveys/uses/IMDb"><img src="https://icons.iconarchive.com/icons/danleech/simple/256/imdb-icon.png" id="imdb" alt="Imagen" style="margin-bottom:22px;"></a>
             </div>
             <div class="photo-metadata-block">
                 <h2 class="photo-title">IMDb Top 100 Películas</h2>
@@ -10,7 +10,7 @@
         </div>
         <div class="photo-block" style="margin-left: 20px;">
             <div class="photo-image-block">
-                <a href="http://sos2223-14.ew.r.appspot.com/integrations/andalusia-tourism-situation-surveys/uses/PokemonGo"><img src="https://img.icons8.com/ultraviolet/512/pokemon-go.png" alt="Imagen"></a>
+                <a href="http://sos2223-14.ew.r.appspot.com/integrations/andalusia-tourism-situation-surveys/uses/PokemonGo"><img src="https://img.icons8.com/ultraviolet/512/pokemon-go.png" alt="Imagen" style="margin-bottom:-5px;"></a>
             </div>
             <div class="photo-metadata-block">
                 <h2 class="photo-title">Pokémon Go</h2>
