@@ -258,7 +258,7 @@
 
     
     async function view(province, year) {
-        window.location.href = API + "/" +province +"/" +year;
+        window.location.href = "https://sos2223-14.appspot.com/apartment-occupancy-surveys" + "/" +province +"/" +year;
     }
 
     async function fromTo(from,to) {
