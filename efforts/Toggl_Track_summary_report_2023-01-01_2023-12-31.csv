@@ -1,0 +1,78 @@
+﻿User,Description,Duration
+Ana Chávez Velasco,#10 Tener un archivo llamado “index-YYY.js” en el repositorio,03:01:04
+Ana Chávez Velasco,#26 Tener un modulo de nodejs que contenga el archivo principal “index.js” que tengan las distintas rutas,00:15:17
+Ana Chávez Velasco,#27 Tener una ruta dinámica “/cool”,00:15:06
+Ana Chávez Velasco,#28 Haber desplegado el proyecto del grupo desde el repositorio de github del grupo a Google Cloud,03:04:11
+Ana Chávez Velasco,#29 Tener desplegado en Google Cloud una API REST funcional,00:37:54
+Ana Chávez Velasco,#30 Debe desarrollarse una colección de llamadas en POSTMAN,02:39:29
+Ana Chávez Velasco,#31 El recurso debe contener una ruta /api/v1/FFFFF/loadInitialData,00:15:15
+Ana Chávez Velasco,#44 Implementar una persistencia basada en una base de datos NeDB,00:32:24
+Ana Chávez Velasco,#46 La API debe implementar búsquedas por todos los campos del recurso,04:29:10
+Ana Chávez Velasco,#47 El proyecto debe contener una ruta /api/v1/FFFFF/docs que redirija al portal de documentación generado  en POSTMAN,00:15:40
+Ana Chávez Velasco,#58 Extender la colección de llamadas de POSTMAN,00:16:02
+Ana Chávez Velasco,#59 Se debe devolver en cada caso un Objeto o un Array en función del tipo de operación que se realice,00:23:52
+Ana Chávez Velasco,#6 Registrar información en el repositorio,00:10:45
+Ana Chávez Velasco,#60 Se debe añadir un script de lanzamiento llamado test-FFFF  en el archivo package.json,02:44:44
+Ana Chávez Velasco,#73 Front-end Svelte que permita todas las funcionalidades básicas de gestión de la información realizando peticiones a la API REST,00:19:06
+Ana Chávez Velasco,#74 Un back-end basado en API REST que tenga todas las funcionalidades que se solicitaron en el D01,01:36:24
+Ana Chávez Velasco,#75 El frontend debe mostrar al usuario un mensaje informativo del estado de la operación realizada,01:11:25
+Ana Chávez Velasco,#76 Debe tener desplegado en Heroku una aplicación funcional,00:27:57
+Ana Chávez Velasco,#77 Front-end Svelte que permita todas las funcionalidades básicas de gestión de la información realizando peticiones a la API REST,02:44:59
+Ana Chávez Velasco,#78 El frontend debe recargar de manera automatizada los datos que se muestran en caso de ser necesario,00:26:17
+Ana Chávez Velasco,#8 Creación de las issues,00:15:05
+Ana Chávez Velasco,#9 Tener correctamente clonado el repositorio común de la asignatura,00:46:12
+Ana Chávez Velasco,Completar Feedback,00:18:12
+CRISTINA CALDERON,# 17 Feedback 27/02.2,01:30:11
+CRISTINA CALDERON,#11 Registrar información,00:17:15
+CRISTINA CALDERON,#12 Crear cuenta,00:15:03
+CRISTINA CALDERON,#13 Ejercicio index,00:18:27
+CRISTINA CALDERON,#18 Tiempo restante,00:45:23
+CRISTINA CALDERON,#23 Tener un modulo de nodejs,00:19:33
+CRISTINA CALDERON,#24 Ruta dinámica /cool,00:15:33
+CRISTINA CALDERON,#25 /samples/CCG,02:59:36
+CRISTINA CALDERON,#35 tener desplegado en Google Cloud una API REST,00:20:16
+CRISTINA CALDERON,#36 La API debe cumplir con las buenas prácticas,00:19:04
+CRISTINA CALDERON,#37 colección de llamadas en POSTMAN,02:43:28
+CRISTINA CALDERON,#41 Base de datos NeDB,00:21:39
+CRISTINA CALDERON,#42 Búsquedas por todos los campos del recurso,00:15:28
+CRISTINA CALDERON,#43 Añadir una sección “APIs: “,02:48:19
+CRISTINA CALDERON,#52 Extender la colección de llamadas de POSTMAN,00:18:34
+CRISTINA CALDERON,#53 Script de lanzamiento llamado test-FFFF,00:15:02
+CRISTINA CALDERON,#54 Código 400,02:31:56
+CRISTINA CALDERON,#69 Se debe tener una vista correctamente configurada en http://sos2223-XX.appspot.com/ donde debe aparecer como mínimo,00:20:43
+CRISTINA CALDERON,#7 Issue para feedback 20/02,00:10:04
+CRISTINA CALDERON,#70 Si se realiza alguna modificación sobre la API se debe realizar una nueva versión de forma que la API deberá estar disponible en: /api/v2/FFFFF,00:19:25
+CRISTINA CALDERON,"#71 Todos los elementos de la interfaz, deben ser comprensibles por usuarios no técnicos",02:36:59
+CRISTINA CALDERON,#79 http://sos2223-XX.appspot.com/#/info,00:17:10
+CRISTINA CALDERON,#83 ?from=2000&to=2017,00:26:32
+CRISTINA CALDERON,#84 limit y offset,07:10:40
+CRISTINA CALDERON,#85 Horas de trabajo 1.0,08:09:47
+CRISTINA CALDERON,#87 Horas de trabajo 2.0,01:41:30
+CRISTINA CALDERON,#88 Trabajo final 3.0,02:57:09
+CRISTINA CALDERON,Tarea timer feedback 20/02,00:00:03
+CRISTINA CALDERON,,00:00:32
+Rebeca Suárez,#1 Update readme with the real data,00:03:37
+Rebeca Suárez,#14 Añadir datos en SOS2223-14-Propuesta,00:18:00
+Rebeca Suárez,#15 Crear cuenta POSTMAN,00:21:13
+Rebeca Suárez,"#16 Realizar código en ""index-YYY.js""",02:35:14
+Rebeca Suárez,#19 Crear 3 nuevas issues para la milestone F04,00:15:17
+Rebeca Suárez,#20 Desplegar proyecto en Google Cloud,01:56:56
+Rebeca Suárez,#22 Replicar “index-YYY.js” y desplegar “/samples/YYY”,00:54:28
+Rebeca Suárez,#32 Desplegar API REST en Google Cloud (http://sos2223-XX.appspot.com/api/v1/FFFFF),01:29:54
+Rebeca Suárez,#33 Crear ruta /api/v1/FFFFF/loadInitialData en el recurso que lleve a cabo un GET.,02:11:55
+Rebeca Suárez,#34 Desarrollar una colección de llamadas en POSTMAN,02:34:35
+Rebeca Suárez,#38 La API debe implementar persistencia,01:01:00
+Rebeca Suárez,#39 La API debe implementar búsquedas y paginación,01:50:42
+Rebeca Suárez,#4 Crear una issue sobre una tarea del feedback,00:10:13
+Rebeca Suárez,#40 El proyecto debe contener una ruta /api/v1/FFFFF/docs,00:32:16
+Rebeca Suárez,#5 Creación de issue - Rebeca,00:00:36
+Rebeca Suárez,#55 Extender la colección de llamadas de POSTMAN,00:22:56
+Rebeca Suárez,#56 Cumplir con todos los requisitos obligatorios por persona del F06.,00:16:19
+Rebeca Suárez,#57 Añadir script test-FFFF.,02:42:04
+Rebeca Suárez,#65 Integrar backend basado en API REST.,00:30:29
+Rebeca Suárez,#66 Integrar Frontend Svelte,01:11:40
+Rebeca Suárez,#67 Implementar mensajes informativos del estado de operación en el frontend.,01:30:03
+Rebeca Suárez,#80 Desplegar API en Heroku,00:45:56
+Rebeca Suárez,#81 Frontend Svelte que permita todas las funcionalidades básicas de gestión de la información,00:26:32
+Rebeca Suárez,#82 API comprensible por usuarios no técnicos y actualización de recursos inmediata.,03:07:44
+Rebeca Suárez,#86 Tiempo registrado,10:23:03
