@@ -40,6 +40,17 @@ test('get apartament occupancy surveys link', async ({ page }) => {
     // Expects the URL to contain intro.
     await expect(page).toHaveURL(/.*integrations/);
   });
+  /*
+    -> Página siguiente
+    -> Página anterior
+    -> Búsqueda por provinicia (Sevilla)
+    -> Búsqueda por provincia y año (Sevilla 2022)
+    -> Búsqueda por año (2022)
+    -> Búsqueda intervalo 2021-2022
+    -> Crear dato Sevilla 2023 1 1 1
+    -> Borrar todos los datos
+    -> Recargar los datos
+  */
 
   test('Pruebas e2e apartment-occupancy-surveys', async ({ page }) => {
     await page.goto('https://sos2223-14.appspot.com/apartment-occupancy-surveys');
