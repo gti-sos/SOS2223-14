@@ -9,7 +9,7 @@
             <a href="/andalusia-tourism-situation-surveys">Encuesta de coyuntura turística de Andalucía</a>
             <a href="/hotel-occupancy-surveys">Encuesta de ocupación hotelera</a>
             <a href="/integrations">Usos/Integraciones</a>
-            <div></div>
+            <a href="/about">Vídeos</a>
             <a  id="inicio" href="/analytics">Gráfica conjunta</a>
             <a href="/graph/apartment-occupancy-surveys">Gráfica ocupación de apartamentos</a>
             <a href="/graph/hotel-occupancy-surveys">Gráfica ocupación de hoteles</a>

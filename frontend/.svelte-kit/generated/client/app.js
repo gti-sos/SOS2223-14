@@ -25,35 +25,37 @@ export const nodes = [
 	() => import('./nodes/21'),
 	() => import('./nodes/22'),
 	() => import('./nodes/23'),
-	() => import('./nodes/24')
+	() => import('./nodes/24'),
+	() => import('./nodes/25')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
 		"/": [2],
-		"/analytics": [3],
-		"/andalusia-tourism-situation-surveys": [4],
-		"/andalusia-tourism-situation-surveys/[province]/[year]": [5],
-		"/apartment-occupancy-surveys": [6],
-		"/apartment-occupancy-surveys/[province]/[year]": [7],
-		"/graph/andalusia-tourism-situation-surveys": [8],
-		"/graph/apartment-occupancy-surveys": [9],
-		"/hotel-occupancy-surveys": [10],
-		"/hotel-occupancy-surveys/[province]/[year]": [11],
-		"/integrations": [12],
-		"/integrations/andalusia-tourism-situation-surveys": [13],
-		"/integrations/andalusia-tourism-situation-surveys/integrations": [14],
-		"/integrations/andalusia-tourism-situation-surveys/integrations/withProxy": [16],
-		"/integrations/andalusia-tourism-situation-surveys/integrations/withoutProxy": [15],
-		"/integrations/andalusia-tourism-situation-surveys/uses": [17],
-		"/integrations/andalusia-tourism-situation-surveys/uses/IMDb": [18],
-		"/integrations/andalusia-tourism-situation-surveys/uses/PokemonGo": [19],
-		"/integrations/apartment-occupancy-surveys": [20],
-		"/integrations/apartment-occupancy-surveys/graficas": [21],
-		"/integrations/apartment-occupancy-surveys/graficas/withProxy": [23],
-		"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [22],
-		"/integrations/apartment-occupancy-surveys/usos": [24]
+		"/about": [3],
+		"/analytics": [4],
+		"/andalusia-tourism-situation-surveys": [5],
+		"/andalusia-tourism-situation-surveys/[province]/[year]": [6],
+		"/apartment-occupancy-surveys": [7],
+		"/apartment-occupancy-surveys/[province]/[year]": [8],
+		"/graph/andalusia-tourism-situation-surveys": [9],
+		"/graph/apartment-occupancy-surveys": [10],
+		"/hotel-occupancy-surveys": [11],
+		"/hotel-occupancy-surveys/[province]/[year]": [12],
+		"/integrations": [13],
+		"/integrations/andalusia-tourism-situation-surveys": [14],
+		"/integrations/andalusia-tourism-situation-surveys/integrations": [15],
+		"/integrations/andalusia-tourism-situation-surveys/integrations/withProxy": [17],
+		"/integrations/andalusia-tourism-situation-surveys/integrations/withoutProxy": [16],
+		"/integrations/andalusia-tourism-situation-surveys/uses": [18],
+		"/integrations/andalusia-tourism-situation-surveys/uses/IMDb": [19],
+		"/integrations/andalusia-tourism-situation-surveys/uses/PokemonGo": [20],
+		"/integrations/apartment-occupancy-surveys": [21],
+		"/integrations/apartment-occupancy-surveys/graficas": [22],
+		"/integrations/apartment-occupancy-surveys/graficas/withProxy": [24],
+		"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [23],
+		"/integrations/apartment-occupancy-surveys/usos": [25]
 	};
 
 export const hooks = {
