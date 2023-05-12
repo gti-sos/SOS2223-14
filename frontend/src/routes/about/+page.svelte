@@ -2,7 +2,7 @@
     import { Button } from "sveltestrap";
 
     async function watchVideoApartment(){
-        window.location.href = "https://drive.google.com/file/d/1RG7JrFRk-GTOGNk1MMZU15r_Mzbv07Qf/view?usp=share_link";
+        window.location.href = "https://drive.google.com/file/d/1qyyV8elu90EOFzKq7g7pc4GLusanXztF/view?usp=share_link";
     }
 
     async function watchVideoHotel(){
