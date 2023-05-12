@@ -20,7 +20,10 @@
             <div class="photo-image-block">
                 <img src = "https://www.marketingdirecto.com/wp-content/uploads/2012/04/video-marketing.jpg" alt="Imagen" style="width: 300px; height: 350px; margin-top: 30px;">
             </div>
-            <div id="boton" style="margin-top: 50px">
+            <div style="margin-top: 20px">
+                <h4>Ocupación de apartamentos</h4>
+            </div>
+            <div id="boton" style="margin-top: 20px">
                 <Button color="dark" on:click={watchVideoApartment}>Ver vídeo</Button>
             </div>
         </div>
@@ -28,13 +31,19 @@
             <div class="photo-image-block">
                 <img src = "https://cdn.icon-icons.com/icons2/1713/PNG/512/iconfinder-videologoplayicon-3993847_112649.png" alt="Imagen" style="width: 280px; height: 350px; margin-top:25px; margin-bottom:25px; ">
             </div>
-            <div id="boton"  style="margin-top: 30px">
+            <div>
+                <h4>Ocupación de hoteles</h4>
+            </div>
+            <div id="boton"  style="margin-top: 20px">
                 <Button color="dark" on:click={watchVideoHotel}>Ver vídeo</Button>
             </div>
         </div>
         <div class="photo-block" style="margin-left: 20px">
             <div class="photo-image-block">
                 <img src = "https://cdn-icons-png.flaticon.com/512/4404/4404094.png" alt="Imagen" style="width: 330px; margin-top: 80px; margin-bottom:10px;">
+            </div>
+            <div style="margin-top: -10px">
+                <h4>Coyuntura turística en Andalucía</h4>
             </div>
             <div id="boton"  style="margin-top: 10px">
                 <Button color="dark" on:click={watchVideoTourism}>Ver vídeo</Button>
