@@ -10,7 +10,7 @@ import { handler } from "./frontend/build/handler.js";
 var app = express();
 app.use(cors());
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 12345;
 
 app.use(express.json());
 app.use(express.static("./public"));
