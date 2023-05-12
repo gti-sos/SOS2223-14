@@ -18,9 +18,8 @@
             method: "GET",
             headers: {
                 "content-type": "application/octet-stream",
-                "X-RapidAPI-Key":
-                    "b428151735msh484420aaa35e088p13992ajsncca631e96bee",
-                "X-RapidAPI-Host": "the-mexican-food-db.p.rapidapi.com",
+                'X-RapidAPI-Key': 'fca57522bdmsha7e5e245d9ae51bp115418jsndced47a7ac5f',
+                'X-RapidAPI-Host': 'the-mexican-food-db.p.rapidapi.com'
             },
         });
         try {
@@ -36,9 +35,8 @@
             method: "GET",
             headers: {
                 "content-type": "application/octet-stream",
-                "X-RapidAPI-Key":
-                    "b428151735msh484420aaa35e088p13992ajsncca631e96bee",
-                "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+                'X-RapidAPI-Key': 'fca57522bdmsha7e5e245d9ae51bp115418jsndced47a7ac5f',
+                'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
             },
         });
         try {
