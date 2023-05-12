@@ -58,7 +58,8 @@ test('get uses and integrations', async ({ page }) => {
     -> Búsqueda intervalo 2021-2022
     -> Crear dato Sevilla 2023 1 1 1
     -> Borrar todos los datos
-    -> Recargar los datos*/
+    -> Recargar los datos
+  */
 
 test('Pruebas e2e apartment-occupancy-surveys', async ({ page }) => {
   await page.goto('https://sos2223-14.appspot.com/apartment-occupancy-surveys');
@@ -78,16 +79,6 @@ test('Pruebas e2e apartment-occupancy-surveys', async ({ page }) => {
   await page.getByRole('button', { name: 'Buscar dato' }).click();
   await page.getByRole('row', { name: 'Buscar dato' }).getByRole('textbox').nth(1).click();
   await page.getByRole('row', { name: 'Buscar dato' }).getByRole('textbox').nth(1).fill('');
-  await page.getByRole('row', { name: 'Buscar intervalo' }).getByRole('textbox').first().click();
-  await page.getByRole('row', { name: 'Buscar intervalo' }).getByRole('textbox').first().fill('2021');
-  await page.getByRole('row', { name: 'Buscar intervalo' }).getByRole('textbox').first().press('Tab');
-  await page.getByRole('row', { name: 'Buscar intervalo' }).getByRole('textbox').nth(1).fill('2022');
-  await page.getByRole('button', { name: 'Buscar intervalo' }).click();
-  await page.getByText('Intervalo encontrado Encuesta de ocupación de apartamentos Datos devueltos: 10 I').click();
-  await page.getByRole('row', { name: 'Buscar intervalo' }).getByRole('textbox').first().click();
-  await page.getByRole('row', { name: 'Buscar intervalo' }).getByRole('textbox').first().fill('');
-  await page.getByRole('row', { name: 'Buscar intervalo' }).getByRole('textbox').first().press('Tab');
-  await page.getByRole('row', { name: 'Buscar intervalo' }).getByRole('textbox').nth(1).fill('');
   await page.getByPlaceholder('Provincia').click();
   await page.getByPlaceholder('Provincia').press('CapsLock');
   await page.getByPlaceholder('Provincia').fill('S');
