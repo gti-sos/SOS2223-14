@@ -11,7 +11,7 @@ test('get apartament occupancy surveys link', async ({ page }) => {
     await expect(page).toHaveURL(/.*apartment-occupancy-surveys/);
   });
 
-  test('get graph apartament occupancy surveys link', async ({ page }) => {
+test('get graph apartament occupancy surveys link', async ({ page }) => {
     await page.goto('https://sos2223-14.appspot.com/graph/apartment-occupancy-surveys');
   
     // Click the get started link.
@@ -21,7 +21,7 @@ test('get apartament occupancy surveys link', async ({ page }) => {
     await expect(page).toHaveURL(/.*apartment-occupancy-surveys/);
   });
 
-  test('get analytics', async ({ page }) => {
+test('get analytics', async ({ page }) => {
     await page.goto('https://sos2223-14.appspot.com/');
   
     // Click the get started link.
@@ -30,8 +30,17 @@ test('get apartament occupancy surveys link', async ({ page }) => {
     // Expects the URL to contain intro.
     await expect(page).toHaveURL(/.*analytics/);
   });
+  test('get about', async ({ page }) => {
+    await page.goto('https://sos2223-14.appspot.com/');
+  
+    // Click the get started link.
+    await page.getByRole('link', { name: 'Vídeos' }).click();
+  
+    // Expects the URL to contain intro.
+    await expect(page).toHaveURL(/.*about/);
+  });
 
-  test('get uses and integrations', async ({ page }) => {
+test('get uses and integrations', async ({ page }) => {
     await page.goto('https://sos2223-14.appspot.com/');
   
     // Click the get started link.
@@ -51,8 +60,8 @@ test('get apartament occupancy surveys link', async ({ page }) => {
     -> Borrar todos los datos
     -> Recargar los datos*/
 
-  test('Pruebas e2e apartment-occupancy-surveys', async ({ page }) => {
-    await page.goto('https://sos2223-14.appspot.com/apartment-occupancy-surveys');
+test('Pruebas e2e apartment-occupancy-surveys', async ({ page }) => {
+  await page.goto('https://sos2223-14.appspot.com/apartment-occupancy-surveys');
   await page.getByRole('button', { name: 'Página siguiente' }).click();
   await page.getByRole('button', { name: 'Página anterior' }).click();
   await page.getByRole('row', { name: 'Buscar dato' }).getByRole('textbox').first().click();
