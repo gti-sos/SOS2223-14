@@ -26,7 +26,8 @@ export const nodes = [
 	() => import('./nodes/22'),
 	() => import('./nodes/23'),
 	() => import('./nodes/24'),
-	() => import('./nodes/25')
+	() => import('./nodes/25'),
+	() => import('./nodes/26')
 ];
 
 export const server_loads = [];
@@ -41,21 +42,22 @@ export const dictionary = {
 		"/apartment-occupancy-surveys/[province]/[year]": [8],
 		"/graph/andalusia-tourism-situation-surveys": [9],
 		"/graph/apartment-occupancy-surveys": [10],
-		"/hotel-occupancy-surveys": [11],
-		"/hotel-occupancy-surveys/[province]/[year]": [12],
-		"/integrations": [13],
-		"/integrations/andalusia-tourism-situation-surveys": [14],
-		"/integrations/andalusia-tourism-situation-surveys/integrations": [15],
-		"/integrations/andalusia-tourism-situation-surveys/integrations/withProxy": [17],
-		"/integrations/andalusia-tourism-situation-surveys/integrations/withoutProxy": [16],
-		"/integrations/andalusia-tourism-situation-surveys/uses": [18],
-		"/integrations/andalusia-tourism-situation-surveys/uses/IMDb": [19],
-		"/integrations/andalusia-tourism-situation-surveys/uses/PokemonGo": [20],
-		"/integrations/apartment-occupancy-surveys": [21],
-		"/integrations/apartment-occupancy-surveys/graficas": [22],
-		"/integrations/apartment-occupancy-surveys/graficas/withProxy": [24],
-		"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [23],
-		"/integrations/apartment-occupancy-surveys/usos": [25]
+		"/graph/hotel-occupancy-surveys": [11],
+		"/hotel-occupancy-surveys": [12],
+		"/hotel-occupancy-surveys/[province]/[year]": [13],
+		"/integrations": [14],
+		"/integrations/andalusia-tourism-situation-surveys": [15],
+		"/integrations/andalusia-tourism-situation-surveys/integrations": [16],
+		"/integrations/andalusia-tourism-situation-surveys/integrations/withProxy": [18],
+		"/integrations/andalusia-tourism-situation-surveys/integrations/withoutProxy": [17],
+		"/integrations/andalusia-tourism-situation-surveys/uses": [19],
+		"/integrations/andalusia-tourism-situation-surveys/uses/IMDb": [20],
+		"/integrations/andalusia-tourism-situation-surveys/uses/PokemonGo": [21],
+		"/integrations/apartment-occupancy-surveys": [22],
+		"/integrations/apartment-occupancy-surveys/graficas": [23],
+		"/integrations/apartment-occupancy-surveys/graficas/withProxy": [25],
+		"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [24],
+		"/integrations/apartment-occupancy-surveys/usos": [26]
 	};
 
 export const hooks = {

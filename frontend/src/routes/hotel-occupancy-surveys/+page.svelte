@@ -142,16 +142,35 @@
             c = "danger";
         }
     }
-
-    async function deleteFile(province) {
+/*
+    async function deleteFile(province, year) {
         resultStatus = result = "";
-        const res = await fetch(API+"/"+province, {
+        const res = await fetch(API + "/" + province + "/" + year, {
+            method: "DELETE",
+        });
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            const elementos = document.getElementsByClassName("elementos");
+            for (let i = 0; i < elementos.length; i++) {
+                elementos[i].textContent = "";
+            }
+            location.reload();
+            message = "El elemento está borrado";
+            c = "success";
+        }
+    }*/
+
+    async function deleteFile(province, year) {
+        resultStatus = result = "";
+        const res = await fetch(API+"/"+province+"/"+year, {
             method: "DELETE",
         });
         const status = await res.status;
         resultStatus = status;
         if (status == 200) {
             window.alert("Se ha borrado el dato");
+            location.reload();
         }
     }
 
@@ -524,7 +543,7 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
                     </td>
 
                     <td>
-                        <Button color="danger" on:click={deleteFile(dato.province)}>Borrar</Button>
+                        <Button color="danger" on:click={deleteFile(dato.province, dato.year)}>Borrar</Button>
                     </td>
                 </tr>
             {/each}
