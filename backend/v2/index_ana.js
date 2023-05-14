@@ -219,6 +219,41 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/loadInitialData", (request,respon
     });
 });
 
+
+app.get(BASE_API_URL+"/hotel-occupancy-surveys/data", (request, response)=>{
+    console.log(`New GET to /hotel-occupancy-surveys/data`);
+    let array = new Array();
+    db.find({}, function(err,data){
+        if(err){
+            console.log(`Error geting /hotel-occupancy-surveys/data: ${err}`);
+            response.sendStatus(500);
+        } else {
+            if(data.length==0){
+                db.insert(datos);
+            } 
+            for(let i=0; i<data.length; i++){
+                let dato = [];
+                dato.push(data[i]["province"], data[i]["year"], data[i]["average_employment"], data[i]["estimated_room"], data[i]["estimated_average_place"]);
+                array.push(dato);
+            }
+            response.send(JSON.stringify(array, null, 2));
+        }
+    })
+});
+/*
+app.get(BASE_API_URL+"/hotel-occupancy-surveys/data", (request, response)=>{
+    console.log(`New GET to /hotel-occupancy-surveys/data`);
+    function getRandomInt(min, max){
+        return Math.floor(Math.random()*(max-min)+min);
+    }
+    function v(){return getRandomInt(1,100)};
+    var data = new Array();
+    for(var i=0;i<10;i++)
+        data.push(v())
+    response.json(data);
+});
+*/
+
 //POST
 app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     var newFile = request.body;

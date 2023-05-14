@@ -116,7 +116,7 @@
     }
 
     async function comeBack() {
-        window.location.href = URL_BASE + "/hotel-occupancy-surveys";
+        window.location.href = "https://sos2223-14.appspot.com/hotel-occupancy-surveys";
     }
 </script>
 

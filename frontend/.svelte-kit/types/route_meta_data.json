@@ -8,6 +8,7 @@
 	"/apartment-occupancy-surveys/[province]/[year]": [],
 	"/graph/andalusia-tourism-situation-surveys": [],
 	"/graph/apartment-occupancy-surveys": [],
+	"/graph/hotel-occupancy-surveys": [],
 	"/hotel-occupancy-surveys": [],
 	"/hotel-occupancy-surveys/[province]/[year]": [],
 	"/integrations": [],
