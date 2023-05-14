@@ -9,7 +9,7 @@
         window.location.href = "";
     }
 
-    async function watchVideoTourism(){
+    async function watchVideoTourism(){A
         window.location.href = "";
     }
 
