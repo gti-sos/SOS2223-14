@@ -423,9 +423,10 @@
         <input id="create" class="input" placeholder="Pernoctacion media" bind:value={newFileOvernightStay}/>
         <input id="create" class="input" placeholder="Estancia media" bind:value={newFileAverageStay}/>
     </div>
-    <div id="create-button">
+    <div id="button-create">
         <Button color="warning" on:click={createFile}>Crear dato</Button>
     </div>
+    
     <div id="buttons">
         <p>¿Quieres borrarlo todo?  ¿Quieres recargar la base?</p>
         <Button color="danger" on:click={deleteAll}>Borrar todo</Button>

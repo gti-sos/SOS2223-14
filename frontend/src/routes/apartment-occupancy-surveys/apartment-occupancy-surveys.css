@@ -32,13 +32,13 @@ th{
     border-color: darkslateblue;
     height: 40px;
 }
-#create-button{
-    padding-top: 10px;
-    margin-left: 650px;
-}
 .createData{
     margin-bottom: 15px;
-    margin-left: 200px;
+    text-align: center;
+}
+#button-create{
+    text-align: center;
+    margin-right: 70px;
 }
 #tabla{
     width: 100px;
