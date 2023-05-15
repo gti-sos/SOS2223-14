@@ -96,11 +96,12 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         <input id="create" class="input" placeholder="Turista"${add_attribute("value", newFileTraveler, 0)}>
         <input id="create" class="input" placeholder="Pernoctacion media"${add_attribute("value", newFileOvernightStay, 0)}>
         <input id="create" class="input" placeholder="Estancia media"${add_attribute("value", newFileAverageStay, 0)}></div>
-    <div id="create-button">${validate_component(Button, "Button").$$render($$result, { color: "warning" }, {}, {
+    <div id="button-create">${validate_component(Button, "Button").$$render($$result, { color: "warning" }, {}, {
     default: () => {
       return `Crear dato`;
     }
   })}</div>
+    
     <div id="buttons"><p>¿Quieres borrarlo todo?  ¿Quieres recargar la base?</p>
         ${validate_component(Button, "Button").$$render($$result, { color: "danger" }, {}, {
     default: () => {

@@ -9,7 +9,7 @@
         window.location.href = "";
     }
 
-    async function watchVideoTourism(){A
+    async function watchVideoTourism(){
         window.location.href = "";
     }
 
@@ -40,12 +40,12 @@
         </div>
         <div class="photo-block" style="margin-left: 20px">
             <div class="photo-image-block">
-                <img src = "https://cdn-icons-png.flaticon.com/512/4404/4404094.png" alt="Imagen" style="width: 330px; margin-top: 80px; margin-bottom:10px;">
+                <img src = "https://cdn-icons-png.flaticon.com/512/4404/4404094.png" alt="Imagen" style="width: 300px; margin-top: 50px; margin-bottom:60px;">
             </div>
             <div style="margin-top: -10px">
                 <h4>Coyuntura turística en Andalucía</h4>
             </div>
-            <div id="boton"  style="margin-top: 10px">
+            <div id="boton"  style="margin-top: 20px">
                 <Button color="dark" on:click={watchVideoTourism}>Ver vídeo</Button>
             </div>
         </div>    
