@@ -36,7 +36,7 @@
     let pas = [];
 
     
-    async function getData() {
+    async function getData(total_turistas,turistas_2021,turistas_2022) {
         resultStatus = result = ""; 
         const res = await fetch(API, {
             method: "GET",
@@ -50,16 +50,16 @@
                 py = `${datos[i][0]} ${datos[i][1]}`;
                 id.push(py);
                 if (datos[i][0] == "Andalucía") {
-                    t = ((datos[i][2])/50805802)*100;
+                    t = ((datos[i][2])/total_turistas)*100;
                     t = parseFloat(t.toFixed(2));
                     tourist.push(t);
                 } else {
                     if (datos[i][1] == 2021) {
-                        t = ((datos[i][2])/20035828)*100;
+                        t = ((datos[i][2])/turistas_2021)*100;
                         t = parseFloat(t.toFixed(2));
                         tourist.push(t);
                     } else {
-                        t = ((datos[i][2])/30769974)*100;
+                        t = ((datos[i][2])/turistas_2022)*100;
                         t = parseFloat(t.toFixed(2));
                         tourist.push(t);
                         pas = [];
@@ -171,10 +171,43 @@
             chart.draw(data, options);
         }
     }
+
+    let cont_total = 0;
+    let cont_2021 = 0;
+    let cont_2022 = 0;
+
+    async function contador() {
+        resultStatus = result = ""; 
+        const res = await fetch(API, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos = data;
+            for (let i = 0; i < datos.length; i++) {
+                if (datos[i][0] == "Andalucía") {
+                    cont_total += datos[i][2];
+                } else {
+                    if (datos[i][1] == 2021) {
+                        cont_2021 += datos[i][2];
+                    } else {
+                        cont_2022 += datos[i][2];
+                    }
+                }
+            }
+            console.log(cont_total,cont_2021,cont_2022);
+            getData(cont_total,cont_2021,cont_2022);
+        } catch (error) {
+            console.log(`Error parsing result: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+    }
     
 
     onMount(async () => {
-        getData();
+        contador();
     })
 
     async function view() {
