@@ -10,7 +10,7 @@
     }
 
     async function watchVideoTourism(){
-        window.location.href = "";
+        window.location.href = "https://drive.google.com/file/d/1FcHZFdHhwLinRu1DVGVNVrEIFEXpyA4q/view?usp=sharing";
     }
 
 </script>
