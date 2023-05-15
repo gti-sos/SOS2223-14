@@ -219,11 +219,11 @@
     <h3 style="text-align: center; font-style: oblique;">
         <u>Introduce una ciudad para mostrar su gráfica</u>
     </h3>
-        <div>
-            <input id="input" style="margin-left: 650px;height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
+        <div style="text-align: center;">
+            <input id="input" style="height: 45px; text-align: center;" placeholder="Provincia" bind:value={province}/>
         </div>
-        <div>
-            <Button style="margin-left: 700px;height: 45px; margin-top: 20px; margin-bottom: 20px;" color="warning" on:click={getData(province)}>Buscar</Button>
+        <div style="text-align: center;">
+            <Button style="height: 45px; margin-top: 20px; margin-bottom: 20px;" color="warning" on:click={getData(province)}>Buscar</Button>
         </div>
     {#if message != ""}
         <Alert color={c}>{message}</Alert>
