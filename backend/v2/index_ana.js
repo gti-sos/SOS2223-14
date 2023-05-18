@@ -9,10 +9,10 @@ var datos = [
     {
         "province": "Almería",
         "year": 2021,
-        "average_employment": 1.848,
+        "average_employment": 1848,
         "estimated_average_open_establishment": 138,
-        "estimated_average_place": 18.924,
-        "estimated_room": 7.487,
+        "estimated_average_place": 18924,
+        "estimated_room": 7487,
         "occupancy_rate_by_place": 43,
         "occupancy_rate_by_weekend_place": 49,
         "room_occupancy_rate": 52
@@ -20,10 +20,10 @@ var datos = [
     {
         "province": "Cádiz",
         "year": 2021,
-        "average_employment": 4.112,
+        "average_employment": 4112,
         "estimated_average_open_establishment": 351,
-        "estimated_average_place": 30.156,
-        "estimated_room": 13.874,
+        "estimated_average_place": 30156,
+        "estimated_room": 13874,
         "occupancy_rate_by_place": 48,
         "occupancy_rate_by_weekend_place": 56, 
         "room_occupancy_rate": 55
@@ -33,8 +33,8 @@ var datos = [
         "year": 2021,
         "average_employment": 828,
         "estimated_average_open_establishment": 148,
-        "estimated_average_place": 8.784,
-        "estimated_room": 4.438,
+        "estimated_average_place": 8784,
+        "estimated_room": 4438,
         "occupancy_rate_by_place": 33,
         "occupancy_rate_by_weekend_place": 42,
         "room_occupancy_rate": 40
@@ -42,10 +42,10 @@ var datos = [
     {
         "province": "Granada",
         "year": 2021,
-        "average_employment": 1.948,
+        "average_employment": 1948,
         "estimated_average_open_establishment": 278,
-        "estimated_average_place": 21.678,
-        "estimated_room": 10.340,
+        "estimated_average_place": 21678,
+        "estimated_room": 10340,
         "occupancy_rate_by_place": 37,
         "occupancy_rate_by_weekend_place": 47,
         "room_occupancy_rate": 43
@@ -53,10 +53,10 @@ var datos = [
     {
         "province": "Huelva",
         "year": 2021,
-        "average_employment": 1.846,
+        "average_employment": 1846,
         "estimated_average_open_establishment": 110,
-        "estimated_average_place": 12.693,
-        "estimated_room": 5.689,
+        "estimated_average_place": 12693,
+        "estimated_room": 5689,
         "occupancy_rate_by_place": 53,
         "occupancy_rate_by_weekend_place": 61,
         "room_occupancy_rate": 57
@@ -66,8 +66,8 @@ var datos = [
         "year": 2021,
         "average_employment": 755,
         "estimated_average_open_establishment": 142,
-        "estimated_average_place": 7.039,
-        "estimated_room": 3.627,
+        "estimated_average_place": 7039,
+        "estimated_room": 3627,
         "occupancy_rate_by_place": 27,
         "occupancy_rate_by_weekend_place": 35,
         "room_occupancy_rate": 31
@@ -77,8 +77,8 @@ var datos = [
         "year": 2021,
         "average_employment": 8548,
         "estimated_average_open_establishment": 401,
-        "estimated_average_place": 59.870,
-        "estimated_room": 27.065,
+        "estimated_average_place": 59870,
+        "estimated_room": 27065,
         "occupancy_rate_by_place": 48,
         "occupancy_rate_by_weekend_place": 54,
         "room_occupancy_rate": 54
@@ -86,10 +86,10 @@ var datos = [
     {
         "province": "Sevilla",
         "year": 2021,
-        "average_employment": 2.441,
+        "average_employment": 2441,
         "estimated_average_open_establishment": 250,
-        "estimated_average_place": 23.494,
-        "estimated_room": 11.694,
+        "estimated_average_place": 23494,
+        "estimated_room": 11694,
         "occupancy_rate_by_place": 40,
         "occupancy_rate_by_weekend_place": 50,
         "room_occupancy_rate": 46
@@ -97,10 +97,10 @@ var datos = [
     {
         "province": "Almería",
         "year": 2022,
-        "average_employment": 2.968,
+        "average_employment": 2968,
         "estimated_average_open_establishment": 179,
-        "estimated_average_place": 25.974,
-        "estimated_room": 10.190,
+        "estimated_average_place": 25974,
+        "estimated_room": 10190,
         "occupancy_rate_by_place": 47,
         "occupancy_rate_by_weekend_place": 54,
         "room_occupancy_rate": 59
@@ -108,10 +108,10 @@ var datos = [
     {
         "province": "Cádiz",
         "year": 2022,
-        "average_employment": 5.896,
+        "average_employment": 5896,
         "estimated_average_open_establishment": 408,
-        "estimated_average_place": 38.916,
-        "estimated_room": 17.735,
+        "estimated_average_place": 38916,
+        "estimated_room": 17735,
         "occupancy_rate_by_place": 53,
         "occupancy_rate_by_weekend_place": 61,
         "room_occupancy_rate": 61
@@ -119,10 +119,10 @@ var datos = [
     {
         "province": "Córdoba",
         "year": 2022,
-        "average_employment": 1.209,
+        "average_employment": 1209,
         "estimated_average_open_establishment": 183,
-        "estimated_average_place": 10.936,
-        "estimated_room": 5.509,
+        "estimated_average_place": 10936,
+        "estimated_room": 5509,
         "occupancy_rate_by_place": 44,
         "occupancy_rate_by_weekend_place": 55,
         "room_occupancy_rate": 51
@@ -130,10 +130,10 @@ var datos = [
     {
         "province": "Granada",
         "year": 2022,
-        "average_employment": 3.178,
+        "average_employment": 3178,
         "estimated_average_open_establishment": 361,
-        "estimated_average_place": 29.478,
-        "estimated_room": 14.080,
+        "estimated_average_place": 29478,
+        "estimated_room": 14080,
         "occupancy_rate_by_place": 47,
         "occupancy_rate_by_weekend_place": 58,
         "room_occupancy_rate": 53
@@ -141,10 +141,10 @@ var datos = [
     {
         "province": "Huelva",
         "year": 2022,
-        "average_employment": 2.720,
+        "average_employment": 2720,
         "estimated_average_open_establishment": 136,
-        "estimated_average_place": 18.341,
-        "estimated_room": 8.055,
+        "estimated_average_place": 18341,
+        "estimated_room": 8055,
         "occupancy_rate_by_place": 53,
         "occupancy_rate_by_weekend_place": 62,
         "room_occupancy_rate": 58
@@ -154,8 +154,8 @@ var datos = [
         "year": 2022,
         "average_employment": 926,
         "estimated_average_open_establishment": 161,
-        "estimated_average_place": 8.016,
-        "estimated_room": 4.040,
+        "estimated_average_place": 8016,
+        "estimated_room": 4040,
         "occupancy_rate_by_place": 33,
         "occupancy_rate_by_weekend_place": 45,
         "room_occupancy_rate": 39
@@ -163,10 +163,10 @@ var datos = [
     {
         "province": "Málaga",
         "year": 2022,
-        "average_employment": 13.875,
+        "average_employment": 13875,
         "estimated_average_open_establishment": 548,
-        "estimated_average_place": 84.299,
-        "estimated_room": 38.044,
+        "estimated_average_place": 84299,
+        "estimated_room": 38044,
         "occupancy_rate_by_place": 61,
         "occupancy_rate_by_weekend_place": 66,
         "room_occupancy_rate": 71
@@ -174,22 +174,17 @@ var datos = [
     {
         "province": "Sevilla",
         "year": 2022,
-        "average_employment": 4.203,
+        "average_employment": 4203,
         "estimated_average_open_establishment": 365,
-        "estimated_average_place": 32.045,
-        "estimated_room": 16.057,
+        "estimated_average_place": 32045,
+        "estimated_room": 16057,
         "occupancy_rate_by_place": 56,
         "occupancy_rate_by_weekend_place": 65,
         "room_occupancy_rate": 63
     }
 ];
 
-//db.insert(datos);
-
-//GET DOCS
-/*app.get(BASE_API_URL_V1 +"/hotel-occupancy-surveys/docs", (request,response) => {
-    response.redirect("https://documenter.getpostman.com/view/25974748/2s93K1nyei");
-});*/
+db.insert(datos);
 
 app.get(BASE_API_URL+"/hotel-occupancy-surveys/docs", (request,response) => {
     response.redirect("https://documenter.getpostman.com/view/25974748/2s93Xwzj4Q");
@@ -233,7 +228,7 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/data", (request, response)=>{
             } 
             for(let i=0; i<data.length; i++){
                 let dato = [];
-                dato.push(data[i]["province"], data[i]["year"], data[i]["average_employment"], data[i]["estimated_room"], data[i]["estimated_average_place"]);
+                dato.push(data[i]["province"], data[i]["year"], data[i]["average_employment"], data[i]["estimated_average_place"], data[i]["estimated_room"]);
                 array.push(dato);
             }
             response.send(JSON.stringify(array, null, 2));
@@ -295,9 +290,18 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     console.log("New GET to /hotel-occupancy-surveys");
     var province = request.query.province;
     var year = request.query.year;
-    var average_employment = request.query.average_employment;
+
+    var above_average_employment = request.query.above_average_employment;
+    var above_open_establishment = request.query.above_open_establishment;
+    var above_average_place = request.query.above_average_place;
+    var above_estimated_room = request.query.above_estimated_room;
+    var above_occupancy_by_place = request.query.above_occupancy_by_place;
+    var above_occupancy_by_weekend_place = request.query.above_occupancy_by_weekend_place;
+    var above_room_occupancy_rate = request.query.above_room_occupancy_rate;
+   
     var below_employment = request.query.below_employment;
-    var above_employment = request.query.above_employment;
+
+    var average_employment = request.query.average_employment;
     var estimated_average_open_establishment = request.query.estimated_average_open_establishment;
     var estimated_average_place = request.query.estimated_average_place;
     var estimated_room = request.query.estimated_room;
@@ -316,9 +320,14 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
         && element != "province"
         && element != "limit" 
         && element != "offset" 
-        && element != "above_employment" 
-        && element != "below_employment" 
-        && element != "average_employment" 
+        && element != "above_average_employment" 
+        && element != "above_open_establishment"
+        && element != "above_average_place"
+        && element != "above_estimated_room"      
+        && element != "above_occupancy_by_place"      
+        && element != "above_occupancy_by_weekend_place"      
+        && element != "above_room_occupancy_rate"
+        && element != "below_employment"            
         && element != "estimated_average_open_establishment"
         && element != "estimated_average_place"
         && element != "estimated_room" 
@@ -334,10 +343,6 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
     if(from>to){
         console.log(`No se han recibido los campos esperados:`);
         response.status(400).send("Bad Request");
-    }else if(above_employment>below_employment) {
-        console.log(`No se han recibido los campos esperados.`);
-        response.status(400).send("Bad Request");
-
     }else{
 
     db.find({},function(err, filteredList){
@@ -460,11 +465,11 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
             }
         }
 
-        // Apartado para above_employment
-        if(above_employment != null){
+        // Apartado para above_average_employment
+        if(above_average_employment != null){
             filteredList = filteredList.filter((reg)=>
             {
-                return (reg.average_employment == above_employment);
+                return (reg.average_employment >= above_average_employment);
             });
 
             if (filteredList==0){
@@ -472,12 +477,91 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
                 response.status(404).send("Data not found");
             }    
         }
+
+        // Apartado para above_open_establishment
+        if(above_open_establishment != null){
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.estimated_average_open_establishment >= above_open_establishment);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }    
+        }
+
+        // Apartado para above_average_place
+        if(above_average_place != null){
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.estimated_average_place >= above_average_place);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }    
+        }
+
+            // Apartado para above_estimated_room
+            if(above_estimated_room != null){
+                filteredList = filteredList.filter((reg)=>
+                {
+                    return (reg.estimated_room >= above_estimated_room);
+                });
+        
+                if (filteredList==0){
+                    console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                    response.status(404).send("Data not found");
+                }    
+            }
+
+        // Apartado para above_occupancy_by_place
+        if(above_occupancy_by_place != null){
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.occupancy_rate_by_place >= above_occupancy_by_place);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }    
+        }
+        
+        // Apartado para above_occupancy_by_weekend_place
+        if(above_occupancy_by_weekend_place != null){
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.occupancy_rate_by_weekend_place >= above_occupancy_by_weekend_place);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }    
+        }
+        
+        // Apartado para above_room_occupancy_rate
+        if(above_room_occupancy_rate != null){
+            filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.room_occupancy_rate >= above_room_occupancy_rate);
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }    
+        }
+
         // Apartado para below_employment
         
         if(below_employment != null){
             filteredList = filteredList.filter((reg)=>
             {
-                return (reg.average_employment == below_employment);
+                return (reg.average_employment <= below_employment);
             });
 
             if (filteredList==0){
@@ -486,12 +570,12 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
             }    
         }
 
-        // Apartado para above_employment y below_employment
+        // Apartado para above_average_employment y below_employment
         
-        if(above_employment != null && below_employment != null){
+        if(above_average_employment != null && below_employment != null){
             filteredList = filteredList.filter((reg)=>
             {
-                return (reg.average_employment >= above_employment && reg.average_employment <=below_employment);
+                return (reg.average_employment >= above_average_employment && reg.average_employment <=below_employment);
             });
 
             if (filteredList==0){

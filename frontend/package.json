@@ -23,6 +23,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@canvasjs/charts": "^3.7.6",
+		"@canvasjs/stockcharts": "^1.7.6",
 		"axios": "^1.4.0",
 		"sveltestrap": "^5.10.0",
 		"sweetalert2": "^11.4.8"

@@ -60,8 +60,15 @@
     let getTo = "";
     let searchAboveEmployment = "";
     let searchBelowEmployment = "";
-    let AboveAverageStay = null;
-    let BelowAverageStay = null;
+    
+    let aboveAverageEmployment = null;
+    let aboveOpenEstablishment = null;
+    let aboveAveragePlace = null;
+    let aboveEstimatedRoom = null;
+    let aboveOccupancyByPlace = null;
+    let aboveOccupancyByWeekendPlace = null;
+    let aboveRoomOccupancyRate = null;
+
 
     let limit = 10;
     let offset=0;
@@ -306,7 +313,7 @@
 
     async function getEmployment(searchAboveEmployment,searchBelowEmployment) {
         resultStatus = result = "";
-        const res = await fetch(API+`?above_employment=${searchAboveEmployment}&&below_employment=${searchBelowEmployment}`, {
+        const res = await fetch(API+`?above_average_employment=${searchAboveEmployment}&&below_employment=${searchBelowEmployment}`, {
             method: "GET",
         });
         try {
@@ -333,8 +340,8 @@
         } 
     }
 
-/*
-    async function getID(searchProvinceID,searchYearID) {
+
+    async function getProvYear(searchProvinceID,searchYearID) {
         resultStatus = result = ""; 
         const res = await fetch(API+`?province=${searchProvinceID}&&year=${searchYearID}`, {
             method: "GET",
@@ -362,50 +369,6 @@
             c = "danger";
         }
     }
-*/
-/*
-    async function getFromTo(searchProvinceRange,getFrom,getTo) {
-        resultStatus = result = "";
-        const res = await fetch(API+`?province=${searchProvinceRange}&&from=${getFrom}&&to=${getTo}`, {
-                method: "GET",
-            });
-            if (searchProvinceRange != "") {
-            try {
-                const data = await res.json();
-                result = JSON.stringify(data, null, 2);
-                datos = data;
-            } catch (error) {
-                console.log(`Error al parsear el resultado: ${error}`);
-            }
-            } else {
-            const res = await fetch(API+`?from=${getFrom}&&to=${getTo}`, {
-                method: "GET",
-            });
-            try {
-                const data = await res.json();
-                result = JSON.stringify(data, null, 2);
-                datos = data;
-            } catch (error) {
-                console.log(`Error al parsear el resultado: ${error}`);
-            }
-        }
-        const status = await res.status;
-        resultStatus = status;
-        if (status == 200) {
-            message = "Elemento encontrado";
-            c = "success";
-        } else if (status == 400) {
-            message = "La petición no es correcta."
-            c = "danger";
-        } else if (status == 404) {
-            message="No hay datos disponibles del rango indicado."
-            c = "danger";
-        } else if (status == 500) {
-            message = "Error del servidor";
-            c = "danger";
-        } 
-    }
-*/
 
 async function getFromTo(searchProvinceRange,getFrom,getTo) {
         resultStatus = result = "";
@@ -465,9 +428,10 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
         
     }
 
-    async function getAverageStay(getAboveAverageStay,getBelowAverageStay) {
+    //Media de empleo
+    async function getAverageEmployment(aboveAverageEmployment) {
         resultStatus = result = "";
-        const res = await fetch(API+`?above_average_stay=${getAboveAverageStay}&&below_average_stay=${getBelowAverageStay}`, {
+        const res = await fetch(API+`?above_average_employment=${aboveAverageEmployment}`, {
             method: "GET",
         });
         try {
@@ -486,7 +450,187 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
             message = "La petición no es correcta."
             c = "danger";
         } else if (status == 404) {
-            message="No hay datos con ese rango de estancia media."
+            message="No hay datos con ese rango de media de empleo."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    }
+
+    //Establecimiento abierto medio estimado
+    async function getOpenEstablishment(aboveOpenEstablishment) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?above_open_establishment=${aboveOpenEstablishment}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos=data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos con ese rango de establecimiento abierto."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    } 
+
+    //Lugar promedio estimado
+    async function getAveragePlace(aboveAveragePlace) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?above_average_place=${aboveAveragePlace}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos=data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos con ese rango de media de lugar."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    } 
+
+    //Habitaciones estimadas
+    async function getEstimatedRoom(aboveEstimatedRoom) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?above_estimated_room=${aboveEstimatedRoom}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos=data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos con ese rango de habitaciones estimadas."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    } 
+
+    //Tasa de ocupación por lugar
+    async function getOccupancyByPlace(aboveOccupancyByPlace) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?above_occupancy_by_place=${aboveOccupancyByPlace}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos=data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos con ese rango por lugar."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    } 
+
+    //Tasa de ocupación por lugar de fin de semana
+    async function getOccupancyByWeekendPlace(aboveOccupancyByWeekendPlace) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?above_occupancy_by_weekend_place=${aboveOccupancyByWeekendPlace}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos=data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos con ese rango de por lugar de fin de semana."
+            c = "danger";
+        } else if (status == 500) {
+            message = "Error del servidor";
+            c = "danger";
+        }
+    } 
+
+    //Tasa de ocupación de la habitación
+    async function getRoomOccupancyRate(aboveRoomOccupancyRate) {
+        resultStatus = result = "";
+        const res = await fetch(API+`?above_room_occupancy_rate=${aboveRoomOccupancyRate}`, {
+            method: "GET",
+        });
+        try {
+            const data = await res.json();
+            result = JSON.stringify(data, null, 2);
+            datos=data;
+        } catch (error) {
+            console.log(`Error al parsear el resultado: ${error}`);
+        }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            message = "Elemento encontrado";
+            c = "success";
+        } else if (status == 400) {
+            message = "La petición no es correcta."
+            c = "danger";
+        } else if (status == 404) {
+            message="No hay datos con ese rango de ocupación de la habitación."
             c = "danger";
         } else if (status == 500) {
             message = "Error del servidor";
@@ -528,15 +672,15 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
         <tbody>
             {#each datos as dato}
                 <tr>
-                    <td>{dato.province}</td>
-                    <td>{dato.year}</td>
-                    <td>{dato.average_employment}</td>
-                    <td>{dato.estimated_average_open_establishment}</td>
-                    <td>{dato.estimated_average_place}</td>
-                    <td>{dato.estimated_room}</td>
-                    <td>{dato.occupancy_rate_by_place}</td>
-                    <td>{dato.occupancy_rate_by_weekend_place}</td>
-                    <td>{dato.room_occupancy_rate}</td>
+                    <td>{dato["province"]}</td>
+                    <td>{dato["year"]}</td>
+                    <td>{dato["average_employment"]}</td>
+                    <td>{dato["estimated_average_open_establishment"]}</td>
+                    <td>{dato["estimated_average_place"]}</td>
+                    <td>{dato["estimated_room"]}</td>
+                    <td>{dato["occupancy_rate_by_place"]}</td>
+                    <td>{dato["occupancy_rate_by_weekend_place"]}</td>
+                    <td>{dato["room_occupancy_rate"]}</td>
 
                     <td>
                         <Button color="info" on:click={view(dato.province, dato.year)}>Editar</Button>
@@ -549,8 +693,19 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
             {/each}
         </tbody>
         </Table>
-        <Button color="dark" on:click={getAllData}>Página anterior</Button>
-        <Button color="dark" on:click={nextPage}>Página siguiente</Button>
+        {#if datos.length >= 10}
+        <div style="text-align: center;">
+            <Button color="dark" on:click={getAllData}>Página anterior</Button>
+            <Button color="dark" on:click={nextPage}>Página siguiente</Button>
+        </div>
+        {/if}
+        {#if datos.length < 10 && nextPage}
+        <div style="text-align: center;">
+            <Button color="dark" on:click={getAllData}>Página anterior</Button>
+        </div>
+        {/if}
+        
+        
         <br>
         <Table id="tabla">
             <thead>
@@ -590,9 +745,44 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
     </div>
     <br>
     <div>
-        <input placeholder="Provincia ID" bind:value={searchProvinceID} />
-        <input placeholder="Año ID" bind:value={searchYearID} />
-        <Button color="warning" on:click={getID(searchProvinceID,searchYearID)}>Buscar por ID</Button>
+        <input placeholder="Media de empleo a partir de..." bind:value={aboveAverageEmployment} />
+        <Button color="warning" on:click={getAverageEmployment(aboveAverageEmployment)}>Media de empleo a partir de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Media de establecimiento abierto a partir de..." bind:value={aboveOpenEstablishment} />
+        <Button color="warning" on:click={getOpenEstablishment(aboveOpenEstablishment)}>Media de establecimiento abierto a partir de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Media de lugar a partir de..." bind:value={aboveAveragePlace} />
+        <Button color="warning" on:click={getAveragePlace(aboveAveragePlace)}>Media de lugar a partir de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Media de habitaciones estimadas a partir de..." bind:value={aboveEstimatedRoom} />
+        <Button color="warning" on:click={getEstimatedRoom(aboveEstimatedRoom)}>Media de habitaciones estimadas a partir de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Tasa de ocupación por lugar a partir de..." bind:value={aboveOccupancyByPlace} />
+        <Button color="warning" on:click={getOccupancyByPlace(aboveOccupancyByPlace)}>Tasa de ocupación por lugar a partir de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Tasa de ocupación por lugar de fin de semana a partir de..." bind:value={aboveOccupancyByWeekendPlace} />
+        <Button color="warning" on:click={getOccupancyByWeekendPlace(aboveOccupancyByWeekendPlace)}>Tasa de ocupación por lugar de fin de semana a partir de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Tasa de ocupación de la habitación a partir de..." bind:value={aboveRoomOccupancyRate} />
+        <Button color="warning" on:click={getRoomOccupancyRate(aboveRoomOccupancyRate)}>Tasa de ocupación de la habitación a partir de...</Button>
+    </div>
+    <br>
+    <div>
+        <input placeholder="Provincia" bind:value={searchProvinceID} />
+        <input placeholder="Año" bind:value={searchYearID} />
+        <Button color="warning" on:click={getProvYear(searchProvinceID,searchYearID)}>Buscar por provincia y año</Button>
     </div>
     <br>
     <div>

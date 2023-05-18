@@ -37,6 +37,7 @@
     "test": "tests"
   },
   "devDependencies": {
-    "@playwright/test": "^1.33.0"
+    "@playwright/test": "^1.33.0",
+    "@sveltejs/adapter-node": "^1.2.4"
   }
 }
