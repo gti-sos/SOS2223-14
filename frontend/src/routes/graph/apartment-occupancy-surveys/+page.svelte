@@ -98,6 +98,7 @@
     }
 
     async function getAllData() {
+        resultStatus = result = "";
         const res = await fetch(API, {
             method: "GET",
         });
@@ -111,10 +112,14 @@
                 overnight_stay.push(parseInt(datos[i]["overnight_stay"]));
                 average_stay.push(parseInt(datos[i]["average_stay"]));
             }
-            loadHighCharts(provincias, traveler, overnight_stay, average_stay);
         } catch (error) {
             console.log(`Error parsing result: ${error}`);
         }
+        const status = await res.status;
+        resultStatus = status;
+        if (status == 200) {
+            loadHighCharts(provincias, traveler, overnight_stay, average_stay);
+        }         
     }
 
     async function loadJSCharting(
