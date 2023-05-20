@@ -23,18 +23,17 @@
     let data = [];
     let provinces = [];
     let average_employment = [];
-    let estimated_room = [];
+    let estimated_average_open_establishment = [];
     let estimated_average_place = [];
+    let estimated_room = [];
+    let occupancy_rate_by_place = [];
+    let occupancy_rate_by_weekend_place = [];
+    let room_occupancy_rate = [];
     let datos = "";
     let phc = "";
     let result = "";
     let resultStatus = "";
     let dataPoints = [];
-
-
-    let average_employment_js = [];
-    let estimated_room_cv = [];
-    let estimated_average_place_js = [];
 
     async function getData() {
         resultStatus = result = "";
@@ -48,10 +47,14 @@
                 phc = `${datos[i][0]} ${datos[i][1]}`;
                 provinces.push(phc);
                 average_employment.push(datos[i][2]);
-                estimated_average_place.push(datos[i][3]);
-                estimated_room.push(datos[i][4]);
+                estimated_average_open_establishment.push(datos[i][3]);
+                estimated_average_place.push(datos[i][4]);
+                estimated_room.push(datos[i][5]);
+                occupancy_rate_by_place.push(datos[i][6]);
+                occupancy_rate_by_weekend_place.push(datos[i][7]);
+                room_occupancy_rate.push(datos[i][8]);
             }
-            loadHChart(provinces, average_employment, estimated_average_place, estimated_room);
+            loadHChart(provinces, average_employment, estimated_average_open_establishment, estimated_average_place, estimated_room, occupancy_rate_by_place, occupancy_rate_by_weekend_place, room_occupancy_rate);
             loadCanvasChart(provinces, estimated_room);
 
         } catch (error) {
@@ -62,13 +65,13 @@
     }
     
 
-    async function loadHChart(provinces, average_employment, estimated_average_place, estimated_room){
+    async function loadHChart(provinces, average_employment, estimated_average_open_establishment, estimated_average_place, estimated_room, occupancy_rate_by_place, occupancy_rate_by_weekend_place, room_occupancy_rate){
         Highcharts.chart('container', {
             chart: {
                 type: 'spline'
             },
             title: {
-                text: 'Monthly Average Temperature'
+                text: 'Andalucía'
             },
             subtitle: {
                 text: 'Source: ' +
@@ -112,50 +115,74 @@
                 data: average_employment
 
             }, {
-                name: 'Lugar promedio estimado',
+                name: 'Establecimiento abierto medio estimado',
                 marker: {
                     symbol: 'triangle'
+                },
+                data: estimated_average_open_establishment
+            }, {
+                name: 'Lugar promedio estimado',
+                marker: {
+                    symbol: 'diamond'
                 },
                 data: estimated_average_place
             }, {
                 name: 'Habitaciones estimadas',
                 marker: {
-                    symbol: 'diamond'
+                    symbol: 'triangle'
                 },
                 data: estimated_room
+            }, {
+                name: 'Tasa de ocupación por lugar',
+                marker: {
+                    symbol: 'triangle'
+                },
+                data: occupancy_rate_by_place
+            }, {
+                name: 'Tasa de ocupación por lugar de fin de semana',
+                marker: {
+                    symbol: 'triangle'
+                },
+                data: occupancy_rate_by_weekend_place
+            }, {
+                name: 'Tasa de ocupación de la habitación',
+                marker: {
+                    symbol: 'triangle'
+                },
+                data: room_occupancy_rate
             }]
         });
     }
 
     async function loadCanvasChart(provinces, estimated_room) {
-        const chartData = provinces.map((province, index) => ({
-            x: province,
-            y: estimated_room[index]
+        const chartData = provinces.map((province, i) => ({
+            label: province,
+            y: estimated_room[i]
         }));
-
         var chart = new CanvasJS.Chart("chartContainer", {
+            
             animationEnabled: true,
             theme: "light2",
-            title: {
-                text: "Ocupación hotelera en Andalucía"
+            title:{
+                text: "Habitaciones estimadas por provincias"
             },
             axisY: {
-                title: "Habitaciones estimadas",
-                titleFontSize: 24,
-                includeZero: true
+                title: "Habitaciones estimadas"
             },
-            data: [{
-                type: "column",
-                yValueFormatString: "#,### Units",
+            data: [{        
+                type: "column",  
+                showInLegend: true, 
+                legendMarkerColor: "grey",
+                legendText: "Provincias",
                 dataPoints: chartData
             }]
         });
         chart.render();
-    }
+    } 
 
-    onMount(async () =>{
+    onMount(async () => {
         getData();
-    });
+    })
 </script>
 
 <main>

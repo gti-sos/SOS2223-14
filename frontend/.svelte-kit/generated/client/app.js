@@ -27,7 +27,11 @@ export const nodes = [
 	() => import('./nodes/23'),
 	() => import('./nodes/24'),
 	() => import('./nodes/25'),
-	() => import('./nodes/26')
+	() => import('./nodes/26'),
+	() => import('./nodes/27'),
+	() => import('./nodes/28'),
+	() => import('./nodes/29'),
+	() => import('./nodes/30')
 ];
 
 export const server_loads = [];
@@ -57,7 +61,11 @@ export const dictionary = {
 		"/integrations/apartment-occupancy-surveys/graficas": [23],
 		"/integrations/apartment-occupancy-surveys/graficas/withProxy": [25],
 		"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [24],
-		"/integrations/apartment-occupancy-surveys/usos": [26]
+		"/integrations/apartment-occupancy-surveys/usos": [26],
+		"/integrations/hotel-occupancy-surveys": [27],
+		"/integrations/hotel-occupancy-surveys/usos": [28],
+		"/integrations/hotel-occupancy-surveys/usos/DrinksDigital": [29],
+		"/integrations/hotel-occupancy-surveys/usos/GamerPower": [30]
 	};
 
 export const hooks = {

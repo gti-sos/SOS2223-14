@@ -228,26 +228,13 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/data", (request, response)=>{
             } 
             for(let i=0; i<data.length; i++){
                 let dato = [];
-                dato.push(data[i]["province"], data[i]["year"], data[i]["average_employment"], data[i]["estimated_average_place"], data[i]["estimated_room"]);
+                dato.push(data[i]["province"], data[i]["year"], data[i]["average_employment"], data[i]["estimated_average_open_establishment"], data[i]["estimated_average_place"], data[i]["estimated_room"], data[i]["occupancy_rate_by_place"], data[i]["occupancy_rate_by_weekend_place"], data[i]["room_occupancy_rate"]);
                 array.push(dato);
             }
             response.send(JSON.stringify(array, null, 2));
         }
     })
 });
-/*
-app.get(BASE_API_URL+"/hotel-occupancy-surveys/data", (request, response)=>{
-    console.log(`New GET to /hotel-occupancy-surveys/data`);
-    function getRandomInt(min, max){
-        return Math.floor(Math.random()*(max-min)+min);
-    }
-    function v(){return getRandomInt(1,100)};
-    var data = new Array();
-    for(var i=0;i<10;i++)
-        data.push(v())
-    response.json(data);
-});
-*/
 
 //POST
 app.post(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
@@ -301,6 +288,9 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
    
     var below_employment = request.query.below_employment;
 
+    var provinceSearch = request.query.provinceSearch;
+    var yearSearch = request.query.yearSearch;
+
     var average_employment = request.query.average_employment;
     var estimated_average_open_establishment = request.query.estimated_average_open_establishment;
     var estimated_average_place = request.query.estimated_average_place;
@@ -327,7 +317,9 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
         && element != "above_occupancy_by_place"      
         && element != "above_occupancy_by_weekend_place"      
         && element != "above_room_occupancy_rate"
-        && element != "below_employment"            
+        && element != "below_employment"
+        && element != "provinceSearch"
+        && element != "yearSearch"         
         && element != "estimated_average_open_establishment"
         && element != "estimated_average_place"
         && element != "estimated_room" 
@@ -372,6 +364,20 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
             var filteredList = filteredList.filter((reg)=>
             {
                 return (reg.year == year);
+
+            });
+
+            if (filteredList==0){
+                console.log(`Data not found /hotel-occupancy-surveys: ${err}`);
+                response.status(404).send("Data not found");
+            }
+        }
+
+        // Búsqueda por provincia y anyo
+        if (provinceSearch != null && yearSearch != null){
+            var filteredList = filteredList.filter((reg)=>
+            {
+                return (reg.province == provinceSearch && reg.year == yearSearch);
 
             });
 
@@ -621,17 +627,18 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys", (request,response) => {
                 }
             }
         }
-        if(filteredList.length>1){
+
+        if(filteredList.length>=1){
             response.send(JSON.stringify(filteredList,null,2));
             console.log(`Datos devueltos: ${filteredList.length}`);
-        }
-        else{
+        }else{
             if(filteredList.length!=0){
                 console.log(`data returned ${filteredList.length}`);
                 delete filteredList[0]._id;
                 response.json(filteredList[0]);
             }
-        }}
+        }
+    }
     )};
 });
 
@@ -748,32 +755,6 @@ app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province/:year", (request,respon
         }
     });
 });
-
-/*
-app.get(BASE_API_URL+"/hotel-occupancy-surveys/:province", (request,response) => {
-    var ciudad = request.params.province;
-    console.log(`New GET to /hotel-occupancy-surveys/${ciudad}`);
-    db.find({province : ciudad}).skip(0).limit(datos.length).exec((err, data) =>{
-        if(err){
-            console.log(`Error geting /hotel-occupancy-surveys/${ciudad}: ${err}`);
-            response.sendStatus(500);
-        }else{
-            if(data.length!= 0){
-                console.log(`data returned ${data.length}`);
-                response.json(data.map((d)=>{
-                    delete d._id;
-                    return d;
-                }));
-            }
-             else{
-                console.log(`Data not found /hotel-occupancy-surveys/${ciudad}: ${err}`);
-                response.status(404).send("Data not found");
-             }        
-        }
-    });
-});
-*/
-
 
 app.post(BASE_API_URL+"/hotel-occupancy-surveys/:province",(request,response)=>{
     response.sendStatus(405, "Method not allowed");

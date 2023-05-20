@@ -149,24 +149,6 @@
             c = "danger";
         }
     }
-/*
-    async function deleteFile(province, year) {
-        resultStatus = result = "";
-        const res = await fetch(API + "/" + province + "/" + year, {
-            method: "DELETE",
-        });
-        const status = await res.status;
-        resultStatus = status;
-        if (status == 200) {
-            const elementos = document.getElementsByClassName("elementos");
-            for (let i = 0; i < elementos.length; i++) {
-                elementos[i].textContent = "";
-            }
-            location.reload();
-            message = "El elemento está borrado";
-            c = "success";
-        }
-    }*/
 
     async function deleteFile(province, year) {
         resultStatus = result = "";
@@ -220,23 +202,6 @@
         }
     }
 
-/*
-    async function previousPage() {
-        resultStatus = result = "";
-        const res = await fetch(API+`?offset=10&&limit=${limit}`, {
-            method: "GET",
-        });
-        try {
-            const data = await res.json();
-            result = JSON.stringify(data, null, 2);
-            datos = data;
-        } catch (error) {
-            console.log(`Error al parsear el resultado: ${error}`);
-        }
-        const status = await res.status;
-        resultStatus = status;
-    }
-*/
     async function nextPage() {
         resultStatus = result = "";
         const res = await fetch(API+`?offset=10&&limit=${limit}`, {
@@ -343,7 +308,7 @@
 
     async function getProvYear(searchProvinceID,searchYearID) {
         resultStatus = result = ""; 
-        const res = await fetch(API+`?province=${searchProvinceID}&&year=${searchYearID}`, {
+        const res = await fetch(API+`?provinceSearch=${searchProvinceID}&&yearSearch=${searchYearID}`, {
             method: "GET",
         });
         try {
@@ -735,12 +700,12 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
     <h3>Búsqueda avanzada</h3>
     <br>
     <div>
-        <input placeholder="Provincia que quiere buscar" bind:value={searchProvince} />
+        <input placeholder="Provincia a buscar" bind:value={searchProvince} />
         <Button color="warning" on:click={getProvince(searchProvince)}>Buscar por provincia</Button>
     </div>
     <br>
     <div>
-        <input placeholder="Año que quiere buscar" bind:value={searchYear} />
+        <input placeholder="Año a buscar" bind:value={searchYear} />
         <Button color="warning" on:click={getYear(searchYear)}>Buscar por año</Button>
     </div>
     <br>
@@ -780,8 +745,8 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
     </div>
     <br>
     <div>
-        <input placeholder="Provincia" bind:value={searchProvinceID} />
-        <input placeholder="Año" bind:value={searchYearID} />
+        <input placeholder="Provincia a buscar" bind:value={searchProvinceID} />
+        <input placeholder="Año a buscar" bind:value={searchYearID} />
         <Button color="warning" on:click={getProvYear(searchProvinceID,searchYearID)}>Buscar por provincia y año</Button>
     </div>
     <br>
@@ -795,7 +760,7 @@ async function getFromTo(searchProvinceRange,getFrom,getTo) {
         <input placeholder="Provincia del rango" bind:value={searchProvinceRange} />
         <input placeholder="Año de inicio" bind:value={getFrom} />
         <input placeholder="Año de fin" bind:value={getTo} />
-        <Button color="warning" on:click={getFromTo(getFrom,getTo)}>Buscar por rango de año</Button>
+        <Button color="warning" on:click={getFromTo(searchProvinceRange,getFrom,getTo)}>Buscar por rango de año</Button>
     </div>
     <br>
     {/if}
