@@ -4,22 +4,22 @@ const manifest = {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.03983456.js","imports":["_app/immutable/entry/start.03983456.js","_app/immutable/chunks/index.eb3421ec.js","_app/immutable/chunks/singletons.04f91c88.js","_app/immutable/chunks/paths.89316619.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.5d2aacc8.js","imports":["_app/immutable/entry/app.5d2aacc8.js","_app/immutable/chunks/index.eb3421ec.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.174f5d7f.js","imports":["_app/immutable/entry/start.174f5d7f.js","_app/immutable/chunks/index.eb3421ec.js","_app/immutable/chunks/singletons.6ce68844.js","_app/immutable/chunks/paths.779c5c88.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.1758632a.js","imports":["_app/immutable/entry/app.1758632a.js","_app/immutable/chunks/index.eb3421ec.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('./chunks/0-72741006.js'),
-			() => import('./chunks/1-2eb4a7af.js'),
-			() => import('./chunks/2-aa781f91.js'),
-			() => import('./chunks/3-ee50d3ac.js'),
-			() => import('./chunks/4-8f44fa82.js'),
-			() => import('./chunks/5-f198c207.js'),
-			() => import('./chunks/6-bb5e5b25.js'),
+			() => import('./chunks/1-686024c3.js'),
+			() => import('./chunks/2-e57f0e0f.js'),
+			() => import('./chunks/3-419b69d4.js'),
+			() => import('./chunks/4-aaf192ea.js'),
+			() => import('./chunks/5-4a0b7413.js'),
+			() => import('./chunks/6-e5d9d16c.js'),
 			() => import('./chunks/7-a2809f32.js'),
-			() => import('./chunks/8-fc1e47cb.js'),
+			() => import('./chunks/8-903e176d.js'),
 			() => import('./chunks/9-75e79596.js'),
 			() => import('./chunks/10-51fd8483.js'),
-			() => import('./chunks/11-9325f004.js'),
+			() => import('./chunks/11-66e63372.js'),
 			() => import('./chunks/12-46233e41.js'),
-			() => import('./chunks/13-989c7227.js'),
+			() => import('./chunks/13-6d285817.js'),
 			() => import('./chunks/14-6ad9c2d6.js'),
 			() => import('./chunks/15-ab5f44c7.js'),
 			() => import('./chunks/16-9d3526f2.js'),
@@ -34,9 +34,12 @@ const manifest = {
 			() => import('./chunks/25-1a6768f6.js'),
 			() => import('./chunks/26-eb4a20cf.js'),
 			() => import('./chunks/27-ab186e4c.js'),
-			() => import('./chunks/28-128e1758.js'),
-			() => import('./chunks/29-e73ae79f.js'),
-			() => import('./chunks/30-5fe1b1a4.js')
+			() => import('./chunks/28-420fa6b3.js'),
+			() => import('./chunks/29-e55eef32.js'),
+			() => import('./chunks/30-ebc7ad89.js'),
+			() => import('./chunks/31-388e412b.js'),
+			() => import('./chunks/32-08b32c71.js'),
+			() => import('./chunks/33-6ecf7ba5.js')
 		],
 		routes: [
 			{
@@ -222,24 +225,45 @@ const manifest = {
 				endpoint: null
 			},
 			{
+				id: "/integrations/hotel-occupancy-surveys/integraciones",
+				pattern: /^\/integrations\/hotel-occupancy-surveys\/integraciones\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 28 },
+				endpoint: null
+			},
+			{
+				id: "/integrations/hotel-occupancy-surveys/integraciones/withProxy",
+				pattern: /^\/integrations\/hotel-occupancy-surveys\/integraciones\/withProxy\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 30 },
+				endpoint: null
+			},
+			{
+				id: "/integrations/hotel-occupancy-surveys/integraciones/withoutProxy",
+				pattern: /^\/integrations\/hotel-occupancy-surveys\/integraciones\/withoutProxy\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 29 },
+				endpoint: null
+			},
+			{
 				id: "/integrations/hotel-occupancy-surveys/usos",
 				pattern: /^\/integrations\/hotel-occupancy-surveys\/usos\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 28 },
+				page: { layouts: [0], errors: [1], leaf: 31 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/hotel-occupancy-surveys/usos/DrinksDigital",
 				pattern: /^\/integrations\/hotel-occupancy-surveys\/usos\/DrinksDigital\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 29 },
+				page: { layouts: [0], errors: [1], leaf: 32 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/hotel-occupancy-surveys/usos/GamerPower",
 				pattern: /^\/integrations\/hotel-occupancy-surveys\/usos\/GamerPower\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 30 },
+				page: { layouts: [0], errors: [1], leaf: 33 },
 				endpoint: null
 			}
 		],

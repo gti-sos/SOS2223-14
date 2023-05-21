@@ -6,7 +6,7 @@
     }
 
     async function watchVideoHotel(){
-        window.location.href = "";
+        window.location.href = "https://drive.google.com/file/d/16efY4olIXAJ-Sqgt6TvPgOREuQoFXm3i/view?usp=share_link";
     }
 
     async function watchVideoTourism(){

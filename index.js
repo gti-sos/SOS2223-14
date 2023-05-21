@@ -35,6 +35,15 @@ app.use(paths_r, function(req,res){
     req.pipe(request(url)).pipe(res);
 });
 
+// Proxy Ana
+
+var paths_ana = "/employ";
+var apiServerHost_ana = "https://sos2223-13.appspot.com/api/v1/employment-stats";
+
+app.use(paths_ana, function(req,res){
+    var url = apiServerHost_ana + req.url;
+    req.pipe(request(url)).pipe(res);
+});
 
 app.get("/", (request,response) => {
     response.sendFile("/public/index.html");

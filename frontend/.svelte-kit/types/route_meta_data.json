@@ -25,6 +25,9 @@
 	"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [],
 	"/integrations/apartment-occupancy-surveys/usos": [],
 	"/integrations/hotel-occupancy-surveys": [],
+	"/integrations/hotel-occupancy-surveys/integraciones": [],
+	"/integrations/hotel-occupancy-surveys/integraciones/withProxy": [],
+	"/integrations/hotel-occupancy-surveys/integraciones/withoutProxy": [],
 	"/integrations/hotel-occupancy-surveys/usos": [],
 	"/integrations/hotel-occupancy-surveys/usos/DrinksDigital": [],
 	"/integrations/hotel-occupancy-surveys/usos/GamerPower": []

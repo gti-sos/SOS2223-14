@@ -2,20 +2,20 @@
     <div class="container">
         <div class="photo-block">
             <div class="photo-image-block">
-                <a href="http://sos2223-14.ew.r.appspot.com/integrations/hotel-occupancy-surveys/usos/GamerPower"><img src="https://img.icons8.com/?size=512&id=32002&format=png" id="imdb" alt="Imagen" style="margin-bottom:22px;"></a>
+                <a href="http://sos2223-14.ew.r.appspot.com/integrations/hotel-occupancy-surveys/integraciones/withoutProxy"><img src="https://thumbs.dreamstime.com/b/gr%C3%A1ficos-financieros-41675922.jpg" id="imdb" alt="Imagen" style="margin-bottom:22px;"></a>
             </div>
             <div class="photo-metadata-block">
-                <h2 class="photo-title">Videojuegos</h2>
+                <h2 class="photo-title">Sin proxy</h2>
             </div>
         </div>
         <div class="photo-block" style="margin-left: 20px;">
             <div class="photo-image-block">
-                <a href="http://sos2223-14.ew.r.appspot.com/integrations/hotel-occupancy-surveys/usos/DrinksDigital"><img src="https://img.icons8.com/?size=512&id=105212&format=png" alt="Imagen" style="margin-bottom:-5px;"></a>
+                <a href="http://sos2223-14.ew.r.appspot.com/integrations/hotel-occupancy-surveys/integraciones/withProxy"><img src = "https://3.bp.blogspot.com/-X24aRlnk89Q/Vg6xCpICQEI/AAAAAAAAFAU/Pqm7ua8Cm5k/s1600/estadistica2.jpg" alt="Imagen" style="margin-bottom:-5px;"></a>
             </div>
             <div class="photo-metadata-block">
-                <h2 class="photo-title">Bebidas</h2>
+                <h2 class="photo-title">Con proxy</h2>
             </div>
-        </div>
+        </div>    
    </div> 
 </main>
 <style>

@@ -4,7 +4,7 @@ export const manifest = {
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.03983456.js","imports":["_app/immutable/entry/start.03983456.js","_app/immutable/chunks/index.eb3421ec.js","_app/immutable/chunks/singletons.04f91c88.js","_app/immutable/chunks/paths.89316619.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.5d2aacc8.js","imports":["_app/immutable/entry/app.5d2aacc8.js","_app/immutable/chunks/index.eb3421ec.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.174f5d7f.js","imports":["_app/immutable/entry/start.174f5d7f.js","_app/immutable/chunks/index.eb3421ec.js","_app/immutable/chunks/singletons.6ce68844.js","_app/immutable/chunks/paths.779c5c88.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.1758632a.js","imports":["_app/immutable/entry/app.1758632a.js","_app/immutable/chunks/index.eb3421ec.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
@@ -36,7 +36,10 @@ export const manifest = {
 			() => import('./nodes/27.js'),
 			() => import('./nodes/28.js'),
 			() => import('./nodes/29.js'),
-			() => import('./nodes/30.js')
+			() => import('./nodes/30.js'),
+			() => import('./nodes/31.js'),
+			() => import('./nodes/32.js'),
+			() => import('./nodes/33.js')
 		],
 		routes: [
 			{
@@ -222,24 +225,45 @@ export const manifest = {
 				endpoint: null
 			},
 			{
+				id: "/integrations/hotel-occupancy-surveys/integraciones",
+				pattern: /^\/integrations\/hotel-occupancy-surveys\/integraciones\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 28 },
+				endpoint: null
+			},
+			{
+				id: "/integrations/hotel-occupancy-surveys/integraciones/withProxy",
+				pattern: /^\/integrations\/hotel-occupancy-surveys\/integraciones\/withProxy\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 30 },
+				endpoint: null
+			},
+			{
+				id: "/integrations/hotel-occupancy-surveys/integraciones/withoutProxy",
+				pattern: /^\/integrations\/hotel-occupancy-surveys\/integraciones\/withoutProxy\/?$/,
+				params: [],
+				page: { layouts: [0], errors: [1], leaf: 29 },
+				endpoint: null
+			},
+			{
 				id: "/integrations/hotel-occupancy-surveys/usos",
 				pattern: /^\/integrations\/hotel-occupancy-surveys\/usos\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 28 },
+				page: { layouts: [0], errors: [1], leaf: 31 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/hotel-occupancy-surveys/usos/DrinksDigital",
 				pattern: /^\/integrations\/hotel-occupancy-surveys\/usos\/DrinksDigital\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 29 },
+				page: { layouts: [0], errors: [1], leaf: 32 },
 				endpoint: null
 			},
 			{
 				id: "/integrations/hotel-occupancy-surveys/usos/GamerPower",
 				pattern: /^\/integrations\/hotel-occupancy-surveys\/usos\/GamerPower\/?$/,
 				params: [],
-				page: { layouts: [0], errors: [1], leaf: 30 },
+				page: { layouts: [0], errors: [1], leaf: 33 },
 				endpoint: null
 			}
 		],

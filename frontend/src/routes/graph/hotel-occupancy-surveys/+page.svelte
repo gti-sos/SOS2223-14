@@ -186,11 +186,11 @@
 </script>
 
 <main>
-    <h1>Gráfrica Ocupación hotelera</h1>
+    <h1>Gráfica Ocupación hotelera</h1>
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
-            Datros recogidos para los años 2021 y 2022.
+            Datos recogidos para los años 2021 y 2022.
         </p>
     </figure>
 

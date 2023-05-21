@@ -31,7 +31,10 @@ export const nodes = [
 	() => import('./nodes/27'),
 	() => import('./nodes/28'),
 	() => import('./nodes/29'),
-	() => import('./nodes/30')
+	() => import('./nodes/30'),
+	() => import('./nodes/31'),
+	() => import('./nodes/32'),
+	() => import('./nodes/33')
 ];
 
 export const server_loads = [];
@@ -63,9 +66,12 @@ export const dictionary = {
 		"/integrations/apartment-occupancy-surveys/graficas/withoutProxy": [24],
 		"/integrations/apartment-occupancy-surveys/usos": [26],
 		"/integrations/hotel-occupancy-surveys": [27],
-		"/integrations/hotel-occupancy-surveys/usos": [28],
-		"/integrations/hotel-occupancy-surveys/usos/DrinksDigital": [29],
-		"/integrations/hotel-occupancy-surveys/usos/GamerPower": [30]
+		"/integrations/hotel-occupancy-surveys/integraciones": [28],
+		"/integrations/hotel-occupancy-surveys/integraciones/withProxy": [30],
+		"/integrations/hotel-occupancy-surveys/integraciones/withoutProxy": [29],
+		"/integrations/hotel-occupancy-surveys/usos": [31],
+		"/integrations/hotel-occupancy-surveys/usos/DrinksDigital": [32],
+		"/integrations/hotel-occupancy-surveys/usos/GamerPower": [33]
 	};
 
 export const hooks = {
